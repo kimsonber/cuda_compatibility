@@ -1,0 +1,497 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nvperf_target
+  dyn_lib_file_name: libnvperf_target.so
+  dyn_lib_install_name: libnvperf_target.so
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nvperf_target.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libnvperf_target.so
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: NVPW_Adapter_GetDeviceIndex
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Adapter_GetDeviceIndex_Params
+              is_pointer: true
+              type_str: NVPW_Adapter_GetDeviceIndex_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Config_GetNumPasses
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Config_GetNumPasses_Params
+              is_pointer: true
+              type_str: NVPW_Config_GetNumPasses_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_CounterData_GetChipName
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_CounterData_GetChipName_Params
+              is_pointer: true
+              type_str: NVPW_CounterData_GetChipName_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_CounterData_GetNumRanges
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_CounterData_GetNumRanges_Params
+              is_pointer: true
+              type_str: NVPW_CounterData_GetNumRanges_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_CounterData_GetRangeDescriptions
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_CounterData_GetRangeDescriptions_Params
+              is_pointer: true
+              type_str: NVPW_CounterData_GetRangeDescriptions_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Device_GetClockStatus
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Device_GetClockStatus_Params
+              is_pointer: true
+              type_str: NVPW_Device_GetClockStatus_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Device_GetMigAttributes
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Device_GetMigAttributes_Params
+              is_pointer: true
+              type_str: NVPW_Device_GetMigAttributes_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Device_GetNames
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Device_GetNames_Params
+              is_pointer: true
+              type_str: NVPW_Device_GetNames_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Device_GetPciBusIds
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Device_GetPciBusIds_Params
+              is_pointer: true
+              type_str: NVPW_Device_GetPciBusIds_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Device_SetClockSetting
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Device_SetClockSetting_Params
+              is_pointer: true
+              type_str: NVPW_Device_SetClockSetting_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_GetDeviceCount
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_GetDeviceCount_Params
+              is_pointer: true
+              type_str: NVPW_GetDeviceCount_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_InitializeTarget
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_InitializeTarget_Params
+              is_pointer: true
+              type_str: NVPW_InitializeTarget_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_PeriodicSampler_CounterData_GetDelimiters
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_PeriodicSampler_CounterData_GetDelimiters_Params
+              is_pointer: true
+              type_str: NVPW_PeriodicSampler_CounterData_GetDelimiters_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_PeriodicSampler_CounterData_GetSampleTime
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_PeriodicSampler_CounterData_GetSampleTime_Params
+              is_pointer: true
+              type_str: NVPW_PeriodicSampler_CounterData_GetSampleTime_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_PeriodicSampler_CounterData_TrimInPlace
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_PeriodicSampler_CounterData_TrimInPlace_Params
+              is_pointer: true
+              type_str: NVPW_PeriodicSampler_CounterData_TrimInPlace_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_Profiler_CounterData_GetRangeDescriptions
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_Profiler_CounterData_GetRangeDescriptions_Params
+              is_pointer: true
+              type_str: NVPW_Profiler_CounterData_GetRangeDescriptions_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: NVPW_QueryVersionNumber
+      signature:
+        return_type:
+          name: NVPA_Status
+          type_str: NVPA_Status {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: NVPW_QueryVersionNumber_Params
+              is_pointer: true
+              type_str: NVPW_QueryVersionNumber_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libNeedImpl.so
+  lib_dirs:
+    []
+  include_files:
+    []
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=11041
+      - __TEXTURE_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    []
+api_mappings:
+  - source_function: NVPW_Adapter_GetDeviceIndex
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Config_GetNumPasses
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_CounterData_GetChipName
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_CounterData_GetNumRanges
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_CounterData_GetRangeDescriptions
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Device_GetClockStatus
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Device_GetMigAttributes
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Device_GetNames
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Device_GetPciBusIds
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Device_SetClockSetting
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_GetDeviceCount
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_InitializeTarget
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_PeriodicSampler_CounterData_GetDelimiters
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_PeriodicSampler_CounterData_GetSampleTime
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_PeriodicSampler_CounterData_TrimInPlace
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_Profiler_CounterData_GetRangeDescriptions
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: NVPW_QueryVersionNumber
+    target_function: ""
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "NVPW_Adapter_GetDeviceIndex",
+        "NVPW_Config_GetNumPasses",
+        "NVPW_CounterData_GetChipName",
+        "NVPW_CounterData_GetNumRanges",
+        "NVPW_CounterData_GetRangeDescriptions",
+        "NVPW_Device_GetClockStatus",
+        "NVPW_Device_GetMigAttributes",
+        "NVPW_Device_GetNames",
+        "NVPW_Device_GetPciBusIds",
+        "NVPW_Device_SetClockSetting",
+        "NVPW_GetDeviceCount",
+        "NVPW_InitializeTarget",
+        "NVPW_PeriodicSampler_CounterData_GetDelimiters",
+        "NVPW_PeriodicSampler_CounterData_GetSampleTime",
+        "NVPW_PeriodicSampler_CounterData_TrimInPlace",
+        "NVPW_Profiler_CounterData_GetRangeDescriptions",
+        "NVPW_QueryVersionNumber",
+    };
+
+    enum nvperf_targetProfileCallbackId {
+        nvperf_target_TRACE_CBID_NVPW_Adapter_GetDeviceIndex = 0,
+        nvperf_target_TRACE_CBID_NVPW_Config_GetNumPasses = 1,
+        nvperf_target_TRACE_CBID_NVPW_CounterData_GetChipName = 2,
+        nvperf_target_TRACE_CBID_NVPW_CounterData_GetNumRanges = 3,
+        nvperf_target_TRACE_CBID_NVPW_CounterData_GetRangeDescriptions = 4,
+        nvperf_target_TRACE_CBID_NVPW_Device_GetClockStatus = 5,
+        nvperf_target_TRACE_CBID_NVPW_Device_GetMigAttributes = 6,
+        nvperf_target_TRACE_CBID_NVPW_Device_GetNames = 7,
+        nvperf_target_TRACE_CBID_NVPW_Device_GetPciBusIds = 8,
+        nvperf_target_TRACE_CBID_NVPW_Device_SetClockSetting = 9,
+        nvperf_target_TRACE_CBID_NVPW_GetDeviceCount = 10,
+        nvperf_target_TRACE_CBID_NVPW_InitializeTarget = 11,
+        nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetDelimiters = 12,
+        nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetSampleTime = 13,
+        nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_TrimInPlace = 14,
+        nvperf_target_TRACE_CBID_NVPW_Profiler_CounterData_GetRangeDescriptions = 15,
+        nvperf_target_TRACE_CBID_NVPW_QueryVersionNumber = 16,
+    };
+
+    typedef uint32_t (*nvperf_targetRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*nvperf_targetIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvperf_targetProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvperf_targetProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct nvperf_targetProfileHandler {
+        nvperf_targetRegisterProfileDomain registerProfileDomain;
+        nvperf_targetIsProfileCallbackEnabled isCallbackEnabled;
+        nvperf_targetProfileCallbackBegin profileCallbackBegin;
+        nvperf_targetProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static nvperf_targetProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nvperf_target";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<nvperf_targetRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<nvperf_targetIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<nvperf_targetProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<nvperf_targetProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
