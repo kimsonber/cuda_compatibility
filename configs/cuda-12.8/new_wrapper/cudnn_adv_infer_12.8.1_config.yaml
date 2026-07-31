@@ -1,0 +1,5084 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cudnn_adv_infer
+  dyn_lib_file_name: libcudnn_adv_infer.so.8.9.5
+  dyn_lib_install_name: libcudnn_adv_infer.so.8.9.5
+  sta_lib_file_name: libcudnn_adv_infer_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cudnn_adv_infer.h
+    - cudnn_adv_infer_v8.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcudnn_adv_infer.so.8
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: cudnnAdvInferVersionCheck
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnBuildRNNDynamic
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: miniBatch
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreateAttnDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              is_pointer: true
+              type_str: cudnnAttnDescriptor_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreatePersistentRNNPlan
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: minibatch
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              is_const: true
+              type_str: const cudnnDataType_t {}
+          - name: plan
+            param_type:
+              name: cudnnPersistentRNNPlan_t
+              is_pointer: true
+              type_str: cudnnPersistentRNNPlan_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreateRNNDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_pointer: true
+              type_str: cudnnRNNDataDescriptor_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreateRNNDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_pointer: true
+              type_str: cudnnRNNDescriptor_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreateSeqDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_pointer: true
+              type_str: cudnnSeqDataDescriptor_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroyAttnDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              type_str: cudnnAttnDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroyPersistentRNNPlan
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: plan
+            param_type:
+              name: cudnnPersistentRNNPlan_t
+              type_str: cudnnPersistentRNNPlan_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroyRNNDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroyRNNDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroySeqDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              type_str: cudnnSeqDataDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnFindRNNForwardInferenceAlgorithmEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: seqLength
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: findIntensity
+            param_type:
+              name: float
+              is_const: true
+              type_str: const float {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnAlgorithmPerformance_t
+              is_pointer: true
+              type_str: cudnnAlgorithmPerformance_t * {}
+          - name: workspace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetAttnDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              type_str: cudnnAttnDescriptor_t {}
+          - name: attnMode
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: nHeads
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: smScaler
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: computePrec
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              is_pointer: true
+              type_str: cudnnMathType_t * {}
+          - name: attnDropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              is_pointer: true
+              type_str: cudnnDropoutDescriptor_t * {}
+          - name: postDropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              is_pointer: true
+              type_str: cudnnDropoutDescriptor_t * {}
+          - name: qSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: qProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: oProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: qoMaxSeqLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kvMaxSeqLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: maxBatchSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: maxBeamSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetMultiHeadAttnBuffers
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              is_const: true
+              type_str: const cudnnAttnDescriptor_t {}
+          - name: weightSizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetMultiHeadAttnWeights
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              is_const: true
+              type_str: const cudnnAttnDescriptor_t {}
+          - name: wKind
+            param_type:
+              name: cudnnMultiHeadAttnWeightKind_t
+              type_str: cudnnMultiHeadAttnWeightKind_t {}
+          - name: weightSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weights
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: wAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNBiasMode
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: biasMode
+            param_type:
+              name: cudnnRNNBiasMode_t
+              is_pointer: true
+              type_str: cudnnRNNBiasMode_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: layout
+            param_type:
+              name: cudnnRNNDataLayout_t
+              is_pointer: true
+              type_str: cudnnRNNDataLayout_t * {}
+          - name: maxSeqLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: batchSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vectorSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: arrayLengthRequested
+            param_type:
+              name: int
+              type_str: int {}
+          - name: seqLengthArray
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: paddingFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNDescriptor_v6
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: hiddenSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: numLayers
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              is_pointer: true
+              type_str: cudnnDropoutDescriptor_t * {}
+          - name: inputMode
+            param_type:
+              name: cudnnRNNInputMode_t
+              is_pointer: true
+              type_str: cudnnRNNInputMode_t * {}
+          - name: direction
+            param_type:
+              name: cudnnDirectionMode_t
+              is_pointer: true
+              type_str: cudnnDirectionMode_t * {}
+          - name: cellMode
+            param_type:
+              name: cudnnRNNMode_t
+              is_pointer: true
+              type_str: cudnnRNNMode_t * {}
+          - name: algo
+            param_type:
+              name: cudnnRNNAlgo_t
+              is_pointer: true
+              type_str: cudnnRNNAlgo_t * {}
+          - name: mathPrec
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNDescriptor_v8
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnRNNAlgo_t
+              is_pointer: true
+              type_str: cudnnRNNAlgo_t * {}
+          - name: cellMode
+            param_type:
+              name: cudnnRNNMode_t
+              is_pointer: true
+              type_str: cudnnRNNMode_t * {}
+          - name: biasMode
+            param_type:
+              name: cudnnRNNBiasMode_t
+              is_pointer: true
+              type_str: cudnnRNNBiasMode_t * {}
+          - name: dirMode
+            param_type:
+              name: cudnnDirectionMode_t
+              is_pointer: true
+              type_str: cudnnDirectionMode_t * {}
+          - name: inputMode
+            param_type:
+              name: cudnnRNNInputMode_t
+              is_pointer: true
+              type_str: cudnnRNNInputMode_t * {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: mathPrec
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              is_pointer: true
+              type_str: cudnnMathType_t * {}
+          - name: inputSize
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: hiddenSize
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: projSize
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: numLayers
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: dropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              is_pointer: true
+              type_str: cudnnDropoutDescriptor_t * {}
+          - name: auxFlags
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNForwardInferenceAlgorithmMaxCount
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNLinLayerBiasParams
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: linLayerBiasDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              type_str: cudnnFilterDescriptor_t {}
+          - name: linLayerBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNLinLayerMatrixParams
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: linLayerMatDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              type_str: cudnnFilterDescriptor_t {}
+          - name: linLayerMat
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNMatrixMathType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: mType
+            param_type:
+              name: cudnnMathType_t
+              is_pointer: true
+              type_str: cudnnMathType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNPaddingMode
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: paddingMode
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNParamsSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNProjectionLayers
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: recProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: outProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNTempSpaceSizes
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: fwdMode
+            param_type:
+              name: cudnnForwardMode_t
+              type_str: cudnnForwardMode_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+          - name: workSpaceSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: reserveSpaceSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNTrainingReserveSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: seqLength
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNWeightParams
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: weightSpaceSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weightSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: mDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: mAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: bDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: bAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNWeightSpaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: weightSpaceSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetRNNWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: seqLength
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetSeqDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_const: true
+              type_str: const cudnnSeqDataDescriptor_t {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+          - name: nbDims
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: nbDimsRequested
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dimA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: axes
+            param_type:
+              name: cudnnSeqDataAxis_t[]
+              is_array: true
+              type_str: cudnnSeqDataAxis_t {}[]
+          - name: seqLengthArraySize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: seqLengthSizeRequested
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: seqLengthArray
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: paddingFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnMultiHeadAttnForward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              is_const: true
+              type_str: const cudnnAttnDescriptor_t {}
+          - name: currIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: loWinIdx
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: hiWinIdx
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: devSeqLengthsQO
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: devSeqLengthsKV
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: qDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_const: true
+              type_str: const cudnnSeqDataDescriptor_t {}
+          - name: queries
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: residuals
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: kDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_const: true
+              type_str: const cudnnSeqDataDescriptor_t {}
+          - name: keys
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: vDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_const: true
+              type_str: const cudnnSeqDataDescriptor_t {}
+          - name: values
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: oDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              is_const: true
+              type_str: const cudnnSeqDataDescriptor_t {}
+          - name: out
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: weightSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weights
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNForward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: fwdMode
+            param_type:
+              name: cudnnForwardMode_t
+              type_str: cudnnForwardMode_t {}
+          - name: devSeqLengths
+            param_type:
+              name: constint32_t[]
+              is_array: true
+              type_str: const int32_t {}[]
+          - name: xDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: weightSpaceSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weightSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: workSpaceSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNForwardInference
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: seqLength
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_pointer: true
+              type_str: const cudnnTensorDescriptor_t * {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNForwardInferenceEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDescriptor_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: kDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: keys
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: cAttn
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: iDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: iAttn
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: qDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              is_const: true
+              type_str: const cudnnRNNDataDescriptor_t {}
+          - name: queries
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNGetClip
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: clipMode
+            param_type:
+              name: cudnnRNNClipMode_t
+              is_pointer: true
+              type_str: cudnnRNNClipMode_t * {}
+          - name: clipNanOpt
+            param_type:
+              name: cudnnNanPropagation_t
+              is_pointer: true
+              type_str: cudnnNanPropagation_t * {}
+          - name: lclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: rclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNGetClip_v8
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: clipMode
+            param_type:
+              name: cudnnRNNClipMode_t
+              is_pointer: true
+              type_str: cudnnRNNClipMode_t * {}
+          - name: clipNanOpt
+            param_type:
+              name: cudnnNanPropagation_t
+              is_pointer: true
+              type_str: cudnnNanPropagation_t * {}
+          - name: lclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: rclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNSetClip
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: clipMode
+            param_type:
+              name: cudnnRNNClipMode_t
+              type_str: cudnnRNNClipMode_t {}
+          - name: clipNanOpt
+            param_type:
+              name: cudnnNanPropagation_t
+              type_str: cudnnNanPropagation_t {}
+          - name: lclip
+            param_type:
+              name: double
+              type_str: double {}
+          - name: rclip
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnRNNSetClip_v8
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: clipMode
+            param_type:
+              name: cudnnRNNClipMode_t
+              type_str: cudnnRNNClipMode_t {}
+          - name: clipNanOpt
+            param_type:
+              name: cudnnNanPropagation_t
+              type_str: cudnnNanPropagation_t {}
+          - name: lclip
+            param_type:
+              name: double
+              type_str: double {}
+          - name: rclip
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetAttnDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: cudnnAttnDescriptor_t
+              type_str: cudnnAttnDescriptor_t {}
+          - name: attnMode
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: nHeads
+            param_type:
+              name: int
+              type_str: int {}
+          - name: smScaler
+            param_type:
+              name: double
+              type_str: double {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: computePrec
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              type_str: cudnnMathType_t {}
+          - name: attnDropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              type_str: cudnnDropoutDescriptor_t {}
+          - name: postDropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              type_str: cudnnDropoutDescriptor_t {}
+          - name: qSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: qProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: oProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: qoMaxSeqLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kvMaxSeqLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: maxBatchSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: maxBeamSize
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetPersistentRNNPlan
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: plan
+            param_type:
+              name: cudnnPersistentRNNPlan_t
+              type_str: cudnnPersistentRNNPlan_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNAlgorithmDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: algoDesc
+            param_type:
+              name: cudnnAlgorithmDescriptor_t
+              type_str: cudnnAlgorithmDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNBiasMode
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: biasMode
+            param_type:
+              name: cudnnRNNBiasMode_t
+              type_str: cudnnRNNBiasMode_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: cudnnRNNDataDescriptor_t
+              type_str: cudnnRNNDataDescriptor_t {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: layout
+            param_type:
+              name: cudnnRNNDataLayout_t
+              type_str: cudnnRNNDataLayout_t {}
+          - name: maxSeqLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: batchSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vectorSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: seqLengthArray
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: paddingFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNDescriptor_v6
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: hiddenSize
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: numLayers
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: dropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              type_str: cudnnDropoutDescriptor_t {}
+          - name: inputMode
+            param_type:
+              name: cudnnRNNInputMode_t
+              type_str: cudnnRNNInputMode_t {}
+          - name: direction
+            param_type:
+              name: cudnnDirectionMode_t
+              type_str: cudnnDirectionMode_t {}
+          - name: cellMode
+            param_type:
+              name: cudnnRNNMode_t
+              type_str: cudnnRNNMode_t {}
+          - name: algo
+            param_type:
+              name: cudnnRNNAlgo_t
+              type_str: cudnnRNNAlgo_t {}
+          - name: mathPrec
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNDescriptor_v8
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnRNNAlgo_t
+              type_str: cudnnRNNAlgo_t {}
+          - name: cellMode
+            param_type:
+              name: cudnnRNNMode_t
+              type_str: cudnnRNNMode_t {}
+          - name: biasMode
+            param_type:
+              name: cudnnRNNBiasMode_t
+              type_str: cudnnRNNBiasMode_t {}
+          - name: dirMode
+            param_type:
+              name: cudnnDirectionMode_t
+              type_str: cudnnDirectionMode_t {}
+          - name: inputMode
+            param_type:
+              name: cudnnRNNInputMode_t
+              type_str: cudnnRNNInputMode_t {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: mathPrec
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              type_str: cudnnMathType_t {}
+          - name: inputSize
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: hiddenSize
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: projSize
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: numLayers
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: dropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              type_str: cudnnDropoutDescriptor_t {}
+          - name: auxFlags
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNMatrixMathType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: mType
+            param_type:
+              name: cudnnMathType_t
+              type_str: cudnnMathType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNPaddingMode
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: paddingMode
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetRNNProjectionLayers
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: cudnnRNNDescriptor_t
+              type_str: cudnnRNNDescriptor_t {}
+          - name: recProjSize
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: outProjSize
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetSeqDataDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: cudnnSeqDataDescriptor_t
+              type_str: cudnnSeqDataDescriptor_t {}
+          - name: dataType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+          - name: nbDims
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dimA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: axes
+            param_type:
+              name: constcudnnSeqDataAxis_t[]
+              is_array: true
+              type_str: const cudnnSeqDataAxis_t {}[]
+          - name: seqLengthArraySize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: seqLengthArray
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: paddingFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libacdnn_adv_infer.so
+  lib_dirs:
+    []
+  include_files:
+    - acdnn_adv_infer.h
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12081
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: acdnnAdvInferVersionCheck
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnCreateAttnDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              is_pointer: true
+              type_str: acdnnAttnD_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnCreateRNNDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              is_pointer: true
+              type_str: acdnnRNNDatDesc_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnCreateRNNDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_pointer: true
+              type_str: acdnnRNNDesc_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnCreateSeqDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_pointer: true
+              type_str: acdnnSeqDDesc_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDestroyAttnDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              type_str: acdnnAttnD_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDestroyRNNDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDestroyRNNDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDestroySeqDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              type_str: acdnnSeqDDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetAttnDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              type_str: acdnnAttnD_t {}
+          - name: attnMode
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: nHeads
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: smScaler
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: computePrec
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              is_pointer: true
+              type_str: acdnnMathType_t * {}
+          - name: attnDrop
+            param_type:
+              name: acdnnDropDesc_t
+              is_pointer: true
+              type_str: acdnnDropDesc_t * {}
+          - name: postDrop
+            param_type:
+              name: acdnnDropDesc_t
+              is_pointer: true
+              type_str: acdnnDropDesc_t * {}
+          - name: qSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: qProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: oProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: qoMaxSeqLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: kvMaxSeqLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: maxBatchSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: maxBeamSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetMultiHeadAttnBuffers
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              is_const: true
+              type_str: const acdnnAttnD_t {}
+          - name: wtSzBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: wsBufBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: rsBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetMultiHeadAttnWeights
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              is_const: true
+              type_str: const acdnnAttnD_t {}
+          - name: wKind
+            param_type:
+              name: acdnnMultiHeadAttnWeightKind_t
+              type_str: acdnnMultiHeadAttnWeightKind_t {}
+          - name: wtSzBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weights
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: wAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNBiasMode
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: bMode
+            param_type:
+              name: acdnnRNNBiasMode_t
+              is_pointer: true
+              type_str: acdnnRNNBiasMode_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: layout
+            param_type:
+              name: acdnnRNNLayout_t
+              is_pointer: true
+              type_str: acdnnRNNLayout_t * {}
+          - name: maxSeqLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: batSz
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: vecSz
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: arrayLengthRequested
+            param_type:
+              name: int
+              type_str: int {}
+          - name: seqLenArr
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: padFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNDescriptor_v6
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: hidSz
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: nLayers
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dropDesc
+            param_type:
+              name: acdnnDropDesc_t
+              is_pointer: true
+              type_str: acdnnDropDesc_t * {}
+          - name: iMode
+            param_type:
+              name: acdnnRNNInputMode_t
+              is_pointer: true
+              type_str: acdnnRNNInputMode_t * {}
+          - name: dir
+            param_type:
+              name: acdnnDirectionMode_t
+              is_pointer: true
+              type_str: acdnnDirectionMode_t * {}
+          - name: cMode
+            param_type:
+              name: acdnnRNNMode_t
+              is_pointer: true
+              type_str: acdnnRNNMode_t * {}
+          - name: algo
+            param_type:
+              name: acdnnRNNAlg_t
+              is_pointer: true
+              type_str: acdnnRNNAlg_t * {}
+          - name: mPrec
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNDescriptor_v8
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnRNNAlg_t
+              is_pointer: true
+              type_str: acdnnRNNAlg_t * {}
+          - name: cMode
+            param_type:
+              name: acdnnRNNMode_t
+              is_pointer: true
+              type_str: acdnnRNNMode_t * {}
+          - name: bMode
+            param_type:
+              name: acdnnRNNBiasMode_t
+              is_pointer: true
+              type_str: acdnnRNNBiasMode_t * {}
+          - name: dMode
+            param_type:
+              name: acdnnDirectionMode_t
+              is_pointer: true
+              type_str: acdnnDirectionMode_t * {}
+          - name: iMode
+            param_type:
+              name: acdnnRNNInputMode_t
+              is_pointer: true
+              type_str: acdnnRNNInputMode_t * {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: mPrec
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              is_pointer: true
+              type_str: acdnnMathType_t * {}
+          - name: inpSz
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: hidSz
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: prjSz
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: nLayers
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+          - name: dropDesc
+            param_type:
+              name: acdnnDropDesc_t
+              is_pointer: true
+              type_str: acdnnDropDesc_t * {}
+          - name: auxFl
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNLinLayerBiasParams
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFltDesc_t
+              is_const: true
+              type_str: const acdnnFltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: linLayerBiasDesc
+            param_type:
+              name: acdnnFltDesc_t
+              type_str: acdnnFltDesc_t {}
+          - name: linLayerBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNLinLayerMatrixParams
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFltDesc_t
+              is_const: true
+              type_str: const acdnnFltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: linLayerMatDesc
+            param_type:
+              name: acdnnFltDesc_t
+              type_str: acdnnFltDesc_t {}
+          - name: linLayerMat
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNMatrixMathType
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              is_pointer: true
+              type_str: acdnnMathType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNParamsSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: szBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNProjectionLayers
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: recProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: outProjSize
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNTempSpaceSizes
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: fMode
+            param_type:
+              name: acdnnForwardMode_t
+              type_str: acdnnForwardMode_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+          - name: wkSz
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: rsSz
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNTrainingReserveSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: seqLen
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_pointer: true
+              type_str: const acdnnTDesc_t * {}
+          - name: szBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNWeightParams
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: pseudoLayer
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: wtSz
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weightSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: linLayerID
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: mDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: mAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: bDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bAddr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNWeightSpaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: wtSz
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetRNNWorkspaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: seqLen
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_pointer: true
+              type_str: const acdnnTDesc_t * {}
+          - name: szBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetSeqDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_const: true
+              type_str: const acdnnSeqDDesc_t {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+          - name: nbDims
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: nbDimsRequested
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dimA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: axes
+            param_type:
+              name: acdnnSeqDataAxis_t[]
+              is_array: true
+              type_str: acdnnSeqDataAxis_t {}[]
+          - name: seqLenSz
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: seqLenReq
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: seqLenArr
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: padFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnMultiHeadAttnForward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              is_const: true
+              type_str: const acdnnAttnD_t {}
+          - name: currIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: loWinIdx
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: hiWinIdx
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: devSeqLengthsQO
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: devSeqLengthsKV
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: qDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_const: true
+              type_str: const acdnnSeqDDesc_t {}
+          - name: queries
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: residuals
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: kDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_const: true
+              type_str: const acdnnSeqDDesc_t {}
+          - name: keys
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: vDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_const: true
+              type_str: const acdnnSeqDDesc_t {}
+          - name: values
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: oDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              is_const: true
+              type_str: const acdnnSeqDDesc_t {}
+          - name: out
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wtSzBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weights
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wsBufBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: rsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNForward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: fwdMode
+            param_type:
+              name: acdnnForwardMode_t
+              type_str: acdnnForwardMode_t {}
+          - name: devSeqLengths
+            param_type:
+              name: constint32_t[]
+              is_array: true
+              type_str: const int32_t {}[]
+          - name: xDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wtSz
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: weightSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wkSz
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: rsSz
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNForwardInference
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              is_const: true
+              type_str: const acdnnRNNDesc_t {}
+          - name: seqLen
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_pointer: true
+              type_str: const acdnnTDesc_t * {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: hxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: hx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: cxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: cx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnFltDesc_t
+              is_const: true
+              type_str: const acdnnFltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_pointer: true
+              type_str: const acdnnTDesc_t * {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: hyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: hy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: cyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: cy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBufBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNGetClip
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: clpMode
+            param_type:
+              name: acdnnRNNClipMode_t
+              is_pointer: true
+              type_str: acdnnRNNClipMode_t * {}
+          - name: clpNan
+            param_type:
+              name: acdnnNanPropagation_t
+              is_pointer: true
+              type_str: acdnnNanPropagation_t * {}
+          - name: lclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: rclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNGetClip_v8
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: clpMode
+            param_type:
+              name: acdnnRNNClipMode_t
+              is_pointer: true
+              type_str: acdnnRNNClipMode_t * {}
+          - name: clpNan
+            param_type:
+              name: acdnnNanPropagation_t
+              is_pointer: true
+              type_str: acdnnNanPropagation_t * {}
+          - name: lclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: rclip
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNSetClip
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: clpMode
+            param_type:
+              name: acdnnRNNClipMode_t
+              type_str: acdnnRNNClipMode_t {}
+          - name: clpNan
+            param_type:
+              name: acdnnNanPropagation_t
+              type_str: acdnnNanPropagation_t {}
+          - name: lclip
+            param_type:
+              name: double
+              type_str: double {}
+          - name: rclip
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnRNNSetClip_v8
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: clpMode
+            param_type:
+              name: acdnnRNNClipMode_t
+              type_str: acdnnRNNClipMode_t {}
+          - name: clpNan
+            param_type:
+              name: acdnnNanPropagation_t
+              type_str: acdnnNanPropagation_t {}
+          - name: lclip
+            param_type:
+              name: double
+              type_str: double {}
+          - name: rclip
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetAttnDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: attnDesc
+            param_type:
+              name: acdnnAttnD_t
+              type_str: acdnnAttnD_t {}
+          - name: attnMode
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: nHeads
+            param_type:
+              name: int
+              type_str: int {}
+          - name: smScaler
+            param_type:
+              name: double
+              type_str: double {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: computePrec
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              type_str: acdnnMathType_t {}
+          - name: attnDrop
+            param_type:
+              name: acdnnDropDesc_t
+              type_str: acdnnDropDesc_t {}
+          - name: postDrop
+            param_type:
+              name: acdnnDropDesc_t
+              type_str: acdnnDropDesc_t {}
+          - name: qSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: qProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: oProjSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: qoMaxSeqLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: kvMaxSeqLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: maxBatchSize
+            param_type:
+              name: int
+              type_str: int {}
+          - name: maxBeamSize
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNBiasMode
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: bMode
+            param_type:
+              name: acdnnRNNBiasMode_t
+              type_str: acdnnRNNBiasMode_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDataDesc
+            param_type:
+              name: acdnnRNNDatDesc_t
+              type_str: acdnnRNNDatDesc_t {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: layout
+            param_type:
+              name: acdnnRNNLayout_t
+              type_str: acdnnRNNLayout_t {}
+          - name: maxSeqLen
+            param_type:
+              name: int
+              type_str: int {}
+          - name: batSz
+            param_type:
+              name: int
+              type_str: int {}
+          - name: vecSz
+            param_type:
+              name: int
+              type_str: int {}
+          - name: seqLenArr
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: padFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNDescriptor_v6
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: hidSz
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: nLayers
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: dropDesc
+            param_type:
+              name: acdnnDropDesc_t
+              type_str: acdnnDropDesc_t {}
+          - name: iMode
+            param_type:
+              name: acdnnRNNInputMode_t
+              type_str: acdnnRNNInputMode_t {}
+          - name: dir
+            param_type:
+              name: acdnnDirectionMode_t
+              type_str: acdnnDirectionMode_t {}
+          - name: cMode
+            param_type:
+              name: acdnnRNNMode_t
+              type_str: acdnnRNNMode_t {}
+          - name: algo
+            param_type:
+              name: acdnnRNNAlg_t
+              type_str: acdnnRNNAlg_t {}
+          - name: mPrec
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNDescriptor_v8
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnRNNAlg_t
+              type_str: acdnnRNNAlg_t {}
+          - name: cMode
+            param_type:
+              name: acdnnRNNMode_t
+              type_str: acdnnRNNMode_t {}
+          - name: bMode
+            param_type:
+              name: acdnnRNNBiasMode_t
+              type_str: acdnnRNNBiasMode_t {}
+          - name: dMode
+            param_type:
+              name: acdnnDirectionMode_t
+              type_str: acdnnDirectionMode_t {}
+          - name: iMode
+            param_type:
+              name: acdnnRNNInputMode_t
+              type_str: acdnnRNNInputMode_t {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: mPrec
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              type_str: acdnnMathType_t {}
+          - name: inpSz
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: hidSz
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: prjSz
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: nLayers
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: dropDesc
+            param_type:
+              name: acdnnDropDesc_t
+              type_str: acdnnDropDesc_t {}
+          - name: auxFl
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNMatrixMathType
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: mType
+            param_type:
+              name: acdnnMathType_t
+              type_str: acdnnMathType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetRNNProjectionLayers
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: rnnDesc
+            param_type:
+              name: acdnnRNNDesc_t
+              type_str: acdnnRNNDesc_t {}
+          - name: recProjSize
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: outProjSize
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetSeqDataDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: seqDataDesc
+            param_type:
+              name: acdnnSeqDDesc_t
+              type_str: acdnnSeqDDesc_t {}
+          - name: dType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+          - name: nbDims
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dimA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: axes
+            param_type:
+              name: constacdnnSeqDataAxis_t[]
+              is_array: true
+              type_str: const acdnnSeqDataAxis_t {}[]
+          - name: seqLenSz
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: seqLenArr
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: padFill
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: cudnnAdvInferVersionCheck
+    target_function: acdnnAdvInferVersionCheck
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnAdvInferVersionCheck) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnAdvInferVersionCheck);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnAdvInferVersionCheck);
+            }
+
+
+  - source_function: cudnnBuildRNNDynamic
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnCreateAttnDescriptor
+    target_function: acdnnCreateAttnDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateAttnDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateAttnDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateAttnDescriptor);
+            }
+
+
+  - source_function: cudnnCreatePersistentRNNPlan
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnCreateRNNDataDescriptor
+    target_function: acdnnCreateRNNDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDataDescriptor);
+            }
+
+
+  - source_function: cudnnCreateRNNDescriptor
+    target_function: acdnnCreateRNNDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDescriptor);
+            }
+
+
+  - source_function: cudnnCreateSeqDataDescriptor
+    target_function: acdnnCreateSeqDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateSeqDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateSeqDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnCreateSeqDataDescriptor);
+            }
+
+
+  - source_function: cudnnDestroyAttnDescriptor
+    target_function: acdnnDestroyAttnDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyAttnDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyAttnDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyAttnDescriptor);
+            }
+
+
+  - source_function: cudnnDestroyPersistentRNNPlan
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnDestroyRNNDataDescriptor
+    target_function: acdnnDestroyRNNDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDataDescriptor);
+            }
+
+
+  - source_function: cudnnDestroyRNNDescriptor
+    target_function: acdnnDestroyRNNDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDescriptor);
+            }
+
+
+  - source_function: cudnnDestroySeqDataDescriptor
+    target_function: acdnnDestroySeqDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroySeqDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroySeqDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnDestroySeqDataDescriptor);
+            }
+
+
+  - source_function: cudnnFindRNNForwardInferenceAlgorithmEx
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetAttnDescriptor
+    target_function: acdnnGetAttnDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetAttnDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetAttnDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetAttnDescriptor);
+            }
+
+
+  - source_function: cudnnGetMultiHeadAttnBuffers
+    target_function: acdnnGetMultiHeadAttnBuffers
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnBuffers) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnBuffers);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnBuffers);
+            }
+
+
+  - source_function: cudnnGetMultiHeadAttnWeights
+    target_function: acdnnGetMultiHeadAttnWeights
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnWeights) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnWeights);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnWeights);
+            }
+
+
+  - source_function: cudnnGetRNNBiasMode
+    target_function: acdnnGetRNNBiasMode
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNBiasMode) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNBiasMode);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNBiasMode);
+            }
+
+
+  - source_function: cudnnGetRNNDataDescriptor
+    target_function: acdnnGetRNNDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDataDescriptor);
+            }
+
+
+  - source_function: cudnnGetRNNDescriptor_v6
+    target_function: acdnnGetRNNDescriptor_v6
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v6) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v6);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v6);
+            }
+
+
+  - source_function: cudnnGetRNNDescriptor_v8
+    target_function: acdnnGetRNNDescriptor_v8
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v8) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v8);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v8);
+            }
+
+
+  - source_function: cudnnGetRNNForwardInferenceAlgorithmMaxCount
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetRNNLinLayerBiasParams
+    target_function: acdnnGetRNNLinLayerBiasParams
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerBiasParams) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerBiasParams);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerBiasParams);
+            }
+
+
+  - source_function: cudnnGetRNNLinLayerMatrixParams
+    target_function: acdnnGetRNNLinLayerMatrixParams
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerMatrixParams) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerMatrixParams);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerMatrixParams);
+            }
+
+
+  - source_function: cudnnGetRNNMatrixMathType
+    target_function: acdnnGetRNNMatrixMathType
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNMatrixMathType) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNMatrixMathType);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNMatrixMathType);
+            }
+
+
+  - source_function: cudnnGetRNNPaddingMode
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetRNNParamsSize
+    target_function: acdnnGetRNNParamsSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNParamsSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNParamsSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNParamsSize);
+            }
+
+
+  - source_function: cudnnGetRNNProjectionLayers
+    target_function: acdnnGetRNNProjectionLayers
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNProjectionLayers) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNProjectionLayers);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNProjectionLayers);
+            }
+
+
+  - source_function: cudnnGetRNNTempSpaceSizes
+    target_function: acdnnGetRNNTempSpaceSizes
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTempSpaceSizes) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTempSpaceSizes);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTempSpaceSizes);
+            }
+
+
+  - source_function: cudnnGetRNNTrainingReserveSize
+    target_function: acdnnGetRNNTrainingReserveSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTrainingReserveSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTrainingReserveSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTrainingReserveSize);
+            }
+
+
+  - source_function: cudnnGetRNNWeightParams
+    target_function: acdnnGetRNNWeightParams
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightParams) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightParams);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightParams);
+            }
+
+
+  - source_function: cudnnGetRNNWeightSpaceSize
+    target_function: acdnnGetRNNWeightSpaceSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightSpaceSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightSpaceSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightSpaceSize);
+            }
+
+
+  - source_function: cudnnGetRNNWorkspaceSize
+    target_function: acdnnGetRNNWorkspaceSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWorkspaceSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWorkspaceSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWorkspaceSize);
+            }
+
+
+  - source_function: cudnnGetSeqDataDescriptor
+    target_function: acdnnGetSeqDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetSeqDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetSeqDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnGetSeqDataDescriptor);
+            }
+
+
+  - source_function: cudnnMultiHeadAttnForward
+    target_function: acdnnMultiHeadAttnForward
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnMultiHeadAttnForward) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnMultiHeadAttnForward);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnMultiHeadAttnForward);
+            }
+
+
+  - source_function: cudnnRNNForward
+    target_function: acdnnRNNForward
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForward) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForward);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForward);
+            }
+
+
+  - source_function: cudnnRNNForwardInference
+    target_function: acdnnRNNForwardInference
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForwardInference) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForwardInference);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNForwardInference);
+            }
+
+
+  - source_function: cudnnRNNForwardInferenceEx
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnRNNGetClip
+    target_function: acdnnRNNGetClip
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip);
+            }
+
+
+  - source_function: cudnnRNNGetClip_v8
+    target_function: acdnnRNNGetClip_v8
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip_v8) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip_v8);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip_v8);
+            }
+
+
+  - source_function: cudnnRNNSetClip
+    target_function: acdnnRNNSetClip
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip);
+            }
+
+
+  - source_function: cudnnRNNSetClip_v8
+    target_function: acdnnRNNSetClip_v8
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip_v8) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip_v8);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip_v8);
+            }
+
+
+  - source_function: cudnnSetAttnDescriptor
+    target_function: acdnnSetAttnDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetAttnDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetAttnDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetAttnDescriptor);
+            }
+
+
+  - source_function: cudnnSetPersistentRNNPlan
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnSetRNNAlgorithmDescriptor
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnSetRNNBiasMode
+    target_function: acdnnSetRNNBiasMode
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNBiasMode) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNBiasMode);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNBiasMode);
+            }
+
+
+  - source_function: cudnnSetRNNDataDescriptor
+    target_function: acdnnSetRNNDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDataDescriptor);
+            }
+
+
+  - source_function: cudnnSetRNNDescriptor_v6
+    target_function: acdnnSetRNNDescriptor_v6
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v6) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v6);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v6);
+            }
+
+
+  - source_function: cudnnSetRNNDescriptor_v8
+    target_function: acdnnSetRNNDescriptor_v8
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v8) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v8);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v8);
+            }
+
+
+  - source_function: cudnnSetRNNMatrixMathType
+    target_function: acdnnSetRNNMatrixMathType
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNMatrixMathType) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNMatrixMathType);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNMatrixMathType);
+            }
+
+
+  - source_function: cudnnSetRNNPaddingMode
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnSetRNNProjectionLayers
+    target_function: acdnnSetRNNProjectionLayers
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNProjectionLayers) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNProjectionLayers);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetRNNProjectionLayers);
+            }
+
+
+  - source_function: cudnnSetSeqDataDescriptor
+    target_function: acdnnSetSeqDataDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetSeqDataDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetSeqDataDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_adv_infer_TRACE_CBID_cudnnSetSeqDataDescriptor);
+            }
+
+
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cudnnAdvInferVersionCheck",
+        "cudnnBuildRNNDynamic",
+        "cudnnCreateAttnDescriptor",
+        "cudnnCreatePersistentRNNPlan",
+        "cudnnCreateRNNDataDescriptor",
+        "cudnnCreateRNNDescriptor",
+        "cudnnCreateSeqDataDescriptor",
+        "cudnnDestroyAttnDescriptor",
+        "cudnnDestroyPersistentRNNPlan",
+        "cudnnDestroyRNNDataDescriptor",
+        "cudnnDestroyRNNDescriptor",
+        "cudnnDestroySeqDataDescriptor",
+        "cudnnFindRNNForwardInferenceAlgorithmEx",
+        "cudnnGetAttnDescriptor",
+        "cudnnGetMultiHeadAttnBuffers",
+        "cudnnGetMultiHeadAttnWeights",
+        "cudnnGetRNNBiasMode",
+        "cudnnGetRNNDataDescriptor",
+        "cudnnGetRNNDescriptor_v6",
+        "cudnnGetRNNDescriptor_v8",
+        "cudnnGetRNNForwardInferenceAlgorithmMaxCount",
+        "cudnnGetRNNLinLayerBiasParams",
+        "cudnnGetRNNLinLayerMatrixParams",
+        "cudnnGetRNNMatrixMathType",
+        "cudnnGetRNNPaddingMode",
+        "cudnnGetRNNParamsSize",
+        "cudnnGetRNNProjectionLayers",
+        "cudnnGetRNNTempSpaceSizes",
+        "cudnnGetRNNTrainingReserveSize",
+        "cudnnGetRNNWeightParams",
+        "cudnnGetRNNWeightSpaceSize",
+        "cudnnGetRNNWorkspaceSize",
+        "cudnnGetSeqDataDescriptor",
+        "cudnnMultiHeadAttnForward",
+        "cudnnRNNForward",
+        "cudnnRNNForwardInference",
+        "cudnnRNNForwardInferenceEx",
+        "cudnnRNNGetClip",
+        "cudnnRNNGetClip_v8",
+        "cudnnRNNSetClip",
+        "cudnnRNNSetClip_v8",
+        "cudnnSetAttnDescriptor",
+        "cudnnSetPersistentRNNPlan",
+        "cudnnSetRNNAlgorithmDescriptor",
+        "cudnnSetRNNBiasMode",
+        "cudnnSetRNNDataDescriptor",
+        "cudnnSetRNNDescriptor_v6",
+        "cudnnSetRNNDescriptor_v8",
+        "cudnnSetRNNMatrixMathType",
+        "cudnnSetRNNPaddingMode",
+        "cudnnSetRNNProjectionLayers",
+        "cudnnSetSeqDataDescriptor",
+    };
+
+    enum cudnn_adv_inferProfileCallbackId {
+        cudnn_adv_infer_TRACE_CBID_cudnnAdvInferVersionCheck = 0,
+        cudnn_adv_infer_TRACE_CBID_cudnnBuildRNNDynamic = 1,
+        cudnn_adv_infer_TRACE_CBID_cudnnCreateAttnDescriptor = 2,
+        cudnn_adv_infer_TRACE_CBID_cudnnCreatePersistentRNNPlan = 3,
+        cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDataDescriptor = 4,
+        cudnn_adv_infer_TRACE_CBID_cudnnCreateRNNDescriptor = 5,
+        cudnn_adv_infer_TRACE_CBID_cudnnCreateSeqDataDescriptor = 6,
+        cudnn_adv_infer_TRACE_CBID_cudnnDestroyAttnDescriptor = 7,
+        cudnn_adv_infer_TRACE_CBID_cudnnDestroyPersistentRNNPlan = 8,
+        cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDataDescriptor = 9,
+        cudnn_adv_infer_TRACE_CBID_cudnnDestroyRNNDescriptor = 10,
+        cudnn_adv_infer_TRACE_CBID_cudnnDestroySeqDataDescriptor = 11,
+        cudnn_adv_infer_TRACE_CBID_cudnnFindRNNForwardInferenceAlgorithmEx = 12,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetAttnDescriptor = 13,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnBuffers = 14,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetMultiHeadAttnWeights = 15,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNBiasMode = 16,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDataDescriptor = 17,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v6 = 18,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNDescriptor_v8 = 19,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNForwardInferenceAlgorithmMaxCount = 20,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerBiasParams = 21,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNLinLayerMatrixParams = 22,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNMatrixMathType = 23,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNPaddingMode = 24,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNParamsSize = 25,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNProjectionLayers = 26,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTempSpaceSizes = 27,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNTrainingReserveSize = 28,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightParams = 29,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWeightSpaceSize = 30,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetRNNWorkspaceSize = 31,
+        cudnn_adv_infer_TRACE_CBID_cudnnGetSeqDataDescriptor = 32,
+        cudnn_adv_infer_TRACE_CBID_cudnnMultiHeadAttnForward = 33,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNForward = 34,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNForwardInference = 35,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNForwardInferenceEx = 36,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip = 37,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNGetClip_v8 = 38,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip = 39,
+        cudnn_adv_infer_TRACE_CBID_cudnnRNNSetClip_v8 = 40,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetAttnDescriptor = 41,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetPersistentRNNPlan = 42,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNAlgorithmDescriptor = 43,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNBiasMode = 44,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDataDescriptor = 45,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v6 = 46,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNDescriptor_v8 = 47,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNMatrixMathType = 48,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNPaddingMode = 49,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetRNNProjectionLayers = 50,
+        cudnn_adv_infer_TRACE_CBID_cudnnSetSeqDataDescriptor = 51,
+    };
+
+    typedef uint32_t (*cudnn_adv_inferRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cudnn_adv_inferIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_adv_inferProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_adv_inferProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cudnn_adv_inferProfileHandler {
+        cudnn_adv_inferRegisterProfileDomain registerProfileDomain;
+        cudnn_adv_inferIsProfileCallbackEnabled isCallbackEnabled;
+        cudnn_adv_inferProfileCallbackBegin profileCallbackBegin;
+        cudnn_adv_inferProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cudnn_adv_inferProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cudnn_adv_infer";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cudnn_adv_inferRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cudnn_adv_inferIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cudnn_adv_inferProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cudnn_adv_inferProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
