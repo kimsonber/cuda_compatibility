@@ -1,0 +1,1193 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cusolverMg
+  dyn_lib_file_name: libcusolverMg.so.11.6.4.38
+  dyn_lib_install_name: libcusolverMg.so.11.6.4.38
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cusolverMg.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcusolverMg.so.11
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: cusolverMgCreate
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              is_pointer: true
+              type_str: cusolverMgHandle_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgCreateDeviceGrid
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: grid
+            param_type:
+              name: cudaLibMgGrid_t
+              is_pointer: true
+              type_str: cudaLibMgGrid_t * {}
+          - name: numRowDevices
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: numColDevices
+            param_type:
+              name: int32_t
+              type_str: int32_t {}
+          - name: deviceId
+            param_type:
+              name: constint32_t[]
+              is_array: true
+              type_str: const int32_t {}[]
+          - name: mapping
+            param_type:
+              name: cusolverMgGridMapping_t
+              type_str: cusolverMgGridMapping_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgCreateMatrixDesc
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: desc
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              is_pointer: true
+              type_str: cudaLibMgMatrixDesc_t * {}
+          - name: numRows
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: numCols
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: rowBlockSize
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: colBlockSize
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: dataType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: grid
+            param_type:
+              name: cudaLibMgGrid_t
+              is_const: true
+              type_str: const cudaLibMgGrid_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgDestroy
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgDestroyGrid
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: grid
+            param_type:
+              name: cudaLibMgGrid_t
+              type_str: cudaLibMgGrid_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgDestroyMatrixDesc
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: desc
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgDeviceSelect
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: nbDevices
+            param_type:
+              name: int
+              type_str: int {}
+          - name: deviceId
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgGetrf
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: M
+            param_type:
+              name: int
+              type_str: int {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_IPIV
+            param_type:
+              name: int[]
+              is_pointer: true
+              is_array: true
+              type_str: int * {}[]
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgGetrf_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: M
+            param_type:
+              name: int
+              type_str: int {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_IPIV
+            param_type:
+              name: int[]
+              is_pointer: true
+              is_array: true
+              type_str: int * {}[]
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgGetrs
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: TRANS
+            param_type:
+              name: cublasOperation_t
+              type_str: cublasOperation_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: NRHS
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_IPIV
+            param_type:
+              name: int[]
+              is_pointer: true
+              is_array: true
+              type_str: int * {}[]
+          - name: array_d_B
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrB
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgGetrs_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: TRANS
+            param_type:
+              name: cublasOperation_t
+              type_str: cublasOperation_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: NRHS
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_IPIV
+            param_type:
+              name: int[]
+              is_pointer: true
+              is_array: true
+              type_str: int * {}[]
+          - name: array_d_B
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrB
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotrf
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: h_info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotrf_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotri
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: h_info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotri_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotrs
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: n
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nrhs
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_B
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrB
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: h_info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgPotrs_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: n
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nrhs
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: array_d_B
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JB
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrB
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgSyevd
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: jobz
+            param_type:
+              name: cusolverEigMode_t
+              type_str: cusolverEigMode_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: W
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dataTypeW
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: array_d_work
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: lwork
+            param_type:
+              name: int64_t
+              type_str: int64_t {}
+          - name: info
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cusolverMgSyevd_bufferSize
+      signature:
+        return_type:
+          name: cusolverStatus_t
+          type_str: cusolverStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cusolverMgHandle_t
+              type_str: cusolverMgHandle_t {}
+          - name: jobz
+            param_type:
+              name: cusolverEigMode_t
+              type_str: cusolverEigMode_t {}
+          - name: uplo
+            param_type:
+              name: cublasFillMode_t
+              type_str: cublasFillMode_t {}
+          - name: N
+            param_type:
+              name: int
+              type_str: int {}
+          - name: array_d_A
+            param_type:
+              name: void[]
+              is_pointer: true
+              is_array: true
+              type_str: void * {}[]
+          - name: IA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: JA
+            param_type:
+              name: int
+              type_str: int {}
+          - name: descrA
+            param_type:
+              name: cudaLibMgMatrixDesc_t
+              type_str: cudaLibMgMatrixDesc_t {}
+          - name: W
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dataTypeW
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: computeType
+            param_type:
+              name: cudaDataType
+              type_str: cudaDataType {}
+          - name: lwork
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libNeedImpl.so
+  lib_dirs:
+    []
+  include_files:
+    []
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12061
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    []
+api_mappings:
+  - source_function: cusolverMgCreate
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgCreateDeviceGrid
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgCreateMatrixDesc
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgDestroy
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgDestroyGrid
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgDestroyMatrixDesc
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgDeviceSelect
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgGetrf
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgGetrf_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgGetrs
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgGetrs_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotrf
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotrf_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotri
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotri_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotrs
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgPotrs_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgSyevd
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cusolverMgSyevd_bufferSize
+    target_function: ""
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cusolverMgCreate",
+        "cusolverMgCreateDeviceGrid",
+        "cusolverMgCreateMatrixDesc",
+        "cusolverMgDestroy",
+        "cusolverMgDestroyGrid",
+        "cusolverMgDestroyMatrixDesc",
+        "cusolverMgDeviceSelect",
+        "cusolverMgGetrf",
+        "cusolverMgGetrf_bufferSize",
+        "cusolverMgGetrs",
+        "cusolverMgGetrs_bufferSize",
+        "cusolverMgPotrf",
+        "cusolverMgPotrf_bufferSize",
+        "cusolverMgPotri",
+        "cusolverMgPotri_bufferSize",
+        "cusolverMgPotrs",
+        "cusolverMgPotrs_bufferSize",
+        "cusolverMgSyevd",
+        "cusolverMgSyevd_bufferSize",
+    };
+
+    enum cusolverMgProfileCallbackId {
+        cusolverMg_TRACE_CBID_cusolverMgCreate = 0,
+        cusolverMg_TRACE_CBID_cusolverMgCreateDeviceGrid = 1,
+        cusolverMg_TRACE_CBID_cusolverMgCreateMatrixDesc = 2,
+        cusolverMg_TRACE_CBID_cusolverMgDestroy = 3,
+        cusolverMg_TRACE_CBID_cusolverMgDestroyGrid = 4,
+        cusolverMg_TRACE_CBID_cusolverMgDestroyMatrixDesc = 5,
+        cusolverMg_TRACE_CBID_cusolverMgDeviceSelect = 6,
+        cusolverMg_TRACE_CBID_cusolverMgGetrf = 7,
+        cusolverMg_TRACE_CBID_cusolverMgGetrf_bufferSize = 8,
+        cusolverMg_TRACE_CBID_cusolverMgGetrs = 9,
+        cusolverMg_TRACE_CBID_cusolverMgGetrs_bufferSize = 10,
+        cusolverMg_TRACE_CBID_cusolverMgPotrf = 11,
+        cusolverMg_TRACE_CBID_cusolverMgPotrf_bufferSize = 12,
+        cusolverMg_TRACE_CBID_cusolverMgPotri = 13,
+        cusolverMg_TRACE_CBID_cusolverMgPotri_bufferSize = 14,
+        cusolverMg_TRACE_CBID_cusolverMgPotrs = 15,
+        cusolverMg_TRACE_CBID_cusolverMgPotrs_bufferSize = 16,
+        cusolverMg_TRACE_CBID_cusolverMgSyevd = 17,
+        cusolverMg_TRACE_CBID_cusolverMgSyevd_bufferSize = 18,
+    };
+
+    typedef uint32_t (*cusolverMgRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cusolverMgIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cusolverMgProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cusolverMgProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cusolverMgProfileHandler {
+        cusolverMgRegisterProfileDomain registerProfileDomain;
+        cusolverMgIsProfileCallbackEnabled isCallbackEnabled;
+        cusolverMgProfileCallbackBegin profileCallbackBegin;
+        cusolverMgProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cusolverMgProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cusolverMg";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cusolverMgRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cusolverMgIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cusolverMgProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cusolverMgProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+

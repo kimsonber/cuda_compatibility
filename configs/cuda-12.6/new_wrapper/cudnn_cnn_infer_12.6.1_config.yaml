@@ -1,0 +1,3194 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cudnn_cnn_infer
+  dyn_lib_file_name: libcudnn_cnn_infer.so.8.9.5
+  dyn_lib_install_name: libcudnn_cnn_infer.so.8.9.5
+  sta_lib_file_name: libcudnn_cnn_infer_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cudnn_cnn_infer.h
+    - cudnn_cnn_infer_v8.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcudnn_cnn_infer.so.8
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: cudnnCnnInferVersionCheck
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnConvolutionBackwardData
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnConvolutionBwdDataAlgo_t
+              type_str: cudnnConvolutionBwdDataAlgo_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnConvolutionBiasActivationForward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: alpha1
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnConvolutionFwdAlgo_t
+              type_str: cudnnConvolutionFwdAlgo_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: alpha2
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: zDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: z
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: biasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnConvolutionForward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnConvolutionFwdAlgo_t
+              type_str: cudnnConvolutionFwdAlgo_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnCreateConvolutionDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_pointer: true
+              type_str: cudnnConvolutionDescriptor_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDestroyConvolutionDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnFindConvolutionBackwardDataAlgorithm
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionBwdDataAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnFindConvolutionBackwardDataAlgorithmEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionBwdDataAlgoPerf_t * {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnFindConvolutionForwardAlgorithm
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionFwdAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnFindConvolutionForwardAlgorithmEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionFwdAlgoPerf_t * {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolution2dDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: pad_h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pad_w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: u
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: v
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dilation_h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dilation_w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: mode
+            param_type:
+              name: cudnnConvolutionMode_t
+              is_pointer: true
+              type_str: cudnnConvolutionMode_t * {}
+          - name: computeType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolution2dForwardOutputDim
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: inputTensorDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: n
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: c
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionBackwardDataAlgorithmMaxCount
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionBackwardDataAlgorithm_v7
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: diffDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: gradDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionBwdDataAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionBackwardDataWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnConvolutionBwdDataAlgo_t
+              type_str: cudnnConvolutionBwdDataAlgo_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionForwardAlgorithmMaxCount
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionForwardAlgorithm_v7
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: srcDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: destDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: requestedAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: returnedAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: cudnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: cudnnConvolutionFwdAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionForwardWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: algo
+            param_type:
+              name: cudnnConvolutionFwdAlgo_t
+              type_str: cudnnConvolutionFwdAlgo_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionGroupCount
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: groupCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionMathType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              is_pointer: true
+              type_str: cudnnMathType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionNdDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: arrayLengthRequested
+            param_type:
+              name: int
+              type_str: int {}
+          - name: arrayLength
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: padA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: strideA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: dilationA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: mode
+            param_type:
+              name: cudnnConvolutionMode_t
+              is_pointer: true
+              type_str: cudnnConvolutionMode_t * {}
+          - name: computeType
+            param_type:
+              name: cudnnDataType_t
+              is_pointer: true
+              type_str: cudnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionNdForwardOutputDim
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: inputTensorDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: nbDims
+            param_type:
+              name: int
+              type_str: int {}
+          - name: tensorOuputDimA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetConvolutionReorderType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: reorderType
+            param_type:
+              name: cudnnReorderType_t
+              is_pointer: true
+              type_str: cudnnReorderType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetFoldedConvBackwardDataDescriptors
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              is_const: true
+              type_str: const cudnnHandle_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: diffDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: gradDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: transformFormat
+            param_type:
+              name: cudnnTensorFormat_t
+              is_const: true
+              type_str: const cudnnTensorFormat_t {}
+          - name: foldedFilterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              type_str: cudnnFilterDescriptor_t {}
+          - name: paddedDiffDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: foldedConvDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: foldedGradDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              type_str: cudnnTensorDescriptor_t {}
+          - name: filterFoldTransDesc
+            param_type:
+              name: cudnnTensorTransformDescriptor_t
+              type_str: cudnnTensorTransformDescriptor_t {}
+          - name: diffPadTransDesc
+            param_type:
+              name: cudnnTensorTransformDescriptor_t
+              type_str: cudnnTensorTransformDescriptor_t {}
+          - name: gradFoldTransDesc
+            param_type:
+              name: cudnnTensorTransformDescriptor_t
+              type_str: cudnnTensorTransformDescriptor_t {}
+          - name: gradUnfoldTransDesc
+            param_type:
+              name: cudnnTensorTransformDescriptor_t
+              type_str: cudnnTensorTransformDescriptor_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnIm2Col
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              is_const: true
+              type_str: const cudnnConvolutionDescriptor_t {}
+          - name: colBuffer
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnReorderFilterAndBias
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: filterDesc
+            param_type:
+              name: cudnnFilterDescriptor_t
+              is_const: true
+              type_str: const cudnnFilterDescriptor_t {}
+          - name: reorderType
+            param_type:
+              name: cudnnReorderType_t
+              type_str: cudnnReorderType_t {}
+          - name: filterData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: reorderedFilterData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reorderBias
+            param_type:
+              name: int
+              type_str: int {}
+          - name: biasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: reorderedBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetConvolution2dDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: pad_h
+            param_type:
+              name: int
+              type_str: int {}
+          - name: pad_w
+            param_type:
+              name: int
+              type_str: int {}
+          - name: u
+            param_type:
+              name: int
+              type_str: int {}
+          - name: v
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dilation_h
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dilation_w
+            param_type:
+              name: int
+              type_str: int {}
+          - name: mode
+            param_type:
+              name: cudnnConvolutionMode_t
+              type_str: cudnnConvolutionMode_t {}
+          - name: computeType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetConvolutionGroupCount
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: groupCount
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetConvolutionMathType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: mathType
+            param_type:
+              name: cudnnMathType_t
+              type_str: cudnnMathType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetConvolutionNdDescriptor
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: arrayLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: padA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: filterStrideA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: dilationA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: mode
+            param_type:
+              name: cudnnConvolutionMode_t
+              type_str: cudnnConvolutionMode_t {}
+          - name: computeType
+            param_type:
+              name: cudnnDataType_t
+              type_str: cudnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSetConvolutionReorderType
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: cudnnConvolutionDescriptor_t
+              type_str: cudnnConvolutionDescriptor_t {}
+          - name: reorderType
+            param_type:
+              name: cudnnReorderType_t
+              type_str: cudnnReorderType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libacdnn_cnn_infer.so
+  lib_dirs:
+    []
+  include_files:
+    - acdnn_cnn_infer.h
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12061
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: acdnnCnnInferVersionCheck
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnConvolutionBackwardData
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnConvolutionBwdDataAlgo_t
+              type_str: acdnnConvolutionBwdDataAlgo_t {}
+          - name: ws
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnConvolutionBiasActivationForward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: alpha1
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnConvolutionFwdAlgo_t
+              type_str: acdnnConvolutionFwdAlgo_t {}
+          - name: ws
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: alpha2
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: zDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: z
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: biasDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: bias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              is_const: true
+              type_str: const acdnnActDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnConvolutionForward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnConvolutionFwdAlgo_t
+              type_str: acdnnConvolutionFwdAlgo_t {}
+          - name: ws
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnCreateConvolutionDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_pointer: true
+              type_str: acdnnConvDesc_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDestroyConvolutionDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnFindConvolutionBackwardDataAlgorithm
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionBwdDataAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnFindConvolutionBackwardDataAlgorithmEx
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionBwdDataAlgoPerf_t * {}
+          - name: ws
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnFindConvolutionForwardAlgorithm
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionFwdAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnFindConvolutionForwardAlgorithmEx
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: w
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionFwdAlgoPerf_t * {}
+          - name: ws
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolution2dDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: pad_h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pad_w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: u
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: v
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dilation_h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: dilation_w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: mode
+            param_type:
+              name: acdnnConvolutionMode_t
+              is_pointer: true
+              type_str: acdnnConvolutionMode_t * {}
+          - name: computeType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolution2dForwardOutputDim
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: inDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: filtDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: n
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: c
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: h
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: w
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionBackwardDataAlgorithmMaxCount
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionBackwardDataAlgorithm_v7
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: filtDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: diffDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: gradDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionBwdDataAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionBwdDataAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionBackwardDataWorkspaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnConvolutionBwdDataAlgo_t
+              type_str: acdnnConvolutionBwdDataAlgo_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionForwardAlgorithmMaxCount
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionForwardAlgorithm_v7
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: srcDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: filtDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: destDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: reqAlgoCount
+            param_type:
+              name: int
+              is_const: true
+              type_str: const int {}
+          - name: retAlgoCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: perfResults
+            param_type:
+              name: acdnnConvolutionFwdAlgoPerf_t
+              is_pointer: true
+              type_str: acdnnConvolutionFwdAlgoPerf_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionForwardWorkspaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: wDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: algo
+            param_type:
+              name: acdnnConvolutionFwdAlgo_t
+              type_str: acdnnConvolutionFwdAlgo_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionGroupCount
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: groupCount
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionMathType
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: mathType
+            param_type:
+              name: acdnnMathType_t
+              is_pointer: true
+              type_str: acdnnMathType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionNdDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: arrLenReq
+            param_type:
+              name: int
+              type_str: int {}
+          - name: arrLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: padA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: strideA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: dilationA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+          - name: mode
+            param_type:
+              name: acdnnConvolutionMode_t
+              is_pointer: true
+              type_str: acdnnConvolutionMode_t * {}
+          - name: computeType
+            param_type:
+              name: acdnnDataType_t
+              is_pointer: true
+              type_str: acdnnDataType_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetConvolutionNdForwardOutputDim
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: inDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: filtDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: nbDims
+            param_type:
+              name: int
+              type_str: int {}
+          - name: tensorOuputDimA
+            param_type:
+              name: int[]
+              is_array: true
+              type_str: int {}[]
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetFoldedConvBackwardDataDescriptors
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              is_const: true
+              type_str: const acdnnHandle_t {}
+          - name: filtDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              is_const: true
+              type_str: const acdnnFiltDesc_t {}
+          - name: diffDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              is_const: true
+              type_str: const acdnnConvDesc_t {}
+          - name: gradDesc
+            param_type:
+              name: acdnnTDesc_t
+              is_const: true
+              type_str: const acdnnTDesc_t {}
+          - name: tfFormat
+            param_type:
+              name: acdnnTensorFormat_t
+              is_const: true
+              type_str: const acdnnTensorFormat_t {}
+          - name: foldFiltDesc
+            param_type:
+              name: acdnnFiltDesc_t
+              type_str: acdnnFiltDesc_t {}
+          - name: padDiffDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: foldConvDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: foldGradDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: filtFoldDesc
+            param_type:
+              name: acdnnTTransDesc_t
+              type_str: acdnnTTransDesc_t {}
+          - name: diffPadDesc
+            param_type:
+              name: acdnnTTransDesc_t
+              type_str: acdnnTTransDesc_t {}
+          - name: gradFoldDesc
+            param_type:
+              name: acdnnTTransDesc_t
+              type_str: acdnnTTransDesc_t {}
+          - name: gradUnfoldDesc
+            param_type:
+              name: acdnnTTransDesc_t
+              type_str: acdnnTTransDesc_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetConvolution2dDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: pad_h
+            param_type:
+              name: int
+              type_str: int {}
+          - name: pad_w
+            param_type:
+              name: int
+              type_str: int {}
+          - name: u
+            param_type:
+              name: int
+              type_str: int {}
+          - name: v
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dilation_h
+            param_type:
+              name: int
+              type_str: int {}
+          - name: dilation_w
+            param_type:
+              name: int
+              type_str: int {}
+          - name: mode
+            param_type:
+              name: acdnnConvolutionMode_t
+              type_str: acdnnConvolutionMode_t {}
+          - name: computeType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetConvolutionGroupCount
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: groupCount
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetConvolutionMathType
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: mathType
+            param_type:
+              name: acdnnMathType_t
+              type_str: acdnnMathType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSetConvolutionNdDescriptor
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: convDesc
+            param_type:
+              name: acdnnConvDesc_t
+              type_str: acdnnConvDesc_t {}
+          - name: arrayLength
+            param_type:
+              name: int
+              type_str: int {}
+          - name: padA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: filterStrideA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: dilationA
+            param_type:
+              name: constint[]
+              is_array: true
+              type_str: const int {}[]
+          - name: mode
+            param_type:
+              name: acdnnConvolutionMode_t
+              type_str: acdnnConvolutionMode_t {}
+          - name: computeType
+            param_type:
+              name: acdnnDataType_t
+              type_str: acdnnDataType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: cudnnCnnInferVersionCheck
+    target_function: acdnnCnnInferVersionCheck
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCnnInferVersionCheck) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCnnInferVersionCheck);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCnnInferVersionCheck);
+            }
+
+
+  - source_function: cudnnConvolutionBackwardData
+    target_function: acdnnConvolutionBackwardData
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBackwardData) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBackwardData);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBackwardData);
+            }
+
+
+  - source_function: cudnnConvolutionBiasActivationForward
+    target_function: acdnnConvolutionBiasActivationForward
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBiasActivationForward) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBiasActivationForward);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBiasActivationForward);
+            }
+
+
+  - source_function: cudnnConvolutionForward
+    target_function: acdnnConvolutionForward
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionForward) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionForward);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionForward);
+            }
+
+
+  - source_function: cudnnCreateConvolutionDescriptor
+    target_function: acdnnCreateConvolutionDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCreateConvolutionDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCreateConvolutionDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnCreateConvolutionDescriptor);
+            }
+
+
+  - source_function: cudnnDestroyConvolutionDescriptor
+    target_function: acdnnDestroyConvolutionDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnDestroyConvolutionDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnDestroyConvolutionDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnDestroyConvolutionDescriptor);
+            }
+
+
+  - source_function: cudnnFindConvolutionBackwardDataAlgorithm
+    target_function: acdnnFindConvolutionBackwardDataAlgorithm
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithm) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithm);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithm);
+            }
+
+
+  - source_function: cudnnFindConvolutionBackwardDataAlgorithmEx
+    target_function: acdnnFindConvolutionBackwardDataAlgorithmEx
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithmEx) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithmEx);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithmEx);
+            }
+
+
+  - source_function: cudnnFindConvolutionForwardAlgorithm
+    target_function: acdnnFindConvolutionForwardAlgorithm
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithm) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithm);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithm);
+            }
+
+
+  - source_function: cudnnFindConvolutionForwardAlgorithmEx
+    target_function: acdnnFindConvolutionForwardAlgorithmEx
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithmEx) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithmEx);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithmEx);
+            }
+
+
+  - source_function: cudnnGetConvolution2dDescriptor
+    target_function: acdnnGetConvolution2dDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dDescriptor);
+            }
+
+
+  - source_function: cudnnGetConvolution2dForwardOutputDim
+    target_function: acdnnGetConvolution2dForwardOutputDim
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dForwardOutputDim) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dForwardOutputDim);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dForwardOutputDim);
+            }
+
+
+  - source_function: cudnnGetConvolutionBackwardDataAlgorithmMaxCount
+    target_function: acdnnGetConvolutionBackwardDataAlgorithmMaxCount
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithmMaxCount) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithmMaxCount);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithmMaxCount);
+            }
+
+
+  - source_function: cudnnGetConvolutionBackwardDataAlgorithm_v7
+    target_function: acdnnGetConvolutionBackwardDataAlgorithm_v7
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithm_v7) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithm_v7);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithm_v7);
+            }
+
+
+  - source_function: cudnnGetConvolutionBackwardDataWorkspaceSize
+    target_function: acdnnGetConvolutionBackwardDataWorkspaceSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataWorkspaceSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataWorkspaceSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataWorkspaceSize);
+            }
+
+
+  - source_function: cudnnGetConvolutionForwardAlgorithmMaxCount
+    target_function: acdnnGetConvolutionForwardAlgorithmMaxCount
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithmMaxCount) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithmMaxCount);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithmMaxCount);
+            }
+
+
+  - source_function: cudnnGetConvolutionForwardAlgorithm_v7
+    target_function: acdnnGetConvolutionForwardAlgorithm_v7
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithm_v7) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithm_v7);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithm_v7);
+            }
+
+
+  - source_function: cudnnGetConvolutionForwardWorkspaceSize
+    target_function: acdnnGetConvolutionForwardWorkspaceSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardWorkspaceSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardWorkspaceSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardWorkspaceSize);
+            }
+
+
+  - source_function: cudnnGetConvolutionGroupCount
+    target_function: acdnnGetConvolutionGroupCount
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionGroupCount) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionGroupCount);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionGroupCount);
+            }
+
+
+  - source_function: cudnnGetConvolutionMathType
+    target_function: acdnnGetConvolutionMathType
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionMathType) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionMathType);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionMathType);
+            }
+
+
+  - source_function: cudnnGetConvolutionNdDescriptor
+    target_function: acdnnGetConvolutionNdDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdDescriptor);
+            }
+
+
+  - source_function: cudnnGetConvolutionNdForwardOutputDim
+    target_function: acdnnGetConvolutionNdForwardOutputDim
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdForwardOutputDim) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdForwardOutputDim);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdForwardOutputDim);
+            }
+
+
+  - source_function: cudnnGetConvolutionReorderType
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetFoldedConvBackwardDataDescriptors
+    target_function: acdnnGetFoldedConvBackwardDataDescriptors
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetFoldedConvBackwardDataDescriptors) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetFoldedConvBackwardDataDescriptors);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnGetFoldedConvBackwardDataDescriptors);
+            }
+
+
+  - source_function: cudnnIm2Col
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnReorderFilterAndBias
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnSetConvolution2dDescriptor
+    target_function: acdnnSetConvolution2dDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolution2dDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolution2dDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolution2dDescriptor);
+            }
+
+
+  - source_function: cudnnSetConvolutionGroupCount
+    target_function: acdnnSetConvolutionGroupCount
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionGroupCount) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionGroupCount);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionGroupCount);
+            }
+
+
+  - source_function: cudnnSetConvolutionMathType
+    target_function: acdnnSetConvolutionMathType
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionMathType) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionMathType);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionMathType);
+            }
+
+
+  - source_function: cudnnSetConvolutionNdDescriptor
+    target_function: acdnnSetConvolutionNdDescriptor
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionNdDescriptor) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionNdDescriptor);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionNdDescriptor);
+            }
+
+
+  - source_function: cudnnSetConvolutionReorderType
+    target_function: ""
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cudnnCnnInferVersionCheck",
+        "cudnnConvolutionBackwardData",
+        "cudnnConvolutionBiasActivationForward",
+        "cudnnConvolutionForward",
+        "cudnnCreateConvolutionDescriptor",
+        "cudnnDestroyConvolutionDescriptor",
+        "cudnnFindConvolutionBackwardDataAlgorithm",
+        "cudnnFindConvolutionBackwardDataAlgorithmEx",
+        "cudnnFindConvolutionForwardAlgorithm",
+        "cudnnFindConvolutionForwardAlgorithmEx",
+        "cudnnGetConvolution2dDescriptor",
+        "cudnnGetConvolution2dForwardOutputDim",
+        "cudnnGetConvolutionBackwardDataAlgorithmMaxCount",
+        "cudnnGetConvolutionBackwardDataAlgorithm_v7",
+        "cudnnGetConvolutionBackwardDataWorkspaceSize",
+        "cudnnGetConvolutionForwardAlgorithmMaxCount",
+        "cudnnGetConvolutionForwardAlgorithm_v7",
+        "cudnnGetConvolutionForwardWorkspaceSize",
+        "cudnnGetConvolutionGroupCount",
+        "cudnnGetConvolutionMathType",
+        "cudnnGetConvolutionNdDescriptor",
+        "cudnnGetConvolutionNdForwardOutputDim",
+        "cudnnGetConvolutionReorderType",
+        "cudnnGetFoldedConvBackwardDataDescriptors",
+        "cudnnIm2Col",
+        "cudnnReorderFilterAndBias",
+        "cudnnSetConvolution2dDescriptor",
+        "cudnnSetConvolutionGroupCount",
+        "cudnnSetConvolutionMathType",
+        "cudnnSetConvolutionNdDescriptor",
+        "cudnnSetConvolutionReorderType",
+    };
+
+    enum cudnn_cnn_inferProfileCallbackId {
+        cudnn_cnn_infer_TRACE_CBID_cudnnCnnInferVersionCheck = 0,
+        cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBackwardData = 1,
+        cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionBiasActivationForward = 2,
+        cudnn_cnn_infer_TRACE_CBID_cudnnConvolutionForward = 3,
+        cudnn_cnn_infer_TRACE_CBID_cudnnCreateConvolutionDescriptor = 4,
+        cudnn_cnn_infer_TRACE_CBID_cudnnDestroyConvolutionDescriptor = 5,
+        cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithm = 6,
+        cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionBackwardDataAlgorithmEx = 7,
+        cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithm = 8,
+        cudnn_cnn_infer_TRACE_CBID_cudnnFindConvolutionForwardAlgorithmEx = 9,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dDescriptor = 10,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolution2dForwardOutputDim = 11,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithmMaxCount = 12,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataAlgorithm_v7 = 13,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionBackwardDataWorkspaceSize = 14,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithmMaxCount = 15,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardAlgorithm_v7 = 16,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionForwardWorkspaceSize = 17,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionGroupCount = 18,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionMathType = 19,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdDescriptor = 20,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionNdForwardOutputDim = 21,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetConvolutionReorderType = 22,
+        cudnn_cnn_infer_TRACE_CBID_cudnnGetFoldedConvBackwardDataDescriptors = 23,
+        cudnn_cnn_infer_TRACE_CBID_cudnnIm2Col = 24,
+        cudnn_cnn_infer_TRACE_CBID_cudnnReorderFilterAndBias = 25,
+        cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolution2dDescriptor = 26,
+        cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionGroupCount = 27,
+        cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionMathType = 28,
+        cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionNdDescriptor = 29,
+        cudnn_cnn_infer_TRACE_CBID_cudnnSetConvolutionReorderType = 30,
+    };
+
+    typedef uint32_t (*cudnn_cnn_inferRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cudnn_cnn_inferIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_cnn_inferProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_cnn_inferProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cudnn_cnn_inferProfileHandler {
+        cudnn_cnn_inferRegisterProfileDomain registerProfileDomain;
+        cudnn_cnn_inferIsProfileCallbackEnabled isCallbackEnabled;
+        cudnn_cnn_inferProfileCallbackBegin profileCallbackBegin;
+        cudnn_cnn_inferProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cudnn_cnn_inferProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cudnn_cnn_infer";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cudnn_cnn_inferRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cudnn_cnn_inferIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cudnn_cnn_inferProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cudnn_cnn_inferProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
