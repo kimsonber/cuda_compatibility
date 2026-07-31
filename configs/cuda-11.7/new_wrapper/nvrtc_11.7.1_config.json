@@ -1,0 +1,1075 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvrtc",
+        "dyn_lib_file_name": "libnvrtc.so",
+        "dyn_lib_install_name": "libnvrtc.so.11.7.99",
+        "sta_lib_file_name": "libnvrtc_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "cuda.h",
+            "../../include/texture_types.h",
+            "nvrtc.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvrtc.so.11.2",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "nvrtcAddNameExpression",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "name_expression",
+                            "param_type": {
+                                "name": "char",
+                                "is_const": true,
+                                "is_pointer": true,
+                                "type_str": "const char * const {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcCompileProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOptions",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcCreateProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "is_pointer": true,
+                                "type_str": "nvrtcProgram * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "numHeaders",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "headers",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        },
+                        {
+                            "name": "includeNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcDestroyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "is_pointer": true,
+                                "type_str": "nvrtcProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetCUBIN",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "cubin",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetCUBINSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "cubinSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "nvrtcResult",
+                                "type_str": "nvrtcResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetLoweredName",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "name_expression",
+                            "param_type": {
+                                "name": "char",
+                                "is_const": true,
+                                "is_pointer": true,
+                                "type_str": "const char * const {}"
+                            }
+                        },
+                        {
+                            "name": "lowered_name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetNVVM",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "nvvm",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetNVVMSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "nvvmSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetNumSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "numArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetPTX",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "ptx",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetPTXSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "ptxSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetProgramLog",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "log",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetProgramLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvrtcProgram",
+                                "type_str": "nvrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "logSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcGetSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "supportedArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvrtcVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvrtcResult",
+                        "type_str": "nvrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgrtc.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgrtc.h"
+        ],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=11071",
+                "__TEXTURE_DEFINED__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "hgrtcAddNameExpression",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "name_expression",
+                            "param_type": {
+                                "name": "char",
+                                "is_const": true,
+                                "is_pointer": true,
+                                "type_str": "const char * const {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcCompileProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOptions",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcCreateProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "is_pointer": true,
+                                "type_str": "hgrtcProgram * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "numHeaders",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "headers",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        },
+                        {
+                            "name": "includeNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcDestroyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "is_pointer": true,
+                                "type_str": "hgrtcProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetCode",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetCodeSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "codeSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "hgrtcResult",
+                                "type_str": "hgrtcResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetLoweredName",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "name_expression",
+                            "param_type": {
+                                "name": "char",
+                                "is_const": true,
+                                "is_pointer": true,
+                                "type_str": "const char * const {}"
+                            }
+                        },
+                        {
+                            "name": "lowered_name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetNumSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "numArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetProgramLog",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "log",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetProgramLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgrtcProgram",
+                                "type_str": "hgrtcProgram {}"
+                            }
+                        },
+                        {
+                            "name": "logSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcGetSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "supportedArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgrtcVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "hgrtcResult",
+                        "type_str": "hgrtcResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "nvrtcAddNameExpression",
+            "target_function": "hgrtcAddNameExpression",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcAddNameExpression) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcAddNameExpression);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcAddNameExpression);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcCompileProgram",
+            "target_function": "hgrtcCompileProgram",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "const char* optionsExtra[] =  {\n        \"-D__CUDACC__\", // for padding\n        \"--rtc-compatible-mode\",\n        \"-D__CUDACC__\",\n        \"-D__CUDA__\",\n        \"-D__CUDACC_VER_MAJOR__=11\",\n        \"-D__CUDACC_VER_MINOR__=7\",\n        \"-D__CUDACC_VER_BUILD__=1\",\n        \"-DCUDART_VERSION=11070\",\n        \"-D__CUDACC_RTC__\",\n        \"-D__CUDA_RUNTIME_H__\",\n        \"-U__linux__\"\n    };\n    const int numOptionsExtra = sizeof(optionsExtra) / sizeof(optionsExtra[0]);\n\n    int newSize = numOptions + numOptionsExtra;\n    char** newOptions = (char**)malloc(newSize * sizeof(char*));\n\n    for (int i = 0; i < numOptions; i++) {\n        const char *opti = options[i];\n        if (strcmp(opti, \"--gpu-architecture=compute_90a\") == 0 || strcmp(opti, \"-arch=compute_90a\") == 0 ||\n            strcmp(opti, \"--gpu-architecture=sm_90a\") == 0 || strcmp(opti, \"-arch=sm_90a\") == 0) {\n        #if 0\n            \n        #endif\n        } else if (strcmp(opti, \"--gpu-architecture=compute_89\") == 0 || strcmp(opti, \"-arch=compute_89\") == 0 ||\n                   strcmp(opti, \"--gpu-architecture=sm_89\") == 0 || strcmp(opti, \"-arch=sm_89\") == 0) {\n        #if 1 || 0\n            optionsExtra[0]=\"--ppu-arch=ppu0015\";\n        #endif\n        } else if (strcmp(opti, \"--gpu-architecture=compute_80\") == 0 || strcmp(opti, \"-arch=compute_80\") == 0 ||\n                   strcmp(opti, \"--gpu-architecture=sm_80\") == 0 || strcmp(opti, \"-arch=sm_80\") == 0) {\n            optionsExtra[0]=\"--ppu-arch=ppu001\";\n        }\n        newOptions[i + numOptionsExtra] = strdup(opti);\n    }\n\n    for (int i = 0; i < numOptionsExtra; i++) {\n        newOptions[i] = strdup(optionsExtra[i]);\n    }\n\n    options = newOptions;\n    numOptions = newSize;\n\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCompileProgram) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCompileProgram);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCompileProgram);\n    }\n\nfor (int i = 0; i < newSize; i++) {\n            free(newOptions[i]);\n        }\n        free(newOptions);\n"
+            }
+        },
+        {
+            "source_function": "nvrtcCreateProgram",
+            "target_function": "hgrtcCreateProgram",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCreateProgram) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCreateProgram);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcCreateProgram);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcDestroyProgram",
+            "target_function": "hgrtcDestroyProgram",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcDestroyProgram) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcDestroyProgram);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcDestroyProgram);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetCUBIN",
+            "target_function": "hgrtcGetCode",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBIN) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBIN);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBIN);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetCUBINSize",
+            "target_function": "hgrtcGetCodeSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBINSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBINSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetCUBINSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetErrorString",
+            "target_function": "hgrtcGetErrorString",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetErrorString) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetErrorString);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetErrorString);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetLoweredName",
+            "target_function": "hgrtcGetLoweredName",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetLoweredName) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetLoweredName);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetLoweredName);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetNVVM",
+            "target_function": "hgrtcGetCode",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVM) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVM);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVM);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetNVVMSize",
+            "target_function": "hgrtcGetCodeSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVMSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVMSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetNVVMSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetNumSupportedArchs",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvrtcResult nvrtcGetNumSupportedArchs(int * numArchs) {\n    // TraceCall(\"nvrtcGetNumSupportedArchs\");\n#if 0\n    *numArchs = 3;\n#elif 1\n    *numArchs = 2;\n#else\n    *numArchs = 1;\n#endif\n    return NVRTC_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvrtcGetPTX",
+            "target_function": "hgrtcGetCode",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTX) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTX);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTX);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetPTXSize",
+            "target_function": "hgrtcGetCodeSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTXSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTXSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetPTXSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetProgramLog",
+            "target_function": "hgrtcGetProgramLog",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLog) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLog);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLog);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetProgramLogSize",
+            "target_function": "hgrtcGetProgramLogSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLogSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLogSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvrtc_TRACE_CBID_nvrtcGetProgramLogSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvrtcGetSupportedArchs",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvrtcResult nvrtcGetSupportedArchs(int * supportedArchs) {\n    // TraceCall(\"nvrtcGetSupportedArchs\");\n    *supportedArchs = 80;\n#if 0\n    *(supportedArchs+1) = 89;\n    *(supportedArchs+2) = 90;\n#elif 1\n    *(supportedArchs+1) = 89;\n#endif\n    return NVRTC_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvrtcVersion",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvrtcResult nvrtcVersion(int * major, int * minor) {\n    // TraceCall(\"nvrtcVersion\");\n    if (major == NULL || minor == NULL) {\n      return NVRTC_ERROR_INVALID_INPUT;\n    }\n    *major = CUDA_VERSION / 1000;\n    *minor = (CUDA_VERSION - (*major * 1000)) / 10;\n    return NVRTC_SUCCESS;\n}\n\n"
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"nvrtcAddNameExpression\",\n    \"nvrtcCompileProgram\",\n    \"nvrtcCreateProgram\",\n    \"nvrtcDestroyProgram\",\n    \"nvrtcGetCUBIN\",\n    \"nvrtcGetCUBINSize\",\n    \"nvrtcGetErrorString\",\n    \"nvrtcGetLoweredName\",\n    \"nvrtcGetNVVM\",\n    \"nvrtcGetNVVMSize\",\n    \"nvrtcGetNumSupportedArchs\",\n    \"nvrtcGetPTX\",\n    \"nvrtcGetPTXSize\",\n    \"nvrtcGetProgramLog\",\n    \"nvrtcGetProgramLogSize\",\n    \"nvrtcGetSupportedArchs\",\n    \"nvrtcVersion\",\n};\n\nenum nvrtcProfileCallbackId {\n    nvrtc_TRACE_CBID_nvrtcAddNameExpression = 0,\n    nvrtc_TRACE_CBID_nvrtcCompileProgram = 1,\n    nvrtc_TRACE_CBID_nvrtcCreateProgram = 2,\n    nvrtc_TRACE_CBID_nvrtcDestroyProgram = 3,\n    nvrtc_TRACE_CBID_nvrtcGetCUBIN = 4,\n    nvrtc_TRACE_CBID_nvrtcGetCUBINSize = 5,\n    nvrtc_TRACE_CBID_nvrtcGetErrorString = 6,\n    nvrtc_TRACE_CBID_nvrtcGetLoweredName = 7,\n    nvrtc_TRACE_CBID_nvrtcGetNVVM = 8,\n    nvrtc_TRACE_CBID_nvrtcGetNVVMSize = 9,\n    nvrtc_TRACE_CBID_nvrtcGetNumSupportedArchs = 10,\n    nvrtc_TRACE_CBID_nvrtcGetPTX = 11,\n    nvrtc_TRACE_CBID_nvrtcGetPTXSize = 12,\n    nvrtc_TRACE_CBID_nvrtcGetProgramLog = 13,\n    nvrtc_TRACE_CBID_nvrtcGetProgramLogSize = 14,\n    nvrtc_TRACE_CBID_nvrtcGetSupportedArchs = 15,\n    nvrtc_TRACE_CBID_nvrtcVersion = 16,\n};\n\ntypedef uint32_t (*nvrtcRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvrtcIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvrtcProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvrtcProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvrtcProfileHandler {\n    nvrtcRegisterProfileDomain registerProfileDomain;\n    nvrtcIsProfileCallbackEnabled isCallbackEnabled;\n    nvrtcProfileCallbackBegin profileCallbackBegin;\n    nvrtcProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvrtcProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvrtc\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvrtcRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvrtcIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvrtcProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvrtcProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}

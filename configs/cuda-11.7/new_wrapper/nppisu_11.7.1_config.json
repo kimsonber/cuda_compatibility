@@ -1,0 +1,2498 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nppisu",
+        "dyn_lib_file_name": "libnppisu.so",
+        "dyn_lib_install_name": "libnppisu.so.11.7.4.75",
+        "sta_lib_file_name": "libnppisu_static.a",
+        "lib_dirs": [
+            "$output/lib64"
+        ],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nppi_support_functions.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnppisu.so.11",
+                "--no-as-needed",
+                "-lnppc"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "nppiFree",
+                "signature": {
+                    "return_type": {
+                        "name": "void",
+                        "type_str": "void {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pData",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16s_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16s *",
+                        "is_pointer": true,
+                        "type_str": "Npp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16s_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16s *",
+                        "is_pointer": true,
+                        "type_str": "Npp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16s_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16s *",
+                        "is_pointer": true,
+                        "type_str": "Npp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16sc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16sc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16sc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16sc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16u_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16u *",
+                        "is_pointer": true,
+                        "type_str": "Npp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16u_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16u *",
+                        "is_pointer": true,
+                        "type_str": "Npp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16u_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16u *",
+                        "is_pointer": true,
+                        "type_str": "Npp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_16u_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp16u *",
+                        "is_pointer": true,
+                        "type_str": "Npp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32f_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32f *",
+                        "is_pointer": true,
+                        "type_str": "Npp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32f_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32f *",
+                        "is_pointer": true,
+                        "type_str": "Npp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32f_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32f *",
+                        "is_pointer": true,
+                        "type_str": "Npp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32f_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32f *",
+                        "is_pointer": true,
+                        "type_str": "Npp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32fc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32fc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32fc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32fc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32fc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32fc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32fc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32fc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32s_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32s *",
+                        "is_pointer": true,
+                        "type_str": "Npp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32s_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32s *",
+                        "is_pointer": true,
+                        "type_str": "Npp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32s_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32s *",
+                        "is_pointer": true,
+                        "type_str": "Npp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32sc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32sc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32sc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_32sc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp32sc *",
+                        "is_pointer": true,
+                        "type_str": "Npp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_8u_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp8u *",
+                        "is_pointer": true,
+                        "type_str": "Npp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_8u_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp8u *",
+                        "is_pointer": true,
+                        "type_str": "Npp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_8u_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp8u *",
+                        "is_pointer": true,
+                        "type_str": "Npp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nppiMalloc_8u_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "Npp8u *",
+                        "is_pointer": true,
+                        "type_str": "Npp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgppisu.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgppi_support_functions.h"
+        ],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=11071",
+                "__TEXTURE_DEFINED__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "hgppiFree",
+                "signature": {
+                    "return_type": {
+                        "name": "void",
+                        "type_str": "void {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pData",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16s_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16s_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16s_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16sc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16sc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16sc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16sc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16u_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16u_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16u_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_16u_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp16u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp16u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32f_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32f *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32f_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32f *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32f_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32f *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32f_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32f *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32f * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32fc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32fc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32fc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32fc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32fc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32fc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32fc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32fc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32fc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32s_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32s_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32s_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32s *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32s * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32sc_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32sc_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32sc_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_32sc_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp32sc *",
+                        "is_pointer": true,
+                        "type_str": "HGpp32sc * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_8u_C1",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp8u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_8u_C2",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp8u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_8u_C3",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp8u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgppiMalloc_8u_C4",
+                "signature": {
+                    "return_type": {
+                        "name": "HGpp8u *",
+                        "is_pointer": true,
+                        "type_str": "HGpp8u * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "nWidthPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "nHeightPixels",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "pStepBytes",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "nppiFree",
+            "target_function": "hgppiFree",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiFree) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiFree);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiFree);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16s_C1",
+            "target_function": "hgppiMalloc_16s_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16s_C2",
+            "target_function": "hgppiMalloc_16s_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16s_C4",
+            "target_function": "hgppiMalloc_16s_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16s_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16sc_C1",
+            "target_function": "hgppiMalloc_16sc_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16sc_C2",
+            "target_function": "hgppiMalloc_16sc_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16sc_C3",
+            "target_function": "hgppiMalloc_16sc_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16sc_C4",
+            "target_function": "hgppiMalloc_16sc_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16sc_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16u_C1",
+            "target_function": "hgppiMalloc_16u_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16u_C2",
+            "target_function": "hgppiMalloc_16u_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16u_C3",
+            "target_function": "hgppiMalloc_16u_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_16u_C4",
+            "target_function": "hgppiMalloc_16u_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_16u_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32f_C1",
+            "target_function": "hgppiMalloc_32f_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32f_C2",
+            "target_function": "hgppiMalloc_32f_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32f_C3",
+            "target_function": "hgppiMalloc_32f_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32f_C4",
+            "target_function": "hgppiMalloc_32f_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32f_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32fc_C1",
+            "target_function": "hgppiMalloc_32fc_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32fc_C2",
+            "target_function": "hgppiMalloc_32fc_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32fc_C3",
+            "target_function": "hgppiMalloc_32fc_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32fc_C4",
+            "target_function": "hgppiMalloc_32fc_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32fc_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32s_C1",
+            "target_function": "hgppiMalloc_32s_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32s_C3",
+            "target_function": "hgppiMalloc_32s_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32s_C4",
+            "target_function": "hgppiMalloc_32s_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32s_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32sc_C1",
+            "target_function": "hgppiMalloc_32sc_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32sc_C2",
+            "target_function": "hgppiMalloc_32sc_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32sc_C3",
+            "target_function": "hgppiMalloc_32sc_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_32sc_C4",
+            "target_function": "hgppiMalloc_32sc_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_32sc_C4);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_8u_C1",
+            "target_function": "hgppiMalloc_8u_C1",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C1) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C1);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C1);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_8u_C2",
+            "target_function": "hgppiMalloc_8u_C2",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C2) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C2);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C2);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_8u_C3",
+            "target_function": "hgppiMalloc_8u_C3",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C3) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C3);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C3);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nppiMalloc_8u_C4",
+            "target_function": "hgppiMalloc_8u_C4",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C4) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C4);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nppisu_TRACE_CBID_nppiMalloc_8u_C4);\n    }\n\n"
+            }
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"nppiFree\",\n    \"nppiMalloc_16s_C1\",\n    \"nppiMalloc_16s_C2\",\n    \"nppiMalloc_16s_C4\",\n    \"nppiMalloc_16sc_C1\",\n    \"nppiMalloc_16sc_C2\",\n    \"nppiMalloc_16sc_C3\",\n    \"nppiMalloc_16sc_C4\",\n    \"nppiMalloc_16u_C1\",\n    \"nppiMalloc_16u_C2\",\n    \"nppiMalloc_16u_C3\",\n    \"nppiMalloc_16u_C4\",\n    \"nppiMalloc_32f_C1\",\n    \"nppiMalloc_32f_C2\",\n    \"nppiMalloc_32f_C3\",\n    \"nppiMalloc_32f_C4\",\n    \"nppiMalloc_32fc_C1\",\n    \"nppiMalloc_32fc_C2\",\n    \"nppiMalloc_32fc_C3\",\n    \"nppiMalloc_32fc_C4\",\n    \"nppiMalloc_32s_C1\",\n    \"nppiMalloc_32s_C3\",\n    \"nppiMalloc_32s_C4\",\n    \"nppiMalloc_32sc_C1\",\n    \"nppiMalloc_32sc_C2\",\n    \"nppiMalloc_32sc_C3\",\n    \"nppiMalloc_32sc_C4\",\n    \"nppiMalloc_8u_C1\",\n    \"nppiMalloc_8u_C2\",\n    \"nppiMalloc_8u_C3\",\n    \"nppiMalloc_8u_C4\",\n};\n\nenum nppisuProfileCallbackId {\n    nppisu_TRACE_CBID_nppiFree = 0,\n    nppisu_TRACE_CBID_nppiMalloc_16s_C1 = 1,\n    nppisu_TRACE_CBID_nppiMalloc_16s_C2 = 2,\n    nppisu_TRACE_CBID_nppiMalloc_16s_C4 = 3,\n    nppisu_TRACE_CBID_nppiMalloc_16sc_C1 = 4,\n    nppisu_TRACE_CBID_nppiMalloc_16sc_C2 = 5,\n    nppisu_TRACE_CBID_nppiMalloc_16sc_C3 = 6,\n    nppisu_TRACE_CBID_nppiMalloc_16sc_C4 = 7,\n    nppisu_TRACE_CBID_nppiMalloc_16u_C1 = 8,\n    nppisu_TRACE_CBID_nppiMalloc_16u_C2 = 9,\n    nppisu_TRACE_CBID_nppiMalloc_16u_C3 = 10,\n    nppisu_TRACE_CBID_nppiMalloc_16u_C4 = 11,\n    nppisu_TRACE_CBID_nppiMalloc_32f_C1 = 12,\n    nppisu_TRACE_CBID_nppiMalloc_32f_C2 = 13,\n    nppisu_TRACE_CBID_nppiMalloc_32f_C3 = 14,\n    nppisu_TRACE_CBID_nppiMalloc_32f_C4 = 15,\n    nppisu_TRACE_CBID_nppiMalloc_32fc_C1 = 16,\n    nppisu_TRACE_CBID_nppiMalloc_32fc_C2 = 17,\n    nppisu_TRACE_CBID_nppiMalloc_32fc_C3 = 18,\n    nppisu_TRACE_CBID_nppiMalloc_32fc_C4 = 19,\n    nppisu_TRACE_CBID_nppiMalloc_32s_C1 = 20,\n    nppisu_TRACE_CBID_nppiMalloc_32s_C3 = 21,\n    nppisu_TRACE_CBID_nppiMalloc_32s_C4 = 22,\n    nppisu_TRACE_CBID_nppiMalloc_32sc_C1 = 23,\n    nppisu_TRACE_CBID_nppiMalloc_32sc_C2 = 24,\n    nppisu_TRACE_CBID_nppiMalloc_32sc_C3 = 25,\n    nppisu_TRACE_CBID_nppiMalloc_32sc_C4 = 26,\n    nppisu_TRACE_CBID_nppiMalloc_8u_C1 = 27,\n    nppisu_TRACE_CBID_nppiMalloc_8u_C2 = 28,\n    nppisu_TRACE_CBID_nppiMalloc_8u_C3 = 29,\n    nppisu_TRACE_CBID_nppiMalloc_8u_C4 = 30,\n};\n\ntypedef uint32_t (*nppisuRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nppisuIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nppisuProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nppisuProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nppisuProfileHandler {\n    nppisuRegisterProfileDomain registerProfileDomain;\n    nppisuIsProfileCallbackEnabled isCallbackEnabled;\n    nppisuProfileCallbackBegin profileCallbackBegin;\n    nppisuProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nppisuProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nppisu\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nppisuRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nppisuIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nppisuProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nppisuProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}

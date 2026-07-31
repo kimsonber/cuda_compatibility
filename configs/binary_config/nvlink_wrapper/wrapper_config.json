@@ -1,0 +1,16 @@
+{
+    "target_exe": "hglink",
+    "options": {
+        "-m64": {
+            "needs_ignore": true
+        },
+        "--host-ccbin": {
+            "short": "-host-ccbin",
+            "needs_ignore": true,
+            "needs_value": true
+        },
+        "-ptx": {
+            "map_to": "-tix"
+        }
+    }
+}
