@@ -1,0 +1,700 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nvptxcompiler
+  dyn_lib_file_name: ""
+  sta_lib_file_name: libnvptxcompiler_static.a
+  lib_dirs:
+    []
+  include_files:
+    - cuda.h
+    - ../../include/texture_types.h
+    - nvPTXCompiler.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: nvPTXCompilerCompile
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: numCompileOptions
+            param_type:
+              name: int
+              type_str: int {}
+          - name: compileOptions
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char *const * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerCreate
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              is_pointer: true
+              type_str: nvPTXCompilerHandle * {}
+          - name: ptxCodeLen
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: ptxCode
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerDestroy
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              is_pointer: true
+              type_str: nvPTXCompilerHandle * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetCompiledProgram
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: binaryImage
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetCompiledProgramSize
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: binaryImageSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetErrorLog
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: errorLog
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetErrorLogSize
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: errorLogSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetInfoLog
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: infoLog
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetInfoLogSize
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: compiler
+            param_type:
+              name: nvPTXCompilerHandle
+              type_str: nvPTXCompilerHandle {}
+          - name: infoLogSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvPTXCompilerGetVersion
+      signature:
+        return_type:
+          name: nvPTXCompileResult
+          type_str: nvPTXCompileResult {}
+        parameters:
+          - name: major
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: minor
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgtixcompiler.so
+  lib_dirs:
+    []
+  include_files:
+    - hgTIXCompiler.h
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=11031
+      - __TEXTURE_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: hgTIXCompilerCompile
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Num
+            param_type:
+              name: int
+              type_str: int {}
+          - name: Options
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char *const * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerCreate
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              is_pointer: true
+              type_str: hgTIXCompilerHandle * {}
+          - name: Len
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: Code
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerDestroy
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              is_pointer: true
+              type_str: hgTIXCompilerHandle * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetCompiledProgram
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Image
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetCompiledProgramSize
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Size
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetErrorLog
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Log
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetErrorLogSize
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Size
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetInfoLog
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Log
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgTIXCompilerGetInfoLogSize
+      signature:
+        return_type:
+          name: hgTIXCompileResult
+          type_str: hgTIXCompileResult {}
+        parameters:
+          - name: Handle
+            param_type:
+              name: hgTIXCompilerHandle
+              type_str: hgTIXCompilerHandle {}
+          - name: Size
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: nvPTXCompilerCompile
+    target_function: hgTIXCompilerCompile
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCompile) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCompile);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCompile);
+            }
+
+
+  - source_function: nvPTXCompilerCreate
+    target_function: hgTIXCompilerCreate
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCreate) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCreate);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerCreate);
+            }
+
+
+  - source_function: nvPTXCompilerDestroy
+    target_function: hgTIXCompilerDestroy
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerDestroy) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerDestroy);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerDestroy);
+            }
+
+
+  - source_function: nvPTXCompilerGetCompiledProgram
+    target_function: hgTIXCompilerGetCompiledProgram
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgram) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgram);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgram);
+            }
+
+
+  - source_function: nvPTXCompilerGetCompiledProgramSize
+    target_function: hgTIXCompilerGetCompiledProgramSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgramSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgramSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgramSize);
+            }
+
+
+  - source_function: nvPTXCompilerGetErrorLog
+    target_function: hgTIXCompilerGetErrorLog
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLog) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLog);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLog);
+            }
+
+
+  - source_function: nvPTXCompilerGetErrorLogSize
+    target_function: hgTIXCompilerGetErrorLogSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLogSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLogSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLogSize);
+            }
+
+
+  - source_function: nvPTXCompilerGetInfoLog
+    target_function: hgTIXCompilerGetInfoLog
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLog) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLog);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLog);
+            }
+
+
+  - source_function: nvPTXCompilerGetInfoLogSize
+    target_function: hgTIXCompilerGetInfoLogSize
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLogSize) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLogSize);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLogSize);
+            }
+
+
+  - source_function: nvPTXCompilerGetVersion
+    target_function: ""
+    parameter_mapping:
+      {}
+    custom_func_imp: "nvPTXCompileResult nvPTXCompilerGetVersion(unsigned int * major, unsigned int * minor) {\n // TraceCall(\"nvPTXCompilerGetVersion\");\n    if (major == nullptr || minor == nullptr) {\n      // NVPTXCOMPILE_ERROR_INTERNAL\n      return (nvPTXCompileResult)0x4;\n    }\n    *major = CUDA_VERSION / 1000;\n    *minor = (CUDA_VERSION - (*major * 1000)) / 10;\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "nvPTXCompilerCompile",
+        "nvPTXCompilerCreate",
+        "nvPTXCompilerDestroy",
+        "nvPTXCompilerGetCompiledProgram",
+        "nvPTXCompilerGetCompiledProgramSize",
+        "nvPTXCompilerGetErrorLog",
+        "nvPTXCompilerGetErrorLogSize",
+        "nvPTXCompilerGetInfoLog",
+        "nvPTXCompilerGetInfoLogSize",
+        "nvPTXCompilerGetVersion",
+    };
+
+    enum nvptxcompilerProfileCallbackId {
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerCompile = 0,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerCreate = 1,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerDestroy = 2,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgram = 3,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgramSize = 4,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLog = 5,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLogSize = 6,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLog = 7,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLogSize = 8,
+        nvptxcompiler_TRACE_CBID_nvPTXCompilerGetVersion = 9,
+    };
+
+    typedef uint32_t (*nvptxcompilerRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*nvptxcompilerIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvptxcompilerProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvptxcompilerProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct nvptxcompilerProfileHandler {
+        nvptxcompilerRegisterProfileDomain registerProfileDomain;
+        nvptxcompilerIsProfileCallbackEnabled isCallbackEnabled;
+        nvptxcompilerProfileCallbackBegin profileCallbackBegin;
+        nvptxcompilerProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static nvptxcompilerProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nvptxcompiler";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<nvptxcompilerRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<nvptxcompilerIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<nvptxcompilerProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<nvptxcompilerProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+

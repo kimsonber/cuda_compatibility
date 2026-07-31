@@ -1,0 +1,331 @@
+{
+  "files": [
+    {
+      "path": ["include/hggc_runtime.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "include",
+          "replace": [
+            {"pattern": "#include \"hggc_library_types.h\"",
+             "new": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["include/hggc_mma.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "include",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["include/hggc_aiu.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "include",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["include/hgrt"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "include",
+          "replace": [
+            {"pattern":"#define __hg_tex_surf_handler(__op, __ptr, ...) \\",
+                 "new":"#define __nv_tex_surf_handler(__op, __ptr, ...) \\"},
+            {"pattern": "#define __CGSTYLE__ hggc", "new": "#define __CGSTYLE__ cuda"},
+            {"pattern": "#define __PREFIX__ __hg", "new": "#define __PREFIX__ __nv"},
+            {"pattern": "__hg_is_extended", "new": "__nv_is_extended"},
+            {"pattern": "hggcGraphSetConditional(unsigned long long handle", "new": "cudaGraphSetConditional(unsigned long long handle"},
+            {"pattern": "hggcGraphSetConditional(unsigned long long, unsigned);", "new": "hggcGraphSetConditional(unsigned long long, unsigned);\n__DEVICE__ void cudaGraphSetConditional(unsigned long long handle, unsigned value) {hggcGraphSetConditional(handle, value);}"},
+            {"pattern": "#define DRIVER_API_PREFIX __hggc", "new": "#define DRIVER_API_PREFIX __cuda"},
+            {"pattern": "#define API_PREFIX __hg_", "new": "#define API_PREFIX __nv_"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["__patch_include__"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "include/hgrt",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["lib/LLVMgold.so"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "lib64",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["lib/libhgrtc_builtins.so"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "lib64",
+          "new_name": "libnvrtc-builtins.so",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["lib/libhgfilt.a"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "lib64",
+          "new_name": "libcufilt.a",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["lib/libcc_wrapper.so"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "lib64",
+          "new_name": "",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["bin/clang-offload-bundler",
+               "bin/llc",
+               "bin/lld",
+               "bin/llvm-link",
+               "bin/opt",
+               "bin/llvm-objcopy",
+               "bin/llvm-ar",
+               "bin/ppu-gen-file",
+               "bin/clang-rdc-hgfb",
+               "bin/hglink",
+               "bin/hgfatbinary",
+               "bin/hgbin2c",
+               "bin/llvm-irformatter",
+               "bin/opt-legacy",
+               "bin/llc-legacy",
+               "bin/hgcc",
+               "bin/ppu-llc",
+               "bin/hgprune"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["bin/clang"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "new_name" : "ppu_clang",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["bin/clang++"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "new_name" : "ppu_clang++",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["bin/hgfatbinary"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "new_name" : "fatbinary",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["bin/hgbin2c"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "new_name" : "bin2c",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["ppu-smi/bin/ppu-smi"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "new_name" : "nvidia-smi",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["libdevice.10.bc"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "nvvm/libdevice",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["VERSION.txt"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "",
+          "replace": [
+            {"pattern": "ppu_sdk_detection_magic",
+             "new": "cuda_sdk_detection_magic"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["build/nvcc_wrapper/nvcc"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["build/nvlink_wrapper/nvlink"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["build/nvprune_wrapper/nvprune"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["build/ptxas_wrapper/ptxas"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["nvcc_wrapper/nvcc_wrapper.cfg"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "dst_relative_path" : "bin",
+          "replace": []
+        }
+      ]
+    }
+  ]
+}

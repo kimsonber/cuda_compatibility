@@ -1,0 +1,3176 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvidia-encode",
+        "dyn_lib_file_name": "libnvidia-encode.so",
+        "dyn_lib_install_name": "libnvidia-encode.so",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nvEncodeAPI.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvidia-encode.so.1"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "NvEncCreateBitstreamBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createBitstreamBufferParams",
+                            "param_type": {
+                                "name": "NV_ENC_CREATE_BITSTREAM_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_CREATE_BITSTREAM_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncCreateInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createInputBufferParams",
+                            "param_type": {
+                                "name": "NV_ENC_CREATE_INPUT_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_CREATE_INPUT_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncCreateMVBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createMVBufferParams",
+                            "param_type": {
+                                "name": "NV_ENC_CREATE_MV_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_CREATE_MV_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncDestroyBitstreamBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "bitstreamBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_OUTPUT_PTR",
+                                "type_str": "NV_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncDestroyEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncDestroyInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "inputBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_INPUT_PTR",
+                                "type_str": "NV_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncDestroyMVBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mvBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_OUTPUT_PTR",
+                                "type_str": "NV_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncEncodePicture",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodePicParams",
+                            "param_type": {
+                                "name": "NV_ENC_PIC_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_PIC_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeCaps",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "capsParam",
+                            "param_type": {
+                                "name": "NV_ENC_CAPS_PARAM",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_CAPS_PARAM * {}"
+                            }
+                        },
+                        {
+                            "name": "capsVal",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeGUIDCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDs",
+                            "param_type": {
+                                "name": "GUID",
+                                "is_pointer": true,
+                                "type_str": "GUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodePresetConfig",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetConfig",
+                            "param_type": {
+                                "name": "NV_ENC_PRESET_CONFIG",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_PRESET_CONFIG * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodePresetConfigEx",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "tuningInfo",
+                            "param_type": {
+                                "name": "NV_ENC_TUNING_INFO",
+                                "type_str": "NV_ENC_TUNING_INFO {}"
+                            }
+                        },
+                        {
+                            "name": "presetConfig",
+                            "param_type": {
+                                "name": "NV_ENC_PRESET_CONFIG",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_PRESET_CONFIG * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodePresetCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "encodePresetGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodePresetGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUIDs",
+                            "param_type": {
+                                "name": "GUID",
+                                "is_pointer": true,
+                                "type_str": "GUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "encodePresetGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeProfileGUIDCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "encodeProfileGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeProfileGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "profileGUIDs",
+                            "param_type": {
+                                "name": "GUID",
+                                "is_pointer": true,
+                                "type_str": "GUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetEncodeStats",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeStats",
+                            "param_type": {
+                                "name": "NV_ENC_STAT",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_STAT * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetInputFormatCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetInputFormats",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "GUID",
+                                "type_str": "GUID {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmts",
+                            "param_type": {
+                                "name": "NV_ENC_BUFFER_FORMAT",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_BUFFER_FORMAT * {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetLastErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetSequenceParamEx",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encInitParams",
+                            "param_type": {
+                                "name": "NV_ENC_INITIALIZE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_INITIALIZE_PARAMS * {}"
+                            }
+                        },
+                        {
+                            "name": "sequenceParamPayload",
+                            "param_type": {
+                                "name": "NV_ENC_SEQUENCE_PARAM_PAYLOAD",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_SEQUENCE_PARAM_PAYLOAD * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncGetSequenceParams",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "sequenceParamPayload",
+                            "param_type": {
+                                "name": "NV_ENC_SEQUENCE_PARAM_PAYLOAD",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_SEQUENCE_PARAM_PAYLOAD * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncInitializeEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createEncodeParams",
+                            "param_type": {
+                                "name": "NV_ENC_INITIALIZE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_INITIALIZE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncInvalidateRefFrames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "invalidRefFrameTimeStamp",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "type_str": "uint64_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncLockBitstream",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lockBitstreamBufferParams",
+                            "param_type": {
+                                "name": "NV_ENC_LOCK_BITSTREAM",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_LOCK_BITSTREAM * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncLockInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lockInputBufferParams",
+                            "param_type": {
+                                "name": "NV_ENC_LOCK_INPUT_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_LOCK_INPUT_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncLookaheadPicture",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lookaheadParamas",
+                            "param_type": {
+                                "name": "NV_ENC_LOOKAHEAD_PIC_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_LOOKAHEAD_PIC_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncMapInputResource",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mapInputResParams",
+                            "param_type": {
+                                "name": "NV_ENC_MAP_INPUT_RESOURCE",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_MAP_INPUT_RESOURCE * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncOpenEncodeSession",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "device",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "deviceType",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncOpenEncodeSessionEx",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "openSessionExParams",
+                            "param_type": {
+                                "name": "NV_ENC_OPEN_ENCODE_SESSION_EX_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_OPEN_ENCODE_SESSION_EX_PARAMS * {}"
+                            }
+                        },
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncReconfigureEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "reInitEncodeParams",
+                            "param_type": {
+                                "name": "NV_ENC_RECONFIGURE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_RECONFIGURE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncRegisterAsyncEvent",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "eventParams",
+                            "param_type": {
+                                "name": "NV_ENC_EVENT_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_EVENT_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncRegisterResource",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "registerResParams",
+                            "param_type": {
+                                "name": "NV_ENC_REGISTER_RESOURCE",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_REGISTER_RESOURCE * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncRestoreEncoderState",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "restoreState",
+                            "param_type": {
+                                "name": "NV_ENC_RESTORE_ENCODER_STATE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_RESTORE_ENCODER_STATE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncRunMotionEstimationOnly",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "meOnlyParams",
+                            "param_type": {
+                                "name": "NV_ENC_MEONLY_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_MEONLY_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncSetIOCudaStreams",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "inputStream",
+                            "param_type": {
+                                "name": "NV_ENC_CUSTREAM_PTR",
+                                "type_str": "NV_ENC_CUSTREAM_PTR {}"
+                            }
+                        },
+                        {
+                            "name": "outputStream",
+                            "param_type": {
+                                "name": "NV_ENC_CUSTREAM_PTR",
+                                "type_str": "NV_ENC_CUSTREAM_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncUnlockBitstream",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "bitstreamBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_OUTPUT_PTR",
+                                "type_str": "NV_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncUnlockInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "inputBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_INPUT_PTR",
+                                "type_str": "NV_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncUnmapInputResource",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mappedInputBuffer",
+                            "param_type": {
+                                "name": "NV_ENC_INPUT_PTR",
+                                "type_str": "NV_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncUnregisterAsyncEvent",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "eventParams",
+                            "param_type": {
+                                "name": "NV_ENC_EVENT_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "NV_ENC_EVENT_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncUnregisterResource",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "registeredResource",
+                            "param_type": {
+                                "name": "NV_ENC_REGISTERED_PTR",
+                                "type_str": "NV_ENC_REGISTERED_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncodeAPICreateInstance",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "functionList",
+                            "param_type": {
+                                "name": "NV_ENCODE_API_FUNCTION_LIST",
+                                "is_pointer": true,
+                                "type_str": "NV_ENCODE_API_FUNCTION_LIST * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NvEncodeAPIGetMaxSupportedVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "NVENCSTATUS",
+                        "type_str": "NVENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhg-encode.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgEncodeAPI.h"
+        ],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=11031",
+                "__TEXTURE_DEFINED__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "HgEncCreateBitstreamBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createBitstreamBufferParams",
+                            "param_type": {
+                                "name": "HG_ENC_CREATE_BITSTREAM_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_CREATE_BITSTREAM_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncCreateInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createInputBufferParams",
+                            "param_type": {
+                                "name": "HG_ENC_CREATE_INPUT_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_CREATE_INPUT_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncCreateMVBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createMVBufferParams",
+                            "param_type": {
+                                "name": "HG_ENC_CREATE_MV_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_CREATE_MV_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncDestroyBitstreamBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "bitstreamBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_OUTPUT_PTR",
+                                "type_str": "HG_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncDestroyEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncDestroyInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "inputBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_INPUT_PTR",
+                                "type_str": "HG_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncDestroyMVBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mvBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_OUTPUT_PTR",
+                                "type_str": "HG_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncEncodePicture",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodePicParams",
+                            "param_type": {
+                                "name": "HG_ENC_PIC_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_PIC_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeCaps",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "capsParam",
+                            "param_type": {
+                                "name": "HG_ENC_CAPS_PARAM",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_CAPS_PARAM * {}"
+                            }
+                        },
+                        {
+                            "name": "capsVal",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeGUIDCount",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDs",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "is_pointer": true,
+                                "type_str": "HGGUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodePresetConfig",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetConfig",
+                            "param_type": {
+                                "name": "HG_ENC_PRESET_CONFIG",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_PRESET_CONFIG * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodePresetConfigEx",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "tuningInfo",
+                            "param_type": {
+                                "name": "HG_ENC_TUNING_INFO",
+                                "type_str": "HG_ENC_TUNING_INFO {}"
+                            }
+                        },
+                        {
+                            "name": "presetConfig",
+                            "param_type": {
+                                "name": "HG_ENC_PRESET_CONFIG",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_PRESET_CONFIG * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodePresetCount",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "encodePresetGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodePresetGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "presetGUIDs",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "is_pointer": true,
+                                "type_str": "HGGUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "encodePresetGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeProfileGUIDCount",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "encodeProfileGUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeProfileGUIDs",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "profileGUIDs",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "is_pointer": true,
+                                "type_str": "HGGUID * {}"
+                            }
+                        },
+                        {
+                            "name": "guidArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "GUIDCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetEncodeStats",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeStats",
+                            "param_type": {
+                                "name": "HG_ENC_STAT",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_STAT * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetInputFormatCount",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetInputFormats",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encodeGUID",
+                            "param_type": {
+                                "name": "HGGUID",
+                                "type_str": "HGGUID {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmts",
+                            "param_type": {
+                                "name": "HG_ENC_BUFFER_FORMAT",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_BUFFER_FORMAT * {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtArraySize",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "inputFmtCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetLastErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetSequenceParamEx",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "encInitParams",
+                            "param_type": {
+                                "name": "HG_ENC_INITIALIZE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_INITIALIZE_PARAMS * {}"
+                            }
+                        },
+                        {
+                            "name": "sequenceParamPayload",
+                            "param_type": {
+                                "name": "HG_ENC_SEQUENCE_PARAM_PAYLOAD",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_SEQUENCE_PARAM_PAYLOAD * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncGetSequenceParams",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "sequenceParamPayload",
+                            "param_type": {
+                                "name": "HG_ENC_SEQUENCE_PARAM_PAYLOAD",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_SEQUENCE_PARAM_PAYLOAD * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncInitializeEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "createEncodeParams",
+                            "param_type": {
+                                "name": "HG_ENC_INITIALIZE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_INITIALIZE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncInvalidateRefFrames",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "invalidRefFrameTimeStamp",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "type_str": "uint64_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncLockBitstream",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lockBitstreamBufferParams",
+                            "param_type": {
+                                "name": "HG_ENC_LOCK_BITSTREAM",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_LOCK_BITSTREAM * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncLockInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lockInputBufferParams",
+                            "param_type": {
+                                "name": "HG_ENC_LOCK_INPUT_BUFFER",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_LOCK_INPUT_BUFFER * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncLookaheadPicture",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "lookaheadParamas",
+                            "param_type": {
+                                "name": "HG_ENC_LOOKAHEAD_PIC_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_LOOKAHEAD_PIC_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncMapInputResource",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mapInputResParams",
+                            "param_type": {
+                                "name": "HG_ENC_MAP_INPUT_RESOURCE",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_MAP_INPUT_RESOURCE * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncOpenEncodeSession",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "device",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "deviceType",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncOpenEncodeSessionEx",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "openSessionExParams",
+                            "param_type": {
+                                "name": "HG_ENC_OPEN_ENCODE_SESSION_EX_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_OPEN_ENCODE_SESSION_EX_PARAMS * {}"
+                            }
+                        },
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncReconfigureEncoder",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "reInitEncodeParams",
+                            "param_type": {
+                                "name": "HG_ENC_RECONFIGURE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_RECONFIGURE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncRegisterAsyncEvent",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "eventParams",
+                            "param_type": {
+                                "name": "HG_ENC_EVENT_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_EVENT_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncRegisterResource",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "registerResParams",
+                            "param_type": {
+                                "name": "HG_ENC_REGISTER_RESOURCE",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_REGISTER_RESOURCE * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncRestoreEncoderState",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "restoreState",
+                            "param_type": {
+                                "name": "HG_ENC_RESTORE_ENCODER_STATE_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_RESTORE_ENCODER_STATE_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncRunMotionEstimationOnly",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "meOnlyParams",
+                            "param_type": {
+                                "name": "HG_ENC_MEONLY_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_MEONLY_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncUnlockBitstream",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "bitstreamBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_OUTPUT_PTR",
+                                "type_str": "HG_ENC_OUTPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncUnlockInputBuffer",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "inputBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_INPUT_PTR",
+                                "type_str": "HG_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncUnmapInputResource",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "mappedInputBuffer",
+                            "param_type": {
+                                "name": "HG_ENC_INPUT_PTR",
+                                "type_str": "HG_ENC_INPUT_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncUnregisterAsyncEvent",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "eventParams",
+                            "param_type": {
+                                "name": "HG_ENC_EVENT_PARAMS",
+                                "is_pointer": true,
+                                "type_str": "HG_ENC_EVENT_PARAMS * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncUnregisterResource",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "encoder",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "registeredResource",
+                            "param_type": {
+                                "name": "HG_ENC_REGISTERED_PTR",
+                                "type_str": "HG_ENC_REGISTERED_PTR {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncodeAPICreateInstance",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "functionList",
+                            "param_type": {
+                                "name": "HG_ENCODE_API_FUNCTION_LIST",
+                                "is_pointer": true,
+                                "type_str": "HG_ENCODE_API_FUNCTION_LIST * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "HgEncodeAPIGetMaxSupportedVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "HGENCSTATUS",
+                        "type_str": "HGENCSTATUS {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "NvEncCreateBitstreamBuffer",
+            "target_function": "HgEncCreateBitstreamBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateBitstreamBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateBitstreamBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateBitstreamBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncCreateInputBuffer",
+            "target_function": "HgEncCreateInputBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateInputBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateInputBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateInputBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncCreateMVBuffer",
+            "target_function": "HgEncCreateMVBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateMVBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateMVBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncCreateMVBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncDestroyBitstreamBuffer",
+            "target_function": "HgEncDestroyBitstreamBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyBitstreamBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyBitstreamBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyBitstreamBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncDestroyEncoder",
+            "target_function": "HgEncDestroyEncoder",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyEncoder) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyEncoder);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyEncoder);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncDestroyInputBuffer",
+            "target_function": "HgEncDestroyInputBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyInputBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyInputBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyInputBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncDestroyMVBuffer",
+            "target_function": "HgEncDestroyMVBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyMVBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyMVBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncDestroyMVBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncEncodePicture",
+            "target_function": "HgEncEncodePicture",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncEncodePicture) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncEncodePicture);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncEncodePicture);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeCaps",
+            "target_function": "HgEncGetEncodeCaps",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeCaps) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeCaps);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeCaps);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeGUIDCount",
+            "target_function": "HgEncGetEncodeGUIDCount",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDCount) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDCount);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDCount);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeGUIDs",
+            "target_function": "HgEncGetEncodeGUIDs",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDs) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDs);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDs);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodePresetConfig",
+            "target_function": "HgEncGetEncodePresetConfig",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfig) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfig);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfig);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodePresetConfigEx",
+            "target_function": "HgEncGetEncodePresetConfigEx",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfigEx) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfigEx);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfigEx);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodePresetCount",
+            "target_function": "HgEncGetEncodePresetCount",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetCount) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetCount);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetCount);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodePresetGUIDs",
+            "target_function": "HgEncGetEncodePresetGUIDs",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetGUIDs) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetGUIDs);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodePresetGUIDs);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeProfileGUIDCount",
+            "target_function": "HgEncGetEncodeProfileGUIDCount",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDCount) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDCount);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDCount);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeProfileGUIDs",
+            "target_function": "HgEncGetEncodeProfileGUIDs",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDs) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDs);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDs);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetEncodeStats",
+            "target_function": "HgEncGetEncodeStats",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeStats) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeStats);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetEncodeStats);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetInputFormatCount",
+            "target_function": "HgEncGetInputFormatCount",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormatCount) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormatCount);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormatCount);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetInputFormats",
+            "target_function": "HgEncGetInputFormats",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormats) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormats);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetInputFormats);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetLastErrorString",
+            "target_function": "HgEncGetLastErrorString",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetLastErrorString) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetLastErrorString);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetLastErrorString);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetSequenceParamEx",
+            "target_function": "HgEncGetSequenceParamEx",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParamEx) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParamEx);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParamEx);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncGetSequenceParams",
+            "target_function": "HgEncGetSequenceParams",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParams) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParams);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncGetSequenceParams);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncInitializeEncoder",
+            "target_function": "HgEncInitializeEncoder",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInitializeEncoder) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInitializeEncoder);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInitializeEncoder);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncInvalidateRefFrames",
+            "target_function": "HgEncInvalidateRefFrames",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInvalidateRefFrames) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInvalidateRefFrames);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncInvalidateRefFrames);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncLockBitstream",
+            "target_function": "HgEncLockBitstream",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockBitstream) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockBitstream);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockBitstream);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncLockInputBuffer",
+            "target_function": "HgEncLockInputBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockInputBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockInputBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLockInputBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncLookaheadPicture",
+            "target_function": "HgEncLookaheadPicture",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLookaheadPicture) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLookaheadPicture);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncLookaheadPicture);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncMapInputResource",
+            "target_function": "HgEncMapInputResource",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncMapInputResource) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncMapInputResource);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncMapInputResource);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncOpenEncodeSession",
+            "target_function": "HgEncOpenEncodeSession",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSession) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSession);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSession);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncOpenEncodeSessionEx",
+            "target_function": "HgEncOpenEncodeSessionEx",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSessionEx) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSessionEx);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncOpenEncodeSessionEx);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncReconfigureEncoder",
+            "target_function": "HgEncReconfigureEncoder",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncReconfigureEncoder) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncReconfigureEncoder);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncReconfigureEncoder);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncRegisterAsyncEvent",
+            "target_function": "HgEncRegisterAsyncEvent",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterAsyncEvent) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterAsyncEvent);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterAsyncEvent);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncRegisterResource",
+            "target_function": "HgEncRegisterResource",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterResource) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterResource);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRegisterResource);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncRestoreEncoderState",
+            "target_function": "HgEncRestoreEncoderState",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRestoreEncoderState) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRestoreEncoderState);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRestoreEncoderState);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncRunMotionEstimationOnly",
+            "target_function": "HgEncRunMotionEstimationOnly",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRunMotionEstimationOnly) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRunMotionEstimationOnly);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncRunMotionEstimationOnly);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncSetIOCudaStreams",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NvEncUnlockBitstream",
+            "target_function": "HgEncUnlockBitstream",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockBitstream) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockBitstream);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockBitstream);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncUnlockInputBuffer",
+            "target_function": "HgEncUnlockInputBuffer",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockInputBuffer) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockInputBuffer);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnlockInputBuffer);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncUnmapInputResource",
+            "target_function": "HgEncUnmapInputResource",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnmapInputResource) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnmapInputResource);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnmapInputResource);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncUnregisterAsyncEvent",
+            "target_function": "HgEncUnregisterAsyncEvent",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterAsyncEvent) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterAsyncEvent);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterAsyncEvent);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncUnregisterResource",
+            "target_function": "HgEncUnregisterResource",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterResource) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterResource);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncUnregisterResource);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncodeAPICreateInstance",
+            "target_function": "HgEncodeAPICreateInstance",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPICreateInstance) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPICreateInstance);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPICreateInstance);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "NvEncodeAPIGetMaxSupportedVersion",
+            "target_function": "HgEncodeAPIGetMaxSupportedVersion",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPIGetMaxSupportedVersion) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPIGetMaxSupportedVersion);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvidia_encode_TRACE_CBID_NvEncodeAPIGetMaxSupportedVersion);\n    }\n\n"
+            }
+        }
+    ],
+    "type_mappings": [
+        {
+            "source_type": "GUID",
+            "target_type": "HGGUID",
+            "conversion_expression": "*reinterpret_cast<HGGUID*>(&{ValToConv})"
+        },
+        {
+            "source_type": "HGGUID",
+            "target_type": "GUID",
+            "conversion_expression": "*reinterpret_cast<GUID*>(&{ValToConv})"
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"NvEncCreateBitstreamBuffer\",\n    \"NvEncCreateInputBuffer\",\n    \"NvEncCreateMVBuffer\",\n    \"NvEncDestroyBitstreamBuffer\",\n    \"NvEncDestroyEncoder\",\n    \"NvEncDestroyInputBuffer\",\n    \"NvEncDestroyMVBuffer\",\n    \"NvEncEncodePicture\",\n    \"NvEncGetEncodeCaps\",\n    \"NvEncGetEncodeGUIDCount\",\n    \"NvEncGetEncodeGUIDs\",\n    \"NvEncGetEncodePresetConfig\",\n    \"NvEncGetEncodePresetConfigEx\",\n    \"NvEncGetEncodePresetCount\",\n    \"NvEncGetEncodePresetGUIDs\",\n    \"NvEncGetEncodeProfileGUIDCount\",\n    \"NvEncGetEncodeProfileGUIDs\",\n    \"NvEncGetEncodeStats\",\n    \"NvEncGetInputFormatCount\",\n    \"NvEncGetInputFormats\",\n    \"NvEncGetLastErrorString\",\n    \"NvEncGetSequenceParamEx\",\n    \"NvEncGetSequenceParams\",\n    \"NvEncInitializeEncoder\",\n    \"NvEncInvalidateRefFrames\",\n    \"NvEncLockBitstream\",\n    \"NvEncLockInputBuffer\",\n    \"NvEncLookaheadPicture\",\n    \"NvEncMapInputResource\",\n    \"NvEncOpenEncodeSession\",\n    \"NvEncOpenEncodeSessionEx\",\n    \"NvEncReconfigureEncoder\",\n    \"NvEncRegisterAsyncEvent\",\n    \"NvEncRegisterResource\",\n    \"NvEncRestoreEncoderState\",\n    \"NvEncRunMotionEstimationOnly\",\n    \"NvEncSetIOCudaStreams\",\n    \"NvEncUnlockBitstream\",\n    \"NvEncUnlockInputBuffer\",\n    \"NvEncUnmapInputResource\",\n    \"NvEncUnregisterAsyncEvent\",\n    \"NvEncUnregisterResource\",\n    \"NvEncodeAPICreateInstance\",\n    \"NvEncodeAPIGetMaxSupportedVersion\",\n};\n\nenum nvidia_encodeProfileCallbackId {\n    nvidia_encode_TRACE_CBID_NvEncCreateBitstreamBuffer = 0,\n    nvidia_encode_TRACE_CBID_NvEncCreateInputBuffer = 1,\n    nvidia_encode_TRACE_CBID_NvEncCreateMVBuffer = 2,\n    nvidia_encode_TRACE_CBID_NvEncDestroyBitstreamBuffer = 3,\n    nvidia_encode_TRACE_CBID_NvEncDestroyEncoder = 4,\n    nvidia_encode_TRACE_CBID_NvEncDestroyInputBuffer = 5,\n    nvidia_encode_TRACE_CBID_NvEncDestroyMVBuffer = 6,\n    nvidia_encode_TRACE_CBID_NvEncEncodePicture = 7,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeCaps = 8,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDCount = 9,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeGUIDs = 10,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfig = 11,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodePresetConfigEx = 12,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodePresetCount = 13,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodePresetGUIDs = 14,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDCount = 15,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeProfileGUIDs = 16,\n    nvidia_encode_TRACE_CBID_NvEncGetEncodeStats = 17,\n    nvidia_encode_TRACE_CBID_NvEncGetInputFormatCount = 18,\n    nvidia_encode_TRACE_CBID_NvEncGetInputFormats = 19,\n    nvidia_encode_TRACE_CBID_NvEncGetLastErrorString = 20,\n    nvidia_encode_TRACE_CBID_NvEncGetSequenceParamEx = 21,\n    nvidia_encode_TRACE_CBID_NvEncGetSequenceParams = 22,\n    nvidia_encode_TRACE_CBID_NvEncInitializeEncoder = 23,\n    nvidia_encode_TRACE_CBID_NvEncInvalidateRefFrames = 24,\n    nvidia_encode_TRACE_CBID_NvEncLockBitstream = 25,\n    nvidia_encode_TRACE_CBID_NvEncLockInputBuffer = 26,\n    nvidia_encode_TRACE_CBID_NvEncLookaheadPicture = 27,\n    nvidia_encode_TRACE_CBID_NvEncMapInputResource = 28,\n    nvidia_encode_TRACE_CBID_NvEncOpenEncodeSession = 29,\n    nvidia_encode_TRACE_CBID_NvEncOpenEncodeSessionEx = 30,\n    nvidia_encode_TRACE_CBID_NvEncReconfigureEncoder = 31,\n    nvidia_encode_TRACE_CBID_NvEncRegisterAsyncEvent = 32,\n    nvidia_encode_TRACE_CBID_NvEncRegisterResource = 33,\n    nvidia_encode_TRACE_CBID_NvEncRestoreEncoderState = 34,\n    nvidia_encode_TRACE_CBID_NvEncRunMotionEstimationOnly = 35,\n    nvidia_encode_TRACE_CBID_NvEncSetIOCudaStreams = 36,\n    nvidia_encode_TRACE_CBID_NvEncUnlockBitstream = 37,\n    nvidia_encode_TRACE_CBID_NvEncUnlockInputBuffer = 38,\n    nvidia_encode_TRACE_CBID_NvEncUnmapInputResource = 39,\n    nvidia_encode_TRACE_CBID_NvEncUnregisterAsyncEvent = 40,\n    nvidia_encode_TRACE_CBID_NvEncUnregisterResource = 41,\n    nvidia_encode_TRACE_CBID_NvEncodeAPICreateInstance = 42,\n    nvidia_encode_TRACE_CBID_NvEncodeAPIGetMaxSupportedVersion = 43,\n};\n\ntypedef uint32_t (*nvidia_encodeRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvidia_encodeIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvidia_encodeProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvidia_encodeProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvidia_encodeProfileHandler {\n    nvidia_encodeRegisterProfileDomain registerProfileDomain;\n    nvidia_encodeIsProfileCallbackEnabled isCallbackEnabled;\n    nvidia_encodeProfileCallbackBegin profileCallbackBegin;\n    nvidia_encodeProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvidia_encodeProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvidia-encode\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvidia_encodeRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvidia_encodeIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvidia_encodeProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvidia_encodeProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}
