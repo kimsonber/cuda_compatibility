@@ -1,0 +1,496 @@
+[global]
+verbose=0
+ppu_archs=ppu001
+          ppu0015
+
+[cuda]
+cuda_header=cuda.h
+            cudaProfiler.h
+            cuda_ad.h
+            cudaGL.h
+            cudaEGL.h
+hggc_header=hggc.h
+            hggcProfiler.h
+            hggc_ad.h
+match_rules=cuda:hggc
+            CUDA:HGGC
+            cu:hg
+            CU:HG
+            nv:hg
+            cuuint32_t:uint32_t
+            cuuint64_t:uint64_t
+target_lib=FakeOrUMD
+source_lib=libcuda.so
+
+[cudart]
+cuda_header=cuda_runtime_api.h
+            cuda_runtime.h
+            cuda_profiler_api.h
+            cuda_gl_interop.h
+            cuda_egl_interop.h
+hggc_header=hggc_runtime_api.h
+            hggc_runtime_api.hpp
+            hggc_profiler_api.h
+match_rules=cuda:hggc
+            CUDA:HGGC
+            cu:hg
+            CU:HG
+            cuuint32_t:uint32_t
+            cuuint64_t:uint64_t
+target_lib=FakeOrUMD
+source_lib=libcudart.so
+
+[cudnn]
+cuda_header=cudnn.h
+            cudnn_adv_infer.h
+            cudnn_adv_train.h
+            cudnn_backend.h
+            cudnn_cnn_infer.h
+            cudnn_cnn_train.h
+            cudnn_ops_infer.h
+            cudnn_ops_train.h
+            cudnn_version.h
+hggc_header=acdnn.h
+            acdnn_adv_infer.h
+            acdnn_adv_train.h
+            acdnn_backend.h
+            acdnn_cnn_infer.h
+            acdnn_cnn_train.h
+            acdnn_ops_infer.h
+            acdnn_ops_train.h
+            acdnn_version.h
+target_lib=libacdnn.so
+match_rules=cudnnGetCudart:acdnnGetHggcrt
+            cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_adv_infer]
+cuda_header=cudnn_adv_infer.h
+            cudnn_adv_infer_v8.h
+hggc_header=acdnn_adv_infer.h
+target_lib=libacdnn_adv_infer.so
+match_rules=cudnn:acdnn
+
+[cudnn_adv_train]
+cuda_header=cudnn_adv_train.h
+hggc_header=acdnn_adv_train.h
+target_lib=libacdnn_adv_train.so
+match_rules=cudnn:acdnn
+
+[cudnn_cnn_infer]
+cuda_header=cudnn_cnn_infer.h
+            cudnn_cnn_infer_v8.h
+hggc_header=acdnn_cnn_infer.h
+target_lib=libacdnn_cnn_infer.so
+match_rules=cudnnGetCudart:acdnnGetHggcrt
+            cudnn:acdnn
+
+[cudnn_cnn_train]
+cuda_header=cudnn_cnn_train.h
+hggc_header=acdnn_cnn_train.h
+target_lib=libacdnn_cnn_train.so
+match_rules=cudnn:acdnn
+
+[cudnn_ops_infer]
+cuda_header=cudnn_ops_infer.h
+            cudnn_ops_infer_v8.h
+hggc_header=acdnn_ops_infer.h
+target_lib=libacdnn_ops_infer.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_ops_train]
+cuda_header=cudnn_ops_train.h
+            cudnn_ops_train_v8.h
+hggc_header=acdnn_ops_train.h
+target_lib=libacdnn_ops_train.so
+match_rules=cudnn:acdnn
+
+[cublasLt]
+cuda_header=cublasLt.h
+hggc_header=acblasLt.h
+target_lib=libacblasLt.so
+match_rules=cublas:acblas
+            cudaStream:hggcStream
+
+[cublas]
+cuda_header=cublas_v2.h
+            cublas_api.h
+            cublasXt.h
+hggc_header=acblas_v2.h
+            acblas_api.h
+cuda_header1=cublas.h
+hggc_header1=acblas.h
+target_lib=libacblas.so
+match_rules=cublas:acblas
+            cudaStream:hggcStream
+
+[cusolver]
+cuda_header=cusolver_common.h
+            cusolverDn.h
+            cusolverMg.h
+            cusolverRf.h
+            cusolverSp.h
+            cusolverSp_LOWLEVEL_PREVIEW.h
+            __cusolver_noheader_api.h
+hggc_header=acsolver_common.h
+            acsolverDn.h
+target_lib=libacsolver.so
+match_rules=cusolver:acsolver
+            cublas:acblas
+            cudaStream:hggcStream
+
+[cusolverMg]
+cuda_header=cusolverMg.h
+source_lib=libcusolverMg.so
+
+[cufft]
+cuda_header=cufft.h
+            cufftXt.h
+hggc_header=acfft.h
+            acfftXt.h
+target_lib=libacfft.so
+match_rules=cufft:acfft
+            cudaStream:hggcStream
+
+[cufftw]
+cuda_header=cufft.h
+            cufftw.h
+source_lib=libcufftw.so
+
+
+[curand]
+cuda_header=curand.h
+hggc_header=acrand.h
+target_lib=libacrand.so
+match_rules=curand:acrand
+            cudaStream:hggcStream
+
+[cusparse]
+cuda_header=cusparse.h
+            cusparse_v2.h
+hggc_header=acsparse.h
+            acsparse_v2.h
+match_rules=cusparse:acsparse
+            cudaStream:hggcStream
+source_lib=libcusparse.so
+target_lib=libacsparse.so
+
+[nppc]
+cuda_header=nppcore.h
+hggc_header=hgppcore.h
+target_lib=libhgppc.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppial]
+cuda_header=nppi_arithmetic_and_logical_operations.h
+hggc_header=hgppi_arithmetic_and_logical_operations.h
+target_lib=libhgppial.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppicc]
+cuda_header=nppi_color_conversion.h
+hggc_header=hgppi_color_conversion.h
+target_lib=libhgppicc.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppidei]
+cuda_header=nppi_data_exchange_and_initialization.h
+hggc_header=hgppi_data_exchange_and_initialization.h
+target_lib=libhgppidei.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppif]
+cuda_header=nppi_filtering_functions.h
+hggc_header=hgppi_filtering_functions.h
+target_lib=libhgppif.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppig]
+cuda_header=nppi_geometry_transforms.h
+hggc_header=hgppi_geometry_transforms.h
+target_lib=libhgppig.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppim]
+cuda_header=nppi_morphological_operations.h
+hggc_header=hgppi_morphological_operations.h
+target_lib=libhgppim.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppist]
+cuda_header=nppi_statistics_functions.h
+            nppi_linear_transforms.h
+hggc_header=hgppi_statistics_functions.h
+            hgppi_linear_transforms.h
+target_lib=libhgppist.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppisu]
+cuda_header=nppi_support_functions.h
+hggc_header=hgppi_support_functions.h
+target_lib=libhgppisu.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nppitc]
+cuda_header=nppi_threshold_and_compare_operations.h
+hggc_header=hgppi_threshold_and_compare_operations.h
+target_lib=libhgppitc.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[npps]
+cuda_header=npps.h
+            npps_arithmetic_and_logical_operations.h
+            npps_conversion_functions.h
+            npps_filtering_functions.h
+            npps_initialization.h
+            npps_support_functions.h
+            npps_statistics_functions.h
+hggc_header=hgpps.h
+            hgpps_arithmetic_and_logical_operations.h
+            hgpps_conversion_functions.h
+            hgpps_filtering_functions.h
+            hgpps_initialization.h
+            hgpps_support_functions.h
+            hgpps_statistics_functions.h
+target_lib=libhgpps.so
+match_rules=npp:hgpp
+            Npp:HGpp
+            cuda:hggc
+
+[nvjpeg]
+cuda_header=nvjpeg.h
+hggc_header=hgjpeg.h
+target_lib=libhgjpeg.so
+match_rules=nvjpeg:hgjpeg
+            cuda:hggc
+            Cudart:Hggc
+
+[nvrtc]
+cuda_header=nvrtc.h
+hggc_header=hgrtc.h
+target_lib=libhgrtc.so
+match_rules=nvrtcGetPTX:hgrtcGetCode
+            nvrtcGetNVVM:hgrtcGetCode
+            nvrtcGetCUBIN:hgrtcGetCode
+            nvrtc:hgrtc
+            NVRTC:HGRTC
+
+[nvfatbin]
+cuda_header=nvFatbin.h
+hggc_header=hgFatbin.h
+target_lib=libhgfatbin.so
+since_cuda_ver=cuda-12.4
+match_rules=cuda:hggc
+            CUDA:HGGC
+            Cuda:Hggc
+            cu:hg
+            CU:HG
+            nv:hg
+
+[nvJitLink]
+cuda_header=nvJitLink.h
+hggc_header=hgJitLink.h
+target_lib=libhgJitLink.so
+source_lib=libnvJitLink.so
+source_static_lib=libnvJitLink_static.a
+since_cuda_ver=cuda-12.0
+match_rules=cuda:hggc
+            CUDA:HGGC
+            Cuda:Hggc
+            cu:hg
+            CU:HG
+            nv:hg
+
+[nvToolsExt]
+cuda_header=nvToolsExt.h
+hggc_header=hgToolsExt.h
+target_lib=libhgToolsExt.so
+source_lib=libnvToolsExt.so
+match_rules=nvtx:hgtx
+            NVTX:HGTX
+
+[nvidia-ml]
+cuda_header=nvml.h
+hggc_header=hgml.h
+target_lib=libhgml.so
+source_lib=libnvidia-ml.so
+source_static_lib=libnvidia-ml.a
+match_rules=nvml:hgml
+            NVML:HGML
+            nv:hg
+            Cuda:Hggc
+            NvLink:IcnLink
+            NVLINK:ICNLINK
+
+[nvcuvid]
+cuda_header=cuviddec.h
+            nvcuvid.h
+hggc_header=acviddec.h
+            hgacvid.h
+target_lib=libhgacvid.so
+source_lib=libnvcuvid.so
+match_rules=CUresult:HGresult
+            CUcontext:HGcontext
+            CUVID:ACVID
+            cuvid:acvid
+            cuda:hggc
+            nv:hg
+            CU:AC
+
+[nvidia-encode]
+cuda_header=nvEncodeAPI.h
+hggc_header=hgEncodeAPI.h
+target_lib=libhg-encode.so
+source_lib=libnvidia-encode.so
+match_rules=cuda:hggc
+            NvEnc:HgEnc
+            NVENC:HGENC
+            NV_ENC:HG_ENC
+            CUSTREAM:HGSTREAM
+            nv:hg
+            Cuda:Hggc
+
+[cupti]
+cuda_header=cupti.h
+            cupti_pmsampling.h
+            cupti_result.h
+            cupti_target.h
+            cupti_version.h
+            cupti_activity.h
+            cupti_callbacks.h
+            cupti_events.h
+            cupti_metrics.h
+            cupti_profiler_host.h
+            cupti_profiler_target.h
+hggc_header=hgpti.h
+            hgpti_pmsampling.h
+            hgpti_result.h
+            hgpti_target.h
+            hgpti_activity.h
+            hgpti_callbacks.h
+            hgpti_events.h
+            hgpti_metrics.h
+            hgpti_version.h
+            hgpti_profiler_host.h
+            hgpti_profiler_target.h
+target_lib=libhgpti.so
+match_rules=cu:hg
+            CU:HG
+compiler_options1=U__CUDA_API_VERSION_INTERNAL
+compiler_options2=U__HGGC_API_VERSION_INTERNAL
+
+[nvvm]
+cuda_header=nvvm.h
+hggc_header=hgvm.h
+target_lib=libhgvm.so
+match_rules=NVVM:HGVM
+            nvvm:hgvm
+
+[nccl]
+cuda_api=nccl.json
+hggc_api=pccl.json
+cuda_header=nccl.h
+hggc_header=pccl.h
+target_lib=libpccl.so
+match_rules=nccl:pccl
+            cuda:hggc
+
+[sanitizer-public]
+cuda_header=sanitizer_barrier.h
+            sanitizer_callbacks.h
+            sanitizer_driver_cbid.h
+            sanitizer_memory.h
+            sanitizer_patching.h
+            sanitizer_result.h
+            sanitizer_runtime_cbid.h
+            sanitizer_stream.h
+            sanitizer.h
+hggc_header=sanitizer_barrier.h
+            sanitizer_callbacks.h
+            sanitizer_driver_cbid.h
+            sanitizer_memory.h
+            sanitizer_patching.h
+            sanitizer_result.h
+            sanitizer_runtime_cbid.h
+            sanitizer_stream.h
+            sanitizer.h
+match_rules=cuda:hggc
+            CUDA:HGGC
+            Cuda:Hggc
+            cu:hg
+            CU:HG
+            nv:hg
+target_lib=libhgbit.so
+source_lib=libsanitizer-public.so
+lib_path=compute-sanitizer
+
+[cufile]
+cuda_header=cufile.h
+hggc_header=slfile.h
+match_rules=cu:sl
+            CU:SL
+source_lib=libcufile.so
+since_cuda_ver=cuda-11.7
+
+[cufilt]
+cuda_header=nv_decode.h
+hggc_header=hgfilt.h
+match_rules=cu:hg
+source_static_lib=libcufilt.a
+since_cuda_ver=cuda-11.4
+
+[nvptxcompiler]
+cuda_header=nvPTXCompiler.h
+hggc_header=hgTIXCompiler.h
+target_lib=libhgtixcompiler.so
+source_static_lib=libnvptxcompiler_static.a
+since_cuda_ver=cuda-11.1
+match_rules=nv:hg
+            PTX:TIX
+
+[nvblas]
+cuda_header=nvblas.h
+source_lib=libnvblas.so
+since_cuda_ver=cuda-11.1
+
+[checkpoint]
+cuda_header=cupti_checkpoint.h
+source_lib=libcheckpoint.so
+since_cuda_ver=cuda-11.5
+
+[pcsamplingutil]
+cuda_header=cupti_pcsampling_util.h
+source_lib=libpcsamplingutil.so
+since_cuda_ver=cuda-11.3
+
+[nvperf_host]
+cuda_header=nvperf_cuda_host.h
+            nvperf_host.h
+            nvperf_target.h
+source_lib=libnvperf_host.so
+
+[nvperf_target]
+cuda_header=nvperf_target.h
+source_lib=libnvperf_target.so
+

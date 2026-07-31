@@ -1,0 +1,651 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nppc
+  dyn_lib_file_name: libnppc.so
+  dyn_lib_install_name: libnppc.so.12.0.1.104
+  sta_lib_file_name: libnppc_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nppcore.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib2/include
+    - $lib3/include
+    - $lib4/Interface
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libnppc.so.12
+  api_functions:
+    - name: nppGetGpuDeviceProperties
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: pMaxThreadsPerSM
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pMaxThreadsPerBlock
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pNumberOfSMs
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetGpuName
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetGpuNumSMs
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetLibVersion
+      signature:
+        return_type:
+          name: const NppLibraryVersion *
+          is_pointer: true
+          type_str: const NppLibraryVersion * {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetMaxThreadsPerBlock
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetMaxThreadsPerSM
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetStream
+      signature:
+        return_type:
+          name: cudaStream_t
+          type_str: cudaStream_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetStreamContext
+      signature:
+        return_type:
+          name: NppStatus
+          type_str: NppStatus {}
+        parameters:
+          - name: pNppStreamContext
+            param_type:
+              name: NppStreamContext
+              is_pointer: true
+              type_str: NppStreamContext * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetStreamMaxThreadsPerSM
+      signature:
+        return_type:
+          name: unsigned int
+          type_str: unsigned int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppGetStreamNumSMs
+      signature:
+        return_type:
+          name: unsigned int
+          type_str: unsigned int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nppSetStream
+      signature:
+        return_type:
+          name: NppStatus
+          type_str: NppStatus {}
+        parameters:
+          - name: hStream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgppc.so
+  lib_dirs:
+    []
+  include_files:
+    - hgppcore.h
+  include_dirs:
+    - $output/hggc_wrapper
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12001
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: hgppGetGpuDeviceProperties
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: pMaxThreadsPerSM
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pMaxThreadsPerBlock
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: pNumberOfSMs
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetGpuName
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetGpuNumSMs
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetLibVersion
+      signature:
+        return_type:
+          name: const HGppLibraryVersion *
+          is_pointer: true
+          type_str: const HGppLibraryVersion * {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetMaxThreadsPerBlock
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetMaxThreadsPerSM
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetStream
+      signature:
+        return_type:
+          name: hggcStream_t
+          type_str: hggcStream_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetStreamContext
+      signature:
+        return_type:
+          name: HGppStatus
+          type_str: HGppStatus {}
+        parameters:
+          - name: pHGppStreamContext
+            param_type:
+              name: HGppStreamContext
+              is_pointer: true
+              type_str: HGppStreamContext * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetStreamMaxThreadsPerSM
+      signature:
+        return_type:
+          name: unsigned int
+          type_str: unsigned int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppGetStreamNumSMs
+      signature:
+        return_type:
+          name: unsigned int
+          type_str: unsigned int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgppSetStream
+      signature:
+        return_type:
+          name: HGppStatus
+          type_str: HGppStatus {}
+        parameters:
+          - name: hStream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: nppGetGpuDeviceProperties
+    target_function: hgppGetGpuDeviceProperties
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetGpuDeviceProperties) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetGpuDeviceProperties);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetGpuDeviceProperties);
+            }
+
+
+  - source_function: nppGetGpuName
+    target_function: hgppGetGpuName
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetGpuName) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetGpuName);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetGpuName);
+            }
+
+
+  - source_function: nppGetGpuNumSMs
+    target_function: hgppGetGpuNumSMs
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetGpuNumSMs) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetGpuNumSMs);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetGpuNumSMs);
+            }
+
+
+  - source_function: nppGetLibVersion
+    target_function: hgppGetLibVersion
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetLibVersion) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetLibVersion);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetLibVersion);
+            }
+
+
+  - source_function: nppGetMaxThreadsPerBlock
+    target_function: hgppGetMaxThreadsPerBlock
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerBlock) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerBlock);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerBlock);
+            }
+
+
+  - source_function: nppGetMaxThreadsPerSM
+    target_function: hgppGetMaxThreadsPerSM
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerSM) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerSM);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetMaxThreadsPerSM);
+            }
+
+
+  - source_function: nppGetStream
+    target_function: hgppGetStream
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetStream) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetStream);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetStream);
+            }
+
+
+  - source_function: nppGetStreamContext
+    target_function: hgppGetStreamContext
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetStreamContext) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetStreamContext);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetStreamContext);
+            }
+
+
+  - source_function: nppGetStreamMaxThreadsPerSM
+    target_function: hgppGetStreamMaxThreadsPerSM
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetStreamMaxThreadsPerSM) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetStreamMaxThreadsPerSM);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetStreamMaxThreadsPerSM);
+            }
+
+
+  - source_function: nppGetStreamNumSMs
+    target_function: hgppGetStreamNumSMs
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppGetStreamNumSMs) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppGetStreamNumSMs);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppGetStreamNumSMs);
+            }
+
+
+  - source_function: nppSetStream
+    target_function: hgppSetStream
+    parameter_mapping:
+      {}
+    in_func_custom_code:
+      pre_wrapper_call: |
+        bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+                g_profileHandler.isCallbackEnabled(g_profileDomain, nppc_TRACE_CBID_nppSetStream) != 0;
+            if (needProfile) {
+                g_profileHandler.profileCallbackBegin(g_profileDomain, nppc_TRACE_CBID_nppSetStream);
+            }
+
+      post_wrapper_call: |
+        if (needProfile) {
+                g_profileHandler.profileCallbackEnd(g_profileDomain, nppc_TRACE_CBID_nppSetStream);
+            }
+
+
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "nppGetGpuDeviceProperties",
+        "nppGetGpuName",
+        "nppGetGpuNumSMs",
+        "nppGetLibVersion",
+        "nppGetMaxThreadsPerBlock",
+        "nppGetMaxThreadsPerSM",
+        "nppGetStream",
+        "nppGetStreamContext",
+        "nppGetStreamMaxThreadsPerSM",
+        "nppGetStreamNumSMs",
+        "nppSetStream",
+    };
+
+    enum nppcProfileCallbackId {
+        nppc_TRACE_CBID_nppGetGpuDeviceProperties = 0,
+        nppc_TRACE_CBID_nppGetGpuName = 1,
+        nppc_TRACE_CBID_nppGetGpuNumSMs = 2,
+        nppc_TRACE_CBID_nppGetLibVersion = 3,
+        nppc_TRACE_CBID_nppGetMaxThreadsPerBlock = 4,
+        nppc_TRACE_CBID_nppGetMaxThreadsPerSM = 5,
+        nppc_TRACE_CBID_nppGetStream = 6,
+        nppc_TRACE_CBID_nppGetStreamContext = 7,
+        nppc_TRACE_CBID_nppGetStreamMaxThreadsPerSM = 8,
+        nppc_TRACE_CBID_nppGetStreamNumSMs = 9,
+        nppc_TRACE_CBID_nppSetStream = 10,
+    };
+
+    typedef uint32_t (*nppcRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*nppcIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nppcProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nppcProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct nppcProfileHandler {
+        nppcRegisterProfileDomain registerProfileDomain;
+        nppcIsProfileCallbackEnabled isCallbackEnabled;
+        nppcProfileCallbackBegin profileCallbackBegin;
+        nppcProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static nppcProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nppc";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<nppcRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<nppcIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<nppcProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<nppcProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
