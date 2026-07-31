@@ -1,0 +1,941 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvfatbin",
+        "dyn_lib_file_name": "libnvfatbin.so",
+        "dyn_lib_install_name": "libnvfatbin.so.12.5.82",
+        "sta_lib_file_name": "libnvfatbin_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "cuda.h",
+            "../../include/texture_types.h",
+            "nvFatbin.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvfatbin.so.12"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "nvFatbinAddCubin",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "identifier",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinAddIndex",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "identifier",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinAddLTOIR",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "identifier",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "optionsCmdLine",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinAddPTX",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "identifier",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "optionsCmdLine",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinAddReloc",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinCreate",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle_indirect",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "is_pointer": true,
+                                "type_str": "nvFatbinHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        },
+                        {
+                            "name": "optionsCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle_indirect",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "is_pointer": true,
+                                "type_str": "nvFatbinHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinGet",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "nvFatbinResult",
+                                "type_str": "nvFatbinResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "nvFatbinHandle",
+                                "type_str": "nvFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvFatbinVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvFatbinResult",
+                        "type_str": "nvFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "is_pointer": true,
+                                "type_str": "unsigned int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "is_pointer": true,
+                                "type_str": "unsigned int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgfatbin.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgFatbin.h"
+        ],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=12051"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "hgFatbinAddHgbin",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinAddIndex",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinAddLTOIR",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinAddReloc",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinAddTIX",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "code",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinCreate",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "is_pointer": true,
+                                "type_str": "hgFatbinHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "argv",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        },
+                        {
+                            "name": "argc",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "is_pointer": true,
+                                "type_str": "hgFatbinHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinGet",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "hgFatbinResult",
+                                "type_str": "hgFatbinResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgFatbinSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgFatbinResult",
+                        "type_str": "hgFatbinResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "handle",
+                            "param_type": {
+                                "name": "hgFatbinHandle",
+                                "type_str": "hgFatbinHandle {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "nvFatbinAddCubin",
+            "target_function": "hgFatbinAddHgbin",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddCubin) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddCubin);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddCubin);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinAddIndex",
+            "target_function": "hgFatbinAddIndex",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddIndex) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddIndex);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddIndex);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinAddLTOIR",
+            "target_function": "hgFatbinAddLTOIR",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddLTOIR) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddLTOIR);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddLTOIR);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinAddPTX",
+            "target_function": "hgFatbinAddTIX",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddPTX) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddPTX);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddPTX);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinAddReloc",
+            "target_function": "hgFatbinAddReloc",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddReloc) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddReloc);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinAddReloc);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinCreate",
+            "target_function": "hgFatbinCreate",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinCreate) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinCreate);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinCreate);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinDestroy",
+            "target_function": "hgFatbinDestroy",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinDestroy) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinDestroy);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinDestroy);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinGet",
+            "target_function": "hgFatbinGet",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGet) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGet);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGet);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinGetErrorString",
+            "target_function": "hgFatbinGetErrorString",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGetErrorString) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGetErrorString);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinGetErrorString);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinSize",
+            "target_function": "hgFatbinSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvfatbin_TRACE_CBID_nvFatbinSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "nvFatbinVersion",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvFatbinResult nvFatbinVersion(unsigned int * major, unsigned int * minor) {\n // TraceCall(\"nvFatbinVersion\");\n    if (major == nullptr || minor == nullptr) {\n      return NVFATBIN_ERROR_NULL_POINTER;\n    }\n    *major = CUDA_VERSION / 1000;\n    *minor = (CUDA_VERSION - (*major * 1000)) / 10;\n    return NVFATBIN_SUCCESS;\n}\n\n"
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"nvFatbinAddCubin\",\n    \"nvFatbinAddIndex\",\n    \"nvFatbinAddLTOIR\",\n    \"nvFatbinAddPTX\",\n    \"nvFatbinAddReloc\",\n    \"nvFatbinCreate\",\n    \"nvFatbinDestroy\",\n    \"nvFatbinGet\",\n    \"nvFatbinGetErrorString\",\n    \"nvFatbinSize\",\n    \"nvFatbinVersion\",\n};\n\nenum nvfatbinProfileCallbackId {\n    nvfatbin_TRACE_CBID_nvFatbinAddCubin = 0,\n    nvfatbin_TRACE_CBID_nvFatbinAddIndex = 1,\n    nvfatbin_TRACE_CBID_nvFatbinAddLTOIR = 2,\n    nvfatbin_TRACE_CBID_nvFatbinAddPTX = 3,\n    nvfatbin_TRACE_CBID_nvFatbinAddReloc = 4,\n    nvfatbin_TRACE_CBID_nvFatbinCreate = 5,\n    nvfatbin_TRACE_CBID_nvFatbinDestroy = 6,\n    nvfatbin_TRACE_CBID_nvFatbinGet = 7,\n    nvfatbin_TRACE_CBID_nvFatbinGetErrorString = 8,\n    nvfatbin_TRACE_CBID_nvFatbinSize = 9,\n    nvfatbin_TRACE_CBID_nvFatbinVersion = 10,\n};\n\ntypedef uint32_t (*nvfatbinRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvfatbinIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvfatbinProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvfatbinProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvfatbinProfileHandler {\n    nvfatbinRegisterProfileDomain registerProfileDomain;\n    nvfatbinIsProfileCallbackEnabled isCallbackEnabled;\n    nvfatbinProfileCallbackBegin profileCallbackBegin;\n    nvfatbinProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvfatbinProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvfatbin\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvfatbinRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvfatbinIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvfatbinProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvfatbinProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}
