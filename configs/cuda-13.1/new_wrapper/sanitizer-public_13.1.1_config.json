@@ -1,0 +1,2262 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "sanitizer-public",
+        "dyn_lib_file_name": "libsanitizer-public.so",
+        "dyn_lib_install_name": "libsanitizer-public.so",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "sanitizer_barrier.h",
+            "sanitizer_callbacks.h",
+            "sanitizer_driver_cbid.h",
+            "sanitizer_memory.h",
+            "sanitizer_patching.h",
+            "sanitizer_result.h",
+            "sanitizer_runtime_cbid.h",
+            "sanitizer_stream.h",
+            "sanitizer.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libsanitizer-public.so",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "sanitizerAddPatches",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "image",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAddPatchesFromFile",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "filename",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAlloc",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAllocHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableAllDomains",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableCallback",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        },
+                        {
+                            "name": "cbid",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackId",
+                                "type_str": "Sanitizer_CallbackId {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableDomain",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerFree",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerFreeHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetCallbackPcAndSize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "deviceCallbackName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pc",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetCallbackState",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        },
+                        {
+                            "name": "cbid",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackId",
+                                "type_str": "Sanitizer_CallbackId {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetCudaBarrierCount",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "kernel",
+                            "param_type": {
+                                "name": "CUfunction",
+                                "type_str": "CUfunction {}"
+                            }
+                        },
+                        {
+                            "name": "numBarriers",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetFunctionLoadedStatus",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "func",
+                            "param_type": {
+                                "name": "CUfunction",
+                                "type_str": "CUfunction {}"
+                            }
+                        },
+                        {
+                            "name": "loadingStatus",
+                            "param_type": {
+                                "name": "Sanitizer_FunctionLoadedStatus",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_FunctionLoadedStatus * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetFunctionPcAndSize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "module",
+                            "param_type": {
+                                "name": "CUmodule",
+                                "type_str": "CUmodule {}"
+                            }
+                        },
+                        {
+                            "name": "functionName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pc",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetResultString",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "SanitizerResult",
+                                "type_str": "SanitizerResult {}"
+                            }
+                        },
+                        {
+                            "name": "str",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetStream",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "hStream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "is_pointer": true,
+                                "type_str": "CUstream * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetStreamHandle",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "CUcontext",
+                                "type_str": "CUcontext {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "type_str": "CUstream {}"
+                            }
+                        },
+                        {
+                            "name": "hStream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_StreamHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemcpyDeviceToHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "dst",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemcpyHostToDeviceAsync",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "dst",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemset",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerPatchInstructions",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "instructionId",
+                            "param_type": {
+                                "name": "Sanitizer_InstructionId",
+                                "is_const": true,
+                                "type_str": "const Sanitizer_InstructionId {}"
+                            }
+                        },
+                        {
+                            "name": "module",
+                            "param_type": {
+                                "name": "CUmodule",
+                                "type_str": "CUmodule {}"
+                            }
+                        },
+                        {
+                            "name": "deviceCallbackName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerPatchModule",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "module",
+                            "param_type": {
+                                "name": "CUmodule",
+                                "type_str": "CUmodule {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetCallbackData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "kernel",
+                            "param_type": {
+                                "name": "CUfunction",
+                                "type_str": "CUfunction {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetDeviceGraphData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "graphExec",
+                            "param_type": {
+                                "name": "CUgraphExec",
+                                "type_str": "CUgraphExec {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetLaunchCallbackData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "launch",
+                            "param_type": {
+                                "name": "Sanitizer_LaunchHandle",
+                                "type_str": "Sanitizer_LaunchHandle {}"
+                            }
+                        },
+                        {
+                            "name": "kernel",
+                            "param_type": {
+                                "name": "CUfunction",
+                                "type_str": "CUfunction {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerStreamSynchronize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSubscribe",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_SubscriberHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "callback",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackFunc",
+                                "func_ptr": {
+                                    "return_type": {
+                                        "name": "void",
+                                        "type_str": "void {}"
+                                    },
+                                    "parameters": [
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "Sanitizer_CallbackDomain",
+                                                "type_str": "Sanitizer_CallbackDomain {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "Sanitizer_CallbackId",
+                                                "type_str": "Sanitizer_CallbackId {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "const void * {}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type_str": "Sanitizer_CallbackFunc {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerUnpatchModule",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "module",
+                            "param_type": {
+                                "name": "CUmodule",
+                                "type_str": "CUmodule {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerUnsubscribe",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgbit.so",
+        "lib_dirs": [],
+        "include_files": [
+            "sanitizer_barrier.h",
+            "sanitizer_callbacks.h",
+            "sanitizer_driver_cbid.h",
+            "sanitizer_memory.h",
+            "sanitizer_patching.h",
+            "sanitizer_result.h",
+            "sanitizer_runtime_cbid.h",
+            "sanitizer_stream.h",
+            "sanitizer.h"
+        ],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=13011",
+                "__HGGC_API_V3__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "sanitizerAddPatches",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "image",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAddPatchesFromFile",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "patchPath",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAlloc",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        },
+                        {
+                            "name": "byteCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerAllocHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "hostPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void ** {}"
+                            }
+                        },
+                        {
+                            "name": "byteCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableAllDomains",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableCallback",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        },
+                        {
+                            "name": "cbid",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackId",
+                                "type_str": "Sanitizer_CallbackId {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerEnableDomain",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerFree",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerFreeHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "hostPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetCallbackPcAndSize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "deviceCallbackName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pc",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetCallbackState",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "enable",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        },
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        },
+                        {
+                            "name": "domain",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackDomain",
+                                "type_str": "Sanitizer_CallbackDomain {}"
+                            }
+                        },
+                        {
+                            "name": "cbid",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackId",
+                                "type_str": "Sanitizer_CallbackId {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetFunctionLoadedStatus",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "func",
+                            "param_type": {
+                                "name": "HGfunction",
+                                "type_str": "HGfunction {}"
+                            }
+                        },
+                        {
+                            "name": "loadingStatus",
+                            "param_type": {
+                                "name": "Sanitizer_FunctionLoadedStatus",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_FunctionLoadedStatus * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetFunctionPcAndSize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "mod",
+                            "param_type": {
+                                "name": "HGmodule",
+                                "type_str": "HGmodule {}"
+                            }
+                        },
+                        {
+                            "name": "functionName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pc",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "uint64_t",
+                                "is_pointer": true,
+                                "type_str": "uint64_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetHggcBarrierCount",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "func",
+                            "param_type": {
+                                "name": "HGfunction",
+                                "type_str": "HGfunction {}"
+                            }
+                        },
+                        {
+                            "name": "barrierCount",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "is_pointer": true,
+                                "type_str": "uint32_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetResultString",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "SanitizerResult",
+                                "type_str": "SanitizerResult {}"
+                            }
+                        },
+                        {
+                            "name": "out_str",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetStream",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "streamH",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "out_stream",
+                            "param_type": {
+                                "name": "HGstream",
+                                "is_pointer": true,
+                                "type_str": "HGstream * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerGetStreamHandle",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "ctx",
+                            "param_type": {
+                                "name": "HGcontext",
+                                "type_str": "HGcontext {}"
+                            }
+                        },
+                        {
+                            "name": "hgStream",
+                            "param_type": {
+                                "name": "HGstream",
+                                "type_str": "HGstream {}"
+                            }
+                        },
+                        {
+                            "name": "out_handle",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_StreamHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemcpyDeviceToHost",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "dst",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "byteCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemcpyHostToDeviceAsync",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "dst",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "src",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "byteCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerMemset",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "devPtr",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "byte",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "byteCount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerPatchInstructions",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "instrId",
+                            "param_type": {
+                                "name": "Sanitizer_InstructionId",
+                                "is_const": true,
+                                "type_str": "const Sanitizer_InstructionId {}"
+                            }
+                        },
+                        {
+                            "name": "mod",
+                            "param_type": {
+                                "name": "HGmodule",
+                                "type_str": "HGmodule {}"
+                            }
+                        },
+                        {
+                            "name": "deviceCallbackName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerPatchModule",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "mod",
+                            "param_type": {
+                                "name": "HGmodule",
+                                "type_str": "HGmodule {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetCallbackData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "func",
+                            "param_type": {
+                                "name": "HGfunction",
+                                "type_str": "HGfunction {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetDeviceGraphData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "graphExec",
+                            "param_type": {
+                                "name": "HGgraphExec",
+                                "type_str": "HGgraphExec {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSetLaunchCallbackData",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "launch",
+                            "param_type": {
+                                "name": "Sanitizer_LaunchHandle",
+                                "type_str": "Sanitizer_LaunchHandle {}"
+                            }
+                        },
+                        {
+                            "name": "func",
+                            "param_type": {
+                                "name": "HGfunction",
+                                "type_str": "HGfunction {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerStreamSynchronize",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "Sanitizer_StreamHandle",
+                                "type_str": "Sanitizer_StreamHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerSubscribe",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "is_pointer": true,
+                                "type_str": "Sanitizer_SubscriberHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "callback",
+                            "param_type": {
+                                "name": "Sanitizer_CallbackFunc",
+                                "func_ptr": {
+                                    "return_type": {
+                                        "name": "void",
+                                        "type_str": "void {}"
+                                    },
+                                    "parameters": [
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "Sanitizer_CallbackDomain",
+                                                "type_str": "Sanitizer_CallbackDomain {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "Sanitizer_CallbackId",
+                                                "type_str": "Sanitizer_CallbackId {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "const void * {}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type_str": "Sanitizer_CallbackFunc {}"
+                            }
+                        },
+                        {
+                            "name": "userdata",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerUnpatchModule",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "mod",
+                            "param_type": {
+                                "name": "HGmodule",
+                                "type_str": "HGmodule {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "sanitizerUnsubscribe",
+                "signature": {
+                    "return_type": {
+                        "name": "SanitizerResult",
+                        "type_str": "SanitizerResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "subscriber",
+                            "param_type": {
+                                "name": "Sanitizer_SubscriberHandle",
+                                "type_str": "Sanitizer_SubscriberHandle {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "sanitizerAddPatches",
+            "target_function": "sanitizerAddPatches",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatches) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatches);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatches);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerAddPatchesFromFile",
+            "target_function": "sanitizerAddPatchesFromFile",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatchesFromFile) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatchesFromFile);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAddPatchesFromFile);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerAlloc",
+            "target_function": "sanitizerAlloc",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAlloc) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAlloc);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAlloc);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerAllocHost",
+            "target_function": "sanitizerAllocHost",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAllocHost) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAllocHost);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerAllocHost);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerEnableAllDomains",
+            "target_function": "sanitizerEnableAllDomains",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableAllDomains) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableAllDomains);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableAllDomains);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerEnableCallback",
+            "target_function": "sanitizerEnableCallback",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableCallback) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableCallback);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableCallback);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerEnableDomain",
+            "target_function": "sanitizerEnableDomain",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableDomain) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableDomain);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerEnableDomain);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerFree",
+            "target_function": "sanitizerFree",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFree) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFree);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFree);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerFreeHost",
+            "target_function": "sanitizerFreeHost",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFreeHost) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFreeHost);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerFreeHost);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetCallbackPcAndSize",
+            "target_function": "sanitizerGetCallbackPcAndSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackPcAndSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackPcAndSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackPcAndSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetCallbackState",
+            "target_function": "sanitizerGetCallbackState",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackState) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackState);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCallbackState);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetCudaBarrierCount",
+            "target_function": "sanitizerGetHggcBarrierCount",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCudaBarrierCount) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCudaBarrierCount);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetCudaBarrierCount);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetFunctionLoadedStatus",
+            "target_function": "sanitizerGetFunctionLoadedStatus",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionLoadedStatus) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionLoadedStatus);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionLoadedStatus);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetFunctionPcAndSize",
+            "target_function": "sanitizerGetFunctionPcAndSize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionPcAndSize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionPcAndSize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetFunctionPcAndSize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetResultString",
+            "target_function": "sanitizerGetResultString",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetResultString) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetResultString);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetResultString);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetStream",
+            "target_function": "sanitizerGetStream",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStream) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStream);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStream);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerGetStreamHandle",
+            "target_function": "sanitizerGetStreamHandle",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStreamHandle) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStreamHandle);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerGetStreamHandle);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerMemcpyDeviceToHost",
+            "target_function": "sanitizerMemcpyDeviceToHost",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyDeviceToHost) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyDeviceToHost);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyDeviceToHost);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerMemcpyHostToDeviceAsync",
+            "target_function": "sanitizerMemcpyHostToDeviceAsync",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyHostToDeviceAsync) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyHostToDeviceAsync);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemcpyHostToDeviceAsync);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerMemset",
+            "target_function": "sanitizerMemset",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemset) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemset);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerMemset);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerPatchInstructions",
+            "target_function": "sanitizerPatchInstructions",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchInstructions) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchInstructions);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchInstructions);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerPatchModule",
+            "target_function": "sanitizerPatchModule",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchModule) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchModule);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerPatchModule);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerSetCallbackData",
+            "target_function": "sanitizerSetCallbackData",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetCallbackData) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetCallbackData);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetCallbackData);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerSetDeviceGraphData",
+            "target_function": "sanitizerSetDeviceGraphData",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetDeviceGraphData) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetDeviceGraphData);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetDeviceGraphData);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerSetLaunchCallbackData",
+            "target_function": "sanitizerSetLaunchCallbackData",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetLaunchCallbackData) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetLaunchCallbackData);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSetLaunchCallbackData);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerStreamSynchronize",
+            "target_function": "sanitizerStreamSynchronize",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerStreamSynchronize) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerStreamSynchronize);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerStreamSynchronize);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerSubscribe",
+            "target_function": "sanitizerSubscribe",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSubscribe) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSubscribe);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerSubscribe);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerUnpatchModule",
+            "target_function": "sanitizerUnpatchModule",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnpatchModule) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnpatchModule);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnpatchModule);\n    }\n\n"
+            }
+        },
+        {
+            "source_function": "sanitizerUnsubscribe",
+            "target_function": "sanitizerUnsubscribe",
+            "parameter_mapping": {},
+            "in_func_custom_code": {
+                "pre_wrapper_call": "\n\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnsubscribe) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnsubscribe);\n    }\n",
+                "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_sanitizerUnsubscribe);\n    }\n\n"
+            }
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"sanitizerAddPatches\",\n    \"sanitizerAddPatchesFromFile\",\n    \"sanitizerAlloc\",\n    \"sanitizerAllocHost\",\n    \"sanitizerEnableAllDomains\",\n    \"sanitizerEnableCallback\",\n    \"sanitizerEnableDomain\",\n    \"sanitizerFree\",\n    \"sanitizerFreeHost\",\n    \"sanitizerGetCallbackPcAndSize\",\n    \"sanitizerGetCallbackState\",\n    \"sanitizerGetCudaBarrierCount\",\n    \"sanitizerGetFunctionLoadedStatus\",\n    \"sanitizerGetFunctionPcAndSize\",\n    \"sanitizerGetResultString\",\n    \"sanitizerGetStream\",\n    \"sanitizerGetStreamHandle\",\n    \"sanitizerMemcpyDeviceToHost\",\n    \"sanitizerMemcpyHostToDeviceAsync\",\n    \"sanitizerMemset\",\n    \"sanitizerPatchInstructions\",\n    \"sanitizerPatchModule\",\n    \"sanitizerSetCallbackData\",\n    \"sanitizerSetDeviceGraphData\",\n    \"sanitizerSetLaunchCallbackData\",\n    \"sanitizerStreamSynchronize\",\n    \"sanitizerSubscribe\",\n    \"sanitizerUnpatchModule\",\n    \"sanitizerUnsubscribe\",\n};\n\nenum sanitizer_publicProfileCallbackId {\n    sanitizer_public_TRACE_CBID_sanitizerAddPatches = 0,\n    sanitizer_public_TRACE_CBID_sanitizerAddPatchesFromFile = 1,\n    sanitizer_public_TRACE_CBID_sanitizerAlloc = 2,\n    sanitizer_public_TRACE_CBID_sanitizerAllocHost = 3,\n    sanitizer_public_TRACE_CBID_sanitizerEnableAllDomains = 4,\n    sanitizer_public_TRACE_CBID_sanitizerEnableCallback = 5,\n    sanitizer_public_TRACE_CBID_sanitizerEnableDomain = 6,\n    sanitizer_public_TRACE_CBID_sanitizerFree = 7,\n    sanitizer_public_TRACE_CBID_sanitizerFreeHost = 8,\n    sanitizer_public_TRACE_CBID_sanitizerGetCallbackPcAndSize = 9,\n    sanitizer_public_TRACE_CBID_sanitizerGetCallbackState = 10,\n    sanitizer_public_TRACE_CBID_sanitizerGetCudaBarrierCount = 11,\n    sanitizer_public_TRACE_CBID_sanitizerGetFunctionLoadedStatus = 12,\n    sanitizer_public_TRACE_CBID_sanitizerGetFunctionPcAndSize = 13,\n    sanitizer_public_TRACE_CBID_sanitizerGetResultString = 14,\n    sanitizer_public_TRACE_CBID_sanitizerGetStream = 15,\n    sanitizer_public_TRACE_CBID_sanitizerGetStreamHandle = 16,\n    sanitizer_public_TRACE_CBID_sanitizerMemcpyDeviceToHost = 17,\n    sanitizer_public_TRACE_CBID_sanitizerMemcpyHostToDeviceAsync = 18,\n    sanitizer_public_TRACE_CBID_sanitizerMemset = 19,\n    sanitizer_public_TRACE_CBID_sanitizerPatchInstructions = 20,\n    sanitizer_public_TRACE_CBID_sanitizerPatchModule = 21,\n    sanitizer_public_TRACE_CBID_sanitizerSetCallbackData = 22,\n    sanitizer_public_TRACE_CBID_sanitizerSetDeviceGraphData = 23,\n    sanitizer_public_TRACE_CBID_sanitizerSetLaunchCallbackData = 24,\n    sanitizer_public_TRACE_CBID_sanitizerStreamSynchronize = 25,\n    sanitizer_public_TRACE_CBID_sanitizerSubscribe = 26,\n    sanitizer_public_TRACE_CBID_sanitizerUnpatchModule = 27,\n    sanitizer_public_TRACE_CBID_sanitizerUnsubscribe = 28,\n};\n\ntypedef uint32_t (*sanitizer_publicRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*sanitizer_publicIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*sanitizer_publicProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*sanitizer_publicProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct sanitizer_publicProfileHandler {\n    sanitizer_publicRegisterProfileDomain registerProfileDomain;\n    sanitizer_publicIsProfileCallbackEnabled isCallbackEnabled;\n    sanitizer_publicProfileCallbackBegin profileCallbackBegin;\n    sanitizer_publicProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic sanitizer_publicProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"sanitizer-public\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<sanitizer_publicRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<sanitizer_publicIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<sanitizer_publicProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<sanitizer_publicProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}
