@@ -1,0 +1,36 @@
+Usage  : nvprune [options] <object>
+
+Options
+=======
+
+--arch <gpu architecture name>  (-arch)
+        Specify the name of the nVidia GPU architecture which will remain in the
+        object or library.
+
+
+--generate-code                 (-gencode)
+        This option is same format as nvcc --generate-code option, and provides a
+        way to specify multiple architectures which should remain in the object or
+        library. Only the 'code' values are used as targets to match.
+        Allowed keywords for this option:  'arch','code'.
+
+--help                          (-h)
+        Print this help information on this tool.
+
+--include-possible-codes        (-ipc)
+        Includes possible code which might be useful on the target architecture.
+
+--no-relocatable-elf            (-no-relocatable-elf)
+        Don't keep any relocatable ELF.
+
+--options-file <file>,...       (-optf)
+        Include command line options from specified file.
+
+--output-file <file>            (-o)
+        Specify name and location of the output file.
+
+--verbose                       (-v)
+        Verbose output.
+
+--version                       (-V)
+        Print version information on this tool.
