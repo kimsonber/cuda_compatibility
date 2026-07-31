@@ -1,0 +1,3335 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvperf_host",
+        "dyn_lib_file_name": "libnvperf_host.so",
+        "dyn_lib_install_name": "libnvperf_host.so",
+        "sta_lib_file_name": "libnvperf_host_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nvperf_cuda_host.h",
+            "nvperf_host.h",
+            "nvperf_target.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib2/include",
+            "$lib3/include",
+            "$lib4/Interface",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvperf_host.so",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "NVPA_CounterDataBuilder_AddMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataBuilder",
+                            "param_type": {
+                                "name": "NVPA_CounterDataBuilder",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataBuilder * {}"
+                            }
+                        },
+                        {
+                            "name": "pRawMetricRequests",
+                            "param_type": {
+                                "name": "NVPA_RawMetricRequest",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricRequest * {}"
+                            }
+                        },
+                        {
+                            "name": "numMetricRequests",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataBuilder_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pOptions",
+                            "param_type": {
+                                "name": "NVPA_CounterDataBuilderOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_CounterDataBuilderOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "ppCounterDataBuilder",
+                            "param_type": {
+                                "name": "NVPA_CounterDataBuilder",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataBuilder ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataBuilder_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataBuilder",
+                            "param_type": {
+                                "name": "NVPA_CounterDataBuilder",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataBuilder * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataBuilder_GetCounterDataPrefix",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataBuilder",
+                            "param_type": {
+                                "name": "NVPA_CounterDataBuilder",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataBuilder * {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "pBuffer",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pBufferSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataCombiner_AccumulateIntoRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataCombiner",
+                            "param_type": {
+                                "name": "NVPA_CounterDataCombiner",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataCombiner * {}"
+                            }
+                        },
+                        {
+                            "name": "rangeIndexDst",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "dstMultiplier",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        },
+                        {
+                            "name": "pCounterDataSrc",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "rangeIndexSrc",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "srcMultiplier",
+                            "param_type": {
+                                "name": "uint32_t",
+                                "type_str": "uint32_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataCombiner_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataCombinerOptions",
+                            "param_type": {
+                                "name": "NVPA_CounterDataCombinerOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_CounterDataCombinerOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "ppCounterDataCombiner",
+                            "param_type": {
+                                "name": "NVPA_CounterDataCombiner",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataCombiner ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataCombiner_CreateRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataCombiner",
+                            "param_type": {
+                                "name": "NVPA_CounterDataCombiner",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataCombiner * {}"
+                            }
+                        },
+                        {
+                            "name": "numDescriptions",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "ppDescriptions",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        },
+                        {
+                            "name": "pRangeIndexDst",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterDataCombiner_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataCombiner",
+                            "param_type": {
+                                "name": "NVPA_CounterDataCombiner",
+                                "is_pointer": true,
+                                "type_str": "NVPA_CounterDataCombiner * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterData_CalculateCounterDataImageCopySize",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataImageCopyOptions",
+                            "param_type": {
+                                "name": "NVPA_CounterDataImageCopyOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_CounterDataImageCopyOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "pCounterDataSrc",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pCopyDataImageCounterSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterData_GetNumRanges",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataImage",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumRanges",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterData_GetRangeDescriptions",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataImage",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "rangeIndex",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "numDescriptions",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "ppDescriptions",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        },
+                        {
+                            "name": "pNumDescriptions",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_CounterData_InitializeCounterDataImageCopy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pCounterDataImageCopyOptions",
+                            "param_type": {
+                                "name": "NVPA_CounterDataImageCopyOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_CounterDataImageCopyOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "pCounterDataSrc",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pCounterDataDst",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "uint8_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_Device_GetNames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "deviceIndex",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "ppDeviceName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        },
+                        {
+                            "name": "ppChipName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_GetDeviceCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pNumDevices",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_GetProcAddress",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_GenericFn",
+                        "func_ptr": {
+                            "return_type": {
+                                "name": "NVPA_Status",
+                                "type_str": "NVPA_Status {}"
+                            },
+                            "parameters": []
+                        },
+                        "type_str": "NVPA_GenericFn {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pFunctionName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_GetSupportedChipNames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pSupportedChipNames",
+                            "param_type": {
+                                "name": "NVPA_SupportedChipNames",
+                                "is_pointer": true,
+                                "type_str": "NVPA_SupportedChipNames * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_InitializeHost",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_InitializeTarget",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContextOptions",
+                            "param_type": {
+                                "name": "NVPA_MetricsContextOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_MetricsContextOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "ppMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_EvaluateToGpuValues",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "numMetrics",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "ppMetricNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        },
+                        {
+                            "name": "pMetricValues",
+                            "param_type": {
+                                "name": "double",
+                                "is_pointer": true,
+                                "type_str": "double * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_ExecScript_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pOptions",
+                            "param_type": {
+                                "name": "NVPA_MetricsExecOptions",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsExecOptions * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_ExecScript_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetCounterNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumCounters",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pppCounterNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetCounterNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetMetricNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pOptions",
+                            "param_type": {
+                                "name": "NVPA_MetricsEnumerationOptions",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsEnumerationOptions * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetMetricNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetMetricProperties_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pMetricName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pMetricProperties",
+                            "param_type": {
+                                "name": "NVPA_MetricProperties",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricProperties * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetMetricProperties_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetThroughputBreakdown_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pThroughputName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "pppCounterNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const ** {}"
+                            }
+                        },
+                        {
+                            "name": "pppSubThroughputNames",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetThroughputBreakdown_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetThroughputNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumThroughputs",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pppThroughputName",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_GetThroughputNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_RunScript",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pOptions",
+                            "param_type": {
+                                "name": "NVPA_MetricsScriptOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_MetricsScriptOptions * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_SetCounterData",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pCounterDataImage",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "const uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "rangeIndex",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "isolated",
+                            "param_type": {
+                                "name": "NVPA_Bool",
+                                "type_str": "NVPA_Bool {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_MetricsContext_SetUserData",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsContext",
+                            "param_type": {
+                                "name": "NVPA_MetricsContext",
+                                "is_pointer": true,
+                                "type_str": "NVPA_MetricsContext * {}"
+                            }
+                        },
+                        {
+                            "name": "pMetricUserData",
+                            "param_type": {
+                                "name": "NVPA_MetricUserData",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_MetricUserData * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_AddMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "pRawMetricRequests",
+                            "param_type": {
+                                "name": "NVPA_RawMetricRequest",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricRequest * {}"
+                            }
+                        },
+                        {
+                            "name": "numMetricRequests",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_BeginPassGroup",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "pRawMetricsPassGroupOptions",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsPassGroupOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsPassGroupOptions * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pMetricsConfigOptions",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfigOptions",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfigOptions * {}"
+                            }
+                        },
+                        {
+                            "name": "ppRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_EndPassGroup",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_GenerateConfigImage",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricsConfig * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_GetConfigImage",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "pBuffer",
+                            "param_type": {
+                                "name": "uint8_t",
+                                "is_pointer": true,
+                                "type_str": "uint8_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pBufferSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_GetMetricProperties",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "metricIndex",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "pRawMetricProperties",
+                            "param_type": {
+                                "name": "NVPA_RawMetricProperties",
+                                "is_pointer": true,
+                                "type_str": "NVPA_RawMetricProperties * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_GetNumMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumMetrics",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_GetNumPasses",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumPipelinedPasses",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "pNumIsolatedPasses",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPA_RawMetricsConfig_IsAddMetricsPossible",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pRawMetricsConfig",
+                            "param_type": {
+                                "name": "NVPA_RawMetricsConfig",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricsConfig * {}"
+                            }
+                        },
+                        {
+                            "name": "pRawMetricRequests",
+                            "param_type": {
+                                "name": "NVPA_RawMetricRequest",
+                                "is_pointer": true,
+                                "type_str": "const NVPA_RawMetricRequest * {}"
+                            }
+                        },
+                        {
+                            "name": "numMetricRequests",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "pIsPossible",
+                            "param_type": {
+                                "name": "NVPA_Bool",
+                                "is_pointer": true,
+                                "type_str": "NVPA_Bool * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Adapter_GetDeviceIndex",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Adapter_GetDeviceIndex_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Adapter_GetDeviceIndex_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CUDA_MetricsContext_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CUDA_MetricsContext_Create_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CUDA_MetricsContext_Create_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CUDA_RawMetricsConfig_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CUDA_RawMetricsConfig_Create_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CUDA_RawMetricsConfig_Create_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Config_GetNumPasses",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Config_GetNumPasses_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Config_GetNumPasses_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataBuilder_AddMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataBuilder_AddMetrics_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataBuilder_AddMetrics_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataBuilder_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataBuilder_Create_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataBuilder_Create_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataBuilder_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataBuilder_Destroy_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataBuilder_Destroy_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataBuilder_GetCounterDataPrefix",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataBuilder_GetCounterDataPrefix_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataBuilder_GetCounterDataPrefix_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_AccumulateIntoRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_AccumulateIntoRange_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_AccumulateIntoRange_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_Create",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_Create_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_Create_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_CreateRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_CreateRange_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_CreateRange_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_Destroy_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_Destroy_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_SumIntoRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_SumIntoRange_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_SumIntoRange_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterDataCombiner_WeightedSumIntoRange",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterDataCombiner_WeightedSumIntoRange_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterDataCombiner_WeightedSumIntoRange_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_CalculateCounterDataImageCopySize",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_CalculateCounterDataImageCopySize_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_CalculateCounterDataImageCopySize_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_GetNumRanges",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_GetNumRanges_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_GetNumRanges_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_GetRangeDescriptions",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_GetRangeDescriptions_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_GetRangeDescriptions_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_InitializeCounterDataImageCopy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_InitializeCounterDataImageCopy_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_InitializeCounterDataImageCopy_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetMigAttributes",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetMigAttributes_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetMigAttributes_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetNames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetNames_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetNames_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetPciBusIds",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetPciBusIds_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetPciBusIds_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_GetDeviceCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_GetDeviceCount_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_GetDeviceCount_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_GetSupportedChipNames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_GetSupportedChipNames_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_GetSupportedChipNames_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_InitializeHost",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_InitializeHost_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_InitializeHost_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_InitializeTarget",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_InitializeTarget_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_InitializeTarget_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_Destroy_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_Destroy_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_EvaluateToGpuValues",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_EvaluateToGpuValues_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_EvaluateToGpuValues_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_ExecScript_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_ExecScript_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_ExecScript_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_ExecScript_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_ExecScript_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_ExecScript_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetCounterNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetCounterNames_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetCounterNames_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetCounterNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetCounterNames_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetCounterNames_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricBaseNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricBaseNames_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricBaseNames_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricBaseNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricBaseNames_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricBaseNames_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricNames_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricNames_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricNames_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricNames_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricProperties_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricProperties_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricProperties_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricProperties_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricProperties_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricProperties_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricSuffix_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricSuffix_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricSuffix_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetMetricSuffix_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetMetricSuffix_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetMetricSuffix_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetRatioNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetRatioNames_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetRatioNames_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetRatioNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetRatioNames_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetRatioNames_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetThroughputBreakdown_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetThroughputBreakdown_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetThroughputBreakdown_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetThroughputBreakdown_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetThroughputBreakdown_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetThroughputBreakdown_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetThroughputNames_Begin",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetThroughputNames_Begin_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetThroughputNames_Begin_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_GetThroughputNames_End",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_GetThroughputNames_End_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_GetThroughputNames_End_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_RunScript",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_RunScript_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_RunScript_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_SetCounterData",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_SetCounterData_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_SetCounterData_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_MetricsContext_SetUserData",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_MetricsContext_SetUserData_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_MetricsContext_SetUserData_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_GetDelimiters",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_GetDelimiters_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_GetDelimiters_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_GetSampleTime",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_GetSampleTime_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_GetSampleTime_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_TrimInPlace",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_TrimInPlace_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_TrimInPlace_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Profiler_CounterData_GetRangeDescriptions",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Profiler_CounterData_GetRangeDescriptions_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Profiler_CounterData_GetRangeDescriptions_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_AddMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_AddMetrics_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_AddMetrics_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_BeginPassGroup",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_BeginPassGroup_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_BeginPassGroup_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_Destroy",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_Destroy_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_Destroy_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_EndPassGroup",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_EndPassGroup_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_EndPassGroup_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_GenerateConfigImage",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_GenerateConfigImage_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_GenerateConfigImage_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_GetConfigImage",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_GetConfigImage_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_GetConfigImage_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_GetMetricProperties",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_GetMetricProperties_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_GetMetricProperties_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_GetNumMetrics",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_GetNumMetrics_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_GetNumMetrics_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_GetNumPasses",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_GetNumPasses_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_GetNumPasses_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_IsAddMetricsPossible",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_IsAddMetricsPossible_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_IsAddMetricsPossible_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_RawMetricsConfig_SetCounterAvailability",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_RawMetricsConfig_SetCounterAvailability_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_RawMetricsConfig_SetCounterAvailability_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_SetLibraryLoadPaths",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_SetLibraryLoadPaths_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_SetLibraryLoadPaths_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_SetLibraryLoadPathsW",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_SetLibraryLoadPathsW_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_SetLibraryLoadPathsW_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libNeedImpl.so",
+        "lib_dirs": [],
+        "include_files": [],
+        "include_dirs": [
+            "$output/hggc_wrapper",
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=11011",
+                "__TEXTURE_DEFINED__"
+            ]
+        },
+        "api_functions": []
+    },
+    "api_mappings": [
+        {
+            "source_function": "NVPA_CounterDataBuilder_AddMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataBuilder_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataBuilder_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataBuilder_GetCounterDataPrefix",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataCombiner_AccumulateIntoRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataCombiner_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataCombiner_CreateRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterDataCombiner_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterData_CalculateCounterDataImageCopySize",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterData_GetNumRanges",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterData_GetRangeDescriptions",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_CounterData_InitializeCounterDataImageCopy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_Device_GetNames",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_GetDeviceCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_GetProcAddress",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_GetSupportedChipNames",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_InitializeHost",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_InitializeTarget",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_EvaluateToGpuValues",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_ExecScript_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_ExecScript_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetCounterNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetCounterNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetMetricNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetMetricNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetMetricProperties_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetMetricProperties_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetThroughputBreakdown_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetThroughputBreakdown_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetThroughputNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_GetThroughputNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_RunScript",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_SetCounterData",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_MetricsContext_SetUserData",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_AddMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_BeginPassGroup",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_EndPassGroup",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_GenerateConfigImage",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_GetConfigImage",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_GetMetricProperties",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_GetNumMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_GetNumPasses",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPA_RawMetricsConfig_IsAddMetricsPossible",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Adapter_GetDeviceIndex",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CUDA_MetricsContext_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CUDA_RawMetricsConfig_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Config_GetNumPasses",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataBuilder_AddMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataBuilder_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataBuilder_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataBuilder_GetCounterDataPrefix",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_AccumulateIntoRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_Create",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_CreateRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_SumIntoRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterDataCombiner_WeightedSumIntoRange",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_CalculateCounterDataImageCopySize",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_GetNumRanges",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_GetRangeDescriptions",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_InitializeCounterDataImageCopy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetMigAttributes",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetNames",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetPciBusIds",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_GetDeviceCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_GetSupportedChipNames",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_InitializeHost",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_InitializeTarget",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_EvaluateToGpuValues",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_ExecScript_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_ExecScript_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetCounterNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetCounterNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricBaseNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricBaseNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricProperties_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricProperties_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricSuffix_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetMetricSuffix_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetRatioNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetRatioNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetThroughputBreakdown_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetThroughputBreakdown_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetThroughputNames_Begin",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_GetThroughputNames_End",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_RunScript",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_SetCounterData",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_MetricsContext_SetUserData",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_GetDelimiters",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_GetSampleTime",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_TrimInPlace",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Profiler_CounterData_GetRangeDescriptions",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_AddMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_BeginPassGroup",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_Destroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_EndPassGroup",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_GenerateConfigImage",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_GetConfigImage",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_GetMetricProperties",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_GetNumMetrics",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_GetNumPasses",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_IsAddMetricsPossible",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_RawMetricsConfig_SetCounterAvailability",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_SetLibraryLoadPaths",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_SetLibraryLoadPathsW",
+            "target_function": "",
+            "parameter_mapping": {}
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"NVPA_CounterDataBuilder_AddMetrics\",\n    \"NVPA_CounterDataBuilder_Create\",\n    \"NVPA_CounterDataBuilder_Destroy\",\n    \"NVPA_CounterDataBuilder_GetCounterDataPrefix\",\n    \"NVPA_CounterDataCombiner_AccumulateIntoRange\",\n    \"NVPA_CounterDataCombiner_Create\",\n    \"NVPA_CounterDataCombiner_CreateRange\",\n    \"NVPA_CounterDataCombiner_Destroy\",\n    \"NVPA_CounterData_CalculateCounterDataImageCopySize\",\n    \"NVPA_CounterData_GetNumRanges\",\n    \"NVPA_CounterData_GetRangeDescriptions\",\n    \"NVPA_CounterData_InitializeCounterDataImageCopy\",\n    \"NVPA_Device_GetNames\",\n    \"NVPA_GetDeviceCount\",\n    \"NVPA_GetProcAddress\",\n    \"NVPA_GetSupportedChipNames\",\n    \"NVPA_InitializeHost\",\n    \"NVPA_InitializeTarget\",\n    \"NVPA_MetricsContext_Create\",\n    \"NVPA_MetricsContext_Destroy\",\n    \"NVPA_MetricsContext_EvaluateToGpuValues\",\n    \"NVPA_MetricsContext_ExecScript_Begin\",\n    \"NVPA_MetricsContext_ExecScript_End\",\n    \"NVPA_MetricsContext_GetCounterNames_Begin\",\n    \"NVPA_MetricsContext_GetCounterNames_End\",\n    \"NVPA_MetricsContext_GetMetricNames_Begin\",\n    \"NVPA_MetricsContext_GetMetricNames_End\",\n    \"NVPA_MetricsContext_GetMetricProperties_Begin\",\n    \"NVPA_MetricsContext_GetMetricProperties_End\",\n    \"NVPA_MetricsContext_GetThroughputBreakdown_Begin\",\n    \"NVPA_MetricsContext_GetThroughputBreakdown_End\",\n    \"NVPA_MetricsContext_GetThroughputNames_Begin\",\n    \"NVPA_MetricsContext_GetThroughputNames_End\",\n    \"NVPA_MetricsContext_RunScript\",\n    \"NVPA_MetricsContext_SetCounterData\",\n    \"NVPA_MetricsContext_SetUserData\",\n    \"NVPA_RawMetricsConfig_AddMetrics\",\n    \"NVPA_RawMetricsConfig_BeginPassGroup\",\n    \"NVPA_RawMetricsConfig_Create\",\n    \"NVPA_RawMetricsConfig_Destroy\",\n    \"NVPA_RawMetricsConfig_EndPassGroup\",\n    \"NVPA_RawMetricsConfig_GenerateConfigImage\",\n    \"NVPA_RawMetricsConfig_GetConfigImage\",\n    \"NVPA_RawMetricsConfig_GetMetricProperties\",\n    \"NVPA_RawMetricsConfig_GetNumMetrics\",\n    \"NVPA_RawMetricsConfig_GetNumPasses\",\n    \"NVPA_RawMetricsConfig_IsAddMetricsPossible\",\n    \"NVPW_Adapter_GetDeviceIndex\",\n    \"NVPW_CUDA_MetricsContext_Create\",\n    \"NVPW_CUDA_RawMetricsConfig_Create\",\n    \"NVPW_Config_GetNumPasses\",\n    \"NVPW_CounterDataBuilder_AddMetrics\",\n    \"NVPW_CounterDataBuilder_Create\",\n    \"NVPW_CounterDataBuilder_Destroy\",\n    \"NVPW_CounterDataBuilder_GetCounterDataPrefix\",\n    \"NVPW_CounterDataCombiner_AccumulateIntoRange\",\n    \"NVPW_CounterDataCombiner_Create\",\n    \"NVPW_CounterDataCombiner_CreateRange\",\n    \"NVPW_CounterDataCombiner_Destroy\",\n    \"NVPW_CounterDataCombiner_SumIntoRange\",\n    \"NVPW_CounterDataCombiner_WeightedSumIntoRange\",\n    \"NVPW_CounterData_CalculateCounterDataImageCopySize\",\n    \"NVPW_CounterData_GetNumRanges\",\n    \"NVPW_CounterData_GetRangeDescriptions\",\n    \"NVPW_CounterData_InitializeCounterDataImageCopy\",\n    \"NVPW_Device_GetMigAttributes\",\n    \"NVPW_Device_GetNames\",\n    \"NVPW_Device_GetPciBusIds\",\n    \"NVPW_GetDeviceCount\",\n    \"NVPW_GetSupportedChipNames\",\n    \"NVPW_InitializeHost\",\n    \"NVPW_InitializeTarget\",\n    \"NVPW_MetricsContext_Destroy\",\n    \"NVPW_MetricsContext_EvaluateToGpuValues\",\n    \"NVPW_MetricsContext_ExecScript_Begin\",\n    \"NVPW_MetricsContext_ExecScript_End\",\n    \"NVPW_MetricsContext_GetCounterNames_Begin\",\n    \"NVPW_MetricsContext_GetCounterNames_End\",\n    \"NVPW_MetricsContext_GetMetricBaseNames_Begin\",\n    \"NVPW_MetricsContext_GetMetricBaseNames_End\",\n    \"NVPW_MetricsContext_GetMetricNames_Begin\",\n    \"NVPW_MetricsContext_GetMetricNames_End\",\n    \"NVPW_MetricsContext_GetMetricProperties_Begin\",\n    \"NVPW_MetricsContext_GetMetricProperties_End\",\n    \"NVPW_MetricsContext_GetMetricSuffix_Begin\",\n    \"NVPW_MetricsContext_GetMetricSuffix_End\",\n    \"NVPW_MetricsContext_GetRatioNames_Begin\",\n    \"NVPW_MetricsContext_GetRatioNames_End\",\n    \"NVPW_MetricsContext_GetThroughputBreakdown_Begin\",\n    \"NVPW_MetricsContext_GetThroughputBreakdown_End\",\n    \"NVPW_MetricsContext_GetThroughputNames_Begin\",\n    \"NVPW_MetricsContext_GetThroughputNames_End\",\n    \"NVPW_MetricsContext_RunScript\",\n    \"NVPW_MetricsContext_SetCounterData\",\n    \"NVPW_MetricsContext_SetUserData\",\n    \"NVPW_PeriodicSampler_CounterData_GetDelimiters\",\n    \"NVPW_PeriodicSampler_CounterData_GetSampleTime\",\n    \"NVPW_PeriodicSampler_CounterData_TrimInPlace\",\n    \"NVPW_Profiler_CounterData_GetRangeDescriptions\",\n    \"NVPW_RawMetricsConfig_AddMetrics\",\n    \"NVPW_RawMetricsConfig_BeginPassGroup\",\n    \"NVPW_RawMetricsConfig_Destroy\",\n    \"NVPW_RawMetricsConfig_EndPassGroup\",\n    \"NVPW_RawMetricsConfig_GenerateConfigImage\",\n    \"NVPW_RawMetricsConfig_GetConfigImage\",\n    \"NVPW_RawMetricsConfig_GetMetricProperties\",\n    \"NVPW_RawMetricsConfig_GetNumMetrics\",\n    \"NVPW_RawMetricsConfig_GetNumPasses\",\n    \"NVPW_RawMetricsConfig_IsAddMetricsPossible\",\n    \"NVPW_RawMetricsConfig_SetCounterAvailability\",\n    \"NVPW_SetLibraryLoadPaths\",\n    \"NVPW_SetLibraryLoadPathsW\",\n};\n\nenum nvperf_hostProfileCallbackId {\n    nvperf_host_TRACE_CBID_NVPA_CounterDataBuilder_AddMetrics = 0,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataBuilder_Create = 1,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataBuilder_Destroy = 2,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataBuilder_GetCounterDataPrefix = 3,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataCombiner_AccumulateIntoRange = 4,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataCombiner_Create = 5,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataCombiner_CreateRange = 6,\n    nvperf_host_TRACE_CBID_NVPA_CounterDataCombiner_Destroy = 7,\n    nvperf_host_TRACE_CBID_NVPA_CounterData_CalculateCounterDataImageCopySize = 8,\n    nvperf_host_TRACE_CBID_NVPA_CounterData_GetNumRanges = 9,\n    nvperf_host_TRACE_CBID_NVPA_CounterData_GetRangeDescriptions = 10,\n    nvperf_host_TRACE_CBID_NVPA_CounterData_InitializeCounterDataImageCopy = 11,\n    nvperf_host_TRACE_CBID_NVPA_Device_GetNames = 12,\n    nvperf_host_TRACE_CBID_NVPA_GetDeviceCount = 13,\n    nvperf_host_TRACE_CBID_NVPA_GetProcAddress = 14,\n    nvperf_host_TRACE_CBID_NVPA_GetSupportedChipNames = 15,\n    nvperf_host_TRACE_CBID_NVPA_InitializeHost = 16,\n    nvperf_host_TRACE_CBID_NVPA_InitializeTarget = 17,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_Create = 18,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_Destroy = 19,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_EvaluateToGpuValues = 20,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_ExecScript_Begin = 21,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_ExecScript_End = 22,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetCounterNames_Begin = 23,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetCounterNames_End = 24,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetMetricNames_Begin = 25,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetMetricNames_End = 26,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetMetricProperties_Begin = 27,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetMetricProperties_End = 28,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetThroughputBreakdown_Begin = 29,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetThroughputBreakdown_End = 30,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetThroughputNames_Begin = 31,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_GetThroughputNames_End = 32,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_RunScript = 33,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_SetCounterData = 34,\n    nvperf_host_TRACE_CBID_NVPA_MetricsContext_SetUserData = 35,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_AddMetrics = 36,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_BeginPassGroup = 37,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_Create = 38,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_Destroy = 39,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_EndPassGroup = 40,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_GenerateConfigImage = 41,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_GetConfigImage = 42,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_GetMetricProperties = 43,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_GetNumMetrics = 44,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_GetNumPasses = 45,\n    nvperf_host_TRACE_CBID_NVPA_RawMetricsConfig_IsAddMetricsPossible = 46,\n    nvperf_host_TRACE_CBID_NVPW_Adapter_GetDeviceIndex = 47,\n    nvperf_host_TRACE_CBID_NVPW_CUDA_MetricsContext_Create = 48,\n    nvperf_host_TRACE_CBID_NVPW_CUDA_RawMetricsConfig_Create = 49,\n    nvperf_host_TRACE_CBID_NVPW_Config_GetNumPasses = 50,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataBuilder_AddMetrics = 51,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataBuilder_Create = 52,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataBuilder_Destroy = 53,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataBuilder_GetCounterDataPrefix = 54,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_AccumulateIntoRange = 55,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_Create = 56,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_CreateRange = 57,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_Destroy = 58,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_SumIntoRange = 59,\n    nvperf_host_TRACE_CBID_NVPW_CounterDataCombiner_WeightedSumIntoRange = 60,\n    nvperf_host_TRACE_CBID_NVPW_CounterData_CalculateCounterDataImageCopySize = 61,\n    nvperf_host_TRACE_CBID_NVPW_CounterData_GetNumRanges = 62,\n    nvperf_host_TRACE_CBID_NVPW_CounterData_GetRangeDescriptions = 63,\n    nvperf_host_TRACE_CBID_NVPW_CounterData_InitializeCounterDataImageCopy = 64,\n    nvperf_host_TRACE_CBID_NVPW_Device_GetMigAttributes = 65,\n    nvperf_host_TRACE_CBID_NVPW_Device_GetNames = 66,\n    nvperf_host_TRACE_CBID_NVPW_Device_GetPciBusIds = 67,\n    nvperf_host_TRACE_CBID_NVPW_GetDeviceCount = 68,\n    nvperf_host_TRACE_CBID_NVPW_GetSupportedChipNames = 69,\n    nvperf_host_TRACE_CBID_NVPW_InitializeHost = 70,\n    nvperf_host_TRACE_CBID_NVPW_InitializeTarget = 71,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_Destroy = 72,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_EvaluateToGpuValues = 73,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_ExecScript_Begin = 74,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_ExecScript_End = 75,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetCounterNames_Begin = 76,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetCounterNames_End = 77,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricBaseNames_Begin = 78,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricBaseNames_End = 79,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricNames_Begin = 80,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricNames_End = 81,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricProperties_Begin = 82,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricProperties_End = 83,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricSuffix_Begin = 84,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetMetricSuffix_End = 85,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetRatioNames_Begin = 86,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetRatioNames_End = 87,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetThroughputBreakdown_Begin = 88,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetThroughputBreakdown_End = 89,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetThroughputNames_Begin = 90,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_GetThroughputNames_End = 91,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_RunScript = 92,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_SetCounterData = 93,\n    nvperf_host_TRACE_CBID_NVPW_MetricsContext_SetUserData = 94,\n    nvperf_host_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetDelimiters = 95,\n    nvperf_host_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetSampleTime = 96,\n    nvperf_host_TRACE_CBID_NVPW_PeriodicSampler_CounterData_TrimInPlace = 97,\n    nvperf_host_TRACE_CBID_NVPW_Profiler_CounterData_GetRangeDescriptions = 98,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_AddMetrics = 99,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_BeginPassGroup = 100,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_Destroy = 101,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_EndPassGroup = 102,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_GenerateConfigImage = 103,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_GetConfigImage = 104,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_GetMetricProperties = 105,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_GetNumMetrics = 106,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_GetNumPasses = 107,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_IsAddMetricsPossible = 108,\n    nvperf_host_TRACE_CBID_NVPW_RawMetricsConfig_SetCounterAvailability = 109,\n    nvperf_host_TRACE_CBID_NVPW_SetLibraryLoadPaths = 110,\n    nvperf_host_TRACE_CBID_NVPW_SetLibraryLoadPathsW = 111,\n};\n\ntypedef uint32_t (*nvperf_hostRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvperf_hostIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvperf_hostProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvperf_hostProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvperf_hostProfileHandler {\n    nvperf_hostRegisterProfileDomain registerProfileDomain;\n    nvperf_hostIsProfileCallbackEnabled isCallbackEnabled;\n    nvperf_hostProfileCallbackBegin profileCallbackBegin;\n    nvperf_hostProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvperf_hostProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvperf_host\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvperf_hostRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvperf_hostIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvperf_hostProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvperf_hostProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n"
+    }
+}
