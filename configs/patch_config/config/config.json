@@ -1,0 +1,402 @@
+{
+  "files": [
+    {
+      "path": [ "crt/common_functions.h",
+                "crt/math_functions.h",
+                "crt/math_functions.hpp",
+                "crt/device_functions.hpp",
+                "device_atomic_functions.h",
+                "device_atomic_functions.hpp",
+                "crt/device_double_functions.h",
+                "crt/device_double_functions.hpp",
+                "sm_20_atomic_functions.h",
+                "sm_20_atomic_functions.hpp",
+                "sm_32_atomic_functions.h",
+                "sm_32_atomic_functions.hpp",
+                "sm_35_atomic_functions.h",
+                "sm_60_atomic_functions.h",
+                "sm_60_atomic_functions.hpp",
+                "sm_20_intrinsics.h",
+                "sm_20_intrinsics.hpp",
+                "sm_30_intrinsics.h",
+                "sm_30_intrinsics.hpp",
+                "sm_32_intrinsics.h",
+                "sm_32_intrinsics.hpp",
+                "sm_35_intrinsics.h",
+                "sm_61_intrinsics.h",
+                "sm_61_intrinsics.hpp",
+                "crt/sm_70_rt.h",
+                "crt/sm_70_rt.hpp",
+                "crt/sm_80_rt.h",
+                "crt/sm_80_rt.hpp",
+                "crt/sm_90_rt.h",
+                "crt/sm_90_rt.hpp",
+                "texture_indirect_functions.h" ],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "#if 0\n",
+          "footer": "\n#endif",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["device_launch_parameters.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "#if 0\n",
+          "footer": "device_launch_parameters.h_footer.config",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["crt/device_functions.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1189",
+          "header": "#if 0\n",
+          "footer": "device_functions.h_footer.config",
+          "replace": []
+        },
+        {
+          "min_version": "1200",
+          "max_version": "1279",
+          "header": "#if 0\n",
+          "footer": "device_functions.h_footer_v1.config",
+          "replace": []
+        },
+        {
+          "min_version": "1280",
+          "max_version": "2000",
+          "header": "#if 0\n",
+          "footer": "device_functions.h_footer_v2.config",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["cooperative_groups/details/info.h"],
+      "configs": [
+        {
+          "min_version": "1200",
+          "max_version": "1249",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#if ((__CUDA_ARCH__ >= 800) || !defined(__CUDA_ARCH__)) && !defined(_CG_USER_PROVIDED_SHARED_MEMORY)",
+             "new": "#if 0 // ((__CUDA_ARCH__ >= 800) || !defined(__CUDA_ARCH__)) && !defined(_CG_USER_PROVIDED_SHARED_MEMORY)"}
+          ]
+        },
+        {
+          "min_version": "1250",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#if ((_CG_CUDA_ARCH >= 800) || !defined(_CG_CUDA_ARCH)) && !defined(_CG_USER_PROVIDED_SHARED_MEMORY)",
+             "new": "#if 0 // ((_CG_CUDA_ARCH >= 800) || !defined(_CG_CUDA_ARCH)) && !defined(_CG_USER_PROVIDED_SHARED_MEMORY)"}
+          ]
+        }            
+      ]
+    },
+    {
+      "path": ["crt/host_config.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#if (__clang_major__ >= 9) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+             "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 10) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 11) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 12) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 13) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 14) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 15) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 16) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 17) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 18) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 19) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 20) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 21) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 22) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"},
+            {"pattern": "#if (__clang_major__ >= 23) || (__clang_major__ < 3) || ((__clang_major__ == 3) &&  (__clang_minor__ < 3))",
+            "new": "#if !__clang_major__"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["mma.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#include \"crt/mma.h\"",
+             "new": "mma.config"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda_runtime.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#include \"cuda_runtime_api.h\"",
+             "new": "#include \"cuda_runtime_api.h\"\n#include \"cuda_runtime_api_ext.h\"\n"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda_fp8.hpp"],
+      "configs": [
+        {
+          "min_version": "1180",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 890)",
+             "new": "#if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 850)"},
+            {"pattern": "#if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 900)",
+             "new": "#if (defined __CUDA_ARCH__) && (__CUDA_ARCH__ >= 850)"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda_device_runtime_api.h"],
+      "configs": [
+        {
+          "min_version": "1180",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "extern  __device__ __cudart_builtin__ cudaError_t CUDARTAPI cudaGraphLaunch(cudaGraphExec_t graphExec, cudaStream_t stream);",
+             "new": "extern  __device__ __cudart_builtin__ cudaError_t CUDARTAPI cudaGraphLaunch(cudaGraphExec_t graphExec, cudaStream_t stream);\n\n#include \"cuda_device_runtime_api_internal.h\"\n"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["thrust/optional.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1229",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "__is_trivially_assignable(T, T&&)",
+             "new": "__is_trivially_assignable(T&, T&&)"},
+            {"pattern": "__is_trivially_assignable(T, T const&)",
+             "new": "__is_trivially_assignable(T&, T const&)"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda/std/detail/libcxx/include/complex"],
+      "configs": [
+        {
+          "min_version": "1130",
+          "max_version": "1219",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "template<class _Tp>\ncomplex<_Tp>\noperator",
+             "new": "template<class _Tp>\n_LIBCUDACXX_INLINE_VISIBILITY\ncomplex<_Tp>\noperator"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cub/util_arch.cuh", "thrust/system/cuda/config.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1189",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "!defined(__CUDA_ARCH__) || (__CUDA_ARCH__>= 350 && defined(__CUDACC_RDC__))",
+             "new": "!defined(__CUDA_ARCH__) //|| (__CUDA_ARCH__>= 350 && defined(__CUDACC_RDC__))"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda.h"],
+      "configs": [
+        {
+          "min_version": "1110",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "CUsynchronizationPolicy syncPolicy;        /**< Value for ::CU_STREAM_ATTRIBUTE_SYNCHRONIZATION_POLICY. */\n} CUstreamAttrValue",
+             "new": "CUsynchronizationPolicy syncPolicy;        /**< Value for ::CU_STREAM_ATTRIBUTE_SYNCHRONIZATION_POLICY. */\n    int priority;\n} CUstreamAttrValue"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["driver_types.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "cudaStreamAttributeSynchronizationPolicy  = 3   /**< ::cudaSynchronizationPolicy for work queued up in this stream */\n}",
+             "new": "cudaStreamAttributeSynchronizationPolicy  = 3,   /**< ::cudaSynchronizationPolicy for work queued up in this stream */\n    cudaStreamAttributePriority               = 8\n}"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["library_types.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "CUDA_C_64U  = 27, /* complex as a pair of unsigned 64-bit int numbers */",
+             "new": "CUDA_C_64U  = 27, /* complex as a pair of unsigned 64-bit int numbers */\n    CUDA_R_8F_E4M3 = 28, /* real as a nv_fp8_e4m3 */\n    CUDA_R_8F_E5M2 = 29, /* real as a nv_fp8_e5m2 */\n"},
+             {"pattern": "CUDA_C_64U  = 27  /* complex as a pair of unsigned 64-bit int numbers */",
+             "new": "CUDA_C_64U  = 27,  /* complex as a pair of unsigned 64-bit int numbers */\n    CUDA_R_8F_E4M3 = 28, /* real as a nv_fp8_e4m3 */\n    CUDA_R_8F_E5M2 = 29, /* real as a nv_fp8_e5m2 */\n"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cub/agent/agent_spmv_orig.cuh"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1159",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "TexRefInputIterator<ValueT, 66778899, OffsetT>  t_vector_x;",
+             "new": "//TexRefInputIterator<ValueT, 66778899, OffsetT>  t_vector_x;"},
+            {"pattern": "TexObjInputIterator<ValueT, OffsetT>  t_vector_x;",
+             "new": "//TexObjInputIterator<ValueT, OffsetT>  t_vector_x;"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cub/util_debug.cuh"],
+      "configs": [
+        {
+          "min_version": "1110",
+          "max_version": "1119",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "#define _CubLog(format, ...) va_printf(format,__VA_ARGS__);",
+             "new": "#define _CubLog(format, ...) cub::va_printf(format,__VA_ARGS__);"},
+            {"pattern": "#define _CubLog(format, ...) va_printf(\"[block (%d,%d,%d), thread (%d,%d,%d)]: \" format, __VA_ARGS__);",
+             "new": "#define _CubLog(format, ...) cub::va_printf(\"[block (%d,%d,%d), thread (%d,%d,%d)]: \" format, __VA_ARGS__);"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["cuda/std/detail/libcxx/include/__threading_support"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1119",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "int __libcpp_recursive_mutex_init(__libcpp_recursive_mutex_t *__m)\n{",
+             "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nint __libcpp_recursive_mutex_init(__libcpp_recursive_mutex_t *__m)\n{"},
+            {"pattern": "int __libcpp_condvar_signal(__libcpp_condvar_t *__cv)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nint __libcpp_condvar_signal(__libcpp_condvar_t *__cv)\n{"},
+            {"pattern": "bool __libcpp_thread_id_equal(__libcpp_thread_id t1, __libcpp_thread_id t2)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_thread_id_equal(__libcpp_thread_id t1, __libcpp_thread_id t2)\n{"},
+            {"pattern": "// Thread\nbool __libcpp_thread_isnull(const __libcpp_thread_t *__t)",
+            "new": "// Thread\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_thread_isnull(const __libcpp_thread_t *__t)"},
+            {"pattern": "bool __libcpp_thread_id_less(__libcpp_thread_id t1, __libcpp_thread_id t2)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_thread_id_less(__libcpp_thread_id t1, __libcpp_thread_id t2)\n{"},
+            {"pattern": "int __libcpp_tls_create(__libcpp_tls_key *__key, void (*__at_exit)(void *))\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nint __libcpp_tls_create(__libcpp_tls_key *__key, void (*__at_exit)(void *))\n{"},
+            {"pattern": "// Execute once\nint __libcpp_execute_once(__libcpp_exec_once_flag *flag",
+            "new": "// Execute once\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nint __libcpp_execute_once(__libcpp_exec_once_flag *flag"},
+            {"pattern": "void __libcpp_thread_yield() {}",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nvoid __libcpp_thread_yield() {}"},
+            {"pattern": "__libcpp_timespec_t __libcpp_to_timespec(const chrono::nanoseconds& __ns)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\n__libcpp_timespec_t __libcpp_to_timespec(const chrono::nanoseconds& __ns)\n{"},
+            {"pattern": "bool __libcpp_semaphore_init(__libcpp_semaphore_t* __sem, int __init)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_semaphore_init(__libcpp_semaphore_t* __sem, int __init)\n{"},
+            {"pattern": "bool __libcpp_thread_poll_with_backoff(_Fn && __f, chrono::nanoseconds __max)\n{",
+            "new": "_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_thread_poll_with_backoff(_Fn && __f, chrono::nanoseconds __max)\n{"},
+            {"pattern": "}\n\nint __libcpp_",
+             "new": "}\n\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nint __libcpp_"},
+            {"pattern": "}\n\nvoid __libcpp_",
+            "new": "}\n\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nvoid __libcpp_"},
+            {"pattern": "}\n\nvoid *__libcpp_",
+            "new": "}\n\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nvoid *__libcpp_"},
+            {"pattern": "}\n\nbool __libcpp_",
+            "new": "}\n\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\nbool __libcpp_"},
+            {"pattern": "}\n\n__libcpp_thread_id __libcpp_",
+            "new": "}\n\n_LIBCUDACXX_THREAD_ABI_VISIBILITY\n__libcpp_thread_id __libcpp_"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["nvml.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "nvmlReturn_t DECLDIR nvmlInitWithFlags(unsigned int flags);",
+             "new": "nvml.config"}
+          ]
+        }
+      ]
+    }
+  ]
+}
