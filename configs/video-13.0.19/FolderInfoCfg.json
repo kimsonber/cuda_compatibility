@@ -1,0 +1,71 @@
+{
+  "files": [
+    [
+      "video-13.0.19/Interface",
+      "cuviddec.h",
+      null,
+      "video-13.0.19"
+    ],
+    [
+      "video-13.0.19/Interface",
+      "nvcuvid.h",
+      null,
+      "video-13.0.19"
+    ],
+    [
+      "video-13.0.19/Interface",
+      "nvEncodeAPI.h",
+      null,
+      "video-13.0.19"
+    ]
+  ],
+  "headerpaths": [
+    [
+      "Interface",
+      "video-13.0.19/Interface"
+    ]
+  ],
+  "libdirs": {
+    "Lib/linux/stubs/x86_64": [
+      "video-13.0.19/Lib/linux/stubs/x86_64"
+    ]
+  },
+  "libpaths": [
+    [
+      "video-13.0.19/Lib/linux/stubs/x86_64",
+      "libnvcuvid.so",
+      null,
+      "video-13.0.19"
+    ],
+    [
+      "video-13.0.19/Lib/linux/stubs/x86_64",
+      "libnvidia-encode.so",
+      null,
+      "video-13.0.19"
+    ]
+  ],
+  "libpaths_static": [],
+  "libpaths_static_irregular": [],
+  "libraries": [
+    {
+      "path": "video-13.0.19/Lib/linux/stubs/x86_64",
+      "name": "libnvcuvid.so",
+      "base": "video-13.0.19",
+      "soname": "libnvcuvid.so.1",
+      "needed_libs": []
+    },
+    {
+      "path": "video-13.0.19/Lib/linux/stubs/x86_64",
+      "name": "libnvidia-encode.so",
+      "base": "video-13.0.19",
+      "soname": "libnvidia-encode.so.1",
+      "needed_libs": []
+    }
+  ],
+  "library_deps": {},
+  "libraries_static": {},
+  "libraries_static_irregular": {},
+  "symlinks": [],
+  "lib_same_name": {},
+  "arch": "x86_64"
+}

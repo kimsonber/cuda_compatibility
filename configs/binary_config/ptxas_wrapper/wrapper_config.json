@@ -32,6 +32,11 @@
       "short": "-be-opt",
       "map_to": "--ppu-backend-options",
       "needs_value": true
+    },
+    "--apply-controls": {
+      "short": "-apply-controls",
+      "map_to": "--apply-controls",
+      "needs_value": true
     }
   }
 }

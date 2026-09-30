@@ -110,87 +110,90 @@ class FolderInfo(object):
 
         self.get_library_info()
 
-    @classmethod
     def load(self, input, basePath=None):
-        ret = FolderInfo([])
+        # load files
         if basePath:
-            ret.files = []
             for file in input['files']:
-                ret.files.append([os.path.join(basePath, file[0]),
+                self.files.append([os.path.join(basePath, file[0]),
                                   file[1], file[2],
                                   os.path.join(basePath, file[3])])
         else:
-            ret.files = input['files']
+            self.files.extend(input['files'])
+        # load headerpaths
         if basePath:
-            ret.headerpaths = []
             for headerpath in input['headerpaths']:
-                ret.headerpaths.append([headerpath[0],
+                self.headerpaths.append([headerpath[0],
                                   os.path.join(basePath, headerpath[1])])
         else:
-            ret.headerpaths = input['headerpaths']
+            self.headerpaths.extend(input['headerpaths'])
+        # load libdirs
         if basePath:
-            ret.libdirs = {}
             for lib, libdirs in input['libdirs'].items():
-                ret.libdirs[lib] = []
+                if lib not in self.libdirs:
+                    self.libdirs[lib] = []
                 for d in libdirs:
-                    ret.libdirs[lib].append(os.path.join(basePath, d))
+                    self.libdirs[lib].append(os.path.join(basePath, d))
         else:
-            ret.libdirs = input['libdirs']
+            self.libdirs.update(input['libdirs'])
+        # load libpaths
         if basePath:
-            ret.libpaths = []
             for path in input['libpaths']:
-                ret.libpaths.append([os.path.join(basePath, path[0]),
+                self.libpaths.append([os.path.join(basePath, path[0]),
                                      path[1], path[2],
                                      os.path.join(basePath, path[3])])
         else:
-            ret.libpaths = input['libpaths']
+            self.libpaths.extend(input['libpaths'])
+        # load libpaths_static
         if basePath:
-            ret.libpaths_static = []
             for path in input['libpaths_static']:
-                ret.libpaths_static.append([os.path.join(basePath, path[0]),
+                self.libpaths_static.append([os.path.join(basePath, path[0]),
                                             path[1], path[2],
                                             os.path.join(basePath, path[3])])
         else:
-            ret.libpaths_static = input['libpaths_static']
+            self.libpaths_static.extend(input['libpaths_static'])
+        # load libpaths_static_irregular
         if basePath:
-            ret.libpaths_static_irregular = []
             for path in input['libpaths_static_irregular']:
-                ret.libpaths_static_irregular.append([os.path.join(basePath, path[0]),
+                self.libpaths_static_irregular.append([os.path.join(basePath, path[0]),
                                                       path[1], path[2],
                                                       os.path.join(basePath, path[3])])
         else:
-            ret.libpaths_static_irregular = input['libpaths_static_irregular']
-        ret.libraries = []
+            self.libpaths_static_irregular.extend(input['libpaths_static_irregular'])
+        # load libraries
         for l in input['libraries']:
-            ret.libraries.append(LibInfo.load(l, basePath))
-        ret.library_deps = {}
+            self.libraries.append(LibInfo.load(l, basePath))
+        # load library_deps
         for k,v in input['library_deps'].items():
             assert len(v) >= 1
-            ret.library_deps[k] = []
+            if k not in self.library_deps:
+                self.library_deps[k] = []
             for l in v:
-                ret.library_deps[k].append(LibInfo.load(l, basePath))
-        ret.libraries_static = input['libraries_static']
-        ret.libraries_static_irregular = input['libraries_static_irregular']
+                self.library_deps[k].append(LibInfo.load(l, basePath))
+        # load libraries_static
+        self.libraries_static.update(input['libraries_static'])
+        # load libraries_static_irregular
+        self.libraries_static_irregular.update(input['libraries_static_irregular'])
+        # load symlinks
         if basePath:
-            ret.symlinks = []
             for link in input['symlinks']:
-                ret.symlinks.append([os.path.join(basePath, link[0]),
+                self.symlinks.append([os.path.join(basePath, link[0]),
                                      link[1], link[2],
                                      os.path.join(basePath, link[3])])
         else:
-            ret.symlinks = input['symlinks']
+            self.symlinks.extend(input['symlinks'])
+        # load lib_same_name
         if basePath:
-            ret.lib_same_name = {}
             for name, libs in input['lib_same_name'].items():
-                ret.lib_same_name[name] = []
+                if name not in self.lib_same_name:
+                    self.lib_same_name[name] = []
                 for lib in libs:
-                    ret.lib_same_name[name].append([os.path.join(basePath, lib[0]),
+                    self.lib_same_name[name].append([os.path.join(basePath, lib[0]),
                                                     lib[1], lib[2],
                                                     os.path.join(basePath, lib[3])])
         else:
-            ret.lib_same_name = input['lib_same_name']
-        ret.arch = input['arch']
-        return ret
+            self.lib_same_name.update(input['lib_same_name'])
+        self.arch = input['arch']
+        return self
 
     def find_in_all_lib(self, filename):
         sym_ret = self.find_in_symlink(filename)
@@ -436,7 +439,7 @@ class FolderInfo(object):
                 else:
                     self.lib_same_name[lib[1]] = finding
 
-    def copy_files(self, dst):
+    def copy_files(self, dst, is_sdk):
         if not os.path.isdir(dst):
             os.makedirs(dst)
 
@@ -465,7 +468,8 @@ class FolderInfo(object):
         lib_out_path_full = os.path.join(dst, DirInfo.lib_out_dir)
         for libdir in self.libdirs:
             libdir_full = os.path.join(dst, libdir)
-            if not os.path.exists(libdir_full):
+            if not os.path.exists(libdir_full) or \
+               not os.path.exists(lib_out_path_full):
                 continue
             if os.path.realpath(libdir_full) == \
                 os.path.realpath(lib_out_path_full):
@@ -484,13 +488,14 @@ class FolderInfo(object):
 
             copy_libs(libdir_full, lib_out_path_full)
 
-        lib_path = os.path.join(dst, 'lib')
-        if os.path.exists(lib_path):
-            shutil.rmtree(lib_path)
-        video_path = os.path.join(dst, 'Interface')
-        if os.path.exists(video_path):
-            copy_files(video_path, os.path.join(dst, 'include'))
+        if is_sdk:
+            lib_path = os.path.join(dst, 'lib')
+            if os.path.exists(lib_path):
+                shutil.rmtree(lib_path)
+            video_path = os.path.join(dst, 'Interface')
+            if os.path.exists(video_path):
+                copy_files(video_path, os.path.join(dst, 'include'))
 
-        os.symlink('libnvidia-encode.so', os.path.join(lib_out_path_full, 'libnvidia-encode.so.1'))
-        os.symlink('libnvcuvid.so', os.path.join(lib_out_path_full, 'libnvcuvid.so.1'))
+            os.symlink('libnvidia-encode.so', os.path.join(lib_out_path_full, 'libnvidia-encode.so.1'))
+            os.symlink('libnvcuvid.so', os.path.join(lib_out_path_full, 'libnvcuvid.so.1'))
 

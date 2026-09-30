@@ -1,0 +1,4 @@
+# -gencode with single arch and single code
+RUN: nvcc --print-hgcc-only -gencode 'arch=sm_80,code=compute_80' %s
+CHECK: #$ hgcc command:
+CHECK: -arch=vm_10
