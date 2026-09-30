@@ -1,0 +1,4 @@
+# -arch=native should be passed through to hgcc as -arch=native
+RUN: nvcc --print-hgcc-only -arch=native %s
+CHECK: #$ hgcc command:
+CHECK: -arch=native

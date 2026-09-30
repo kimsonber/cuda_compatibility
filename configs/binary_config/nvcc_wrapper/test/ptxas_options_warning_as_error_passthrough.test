@@ -1,0 +1,4 @@
+# --warning-as-error should be passed through to hgcc via --llvm-options
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=--warning-as-error %s
+CHECK: --llvm-options
+CHECK: --warning-as-error

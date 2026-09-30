@@ -1,0 +1,42 @@
+{
+  "target_exe": "ppu-llc",
+  "options": {
+    "--gpu-name": {
+      "short": "-arch",
+      "map_to": "--ppu-arch",
+      "needs_value": true,
+      "value_map": {
+        "sm_80": "ppu001",
+        "sm_89": "ppu0015"
+      }
+    },
+    "--fmad": {
+      "short": "-fmad",
+      "map_to": "--fmad",
+      "needs_value": true
+    },
+    "--output-file": {
+      "short": "-o",
+      "map_to": "-o",
+      "needs_value": true
+    },
+    "--compile-only": {
+      "short": "-c",
+      "map_to": "-c"
+    },
+    "--enable-ir-formatter": {
+      "short": "-enable-irfmt",
+      "map_to": "--enable-ir-formatter"
+    },
+    "--ppu-backend-options": {
+      "short": "-be-opt",
+      "map_to": "--ppu-backend-options",
+      "needs_value": true
+    },
+    "--apply-controls": {
+      "short": "-apply-controls",
+      "map_to": "--apply-controls",
+      "needs_value": true
+    }
+  }
+}

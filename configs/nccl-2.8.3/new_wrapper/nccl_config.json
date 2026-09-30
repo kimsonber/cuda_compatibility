@@ -1,0 +1,2672 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nccl",
+        "dyn_lib_file_name": "libnccl.so.2.8.3",
+        "dyn_lib_install_name": "libnccl.so.2.8.3",
+        "sta_lib_file_name": "libnccl_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nccl.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/nvvm/include",
+            "$lib1/compute-sanitizer/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$nccl/include",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnccl.so.2",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "ncclAllGather",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "sendcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclAllReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclBcast",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "buff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclBroadcast",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommAbort",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommCount",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommCuDevice",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "device",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommGetAsyncError",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "asyncError",
+                            "param_type": {
+                                "name": "ncclResult_t",
+                                "is_pointer": true,
+                                "type_str": "ncclResult_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommInitAll",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_pointer": true,
+                                "type_str": "ncclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "ndev",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "devlist",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "const int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommInitRank",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_pointer": true,
+                                "type_str": "ncclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "nranks",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "commId",
+                            "param_type": {
+                                "name": "ncclUniqueId",
+                                "type_str": "ncclUniqueId {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclCommUserRank",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "ncclResult_t",
+                                "type_str": "ncclResult_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclGetUniqueId",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "uniqueId",
+                            "param_type": {
+                                "name": "ncclUniqueId",
+                                "is_pointer": true,
+                                "type_str": "ncclUniqueId * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclGetVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclGroupEnd",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclGroupStart",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclRecv",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclReduceScatter",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "ncclSend",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclAllGather",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "sendcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclAllReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclBcast",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "buff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclBroadcast",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommAbort",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommCount",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommCuDevice",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "device",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommGetAsyncError",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "asyncError",
+                            "param_type": {
+                                "name": "ncclResult_t",
+                                "is_pointer": true,
+                                "type_str": "ncclResult_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommInitAll",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_pointer": true,
+                                "type_str": "ncclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "ndev",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "devlist",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "const int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommInitRank",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_pointer": true,
+                                "type_str": "ncclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "nranks",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "commId",
+                            "param_type": {
+                                "name": "ncclUniqueId",
+                                "type_str": "ncclUniqueId {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclCommUserRank",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "is_const": true,
+                                "type_str": "const ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "ncclResult_t",
+                                "type_str": "ncclResult_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclGetUniqueId",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "uniqueId",
+                            "param_type": {
+                                "name": "ncclUniqueId",
+                                "is_pointer": true,
+                                "type_str": "ncclUniqueId * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclGetVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclGroupEnd",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclGroupStart",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclRecv",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclReduceScatter",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "ncclRedOp_t",
+                                "type_str": "ncclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pncclSend",
+                "signature": {
+                    "return_type": {
+                        "name": "ncclResult_t",
+                        "type_str": "ncclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "ncclDataType_t",
+                                "type_str": "ncclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "ncclComm_t",
+                                "type_str": "ncclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "cudaStream_t",
+                                "type_str": "cudaStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libpccl.so",
+        "lib_dirs": [],
+        "include_files": [
+            "pccl.h"
+        ],
+        "include_dirs": [
+            "$ppu/include",
+            "$pccl/ext-profiler/inspector",
+            "$pccl/ext-profiler/example",
+            "$pccl/docs/examples/common/include",
+            "$pccl/src/graph",
+            "$pccl/src/transport/net_ib",
+            "$pccl/src/device/symmetric",
+            "$pccl/src/ras",
+            "$pccl/src/collectives/device",
+            "$pccl/src/include",
+            "$pccl/include",
+            "$pccl/ext-tuner/pccl",
+            "$pccl/tests/src/include",
+            "$pccl/ext-kernel/src",
+            "$pccl/ext-kernel/pccl"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=12091"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "pcclAllGather",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "sendcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclAllReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "pcclRedOp_t",
+                                "type_str": "pcclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclBcast",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "buff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclBroadcast",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommAbort",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommCount",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "is_const": true,
+                                "type_str": "const pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommCuDevice",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "is_const": true,
+                                "type_str": "const pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "device",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommGetAsyncError",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "asyncError",
+                            "param_type": {
+                                "name": "pcclResult_t",
+                                "is_pointer": true,
+                                "type_str": "pcclResult_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommInitAll",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "is_pointer": true,
+                                "type_str": "pcclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "ndev",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "devlist",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "const int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommInitRank",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "is_pointer": true,
+                                "type_str": "pcclComm_t * {}"
+                            }
+                        },
+                        {
+                            "name": "nranks",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "commId",
+                            "param_type": {
+                                "name": "pcclUniqueId",
+                                "type_str": "pcclUniqueId {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclCommUserRank",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "is_const": true,
+                                "type_str": "const pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "rank",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "pcclResult_t",
+                                "type_str": "pcclResult_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclGetUniqueId",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "uniqueId",
+                            "param_type": {
+                                "name": "pcclUniqueId",
+                                "is_pointer": true,
+                                "type_str": "pcclUniqueId * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclGetVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclGroupEnd",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclGroupStart",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclRecv",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclReduce",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "pcclRedOp_t",
+                                "type_str": "pcclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "root",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclReduceScatter",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "recvcount",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "op",
+                            "param_type": {
+                                "name": "pcclRedOp_t",
+                                "type_str": "pcclRedOp_t {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "pcclSend",
+                "signature": {
+                    "return_type": {
+                        "name": "pcclResult_t",
+                        "type_str": "pcclResult_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "sendbuff",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "count",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "datatype",
+                            "param_type": {
+                                "name": "pcclDataType_t",
+                                "type_str": "pcclDataType_t {}"
+                            }
+                        },
+                        {
+                            "name": "peer",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "comm",
+                            "param_type": {
+                                "name": "pcclComm_t",
+                                "type_str": "pcclComm_t {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "hggcStream_t",
+                                "type_str": "hggcStream_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "ncclAllGather",
+            "target_function": "pcclAllGather",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclAllReduce",
+            "target_function": "pcclAllReduce",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclBcast",
+            "target_function": "pcclBcast",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclBroadcast",
+            "target_function": "pcclBroadcast",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommAbort",
+            "target_function": "pcclCommAbort",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommCount",
+            "target_function": "pcclCommCount",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommCuDevice",
+            "target_function": "pcclCommCuDevice",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommDestroy",
+            "target_function": "pcclCommDestroy",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommGetAsyncError",
+            "target_function": "pcclCommGetAsyncError",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommInitAll",
+            "target_function": "pcclCommInitAll",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommInitRank",
+            "target_function": "pcclCommInitRank",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclCommUserRank",
+            "target_function": "pcclCommUserRank",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclGetErrorString",
+            "target_function": "pcclGetErrorString",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclGetUniqueId",
+            "target_function": "pcclGetUniqueId",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclGetVersion",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "ncclResult_t ncclGetVersion(int * version) {\n    // TraceCall(\"ncclGetVersion\");\n    if (version == NULL) return ncclInvalidArgument;\n    *version = NCCL_VERSION_CODE;\n    return ncclSuccess;\n}\n\n"
+        },
+        {
+            "source_function": "ncclGroupEnd",
+            "target_function": "pcclGroupEnd",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclGroupStart",
+            "target_function": "pcclGroupStart",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclRecv",
+            "target_function": "pcclRecv",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclReduce",
+            "target_function": "pcclReduce",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclReduceScatter",
+            "target_function": "pcclReduceScatter",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "ncclSend",
+            "target_function": "pcclSend",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclAllGather",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclAllReduce",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclBcast",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclBroadcast",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommAbort",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommCuDevice",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommDestroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommGetAsyncError",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommInitAll",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommInitRank",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclCommUserRank",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclGetErrorString",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclGetUniqueId",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclGetVersion",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclGroupEnd",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclGroupStart",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclRecv",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclReduce",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclReduceScatter",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "pncclSend",
+            "target_function": "",
+            "parameter_mapping": {}
+        }
+    ],
+    "type_mappings": [
+        {
+            "source_type": "ncclUniqueId",
+            "target_type": "pcclUniqueId",
+            "conversion_expression": "*reinterpret_cast<pcclUniqueId*>(&{ValToConv})"
+        },
+        {
+            "source_type": "pcclUniqueId",
+            "target_type": "ncclUniqueId",
+            "conversion_expression": "*reinterpret_cast<ncclUniqueId*>(&{ValToConv})"
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"ncclAllGather\",\n    \"ncclAllReduce\",\n    \"ncclBcast\",\n    \"ncclBroadcast\",\n    \"ncclCommAbort\",\n    \"ncclCommCount\",\n    \"ncclCommCuDevice\",\n    \"ncclCommDestroy\",\n    \"ncclCommGetAsyncError\",\n    \"ncclCommInitAll\",\n    \"ncclCommInitRank\",\n    \"ncclCommUserRank\",\n    \"ncclGetErrorString\",\n    \"ncclGetUniqueId\",\n    \"ncclGetVersion\",\n    \"ncclGroupEnd\",\n    \"ncclGroupStart\",\n    \"ncclRecv\",\n    \"ncclReduce\",\n    \"ncclReduceScatter\",\n    \"ncclSend\",\n    \"pncclAllGather\",\n    \"pncclAllReduce\",\n    \"pncclBcast\",\n    \"pncclBroadcast\",\n    \"pncclCommAbort\",\n    \"pncclCommCount\",\n    \"pncclCommCuDevice\",\n    \"pncclCommDestroy\",\n    \"pncclCommGetAsyncError\",\n    \"pncclCommInitAll\",\n    \"pncclCommInitRank\",\n    \"pncclCommUserRank\",\n    \"pncclGetErrorString\",\n    \"pncclGetUniqueId\",\n    \"pncclGetVersion\",\n    \"pncclGroupEnd\",\n    \"pncclGroupStart\",\n    \"pncclRecv\",\n    \"pncclReduce\",\n    \"pncclReduceScatter\",\n    \"pncclSend\",\n};\n\nenum ncclProfileCallbackId {\n    nccl_TRACE_CBID_ncclAllGather = 0,\n    nccl_TRACE_CBID_ncclAllReduce = 1,\n    nccl_TRACE_CBID_ncclBcast = 2,\n    nccl_TRACE_CBID_ncclBroadcast = 3,\n    nccl_TRACE_CBID_ncclCommAbort = 4,\n    nccl_TRACE_CBID_ncclCommCount = 5,\n    nccl_TRACE_CBID_ncclCommCuDevice = 6,\n    nccl_TRACE_CBID_ncclCommDestroy = 7,\n    nccl_TRACE_CBID_ncclCommGetAsyncError = 8,\n    nccl_TRACE_CBID_ncclCommInitAll = 9,\n    nccl_TRACE_CBID_ncclCommInitRank = 10,\n    nccl_TRACE_CBID_ncclCommUserRank = 11,\n    nccl_TRACE_CBID_ncclGetErrorString = 12,\n    nccl_TRACE_CBID_ncclGetUniqueId = 13,\n    nccl_TRACE_CBID_ncclGetVersion = 14,\n    nccl_TRACE_CBID_ncclGroupEnd = 15,\n    nccl_TRACE_CBID_ncclGroupStart = 16,\n    nccl_TRACE_CBID_ncclRecv = 17,\n    nccl_TRACE_CBID_ncclReduce = 18,\n    nccl_TRACE_CBID_ncclReduceScatter = 19,\n    nccl_TRACE_CBID_ncclSend = 20,\n    nccl_TRACE_CBID_pncclAllGather = 21,\n    nccl_TRACE_CBID_pncclAllReduce = 22,\n    nccl_TRACE_CBID_pncclBcast = 23,\n    nccl_TRACE_CBID_pncclBroadcast = 24,\n    nccl_TRACE_CBID_pncclCommAbort = 25,\n    nccl_TRACE_CBID_pncclCommCount = 26,\n    nccl_TRACE_CBID_pncclCommCuDevice = 27,\n    nccl_TRACE_CBID_pncclCommDestroy = 28,\n    nccl_TRACE_CBID_pncclCommGetAsyncError = 29,\n    nccl_TRACE_CBID_pncclCommInitAll = 30,\n    nccl_TRACE_CBID_pncclCommInitRank = 31,\n    nccl_TRACE_CBID_pncclCommUserRank = 32,\n    nccl_TRACE_CBID_pncclGetErrorString = 33,\n    nccl_TRACE_CBID_pncclGetUniqueId = 34,\n    nccl_TRACE_CBID_pncclGetVersion = 35,\n    nccl_TRACE_CBID_pncclGroupEnd = 36,\n    nccl_TRACE_CBID_pncclGroupStart = 37,\n    nccl_TRACE_CBID_pncclRecv = 38,\n    nccl_TRACE_CBID_pncclReduce = 39,\n    nccl_TRACE_CBID_pncclReduceScatter = 40,\n    nccl_TRACE_CBID_pncclSend = 41,\n};\n\ntypedef uint32_t (*ncclRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*ncclIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*ncclProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*ncclProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct ncclProfileHandler {\n    ncclRegisterProfileDomain registerProfileDomain;\n    ncclIsProfileCallbackEnabled isCallbackEnabled;\n    ncclProfileCallbackBegin profileCallbackBegin;\n    ncclProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic ncclProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nccl\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<ncclRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<ncclIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<ncclProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<ncclProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n",
+        "pre_wrapper_call": "\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n",
+        "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n"
+    }
+}
