@@ -21,10 +21,6 @@
       "short": "-expt-extended-lambda",
       "map_to": ["--extended-lambda", "-D__CUDACC_EXTENDED_LAMBDA__"]
     },
-    "--device-debug": {
-      "short": "-G",
-      "map_to": ["-G", "-D__CUDACC_DEBUG__"]
-    },
     "--device-w": {
       "short": "-dw",
       "map_to": ["-c", "-rdc=false"]
@@ -34,8 +30,11 @@
       "map_to": "--hglink-options",
       "needs_value": true,
       "value_map": {
-        "-suppress-stack-size-warning": "-ppu-suppress-stack-size-warning",
-        "--suppress-stack-size-warning": "-ppu-suppress-stack-size-warning"
+        "-Xptxas": {
+          "short": "-Xptxas",
+          "needs_ignore": true,
+          "needs_value": true
+        }
       }
     },
     "--fatbin-options": {
@@ -158,7 +157,7 @@
     },
     "--time": {
       "short": "-time",
-      "needs_ignore": true,
+      "map_to": "--time",
       "needs_value": true
     },
     "--entries": {
@@ -231,8 +230,11 @@
     },
     "--sanitize": {
       "short": "-sanitize",
-      "needs_ignore": true,
-      "needs_value": true
+      "needs_value": true,
+      "map_to": "--fsanitize",
+      "value_map": {
+          "memcheck": "memcheck"
+      }
     },
     "--jobserver": {
       "short": "-jobserver",
@@ -240,7 +242,15 @@
     },
     "--allow-unsupported-compiler": {
       "short": "-allow-unsupported-compiler",
-      "needs_ignore": true
+      "map_to": ["-Xpreprocess", "-D__NV_NO_HOST_COMPILER_CHECK=1"]
+    },
+    "--fdevice-sanitize": {
+      "short": "-fdevice-sanitize",
+      "needs_value": true,
+      "map_to": "--fsanitize",
+      "value_map": {
+        "memcheck": "memcheck"
+      }
     },
     "--cudadevrt": {
       "short": "-cudadevrt",
@@ -251,19 +261,21 @@
       "short": "-optf",
       "needs_ignore": true
     },
-    "--dopt": {
-      "short": "-dopt",
-      "map_to": "-dopt",
-      "needs_value": true,
-      "value_map": {
-        "off": 0,
-        "on": 3
-      }
+    "--apply-controls": {
+      "short": "-apply-controls",
+      "map_to": "--apply-controls",
+      "needs_value": true
+    },
+    "--Ofast-compile": {
+      "short": "-Ofc",
+      "needs_ignore": true,
+      "needs_value": true
     },
     "--ptxas-options": {
       "short": "-Xptxas",
       "map_to": "--llvm-options",
       "needs_value": true,
+      "default_value_mapping": "ignore",
       "value_map": {
         "-w": "--no-warn",
         "--disable-warnings": "--no-warn",
@@ -333,11 +345,24 @@
         "-fscm=wt": "-ppu-fscm=3",
         "--verbose": "--resource-usage",
         "-v": "--resource-usage",
-        "-disable-optimizer-consts": {
-          "needs_ignore": true
+        "-Ofc": {
+          "needs_value": true
         },
-        "--disable-optimizer-consts": {
-          "needs_ignore": true
+        "--device-stack-protector": {
+          "short": "-device-stack-protector",
+          "needs_value": true
+        },
+        "--split-compile": {
+          "short": "-split-compile",
+          "needs_value": true
+        },
+        "--sanitize": {
+          "short": "-sanitize",
+          "needs_value": true
+        },
+        "--Ofast-compile": {
+          "short": "-Ofc",
+          "needs_value": true
         }
       }
     }
