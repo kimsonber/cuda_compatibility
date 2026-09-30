@@ -1,0 +1,4 @@
+# -arch with a virtual arch (compute_80)
+RUN: nvcc --print-hgcc-only -arch compute_80 %s
+CHECK: #$ hgcc command:
+CHECK: -arch=vm_10

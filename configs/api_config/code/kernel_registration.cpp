@@ -183,6 +183,7 @@ char CUDARTAPI __cudaInitModule(void **fatCubinHandle) {
     return (char)NULL;
 }
 
+#if defined (CUDA_VERSION_INSTALL) && CUDA_VERSION_INSTALL < 12000
 void CUDARTAPI __cudaRegisterTexture(
         void                    **fatCubinHandle,
   const struct textureReference  *hostVar,
@@ -207,5 +208,6 @@ void CUDARTAPI __cudaRegisterSurface(
     fprintf(stderr, "%s is not supported by HGGC.\n", __func__);
     exit(1);
 }
+#endif
 
 }

@@ -1,0 +1,569 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvperf_target",
+        "dyn_lib_file_name": "libnvperf_target.so",
+        "dyn_lib_install_name": "libnvperf_target.so",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nvperf_target.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib1/compute-sanitizer/include",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvperf_target.so",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "NVPW_Adapter_GetDeviceIndex",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Adapter_GetDeviceIndex_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Adapter_GetDeviceIndex_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Config_GetNumPasses",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Config_GetNumPasses_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Config_GetNumPasses_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Config_GetNumPasses_V2",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Config_GetNumPasses_V2_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Config_GetNumPasses_V2_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_GetChipName",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_GetChipName_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_GetChipName_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_GetNumRanges",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_GetNumRanges_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_GetNumRanges_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_CounterData_GetRangeDescriptions",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_CounterData_GetRangeDescriptions_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_CounterData_GetRangeDescriptions_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetClockStatus",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetClockStatus_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetClockStatus_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetMigAttributes",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetMigAttributes_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetMigAttributes_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetNames",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetNames_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetNames_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_GetPciBusIds",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_GetPciBusIds_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_GetPciBusIds_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Device_SetClockSetting",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Device_SetClockSetting_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Device_SetClockSetting_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_GetDeviceCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_GetDeviceCount_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_GetDeviceCount_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_InitializeTarget",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_InitializeTarget_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_InitializeTarget_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_GetInfo",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_GetInfo_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_GetInfo_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_GetSampleTime",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_GetSampleTime_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_GetSampleTime_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_GetTriggerCount",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_GetTriggerCount_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_GetTriggerCount_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_IsDataComplete",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_IsDataComplete_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_IsDataComplete_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_PeriodicSampler_CounterData_TrimInPlace",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_PeriodicSampler_CounterData_TrimInPlace_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_PeriodicSampler_CounterData_TrimInPlace_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_Profiler_CounterData_GetRangeDescriptions",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_Profiler_CounterData_GetRangeDescriptions_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_Profiler_CounterData_GetRangeDescriptions_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "NVPW_QueryVersionNumber",
+                "signature": {
+                    "return_type": {
+                        "name": "NVPA_Status",
+                        "type_str": "NVPA_Status {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "pParams",
+                            "param_type": {
+                                "name": "NVPW_QueryVersionNumber_Params",
+                                "is_pointer": true,
+                                "type_str": "NVPW_QueryVersionNumber_Params * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libNeedImpl.so",
+        "lib_dirs": [],
+        "include_files": [],
+        "include_dirs": [
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=12081"
+            ]
+        },
+        "api_functions": []
+    },
+    "api_mappings": [
+        {
+            "source_function": "NVPW_Adapter_GetDeviceIndex",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Config_GetNumPasses",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Config_GetNumPasses_V2",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_GetChipName",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_GetNumRanges",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_CounterData_GetRangeDescriptions",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetClockStatus",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetMigAttributes",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetNames",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_GetPciBusIds",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Device_SetClockSetting",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_GetDeviceCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_InitializeTarget",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_GetInfo",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_GetSampleTime",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_GetTriggerCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_IsDataComplete",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_PeriodicSampler_CounterData_TrimInPlace",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_Profiler_CounterData_GetRangeDescriptions",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "NVPW_QueryVersionNumber",
+            "target_function": "",
+            "parameter_mapping": {}
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"NVPW_Adapter_GetDeviceIndex\",\n    \"NVPW_Config_GetNumPasses\",\n    \"NVPW_Config_GetNumPasses_V2\",\n    \"NVPW_CounterData_GetChipName\",\n    \"NVPW_CounterData_GetNumRanges\",\n    \"NVPW_CounterData_GetRangeDescriptions\",\n    \"NVPW_Device_GetClockStatus\",\n    \"NVPW_Device_GetMigAttributes\",\n    \"NVPW_Device_GetNames\",\n    \"NVPW_Device_GetPciBusIds\",\n    \"NVPW_Device_SetClockSetting\",\n    \"NVPW_GetDeviceCount\",\n    \"NVPW_InitializeTarget\",\n    \"NVPW_PeriodicSampler_CounterData_GetInfo\",\n    \"NVPW_PeriodicSampler_CounterData_GetSampleTime\",\n    \"NVPW_PeriodicSampler_CounterData_GetTriggerCount\",\n    \"NVPW_PeriodicSampler_CounterData_IsDataComplete\",\n    \"NVPW_PeriodicSampler_CounterData_TrimInPlace\",\n    \"NVPW_Profiler_CounterData_GetRangeDescriptions\",\n    \"NVPW_QueryVersionNumber\",\n};\n\nenum nvperf_targetProfileCallbackId {\n    nvperf_target_TRACE_CBID_NVPW_Adapter_GetDeviceIndex = 0,\n    nvperf_target_TRACE_CBID_NVPW_Config_GetNumPasses = 1,\n    nvperf_target_TRACE_CBID_NVPW_Config_GetNumPasses_V2 = 2,\n    nvperf_target_TRACE_CBID_NVPW_CounterData_GetChipName = 3,\n    nvperf_target_TRACE_CBID_NVPW_CounterData_GetNumRanges = 4,\n    nvperf_target_TRACE_CBID_NVPW_CounterData_GetRangeDescriptions = 5,\n    nvperf_target_TRACE_CBID_NVPW_Device_GetClockStatus = 6,\n    nvperf_target_TRACE_CBID_NVPW_Device_GetMigAttributes = 7,\n    nvperf_target_TRACE_CBID_NVPW_Device_GetNames = 8,\n    nvperf_target_TRACE_CBID_NVPW_Device_GetPciBusIds = 9,\n    nvperf_target_TRACE_CBID_NVPW_Device_SetClockSetting = 10,\n    nvperf_target_TRACE_CBID_NVPW_GetDeviceCount = 11,\n    nvperf_target_TRACE_CBID_NVPW_InitializeTarget = 12,\n    nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetInfo = 13,\n    nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetSampleTime = 14,\n    nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_GetTriggerCount = 15,\n    nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_IsDataComplete = 16,\n    nvperf_target_TRACE_CBID_NVPW_PeriodicSampler_CounterData_TrimInPlace = 17,\n    nvperf_target_TRACE_CBID_NVPW_Profiler_CounterData_GetRangeDescriptions = 18,\n    nvperf_target_TRACE_CBID_NVPW_QueryVersionNumber = 19,\n};\n\ntypedef uint32_t (*nvperf_targetRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvperf_targetIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvperf_targetProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvperf_targetProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvperf_targetProfileHandler {\n    nvperf_targetRegisterProfileDomain registerProfileDomain;\n    nvperf_targetIsProfileCallbackEnabled isCallbackEnabled;\n    nvperf_targetProfileCallbackBegin profileCallbackBegin;\n    nvperf_targetProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvperf_targetProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvperf_target\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvperf_targetRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvperf_targetIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvperf_targetProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvperf_targetProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n",
+        "pre_wrapper_call": "\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvperf_target_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvperf_target_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n",
+        "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvperf_target_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n"
+    }
+}
