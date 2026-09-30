@@ -1,0 +1,3 @@
+# Without -gencode, some default arch is used
+RUN: nvcc --print-hgcc-only %s
+CHECK: #$ hgcc command:

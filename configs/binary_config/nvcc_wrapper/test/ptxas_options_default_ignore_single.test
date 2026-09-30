@@ -1,0 +1,5 @@
+# single unmapped ptxas option is ignored via default_value_mapping
+# (-unknown-ptxas-flag is not present in the value_map, so it is ignored by default_value_mapping: ignore)
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-unknown-ptxas-flag %s
+CHECK-NOT: --llvm-options
+CHECK-NOT: -unknown-ptxas-flag
