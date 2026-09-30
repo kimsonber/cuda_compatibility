@@ -1,0 +1,4 @@
+# Short form -Xptxas with space-separated value should also pass through --warning-as-error
+RUN: nvcc --print-hgcc-only -arch compute_80 -Xptxas --warning-as-error %s
+CHECK: --llvm-options
+CHECK: --warning-as-error
