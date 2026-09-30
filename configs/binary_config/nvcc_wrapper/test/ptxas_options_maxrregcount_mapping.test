@@ -1,0 +1,4 @@
+# -maxrregcount should be mapped to -ppu-max-vreg-count via dealUnknownValueMapping
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-maxrregcount=64 %s
+CHECK: --llvm-options
+CHECK: -ppu-max-vreg-count=64

@@ -1,0 +1,62 @@
+[global]
+verbose=0
+
+[cudnn]
+cuda_header=cudnn.h
+            cudnn_adv.h
+            cudnn_backend.h
+            cudnn_graph.h
+            cudnn_cnn.h
+            cudnn_ops.h
+            cudnn_version.h
+hggc_header=acdnn.h
+            acdnn_adv_infer.h
+            acdnn_adv_train.h
+            acdnn_backend.h
+            acdnn_cnn_infer.h
+            acdnn_cnn_train.h
+            acdnn_ops_infer.h
+            acdnn_ops_train.h
+            acdnn_version.h
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_adv]
+cuda_header=cudnn_adv.h
+hggc_header=acdnn_adv_infer.h
+            acdnn_adv_train.h
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+
+[cudnn_cnn]
+cuda_header=cudnn_cnn.h
+hggc_header=acdnn_cnn_infer.h
+            acdnn_cnn_train.h
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+
+[cudnn_ops]
+cuda_header=cudnn_ops.h
+hggc_header=acdnn_ops_infer.h
+            acdnn_ops_train.h
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_graph]
+cuda_header=cudnn_backend.h
+            cudnn_graph.h
+hggc_header=acdnn.h
+            acdnn_adv_infer.h
+            acdnn_adv_train.h
+            acdnn_backend.h
+            acdnn_cnn_infer.h
+            acdnn_cnn_train.h
+            acdnn_ops_infer.h
+            acdnn_ops_train.h
+            acdnn_version.h
+source_lib=libcudnn_graph.so
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
