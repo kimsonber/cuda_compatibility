@@ -13,7 +13,7 @@
 #   PPU_HOST_ARCH             - Host architecture (default: uname -m)
 #   PPU_INSTALL_TYPE          - For cross-arch install: "native" or others (default: native)
 #   OPEN_WRAPPER_CLONE_BRANCH - Git branch for Open Wrapper (default: master)
-#   CONFIGS_TAG               - Git tag for Open Wrapper Configs (default: ${CUDA_VERSION}+ppu${RELEASE_VERSION})
+#   CONFIGS_TAG               - Git tag for Open Wrapper Configs (default: ${LIB_VERSION}+ppu${RELEASE_VERSION})
 #   CUDA_SDK_CONFIGS_REPO          - Repo name for CUDA SDK configs (default: cuda_compatibility)
 #   BASE_URL                  - Base URL for all repositories
 set -e
@@ -23,8 +23,6 @@ CUDA_SDK_CONFIGS_REPO=${CUDA_SDK_CONFIGS_REPO:-"cuda_compatibility.git"}
 CONFIG_BASE_REPO_URL=${BASE_URL:-"https://github.com/kimsonber"}
 WRAPPER_BASE_REPO_URL=${BASE_URL:-"https://github.com/rtc17"}
 DOWNLOADER_BASE_URL=${DOWNLOADER_BASE_URL:-"https://raw.githubusercontent.com/kimsonber/cuda_compatibility/refs/heads/main"}
-NOT_CHECK_SDK_COMPATIBILITY=${NOT_CHECK_SDK_COMPATIBILITY:-false}
-
 # ---------------------------------------------------------------------------
 # Logging
 # ---------------------------------------------------------------------------
@@ -61,7 +59,8 @@ OPTIONS:
                                     install            - Installs the compiled project
                                     clean              - Removes build artifacts
 
-    --cuda_version <version>       CUDA version (default: cuda-11.6)
+    --lib_version <version>        Version of wrapper lib to generate, support nccl-x.y.z so far.
+    --lib_sdk_path <path>          PPU side Lib SDK path as wrapper target, support pccl so far. (required for build/install; same as original behavior)
     --ppu_sdk_path <path>          PPU SDK path (required for build/install; same as original behavior)
     --cuda_sdk_files_path <path>   Use local CUDA SDK files path, don't download them (optional)
 
@@ -69,7 +68,6 @@ ENVIRONMENT VARIABLES:
     PPU_TARGET_ARCH   Target architecture (default: uname -m)
     PPU_HOST_ARCH     Host architecture (default: uname -m)
     PPU_INSTALL_TYPE  Install type for cross-arch ("native" uses build-cross binaries; default: native)
-    CUDA_SDK_FILES_PATH   Specify local CUDA SDK files path to be used
 
 EOF
 }
@@ -93,8 +91,12 @@ get_install_type() {
   echo "${PPU_INSTALL_TYPE:-native}"
 }
 
-get_cuda_version() {
-  echo "${CUDA_VERSION}"
+get_lib_version() {
+  echo "${LIB_VERSION}"
+}
+
+get_lib_version_with_dep() {
+  echo "${LIB_VERSION}"
 }
 
 # ---------------------------------------------------------------------------
@@ -107,13 +109,19 @@ parse_args() {
         COMMAND="${2:-}"; shift 2 ;;
       --cuda_version)
         CUDA_VERSION="${2:-}"; shift 2 ;;
+      --lib_version)
+        LIB_VERSION="${2:-}"; shift 2 ;;
       --ppu_sdk_path)
         PPU_SDK_PATH="${2:-}"; shift 2 ;;
+      --lib_sdk_path)
+        LIB_SDK_PATH="${2:-}"; shift 2 ;;
       # optional
       --cuda_sdk_files_path)
         CUDA_SDK_FILES_PATH="${2:-}"; shift 2 ;;
       --version_config_path)
         VERSION_CONFIG_PATH="${2:-}"; shift 2 ;;
+      --download_from_source)
+        DOWNLOAD_FROM_SOURCE=1; shift 1 ;;
       --help|-h)
         usage; exit 0 ;;
       *)
@@ -207,86 +215,11 @@ install_requirement() {
 }
 
 # ---------------------------------------------------------------------------
-# Get full version
-# ---------------------------------------------------------------------------
-get_libs_by_section() {
-  ini=$1
-  section=$2
-
-  awk -v sec="$section" '
-    function trim(s){ sub(/^[ \t\r\n]+/, "", s); sub(/[ \t\r\n]+$/, "", s); return s }
-
-    BEGIN { in_sec=0 }
-
-    $0 ~ "^[ \t]*\\[" sec "\\][ \t]*([;#].*)?$" { in_sec=1; next }
-
-    $0 ~ "^[ \t]*\\[" { in_sec=0 }
-
-    in_sec {
-      line=$0
-      sub(/[ \t]*[;#].*$/, "", line)
-      line=trim(line)
-      if (line ~ /^lib[0-9]+=/) {
-        split(line, kv, "=")
-        key=kv[1]; val=kv[2]
-        sub(/^lib/, "", key)
-        n=key+0
-        libs[n]=trim(val)
-      }
-    }
-
-    END {
-      for (i=1; i<=4; i++) {
-        if (i in libs) print libs[i]
-        else print ""
-      }
-    }
-  ' "$ini"
-}
-
-# ---------------------------------------------------------------------------
-# check ppu sdk compatibility
-# ---------------------------------------------------------------------------
-check_sdk_compatibility() {
-  if [[ -f "$PPU_SDK_PATH/VERSION.txt" ]]; then
-      hggcrt_ver=$(grep -o "hggcrt_version:[^[:space:]]*" "$PPU_SDK_PATH/VERSION.txt" | cut -d':' -f2 | tr -d '[:space:]\r')
-  fi
-
-  if [[ -n "$hggcrt_ver" ]]; then
-      cuda_major=$(echo "$CUDA_VERSION" | grep -oE '[0-9]+' | head -n1)
-      case "$cuda_major" in
-          11|12) [[ "$hggcrt_ver" == "v2" ]] || { echo "Error: Need PPU SDK HGGCRT v2"; exit 1; } ;;
-          13)    [[ "$hggcrt_ver" == "v3" ]] || { echo "Error: Need PPU SDK HGGCRT v3"; exit 1; } ;;
-      esac
-  fi
-}
-
-# ---------------------------------------------------------------------------
-# check whether a folder exists
-# ---------------------------------------------------------------------------
-check_folder_exist() {
-  _folder="$1"
-
-  if [ ! -d "${_folder}" ]; then
-    error "missing folder: ${_folder}."
-  fi
-}
-
-# ---------------------------------------------------------------------------
 # get sdk info
 # ---------------------------------------------------------------------------
 get_sdk_info() {
   [ -f "$1/release.yaml" ] || return 0
-  version=$(awk -F: '/version/{
-  v=$2
-  gsub(/^[[:space:]]+/, "", v)
-  gsub(/[[:space:]]+$/, "", v)
-  print v
-  exit
-}' "$1/release.yaml")
-
-version=$(printf '%s' "$version" | tr -d '\r' | xargs)
-
+  version=$(awk '/^[[:space:]]*version:[[:space:]]*/ {print $2; exit}' "$1/release.yaml")
   case "$version" in
     [0-9]*.[0-9]*.[0-9]*-*) ;;
     *) return 0 ;;
@@ -299,71 +232,73 @@ version=$(printf '%s' "$version" | tr -d '\r' | xargs)
 }
 
 # ---------------------------------------------------------------------------
-# Decompose sdk version
+# get each standalone lib list
 # ---------------------------------------------------------------------------
-decompose_sdk_info() {
-  info "full versions are: "
-  set -- $(get_libs_by_section ${OPEN_WRAPPER_PATH}/configs/input_lib_version.ini ${CUDA_VERSION})
-  for ((i=1; i<=$#; i++)); do
-    val=${!i}
-    case "$val" in
-      cuda-*)
-        CUDA_FULL_VERSION=$val
-        ;;
-      cudnn-*)
-        CUDNN_FULL_VERSION=$val
-        ;;
-      nccl-*)
-        NCCL_FULL_VERSION=$val
-        ;;
-      video-*)
-        VIDEO_FULL_VERSION=$val
-        ;;
-      *)
-        if [[ -n "$val" ]]; then
-          error "\$$i no match, cuda version: ${CUDA_VERSION} may not be supported."
-        fi
-        ;;
-    esac
+get_lib_list_by_section() {
+    local ini_file="$1"
+    local sections_var_name="$2"
+    local current_section=""
+    local line
+
+    eval "$sections_var_name=()"
+
+    while IFS= read -r line || [ -n "$line" ]; do
+        line="${line#"${line%%[![:space:]]*}"}"
+        line="${line%"${line##*[![:space:]]}"}"
+
+        [ -z "$line" ] && continue
+
+        case "$line" in
+            \#*|\;*) continue ;;
+            \[*\])
+                current_section="${line:1:${#line}-2}"
+                current_section="${current_section%%:*}"
+                eval "$sections_var_name+=(\"\$current_section\")"
+                eval "$current_section=()"
+                ;;
+            *)
+                if [ -n "$current_section" ]; then
+                    eval "$current_section+=(\"\$line\")"
+                fi
+                ;;
+        esac
+    done < "$ini_file"
+}
+
+print_standalone_libs() {
+  local array_name=$1
+  local lib_ver_in=$2
+  local ret_name=$3
+  local -n _lib_array="$array_name"
+  local -n _ret_ref="$ret_name"
+  _ret_ref=""
+  echo all supported libs:
+  for libname in "${_lib_array[@]}"; do
+      if [ "$libname" == "global" ]; then
+          continue
+      fi
+      echo "[$libname]"
+      local -n libvers="$libname"
+      for libver in "${libvers[@]}"; do
+          if [ "$libver" == "$lib_ver_in" ]; then
+              _ret_ref="1"
+          fi
+          echo "    $libver"
+      done
+      echo
   done
-  if [ -z "$CUDA_FULL_VERSION" ]; then
-    error "missing full versions, cuda version: ${CUDA_VERSION} may not be supported."
-  fi
-  info "$CUDA_FULL_VERSION $CUDNN_FULL_VERSION $NCCL_FULL_VERSION $VIDEO_FULL_VERSION"
 }
 
 # ---------------------------------------------------------------------------
 # Build steps
 # ---------------------------------------------------------------------------
-build_binary_wrapper() {
-  info "build: binary wrappers"
-  cd "${BINARY_CONFIG_PATH}"
-  mkdir -p build && cd build
-  cmake .. ${NVCC_WRAPPER_OPTIONS} -DCMAKE_INSTALL_PREFIX=${PPU_SDK_PATH}/CUDA_SDK/bin \
-                                   -DCUDA_FULL_VERSION=${CUDA_FULL_VERSION}
-  make -j"${CPU_NUM}"
-
-  compiler_cc="gcc"
-
-  if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
-    info "cross build: wrappers (${TARGET_ARCH} != ${HOST_ARCH})"
-
-    # Build cross-compiled binaries
-    cd "${BINARY_CONFIG_PATH}"
-    mkdir -p build-cross && cd build-cross
-    cmake .. ${NVCC_WRAPPER_OPTIONS} -DCMAKE_C_COMPILER=${TARGET_ARCH}-linux-gnu-gcc  \
-                                     -DCMAKE_CXX_COMPILER=${TARGET_ARCH}-linux-gnu-g++ \
-                                     -DCMAKE_INSTALL_PREFIX=${PPU_SDK_PATH}/CUDA_SDK/bin
-    make -j${CPU_NUM}
-
-    compiler_cc="${TARGET_ARCH}-linux-gnu-gcc"
-  fi
-}
 
 build_project() {
 
-  # build binary
-  build_binary_wrapper
+  compiler_cc="gcc"
+  if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
+    compiler_cc="${TARGET_ARCH}-linux-gnu-gcc"
+  fi
 
   cd "${OPEN_WRAPPER_PATH}"
 
@@ -373,7 +308,7 @@ build_project() {
   fi
 
   # build include and lib
-  CMD="python magician/main.py --cuda_version ${CUDA_VERSION} --ppu ${PPU_SDK_PATH} --output ${OUTPUT_DIR} \
+  CMD="python magician/main.py --lib_version ${LIB_VERSION} --lib_dep_version ${DEPEND_API_VERSION} --ppu ${PPU_SDK_PATH} --ppu_lib ${LIB_SDK_PATH} --output ${OUTPUT_DIR} \
          --gcc ${compiler_cc} --config_dir_path ${OPEN_WRAPPER_PATH}/configs \
          --sdk_src_path ${sdk_files_in}"
 
@@ -396,45 +331,22 @@ clean_project() {
 # Install
 # ---------------------------------------------------------------------------
 install_project() {
-  info "install to: ${PPU_SDK_PATH}"
-  mkdir -p "${PPU_SDK_PATH}"
-  rm -rf "${PPU_SDK_PATH}/CUDA_SDK"
-  cp -avr "${OUTPUT_DIR}" "${PPU_SDK_PATH}/CUDA_SDK"
+  info "install to: ${LIB_SDK_PATH}"
+  mkdir -p "${LIB_SDK_PATH}"
+  local SDK_NAME="${LIB_NAME}_wrapper"
+  echo install to SDK_NAME: $SDK_NAME
 
-  cd "${PPU_SDK_PATH}/CUDA_SDK/targets"
-  if [ "${TARGET_ARCH}" = "aarch64" ]; then
-    mv sbsa-linux "${TARGET_ARCH}-linux"
+  rm -rf "${LIB_SDK_PATH}/${SDK_NAME}"
+  cp -avr "${OUTPUT_DIR}" "${LIB_SDK_PATH}/${SDK_NAME}"
+
+  if [[ -f "${OPEN_WRAPPER_PATH}/configs/envsetup.sh" ]]; then
+    cp "${OPEN_WRAPPER_PATH}/configs/envsetup.sh" "${LIB_SDK_PATH}"
   fi
-
-  cd "${PPU_SDK_PATH}/CUDA_SDK"
-  rm -f include lib64
-  ln -s "targets/${TARGET_ARCH}-linux/include" include
-  ln -s "targets/${TARGET_ARCH}-linux/lib" lib64
-
-  if [ "${TARGET_ARCH}" != "${HOST_ARCH}" ]; then
-      if [ "${INSTALL_TYPE}" == "native" ]; then
-          cd ${BINARY_CONFIG_PATH}/build-cross
-          make install && cd -
-      else
-          cd ${BINARY_CONFIG_PATH}/build
-          make install && cd -
-      fi
-  fi
-
-  rm -rf "${PPU_SDK_PATH}/CUDA_SDK/JsonFiles" "${PPU_SDK_PATH}/CUDA_SDK/wrapper_src"
-  cp "${OPEN_WRAPPER_PATH}/configs/envsetup.sh" "${PPU_SDK_PATH}/CUDA_SDK"
 }
 
 build_and_install_project() {
   build_project
   install_project
-}
-
-download_files() {
-    ver="${CUDA_FULL_VERSION#cuda-}"
-    CMD="python open_wrapper/magician/cuda_redist_downloader.py $ver -o ${WORKSPACE}/cuda_sdk_files"
-    info "${CMD}"
-    eval "${CMD}"
 }
 
 # ---------------------------------------------------------------------------
@@ -451,12 +363,13 @@ main() {
 
   # Defaults
   COMMAND=""
-  CUDA_VERSION="$(get_cuda_version)"
   PPU_SDK_PATH="/usr/local/PPU_SDK"
   VERSION_CONFIG_PATH=""
 
   # Parse CLI args
   parse_args "$@"
+  LIB_VERSION="$(get_lib_version)"
+  LIB_NAME="${LIB_VERSION%%-*}"
 
   # Clean
   if [[ ${COMMAND} == "clean" ]]; then
@@ -467,92 +380,109 @@ main() {
     COMMAND="build_and_install"
   fi
 
-  RELEASE_BRANCH=""
-  RELEASE_VERSION=""
+  DEP_RELEASE_BRANCH=""
+  DEP_RELEASE_VERSION=""
   info "${PPU_SDK_PATH}"
   if [ -d "${PPU_SDK_PATH}" ]; then
     info "PPU SDK is ready!"
     # || true prevents set -e from exiting the script.
-    read -r RELEASE_BRANCH RELEASE_VERSION < <(get_sdk_info "${PPU_SDK_PATH}") || true
+    read -r DEP_RELEASE_BRANCH DEP_RELEASE_VERSION < <(get_sdk_info "${PPU_SDK_PATH}") || true
+    echo "PPU SDK is $DEP_RELEASE_BRANCH version!"
+  else
+    error "PPU SDK is not exist!"
+  fi
+
+  RELEASE_BRANCH=""
+  RELEASE_VERSION=""
+  info "${LIB_SDK_PATH}"
+  if [ -d "${LIB_SDK_PATH}" ]; then
+    info "LIB SDK is ready!"
+    # || true prevents set -e from exiting the script.
+    read -r RELEASE_BRANCH RELEASE_VERSION < <(get_sdk_info "${LIB_SDK_PATH}") || true
     echo "PPU SDK is $RELEASE_BRANCH version!"
   else
     error "PPU SDK is not exist!"
   fi
 
-  info "check cuda version!"
-  if [ -n "${CUDA_VERSION}" ]; then
-    info "Cuda version is ${CUDA_VERSION}!"
+  info "check lib version!"
+  if [ -n "${LIB_VERSION}" ]; then
+    info "Lib version is ${LIB_VERSION}!"
   else
-    error "Cuda version is not specified!"
+    error "Lib version is not specified!"
   fi
 
   check_downloader
-  if [ "${NOT_CHECK_SDK_COMPATIBILITY}" = "false" ]; then
-    check_sdk_compatibility
-  fi
 
   OPEN_WRAPPER_PATH=${WORKSPACE}/open_wrapper
+
+  info "check lib's depending API version"
+  if [[ "$LIB_VERSION" == *-v13 ]]; then
+    LIB_DEP_SDK_VERSION="cuda-13.1.0"
+    DEPEND_API_VERSION=13
+    info depending sdk version is $LIB_DEP_SDK_VERSION
+  else
+    LIB_DEP_SDK_VERSION="cuda-12.9.0"
+    info depending sdk version is $LIB_DEP_SDK_VERSION
+    DEPEND_API_VERSION=12
+  fi
 
   if [ -z "$NOT_CLONE_REPO" ]; then
     cd ${WORKSPACE}
     info "downloading open_wrapper ..."
-    clone "${WRAPPER_BASE_REPO_URL}/open_wrapper.git" ${OPEN_WRAPPER_PATH} ${OPEN_WRAPPER_CLONE_BRANCH}
+    clone "${WRAPPER_BASE_REPO_URL}/open_wrapper" ${OPEN_WRAPPER_PATH} ${OPEN_WRAPPER_CLONE_BRANCH}
 
     info "downloading common cuda_sdk_configs ..."
     if [ -z "$CONFIGS_TAG" ]; then
-      CONFIGS_TAG="${CUDA_VERSION}+ppu${RELEASE_VERSION}"
+      CONFIGS_TAG="${LIB_VERSION}+ppu${RELEASE_VERSION}"
     fi
     clone "${CONFIG_BASE_REPO_URL}/${CUDA_SDK_CONFIGS_REPO}" "${WORKSPACE}/cuda_sdk_configs" "${CONFIGS_TAG}"
     mv ${WORKSPACE}/cuda_sdk_configs/configs ${OPEN_WRAPPER_PATH}
     mv ${WORKSPACE}/cuda_sdk_configs/magician ${OPEN_WRAPPER_PATH}
+    rm -rf ${WORKSPACE}/cuda_sdk_configs
 
-    decompose_sdk_info
+    info "downloading depending cuda_sdk_configs ..."
+    if [ -z "$DEP_CONFIGS_TAG" ]; then
+      DEP_CONFIGS_TAG="${LIB_DEP_SDK_VERSION%.*}+ppu${DEP_RELEASE_VERSION}"
+    fi
+
+    clone "${CONFIG_BASE_REPO_URL}/${CUDA_SDK_CONFIGS_REPO}" "${WORKSPACE}/cuda_sdk_configs" "${DEP_CONFIGS_TAG}"
+    cp -rn ${WORKSPACE}/cuda_sdk_configs/configs ${OPEN_WRAPPER_PATH}
+    cp -rn ${WORKSPACE}/cuda_sdk_configs/magician ${OPEN_WRAPPER_PATH}
+    rm -rf ${WORKSPACE}/cuda_sdk_configs
+
+    LIB_VERSION_WITH_DEP="$(get_lib_version_with_dep)"
+    info lib version with depending API: $LIB_VERSION_WITH_DEP
+    get_lib_list_by_section "${OPEN_WRAPPER_PATH}/configs/lib_version_${LIB_NAME}.ini" all_libs
+    print_standalone_libs all_libs $LIB_VERSION_WITH_DEP LIB_VERSION_SUPPORTED
+    if [ -z "$LIB_VERSION_SUPPORTED" ]; then
+      error $LIB_VERSION_WITH_DEP is not supported
+    fi
 
     info "downloading common cuda_sdk_configs for specified version..."
-
+    # only for internel use
     if [ -n "${VERSION_CONFIG_PATH}" ] && [ -s "$VERSION_CONFIG_PATH" ]; then
       info "using version configs that user provides."
-      if [[ "${RELEASE_BRANCH}" == "2v1" ]]; then
-        cp -r ${VERSION_CONFIG_PATH}/${CUDA_VERSION} ${OPEN_WRAPPER_PATH}/configs
-      else
-        if [[ -n "${CUDA_FULL_VERSION}" ]]; then
-          check_folder_exist "${VERSION_CONFIG_PATH}/${CUDA_FULL_VERSION}"
-          cp -r ${VERSION_CONFIG_PATH}/${CUDA_FULL_VERSION} ${OPEN_WRAPPER_PATH}/configs
-        fi
-        if [[ -n "${CUDNN_FULL_VERSION}" ]]; then
-          check_folder_exist "${VERSION_CONFIG_PATH}/${CUDNN_FULL_VERSION}"
-          cp -r ${VERSION_CONFIG_PATH}/${CUDNN_FULL_VERSION} ${OPEN_WRAPPER_PATH}/configs
-        fi
-        if [[ -n "${NCCL_FULL_VERSION}" ]]; then
-          check_folder_exist "${VERSION_CONFIG_PATH}/${NCCL_FULL_VERSION}"
-          cp -r ${VERSION_CONFIG_PATH}/${NCCL_FULL_VERSION} ${OPEN_WRAPPER_PATH}/configs
-        fi
-        if [[ -n "${VIDEO_FULL_VERSION}" ]]; then
-          check_folder_exist "${VERSION_CONFIG_PATH}/${VIDEO_FULL_VERSION}"
-          cp -r ${VERSION_CONFIG_PATH}/${VIDEO_FULL_VERSION} ${OPEN_WRAPPER_PATH}/configs
-        fi
-      fi
+      cp -r ${VERSION_CONFIG_PATH}/${LIB_DEP_SDK_VERSION} ${OPEN_WRAPPER_PATH}/configs
+      cp -r ${VERSION_CONFIG_PATH}/${LIB_VERSION_WITH_DEP} ${OPEN_WRAPPER_PATH}/configs
     fi
-    rm -rf ${WORKSPACE}/cuda_sdk_configs
-  else
-    decompose_sdk_info
   fi
 
-  if [ -n "${CUDA_SDK_FILES_PATH}" ]; then
+  info "downloading cuda_sdk_files ..."
+  if [[ -n "${CUDA_SDK_FILES_PATH}" ]]; then
     echo "skip download sdk files, use CUDA_SDK_FILES_PATH=${CUDA_SDK_FILES_PATH}"
   else
-    info "downloading cuda_sdk_files ..."
+    curl -o ${OPEN_WRAPPER_PATH}/magician/cuda_redist_downloader.py ${DOWNLOADER_BASE_URL}/cuda_redist_downloader.py
 
-    if [[ "${RELEASE_BRANCH}" != "2v1" ]]; then
-      curl -o ${OPEN_WRAPPER_PATH}/magician/cuda_redist_downloader.py ${DOWNLOADER_BASE_URL}/cuda_redist_downloader.py
-    fi
-
-    download_files
+    ver="${LIB_DEP_SDK_VERSION#*-}"
+    CMD="python ${WORKSPACE}/open_wrapper/magician/cuda_redist_downloader.py $ver -o ${WORKSPACE}/cuda_sdk_files --components cuda"
+    info "${CMD}"
+    eval "${CMD}"
+    CMD="python ${WORKSPACE}/open_wrapper/magician/cuda_redist_downloader.py --${LIB_NAME} ${LIB_VERSION#*-} -o ${WORKSPACE}/cuda_sdk_files --components ${LIB_NAME}"
+    info "${CMD}"
+    eval "${CMD}"
   fi
 
-  OUTPUT_DIR="${OPEN_WRAPPER_PATH}/build/Output/${CUDA_VERSION}"
-  NVCC_WRAPPER_OPTIONS="-DCUDA_VERSION=${CUDA_VERSION}"
-  BINARY_CONFIG_PATH="${OPEN_WRAPPER_PATH}/configs/binary_config"
+  OUTPUT_DIR="${OPEN_WRAPPER_PATH}/build/Output/${LIB_VERSION_WITH_DEP}"
 
   check_env
 
