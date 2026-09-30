@@ -1,0 +1,67 @@
+[global]
+verbose=0
+
+[cudnn]
+cuda_header=cudnn.h
+            cudnn_adv_infer.h
+            cudnn_adv_train.h
+            cudnn_backend.h
+            cudnn_cnn_infer.h
+            cudnn_cnn_train.h
+            cudnn_ops_infer.h
+            cudnn_ops_train.h
+            cudnn_version.h
+hggc_header=acdnn.h
+            acdnn_adv_infer.h
+            acdnn_adv_train.h
+            acdnn_backend.h
+            acdnn_cnn_infer.h
+            acdnn_cnn_train.h
+            acdnn_ops_infer.h
+            acdnn_ops_train.h
+            acdnn_version.h
+target_lib=libacdnn.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_adv_infer]
+cuda_header=cudnn_adv_infer.h
+            cudnn_adv_infer_v8.h
+hggc_header=acdnn_adv_infer.h
+target_lib=libacdnn_adv_infer.so
+match_rules=cudnn:acdnn
+
+[cudnn_adv_train]
+cuda_header=cudnn_adv_train.h
+hggc_header=acdnn_adv_train.h
+target_lib=libacdnn_adv_train.so
+match_rules=cudnn:acdnn
+
+[cudnn_cnn_infer]
+cuda_header=cudnn_cnn_infer.h
+            cudnn_cnn_infer_v8.h
+hggc_header=acdnn_cnn_infer.h
+target_lib=libacdnn_cnn_infer.so
+match_rules=cudnn:acdnn
+
+[cudnn_cnn_train]
+cuda_header=cudnn_cnn_train.h
+hggc_header=acdnn_cnn_train.h
+target_lib=libacdnn_cnn_train.so
+match_rules=cudnn:acdnn
+
+[cudnn_ops_infer]
+cuda_header=cudnn_ops_infer.h
+            cudnn_ops_infer_v8.h
+hggc_header=acdnn_ops_infer.h
+target_lib=libacdnn_ops_infer.so
+match_rules=cudnn:acdnn
+            cudaStream:hggcStream
+
+[cudnn_ops_train]
+cuda_header=cudnn_ops_train.h
+            cudnn_ops_train_v8.h
+hggc_header=acdnn_ops_train.h
+target_lib=libacdnn_ops_train.so
+match_rules=cudnn:acdnn
+
