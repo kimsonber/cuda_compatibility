@@ -397,6 +397,92 @@
           ]
         }
       ]
+    },
+    {
+      "path": ["texture_types.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1189",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {"pattern": "struct __device_builtin__ textureReference",
+             "new": "#define __TEXTURE_DEFINED__\n\nstruct __device_builtin__ textureReference"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": [
+        "cuda_bf16.h"
+      ],
+      "configs": [
+        {
+          "min_version": "1230",
+          "max_version": "1239",
+          "header": "",
+          "footer": "",
+          "replace": [
+            {
+              "pattern": "#define __CUDA_BF16_TYPES_EXIST__",
+              "new": "#define __CUDA_BF16_TYPES_EXIST__\n\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n/* Macros to allow nv_bfloat16 & nv_bfloat162 to be used by inline assembly */\n#define __BFLOAT16_TO_US(var) *(reinterpret_cast<unsigned short *>(&(var)))\n#define __BFLOAT16_TO_CUS(var) *(reinterpret_cast<const unsigned short *>(&(var)))\n#define __BFLOAT162_TO_UI(var) *(reinterpret_cast<unsigned int *>(&(var)))\n#define __BFLOAT162_TO_CUI(var) *(reinterpret_cast<const unsigned int *>(&(var)))\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16();",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16()\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "explicit __CUDA_HOSTDEVICE__ __nv_bfloat16(const __half f);",
+              "new": "explicit __CUDA_HOSTDEVICE__ __nv_bfloat16(const __half f)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{\nNV_IF_ELSE_TARGET(NV_PROVIDES_SM_90,\nasm(\"{  cvt.rn.bf16.f16 %0, %1;}\\n\" : \"=h\"(__x) : \"h\"(__BFLOAT16_TO_CUS(f)));\n,\n__x = __float2bfloat16(__half2float(f)).__x;\n)\n}\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const float f);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const float f)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __float2bfloat16(f).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const double f);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const double f)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __double2bfloat16(f).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(short val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(short val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __short2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned short val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned short val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __ushort2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(int val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(int val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __int2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned int val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned int val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __uint2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const long val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const long val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{\n/* Suppress VS warning: warning C4127: conditional expression is constant */\n#if defined(_MSC_VER) && !defined(__CUDA_ARCH__)\n#pragma warning (disable: 4127)\n#endif /* _MSC_VER && !defined(__CUDA_ARCH__) */\nif (sizeof(long) == sizeof(long long))\n#if defined(_MSC_VER) && !defined(__CUDA_ARCH__)\n#pragma warning (default: 4127)\n#endif /* _MSC_VER && !defined(__CUDA_ARCH__) */\n{\n__x = __ll2bfloat16_rn(static_cast<long long>(val)).__x;\n} else {\n__x = __int2bfloat16_rn(static_cast<int>(val)).__x;\n}\n}\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const unsigned long val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(const unsigned long val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{\n/* Suppress VS warning: warning C4127: conditional expression is constant */\n#if defined(_MSC_VER) && !defined(__CUDA_ARCH__)\n#pragma warning (disable: 4127)\n#endif /* _MSC_VER && !defined(__CUDA_ARCH__) */\nif (sizeof(unsigned long) == sizeof(unsigned long long))\n#if defined(_MSC_VER) && !defined(__CUDA_ARCH__)\n#pragma warning (default: 4127)\n#endif /* _MSC_VER && !defined(__CUDA_ARCH__) */\n{\n__x = __ull2bfloat16_rn(static_cast<unsigned long long>(val)).__x;\n} else {\n__x = __uint2bfloat16_rn(static_cast<unsigned int>(val)).__x;\n}\n}\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(long long val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(long long val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __ll2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned long long val);",
+              "new": "__CUDA_HOSTDEVICE__ __nv_bfloat16(unsigned long long val)\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n{ __x = __ull2bfloat16_rn(val).__x; }\n\n#else\n;\n#endif\n"
+            },
+            {
+              "pattern": "#endif /* !defined(__CUDA_NO_BFLOAT162_OPERATORS__) */",
+              "new": "#endif /* !defined(__CUDA_NO_BFLOAT162_OPERATORS__) */\n#if (!defined(__FORCE_INCLUDE_CUDA_BF16_HPP_FROM_BF16_H__) && defined(__CUDACC_RTC__) && (__CUDACC_VER_MAJOR__ == 12) && (__CUDACC_VER_MINOR__ == 3))\n#if defined(__CPP_VERSION_AT_LEAST_11_BF16)\n#if !defined(__CUDA_NO_HALF_CONVERSIONS__)\n__CUDA_HOSTDEVICE__ __CUDA_BF16_FORCEINLINE__ __half::__half(const __nv_bfloat16 f)\n{\nNV_IF_ELSE_TARGET(NV_PROVIDES_SM_90,\nasm(\"{  cvt.rn.f16.bf16 %0, %1;}\\n\" : \"=h\"(__x) : \"h\"(__BFLOAT16_TO_CUS(f)));\n,\n__x = __float2half_rn(__bfloat162float(f)).__x;\n)\n}\n#endif\n#endif /* #if defined(__CPP_VERSION_AT_LEAST_11_BF16) */\n#endif\n"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

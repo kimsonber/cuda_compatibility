@@ -1,0 +1,5348 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cupti
+  dyn_lib_file_name: libcupti.so.2021.3.0
+  dyn_lib_install_name: libcupti.so.2021.3.0
+  sta_lib_file_name: libcupti_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cupti.h
+    - cupti_result.h
+    - cupti_target.h
+    - cupti_version.h
+    - cupti_activity.h
+    - cupti_callbacks.h
+    - cupti_events.h
+    - cupti_metrics.h
+    - cupti_profiler_target.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcupti.so.11.5
+      - --no-as-needed -lpthread
+      - "--version-script=<(echo \"libcupti.so.11.5 {global:  *;local:  *;};\")"
+      - --default-symver
+  api_functions:
+    - name: cuptiActivityConfigurePCSampling
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: config
+            param_type:
+              name: CUpti_ActivityPCSamplingConfig
+              is_pointer: true
+              type_str: CUpti_ActivityPCSamplingConfig * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityConfigureUnifiedMemoryCounter
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: config
+            param_type:
+              name: CUpti_ActivityUnifiedMemoryCounterConfig
+              is_pointer: true
+              type_str: CUpti_ActivityUnifiedMemoryCounterConfig * {}
+          - name: count
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityDisable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: CUpti_ActivityKind
+              type_str: CUpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityDisableContext
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: kind
+            param_type:
+              name: CUpti_ActivityKind
+              type_str: CUpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityEnable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: CUpti_ActivityKind
+              type_str: CUpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityEnableContext
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: kind
+            param_type:
+              name: CUpti_ActivityKind
+              type_str: CUpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityEnableLatencyTimestamps
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityEnableLaunchAttributes
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityFlush
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: flag
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityFlushAll
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: flag
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityFlushPeriod
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: time
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: attr
+            param_type:
+              name: CUpti_ActivityAttribute
+              type_str: CUpti_ActivityAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityGetNextRecord
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: buffer
+            param_type:
+              name: uint8_t
+              is_pointer: true
+              type_str: uint8_t * {}
+          - name: validBufferSizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: record
+            param_type:
+              name: CUpti_Activity
+              is_pointer: true
+              type_str: CUpti_Activity ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityGetNumDroppedRecords
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: dropped
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityPopExternalCorrelationId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: CUpti_ExternalCorrelationKind
+              type_str: CUpti_ExternalCorrelationKind {}
+          - name: lastId
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityPushExternalCorrelationId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: CUpti_ExternalCorrelationKind
+              type_str: CUpti_ExternalCorrelationKind {}
+          - name: id
+            param_type:
+              name: uint64_t
+              type_str: uint64_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivityRegisterCallbacks
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: funcBufferRequested
+            param_type:
+              name: CUpti_BuffersCallbackRequestFunc
+              type_str: CUpti_BuffersCallbackRequestFunc {}
+          - name: funcBufferCompleted
+            param_type:
+              name: CUpti_BuffersCallbackCompleteFunc
+              type_str: CUpti_BuffersCallbackCompleteFunc {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiActivitySetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: attr
+            param_type:
+              name: CUpti_ActivityAttribute
+              type_str: CUpti_ActivityAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiComputeCapabilitySupported
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: major
+            param_type:
+              name: int
+              type_str: int {}
+          - name: minor
+            param_type:
+              name: int
+              type_str: int {}
+          - name: support
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceEnumEventDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainArray
+            param_type:
+              name: CUpti_EventDomainID
+              is_pointer: true
+              type_str: CUpti_EventDomainID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceEnumMetrics
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: metricArray
+            param_type:
+              name: CUpti_MetricID
+              is_pointer: true
+              type_str: CUpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: attrib
+            param_type:
+              name: CUpti_DeviceAttribute
+              type_str: CUpti_DeviceAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetChipName
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Device_GetChipName_Params
+              is_pointer: true
+              type_str: CUpti_Device_GetChipName_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetEventDomainAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: eventDomain
+            param_type:
+              name: CUpti_EventDomainID
+              type_str: CUpti_EventDomainID {}
+          - name: attrib
+            param_type:
+              name: CUpti_EventDomainAttribute
+              type_str: CUpti_EventDomainAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetNumEventDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: numDomains
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetNumMetrics
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: numMetrics
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceGetTimestamp
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: timestamp
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceSupported
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: dev
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: support
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDeviceVirtualizationMode
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: dev
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: mode
+            param_type:
+              name: CUpti_DeviceVirtualizationMode
+              is_pointer: true
+              type_str: CUpti_DeviceVirtualizationMode * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiDisableKernelReplayMode
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnableAllDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              type_str: CUpti_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnableCallback
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              type_str: CUpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: CUpti_CallbackDomain
+              type_str: CUpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: CUpti_CallbackId
+              type_str: CUpti_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnableDomain
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              type_str: CUpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: CUpti_CallbackDomain
+              type_str: CUpti_CallbackDomain {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnableKernelReplayMode
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnumEventDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainArray
+            param_type:
+              name: CUpti_EventDomainID
+              is_pointer: true
+              type_str: CUpti_EventDomainID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEnumMetrics
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: metricArray
+            param_type:
+              name: CUpti_MetricID
+              is_pointer: true
+              type_str: CUpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventDomainEnumEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: CUpti_EventDomainID
+              type_str: CUpti_EventDomainID {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventDomainGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: CUpti_EventDomainID
+              type_str: CUpti_EventDomainID {}
+          - name: attrib
+            param_type:
+              name: CUpti_EventDomainAttribute
+              type_str: CUpti_EventDomainAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventDomainGetNumEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: CUpti_EventDomainID
+              type_str: CUpti_EventDomainID {}
+          - name: numEvents
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: event
+            param_type:
+              name: CUpti_EventID
+              type_str: CUpti_EventID {}
+          - name: attrib
+            param_type:
+              name: CUpti_EventAttribute
+              type_str: CUpti_EventAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGetIdFromName
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: eventName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: event
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupAddEvent
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: event
+            param_type:
+              name: CUpti_EventID
+              type_str: CUpti_EventID {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupCreate
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              is_pointer: true
+              type_str: CUpti_EventGroup * {}
+          - name: flags
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupDestroy
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupDisable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupEnable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: attrib
+            param_type:
+              name: CUpti_EventGroupAttribute
+              type_str: CUpti_EventGroupAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupReadAllEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: flags
+            param_type:
+              name: CUpti_ReadEventFlags
+              type_str: CUpti_ReadEventFlags {}
+          - name: eventValueBufferSizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventValueBuffer
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventIdArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+          - name: numEventIdsRead
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupReadEvent
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: flags
+            param_type:
+              name: CUpti_ReadEventFlags
+              type_str: CUpti_ReadEventFlags {}
+          - name: event
+            param_type:
+              name: CUpti_EventID
+              type_str: CUpti_EventID {}
+          - name: eventValueBufferSizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventValueBuffer
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupRemoveAllEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupRemoveEvent
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: event
+            param_type:
+              name: CUpti_EventID
+              type_str: CUpti_EventID {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupResetAllEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupSetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: CUpti_EventGroup
+              type_str: CUpti_EventGroup {}
+          - name: attrib
+            param_type:
+              name: CUpti_EventGroupAttribute
+              type_str: CUpti_EventGroupAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupSetDisable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroupSet
+            param_type:
+              name: CUpti_EventGroupSet
+              is_pointer: true
+              type_str: CUpti_EventGroupSet * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupSetEnable
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroupSet
+            param_type:
+              name: CUpti_EventGroupSet
+              is_pointer: true
+              type_str: CUpti_EventGroupSet * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupSetsCreate
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+          - name: eventGroupPasses
+            param_type:
+              name: CUpti_EventGroupSets
+              is_pointer: true
+              type_str: CUpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiEventGroupSetsDestroy
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: eventGroupSets
+            param_type:
+              name: CUpti_EventGroupSets
+              is_pointer: true
+              type_str: CUpti_EventGroupSets * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiFinalize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetAutoBoostState
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: state
+            param_type:
+              name: CUpti_ActivityAutoBoostState
+              is_pointer: true
+              type_str: CUpti_ActivityAutoBoostState * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetCallbackName
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: domain
+            param_type:
+              name: CUpti_CallbackDomain
+              type_str: CUpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetCallbackState
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              type_str: CUpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: CUpti_CallbackDomain
+              type_str: CUpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: CUpti_CallbackId
+              type_str: CUpti_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetContextId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: contextId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetDeviceId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: deviceId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetGraphId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: graph
+            param_type:
+              name: CUgraph
+              type_str: CUgraph {}
+          - name: pId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetGraphNodeId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: node
+            param_type:
+              name: CUgraphNode
+              type_str: CUgraphNode {}
+          - name: nodeId
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetLastError
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetNumEventDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: numDomains
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetNumMetrics
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: numMetrics
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetResultString
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: result
+            param_type:
+              name: CUptiResult
+              type_str: CUptiResult {}
+          - name: str
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetStreamId
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetStreamIdEx
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+          - name: perThreadStream
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetThreadIdType
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: type
+            param_type:
+              name: CUpti_ActivityThreadIdType
+              is_pointer: true
+              type_str: CUpti_ActivityThreadIdType * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetTimestamp
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: timestamp
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiGetVersion
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: version
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiKernelReplaySubscribeUpdate
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: updateFunc
+            param_type:
+              name: CUpti_KernelReplayUpdateFunc
+              type_str: CUpti_KernelReplayUpdateFunc {}
+          - name: customData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricCreateEventGroupSets
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: metricIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: metricIdArray
+            param_type:
+              name: CUpti_MetricID
+              is_pointer: true
+              type_str: CUpti_MetricID * {}
+          - name: eventGroupPasses
+            param_type:
+              name: CUpti_EventGroupSets
+              is_pointer: true
+              type_str: CUpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricEnumEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventIdArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricEnumProperties
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: propIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: propIdArray
+            param_type:
+              name: CUpti_MetricPropertyID
+              is_pointer: true
+              type_str: CUpti_MetricPropertyID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetAttribute
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: attrib
+            param_type:
+              name: CUpti_MetricAttribute
+              type_str: CUpti_MetricAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetIdFromName
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: metricName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              is_pointer: true
+              type_str: CUpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetNumEvents
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: numEvents
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetNumProperties
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: numProp
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetRequiredEventGroupSets
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: eventGroupSets
+            param_type:
+              name: CUpti_EventGroupSets
+              is_pointer: true
+              type_str: CUpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetValue
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: CUdevice
+              type_str: CUdevice {}
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+          - name: eventValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: timeDuration
+            param_type:
+              name: uint64_t
+              type_str: uint64_t {}
+          - name: metricValue
+            param_type:
+              name: CUpti_MetricValue
+              is_pointer: true
+              type_str: CUpti_MetricValue * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiMetricGetValue2
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: CUpti_MetricID
+              type_str: CUpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: CUpti_EventID
+              is_pointer: true
+              type_str: CUpti_EventID * {}
+          - name: eventValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: propIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: propIdArray
+            param_type:
+              name: CUpti_MetricPropertyID
+              is_pointer: true
+              type_str: CUpti_MetricPropertyID * {}
+          - name: propValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: propValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: metricValue
+            param_type:
+              name: CUpti_MetricValue
+              is_pointer: true
+              type_str: CUpti_MetricValue * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerBeginPass
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_BeginPass_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_BeginPass_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerBeginSession
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_BeginSession_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_BeginSession_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerCounterDataImageCalculateScratchBufferSize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_CounterDataImage_CalculateScratchBufferSize_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_CounterDataImage_CalculateScratchBufferSize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerCounterDataImageCalculateSize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_CounterDataImage_CalculateSize_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_CounterDataImage_CalculateSize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerCounterDataImageInitialize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_CounterDataImage_Initialize_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_CounterDataImage_Initialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerCounterDataImageInitializeScratchBuffer
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_CounterDataImage_InitializeScratchBuffer_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_CounterDataImage_InitializeScratchBuffer_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerDeInitialize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_DeInitialize_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_DeInitialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerDeviceSupported
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_DeviceSupported_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_DeviceSupported_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerDisableProfiling
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_DisableProfiling_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_DisableProfiling_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerEnableProfiling
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_EnableProfiling_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_EnableProfiling_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerEndPass
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_EndPass_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_EndPass_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerEndSession
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_EndSession_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_EndSession_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerFlushCounterData
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_FlushCounterData_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_FlushCounterData_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerGetCounterAvailability
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_GetCounterAvailability_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_GetCounterAvailability_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerInitialize
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_Initialize_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_Initialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerIsPassCollected
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_IsPassCollected_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_IsPassCollected_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerPopRange
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_PopRange_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_PopRange_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerPushRange
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_PushRange_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_PushRange_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerSetConfig
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_SetConfig_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_SetConfig_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiProfilerUnsetConfig
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUpti_Profiler_UnsetConfig_Params
+              is_pointer: true
+              type_str: CUpti_Profiler_UnsetConfig_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiSetEventCollectionMode
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: mode
+            param_type:
+              name: CUpti_EventCollectionMode
+              type_str: CUpti_EventCollectionMode {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiSetThreadIdType
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: type
+            param_type:
+              name: CUpti_ActivityThreadIdType
+              type_str: CUpti_ActivityThreadIdType {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiSubscribe
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              is_pointer: true
+              type_str: CUpti_SubscriberHandle * {}
+          - name: callback
+            param_type:
+              name: CUpti_CallbackFunc
+              type_str: CUpti_CallbackFunc {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiSupportedDomains
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: domainCount
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainTable
+            param_type:
+              name: CUpti_DomainTable
+              is_pointer: true
+              type_str: CUpti_DomainTable * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuptiUnsubscribe
+      signature:
+        return_type:
+          name: CUptiResult
+          type_str: CUptiResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: CUpti_SubscriberHandle
+              type_str: CUpti_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgpti.so
+  lib_dirs:
+    []
+  include_files:
+    - hgpti.h
+    - hgpti_pmsampling.h
+    - hgpti_result.h
+    - hgpti_target.h
+    - hgpti_activity.h
+    - hgpti_callbacks.h
+    - hgpti_events.h
+    - hgpti_metrics.h
+    - hgpti_version.h
+    - hgpti_profiler_host.h
+    - hgpti_profiler_target.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=11051
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: hgptiActivityConfigurePCSampling
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: config
+            param_type:
+              name: HGpti_ActivityPCSamplingConfig
+              is_pointer: true
+              type_str: HGpti_ActivityPCSamplingConfig * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityConfigureUnifiedMemoryCounter
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: config
+            param_type:
+              name: HGpti_ActivityUnifiedMemoryCounterConfig
+              is_pointer: true
+              type_str: HGpti_ActivityUnifiedMemoryCounterConfig * {}
+          - name: count
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityDisable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: HGpti_ActivityKind
+              type_str: HGpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityDisableContext
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: kind
+            param_type:
+              name: HGpti_ActivityKind
+              type_str: HGpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityEnable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: HGpti_ActivityKind
+              type_str: HGpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityEnableContext
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: kind
+            param_type:
+              name: HGpti_ActivityKind
+              type_str: HGpti_ActivityKind {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityEnableLatencyTimestamps
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityEnableLaunchAttributes
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityFlush
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: flag
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityFlushAll
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: flag
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityFlushPeriod
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: time
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: attr
+            param_type:
+              name: HGpti_ActivityAttribute
+              type_str: HGpti_ActivityAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityGetNextRecord
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: buffer
+            param_type:
+              name: uint8_t
+              is_pointer: true
+              type_str: uint8_t * {}
+          - name: validBufferSizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: record
+            param_type:
+              name: HGpti_Activity
+              is_pointer: true
+              type_str: HGpti_Activity ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityGetNumDroppedRecords
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: dropped
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityPopExternalCorrelationId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: HGpti_ExternalCorrelationKind
+              type_str: HGpti_ExternalCorrelationKind {}
+          - name: lastId
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityPushExternalCorrelationId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: kind
+            param_type:
+              name: HGpti_ExternalCorrelationKind
+              type_str: HGpti_ExternalCorrelationKind {}
+          - name: id
+            param_type:
+              name: uint64_t
+              type_str: uint64_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivityRegisterCallbacks
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: funcBufferRequested
+            param_type:
+              name: HGpti_BuffersCallbackRequestFunc
+              type_str: HGpti_BuffersCallbackRequestFunc {}
+          - name: funcBufferCompleted
+            param_type:
+              name: HGpti_BuffersCallbackCompleteFunc
+              type_str: HGpti_BuffersCallbackCompleteFunc {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiActivitySetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: attr
+            param_type:
+              name: HGpti_ActivityAttribute
+              type_str: HGpti_ActivityAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiComputeCapabilitySupported
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: major
+            param_type:
+              name: int
+              type_str: int {}
+          - name: minor
+            param_type:
+              name: int
+              type_str: int {}
+          - name: support
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceEnumEventDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainArray
+            param_type:
+              name: HGpti_EventDomainID
+              is_pointer: true
+              type_str: HGpti_EventDomainID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceEnumMetrics
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: metricArray
+            param_type:
+              name: HGpti_MetricID
+              is_pointer: true
+              type_str: HGpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: attrib
+            param_type:
+              name: HGpti_DeviceAttribute
+              type_str: HGpti_DeviceAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceGetChipName
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Device_GetChipName_Params
+              is_pointer: true
+              type_str: HGpti_Device_GetChipName_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceGetEventDomainAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: eventDomain
+            param_type:
+              name: HGpti_EventDomainID
+              type_str: HGpti_EventDomainID {}
+          - name: attrib
+            param_type:
+              name: HGpti_EventDomainAttribute
+              type_str: HGpti_EventDomainAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceGetNumEventDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: numDomains
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceGetNumMetrics
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: numMetrics
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceSupported
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: dev
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: support
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDeviceVirtualizationMode
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: dev
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: mode
+            param_type:
+              name: HGpti_DeviceVirtualizationMode
+              is_pointer: true
+              type_str: HGpti_DeviceVirtualizationMode * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiDisableKernelReplayMode
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnableAllDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              type_str: HGpti_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnableCallback
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              type_str: HGpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: HGpti_CallbackDomain
+              type_str: HGpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: HGpti_CallbackId
+              type_str: HGpti_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnableDomain
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              type_str: HGpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: HGpti_CallbackDomain
+              type_str: HGpti_CallbackDomain {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnableKernelReplayMode
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnumEventDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainArray
+            param_type:
+              name: HGpti_EventDomainID
+              is_pointer: true
+              type_str: HGpti_EventDomainID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEnumMetrics
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: metricArray
+            param_type:
+              name: HGpti_MetricID
+              is_pointer: true
+              type_str: HGpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventDomainEnumEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: HGpti_EventDomainID
+              type_str: HGpti_EventDomainID {}
+          - name: arraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventDomainGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: HGpti_EventDomainID
+              type_str: HGpti_EventDomainID {}
+          - name: attrib
+            param_type:
+              name: HGpti_EventDomainAttribute
+              type_str: HGpti_EventDomainAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventDomainGetNumEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventDomain
+            param_type:
+              name: HGpti_EventDomainID
+              type_str: HGpti_EventDomainID {}
+          - name: numEvents
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: event
+            param_type:
+              name: HGpti_EventID
+              type_str: HGpti_EventID {}
+          - name: attrib
+            param_type:
+              name: HGpti_EventAttribute
+              type_str: HGpti_EventAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGetIdFromName
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: eventName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: event
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupAddEvent
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: event
+            param_type:
+              name: HGpti_EventID
+              type_str: HGpti_EventID {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupCreate
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              is_pointer: true
+              type_str: HGpti_EventGroup * {}
+          - name: flags
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupDestroy
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupDisable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupEnable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: attrib
+            param_type:
+              name: HGpti_EventGroupAttribute
+              type_str: HGpti_EventGroupAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupReadAllEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: flags
+            param_type:
+              name: HGpti_ReadEventFlags
+              type_str: HGpti_ReadEventFlags {}
+          - name: eventValueBufferSizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventValueBuffer
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventIdArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+          - name: numEventIdsRead
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupReadEvent
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: flags
+            param_type:
+              name: HGpti_ReadEventFlags
+              type_str: HGpti_ReadEventFlags {}
+          - name: event
+            param_type:
+              name: HGpti_EventID
+              type_str: HGpti_EventID {}
+          - name: eventValueBufferSizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventValueBuffer
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupRemoveAllEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupRemoveEvent
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: event
+            param_type:
+              name: HGpti_EventID
+              type_str: HGpti_EventID {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupResetAllEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupSetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroup
+            param_type:
+              name: HGpti_EventGroup
+              type_str: HGpti_EventGroup {}
+          - name: attrib
+            param_type:
+              name: HGpti_EventGroupAttribute
+              type_str: HGpti_EventGroupAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupSetDisable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroupSet
+            param_type:
+              name: HGpti_EventGroupSet
+              is_pointer: true
+              type_str: HGpti_EventGroupSet * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupSetEnable
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroupSet
+            param_type:
+              name: HGpti_EventGroupSet
+              is_pointer: true
+              type_str: HGpti_EventGroupSet * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupSetsCreate
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+          - name: eventGroupPasses
+            param_type:
+              name: HGpti_EventGroupSets
+              is_pointer: true
+              type_str: HGpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiEventGroupSetsDestroy
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: eventGroupSets
+            param_type:
+              name: HGpti_EventGroupSets
+              is_pointer: true
+              type_str: HGpti_EventGroupSets * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiFinalize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetAutoBoostState
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: state
+            param_type:
+              name: HGpti_ActivityAutoBoostState
+              is_pointer: true
+              type_str: HGpti_ActivityAutoBoostState * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetCallbackName
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: domain
+            param_type:
+              name: HGpti_CallbackDomain
+              type_str: HGpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetCallbackState
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              type_str: HGpti_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: HGpti_CallbackDomain
+              type_str: HGpti_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: HGpti_CallbackId
+              type_str: HGpti_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetContextId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: contextId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetDeviceId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: deviceId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetGraphId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: graph
+            param_type:
+              name: HGgraph
+              type_str: HGgraph {}
+          - name: pId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetGraphNodeId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: node
+            param_type:
+              name: HGgraphNode
+              type_str: HGgraphNode {}
+          - name: nodeId
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetLastError
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetNumEventDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: numDomains
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetNumMetrics
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: numMetrics
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetResultString
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: result
+            param_type:
+              name: HGptiResult
+              type_str: HGptiResult {}
+          - name: str
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetStreamId
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: stream
+            param_type:
+              name: HGstream
+              type_str: HGstream {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetStreamIdEx
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: stream
+            param_type:
+              name: HGstream
+              type_str: HGstream {}
+          - name: perThreadStream
+            param_type:
+              name: uint8_t
+              type_str: uint8_t {}
+          - name: streamId
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetThreadIdType
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: type
+            param_type:
+              name: HGpti_ActivityThreadIdType
+              is_pointer: true
+              type_str: HGpti_ActivityThreadIdType * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetTimestamp
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: timestamp
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiGetVersion
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: version
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiKernelReplaySubscribeUpdate
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: updateFunc
+            param_type:
+              name: HGpti_KernelReplayUpdateFunc
+              type_str: HGpti_KernelReplayUpdateFunc {}
+          - name: customData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricCreateEventGroupSets
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: metricIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: metricIdArray
+            param_type:
+              name: HGpti_MetricID
+              is_pointer: true
+              type_str: HGpti_MetricID * {}
+          - name: eventGroupPasses
+            param_type:
+              name: HGpti_EventGroupSets
+              is_pointer: true
+              type_str: HGpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricEnumEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: eventIdArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricEnumProperties
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: propIdArraySizeBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: propIdArray
+            param_type:
+              name: HGpti_MetricPropertyID
+              is_pointer: true
+              type_str: HGpti_MetricPropertyID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetAttribute
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: attrib
+            param_type:
+              name: HGpti_MetricAttribute
+              type_str: HGpti_MetricAttribute {}
+          - name: valueSize
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: value
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetIdFromName
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: metricName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              is_pointer: true
+              type_str: HGpti_MetricID * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetNumEvents
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: numEvents
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetNumProperties
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: numProp
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetRequiredEventGroupSets
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: eventGroupSets
+            param_type:
+              name: HGpti_EventGroupSets
+              is_pointer: true
+              type_str: HGpti_EventGroupSets ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetValue
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: device
+            param_type:
+              name: HGdevice
+              type_str: HGdevice {}
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+          - name: eventValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: timeDuration
+            param_type:
+              name: uint64_t
+              type_str: uint64_t {}
+          - name: metricValue
+            param_type:
+              name: HGpti_MetricValue
+              is_pointer: true
+              type_str: HGpti_MetricValue * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiMetricGetValue2
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: metric
+            param_type:
+              name: HGpti_MetricID
+              type_str: HGpti_MetricID {}
+          - name: eventIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventIdArray
+            param_type:
+              name: HGpti_EventID
+              is_pointer: true
+              type_str: HGpti_EventID * {}
+          - name: eventValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: eventValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: propIdArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: propIdArray
+            param_type:
+              name: HGpti_MetricPropertyID
+              is_pointer: true
+              type_str: HGpti_MetricPropertyID * {}
+          - name: propValueArraySizeBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: propValueArray
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: metricValue
+            param_type:
+              name: HGpti_MetricValue
+              is_pointer: true
+              type_str: HGpti_MetricValue * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerBeginPass
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_BeginPass_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_BeginPass_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerBeginSession
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_BeginSession_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_BeginSession_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerCounterDataImageCalculateScratchBufferSize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_CounterDataImage_CalculateScratchBufferSize_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_CounterDataImage_CalculateScratchBufferSize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerCounterDataImageCalculateSize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_CounterDataImage_CalculateSize_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_CounterDataImage_CalculateSize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerCounterDataImageInitialize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_CounterDataImage_Initialize_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_CounterDataImage_Initialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerCounterDataImageInitializeScratchBuffer
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_CounterDataImage_InitializeScratchBuffer_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_CounterDataImage_InitializeScratchBuffer_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerDeInitialize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_DeInitialize_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_DeInitialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerDeviceSupported
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_DeviceSupported_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_DeviceSupported_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerDisableProfiling
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_DisableProfiling_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_DisableProfiling_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerEnableProfiling
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_EnableProfiling_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_EnableProfiling_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerEndPass
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_EndPass_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_EndPass_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerEndSession
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_EndSession_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_EndSession_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerFlushCounterData
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_FlushCounterData_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_FlushCounterData_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerGetCounterAvailability
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_GetCounterAvailability_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_GetCounterAvailability_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerInitialize
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_Initialize_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_Initialize_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerIsPassCollected
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_IsPassCollected_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_IsPassCollected_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerPopRange
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_PopRange_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_PopRange_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerPushRange
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_PushRange_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_PushRange_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerSetConfig
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_SetConfig_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_SetConfig_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiProfilerUnsetConfig
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: HGpti_Profiler_UnsetConfig_Params
+              is_pointer: true
+              type_str: HGpti_Profiler_UnsetConfig_Params * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiSetEventCollectionMode
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: context
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: mode
+            param_type:
+              name: HGpti_EventCollectionMode
+              type_str: HGpti_EventCollectionMode {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiSetThreadIdType
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: type
+            param_type:
+              name: HGpti_ActivityThreadIdType
+              type_str: HGpti_ActivityThreadIdType {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiSubscribe
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              is_pointer: true
+              type_str: HGpti_SubscriberHandle * {}
+          - name: callback
+            param_type:
+              name: HGpti_CallbackFunc
+              type_str: HGpti_CallbackFunc {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiSupportedDomains
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: domainCount
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: domainTable
+            param_type:
+              name: HGpti_DomainTable
+              is_pointer: true
+              type_str: HGpti_DomainTable * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgptiUnsubscribe
+      signature:
+        return_type:
+          name: HGptiResult
+          type_str: HGptiResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: HGpti_SubscriberHandle
+              type_str: HGpti_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: cuptiActivityConfigurePCSampling
+    target_function: hgptiActivityConfigurePCSampling
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityConfigureUnifiedMemoryCounter
+    target_function: hgptiActivityConfigureUnifiedMemoryCounter
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityDisable
+    target_function: hgptiActivityDisable
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityDisableContext
+    target_function: hgptiActivityDisableContext
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityEnable
+    target_function: hgptiActivityEnable
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityEnableContext
+    target_function: hgptiActivityEnableContext
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityEnableLatencyTimestamps
+    target_function: hgptiActivityEnableLatencyTimestamps
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityEnableLaunchAttributes
+    target_function: hgptiActivityEnableLaunchAttributes
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityFlush
+    target_function: hgptiActivityFlush
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityFlushAll
+    target_function: hgptiActivityFlushAll
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityFlushPeriod
+    target_function: hgptiActivityFlushPeriod
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityGetAttribute
+    target_function: hgptiActivityGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityGetNextRecord
+    target_function: hgptiActivityGetNextRecord
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityGetNumDroppedRecords
+    target_function: hgptiActivityGetNumDroppedRecords
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityPopExternalCorrelationId
+    target_function: hgptiActivityPopExternalCorrelationId
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityPushExternalCorrelationId
+    target_function: hgptiActivityPushExternalCorrelationId
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivityRegisterCallbacks
+    target_function: hgptiActivityRegisterCallbacks
+    parameter_mapping:
+      {}
+  - source_function: cuptiActivitySetAttribute
+    target_function: hgptiActivitySetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiComputeCapabilitySupported
+    target_function: hgptiComputeCapabilitySupported
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceEnumEventDomains
+    target_function: hgptiDeviceEnumEventDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceEnumMetrics
+    target_function: hgptiDeviceEnumMetrics
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetAttribute
+    target_function: hgptiDeviceGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetChipName
+    target_function: hgptiDeviceGetChipName
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetEventDomainAttribute
+    target_function: hgptiDeviceGetEventDomainAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetNumEventDomains
+    target_function: hgptiDeviceGetNumEventDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetNumMetrics
+    target_function: hgptiDeviceGetNumMetrics
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceGetTimestamp
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceSupported
+    target_function: hgptiDeviceSupported
+    parameter_mapping:
+      {}
+  - source_function: cuptiDeviceVirtualizationMode
+    target_function: hgptiDeviceVirtualizationMode
+    parameter_mapping:
+      {}
+  - source_function: cuptiDisableKernelReplayMode
+    target_function: hgptiDisableKernelReplayMode
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnableAllDomains
+    target_function: hgptiEnableAllDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnableCallback
+    target_function: hgptiEnableCallback
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnableDomain
+    target_function: hgptiEnableDomain
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnableKernelReplayMode
+    target_function: hgptiEnableKernelReplayMode
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnumEventDomains
+    target_function: hgptiEnumEventDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiEnumMetrics
+    target_function: hgptiEnumMetrics
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventDomainEnumEvents
+    target_function: hgptiEventDomainEnumEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventDomainGetAttribute
+    target_function: hgptiEventDomainGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventDomainGetNumEvents
+    target_function: hgptiEventDomainGetNumEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGetAttribute
+    target_function: hgptiEventGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGetIdFromName
+    target_function: hgptiEventGetIdFromName
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupAddEvent
+    target_function: hgptiEventGroupAddEvent
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupCreate
+    target_function: hgptiEventGroupCreate
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupDestroy
+    target_function: hgptiEventGroupDestroy
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupDisable
+    target_function: hgptiEventGroupDisable
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupEnable
+    target_function: hgptiEventGroupEnable
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupGetAttribute
+    target_function: hgptiEventGroupGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupReadAllEvents
+    target_function: hgptiEventGroupReadAllEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupReadEvent
+    target_function: hgptiEventGroupReadEvent
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupRemoveAllEvents
+    target_function: hgptiEventGroupRemoveAllEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupRemoveEvent
+    target_function: hgptiEventGroupRemoveEvent
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupResetAllEvents
+    target_function: hgptiEventGroupResetAllEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupSetAttribute
+    target_function: hgptiEventGroupSetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupSetDisable
+    target_function: hgptiEventGroupSetDisable
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupSetEnable
+    target_function: hgptiEventGroupSetEnable
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupSetsCreate
+    target_function: hgptiEventGroupSetsCreate
+    parameter_mapping:
+      {}
+  - source_function: cuptiEventGroupSetsDestroy
+    target_function: hgptiEventGroupSetsDestroy
+    parameter_mapping:
+      {}
+  - source_function: cuptiFinalize
+    target_function: hgptiFinalize
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetAutoBoostState
+    target_function: hgptiGetAutoBoostState
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetCallbackName
+    target_function: hgptiGetCallbackName
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetCallbackState
+    target_function: hgptiGetCallbackState
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetContextId
+    target_function: hgptiGetContextId
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetDeviceId
+    target_function: hgptiGetDeviceId
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetGraphId
+    target_function: hgptiGetGraphId
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetGraphNodeId
+    target_function: hgptiGetGraphNodeId
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetLastError
+    target_function: hgptiGetLastError
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetNumEventDomains
+    target_function: hgptiGetNumEventDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetNumMetrics
+    target_function: hgptiGetNumMetrics
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetResultString
+    target_function: hgptiGetResultString
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetStreamId
+    target_function: hgptiGetStreamId
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetStreamIdEx
+    target_function: hgptiGetStreamIdEx
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetThreadIdType
+    target_function: hgptiGetThreadIdType
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetTimestamp
+    target_function: hgptiGetTimestamp
+    parameter_mapping:
+      {}
+  - source_function: cuptiGetVersion
+    target_function: hgptiGetVersion
+    parameter_mapping:
+      {}
+  - source_function: cuptiKernelReplaySubscribeUpdate
+    target_function: hgptiKernelReplaySubscribeUpdate
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricCreateEventGroupSets
+    target_function: hgptiMetricCreateEventGroupSets
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricEnumEvents
+    target_function: hgptiMetricEnumEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricEnumProperties
+    target_function: hgptiMetricEnumProperties
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetAttribute
+    target_function: hgptiMetricGetAttribute
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetIdFromName
+    target_function: hgptiMetricGetIdFromName
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetNumEvents
+    target_function: hgptiMetricGetNumEvents
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetNumProperties
+    target_function: hgptiMetricGetNumProperties
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetRequiredEventGroupSets
+    target_function: hgptiMetricGetRequiredEventGroupSets
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetValue
+    target_function: hgptiMetricGetValue
+    parameter_mapping:
+      {}
+  - source_function: cuptiMetricGetValue2
+    target_function: hgptiMetricGetValue2
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerBeginPass
+    target_function: hgptiProfilerBeginPass
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerBeginSession
+    target_function: hgptiProfilerBeginSession
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerCounterDataImageCalculateScratchBufferSize
+    target_function: hgptiProfilerCounterDataImageCalculateScratchBufferSize
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerCounterDataImageCalculateSize
+    target_function: hgptiProfilerCounterDataImageCalculateSize
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerCounterDataImageInitialize
+    target_function: hgptiProfilerCounterDataImageInitialize
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerCounterDataImageInitializeScratchBuffer
+    target_function: hgptiProfilerCounterDataImageInitializeScratchBuffer
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerDeInitialize
+    target_function: hgptiProfilerDeInitialize
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerDeviceSupported
+    target_function: hgptiProfilerDeviceSupported
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerDisableProfiling
+    target_function: hgptiProfilerDisableProfiling
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerEnableProfiling
+    target_function: hgptiProfilerEnableProfiling
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerEndPass
+    target_function: hgptiProfilerEndPass
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerEndSession
+    target_function: hgptiProfilerEndSession
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerFlushCounterData
+    target_function: hgptiProfilerFlushCounterData
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerGetCounterAvailability
+    target_function: hgptiProfilerGetCounterAvailability
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerInitialize
+    target_function: hgptiProfilerInitialize
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerIsPassCollected
+    target_function: hgptiProfilerIsPassCollected
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerPopRange
+    target_function: hgptiProfilerPopRange
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerPushRange
+    target_function: hgptiProfilerPushRange
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerSetConfig
+    target_function: hgptiProfilerSetConfig
+    parameter_mapping:
+      {}
+  - source_function: cuptiProfilerUnsetConfig
+    target_function: hgptiProfilerUnsetConfig
+    parameter_mapping:
+      {}
+  - source_function: cuptiSetEventCollectionMode
+    target_function: hgptiSetEventCollectionMode
+    parameter_mapping:
+      {}
+  - source_function: cuptiSetThreadIdType
+    target_function: hgptiSetThreadIdType
+    parameter_mapping:
+      {}
+  - source_function: cuptiSubscribe
+    target_function: hgptiSubscribe
+    parameter_mapping:
+      {}
+  - source_function: cuptiSupportedDomains
+    target_function: hgptiSupportedDomains
+    parameter_mapping:
+      {}
+  - source_function: cuptiUnsubscribe
+    target_function: hgptiUnsubscribe
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cuptiActivityConfigurePCSampling",
+        "cuptiActivityConfigureUnifiedMemoryCounter",
+        "cuptiActivityDisable",
+        "cuptiActivityDisableContext",
+        "cuptiActivityEnable",
+        "cuptiActivityEnableContext",
+        "cuptiActivityEnableLatencyTimestamps",
+        "cuptiActivityEnableLaunchAttributes",
+        "cuptiActivityFlush",
+        "cuptiActivityFlushAll",
+        "cuptiActivityFlushPeriod",
+        "cuptiActivityGetAttribute",
+        "cuptiActivityGetNextRecord",
+        "cuptiActivityGetNumDroppedRecords",
+        "cuptiActivityPopExternalCorrelationId",
+        "cuptiActivityPushExternalCorrelationId",
+        "cuptiActivityRegisterCallbacks",
+        "cuptiActivitySetAttribute",
+        "cuptiComputeCapabilitySupported",
+        "cuptiDeviceEnumEventDomains",
+        "cuptiDeviceEnumMetrics",
+        "cuptiDeviceGetAttribute",
+        "cuptiDeviceGetChipName",
+        "cuptiDeviceGetEventDomainAttribute",
+        "cuptiDeviceGetNumEventDomains",
+        "cuptiDeviceGetNumMetrics",
+        "cuptiDeviceGetTimestamp",
+        "cuptiDeviceSupported",
+        "cuptiDeviceVirtualizationMode",
+        "cuptiDisableKernelReplayMode",
+        "cuptiEnableAllDomains",
+        "cuptiEnableCallback",
+        "cuptiEnableDomain",
+        "cuptiEnableKernelReplayMode",
+        "cuptiEnumEventDomains",
+        "cuptiEnumMetrics",
+        "cuptiEventDomainEnumEvents",
+        "cuptiEventDomainGetAttribute",
+        "cuptiEventDomainGetNumEvents",
+        "cuptiEventGetAttribute",
+        "cuptiEventGetIdFromName",
+        "cuptiEventGroupAddEvent",
+        "cuptiEventGroupCreate",
+        "cuptiEventGroupDestroy",
+        "cuptiEventGroupDisable",
+        "cuptiEventGroupEnable",
+        "cuptiEventGroupGetAttribute",
+        "cuptiEventGroupReadAllEvents",
+        "cuptiEventGroupReadEvent",
+        "cuptiEventGroupRemoveAllEvents",
+        "cuptiEventGroupRemoveEvent",
+        "cuptiEventGroupResetAllEvents",
+        "cuptiEventGroupSetAttribute",
+        "cuptiEventGroupSetDisable",
+        "cuptiEventGroupSetEnable",
+        "cuptiEventGroupSetsCreate",
+        "cuptiEventGroupSetsDestroy",
+        "cuptiFinalize",
+        "cuptiGetAutoBoostState",
+        "cuptiGetCallbackName",
+        "cuptiGetCallbackState",
+        "cuptiGetContextId",
+        "cuptiGetDeviceId",
+        "cuptiGetGraphId",
+        "cuptiGetGraphNodeId",
+        "cuptiGetLastError",
+        "cuptiGetNumEventDomains",
+        "cuptiGetNumMetrics",
+        "cuptiGetResultString",
+        "cuptiGetStreamId",
+        "cuptiGetStreamIdEx",
+        "cuptiGetThreadIdType",
+        "cuptiGetTimestamp",
+        "cuptiGetVersion",
+        "cuptiKernelReplaySubscribeUpdate",
+        "cuptiMetricCreateEventGroupSets",
+        "cuptiMetricEnumEvents",
+        "cuptiMetricEnumProperties",
+        "cuptiMetricGetAttribute",
+        "cuptiMetricGetIdFromName",
+        "cuptiMetricGetNumEvents",
+        "cuptiMetricGetNumProperties",
+        "cuptiMetricGetRequiredEventGroupSets",
+        "cuptiMetricGetValue",
+        "cuptiMetricGetValue2",
+        "cuptiProfilerBeginPass",
+        "cuptiProfilerBeginSession",
+        "cuptiProfilerCounterDataImageCalculateScratchBufferSize",
+        "cuptiProfilerCounterDataImageCalculateSize",
+        "cuptiProfilerCounterDataImageInitialize",
+        "cuptiProfilerCounterDataImageInitializeScratchBuffer",
+        "cuptiProfilerDeInitialize",
+        "cuptiProfilerDeviceSupported",
+        "cuptiProfilerDisableProfiling",
+        "cuptiProfilerEnableProfiling",
+        "cuptiProfilerEndPass",
+        "cuptiProfilerEndSession",
+        "cuptiProfilerFlushCounterData",
+        "cuptiProfilerGetCounterAvailability",
+        "cuptiProfilerInitialize",
+        "cuptiProfilerIsPassCollected",
+        "cuptiProfilerPopRange",
+        "cuptiProfilerPushRange",
+        "cuptiProfilerSetConfig",
+        "cuptiProfilerUnsetConfig",
+        "cuptiSetEventCollectionMode",
+        "cuptiSetThreadIdType",
+        "cuptiSubscribe",
+        "cuptiSupportedDomains",
+        "cuptiUnsubscribe",
+    };
+
+    enum cuptiProfileCallbackId {
+        cupti_TRACE_CBID_cuptiActivityConfigurePCSampling = 0,
+        cupti_TRACE_CBID_cuptiActivityConfigureUnifiedMemoryCounter = 1,
+        cupti_TRACE_CBID_cuptiActivityDisable = 2,
+        cupti_TRACE_CBID_cuptiActivityDisableContext = 3,
+        cupti_TRACE_CBID_cuptiActivityEnable = 4,
+        cupti_TRACE_CBID_cuptiActivityEnableContext = 5,
+        cupti_TRACE_CBID_cuptiActivityEnableLatencyTimestamps = 6,
+        cupti_TRACE_CBID_cuptiActivityEnableLaunchAttributes = 7,
+        cupti_TRACE_CBID_cuptiActivityFlush = 8,
+        cupti_TRACE_CBID_cuptiActivityFlushAll = 9,
+        cupti_TRACE_CBID_cuptiActivityFlushPeriod = 10,
+        cupti_TRACE_CBID_cuptiActivityGetAttribute = 11,
+        cupti_TRACE_CBID_cuptiActivityGetNextRecord = 12,
+        cupti_TRACE_CBID_cuptiActivityGetNumDroppedRecords = 13,
+        cupti_TRACE_CBID_cuptiActivityPopExternalCorrelationId = 14,
+        cupti_TRACE_CBID_cuptiActivityPushExternalCorrelationId = 15,
+        cupti_TRACE_CBID_cuptiActivityRegisterCallbacks = 16,
+        cupti_TRACE_CBID_cuptiActivitySetAttribute = 17,
+        cupti_TRACE_CBID_cuptiComputeCapabilitySupported = 18,
+        cupti_TRACE_CBID_cuptiDeviceEnumEventDomains = 19,
+        cupti_TRACE_CBID_cuptiDeviceEnumMetrics = 20,
+        cupti_TRACE_CBID_cuptiDeviceGetAttribute = 21,
+        cupti_TRACE_CBID_cuptiDeviceGetChipName = 22,
+        cupti_TRACE_CBID_cuptiDeviceGetEventDomainAttribute = 23,
+        cupti_TRACE_CBID_cuptiDeviceGetNumEventDomains = 24,
+        cupti_TRACE_CBID_cuptiDeviceGetNumMetrics = 25,
+        cupti_TRACE_CBID_cuptiDeviceGetTimestamp = 26,
+        cupti_TRACE_CBID_cuptiDeviceSupported = 27,
+        cupti_TRACE_CBID_cuptiDeviceVirtualizationMode = 28,
+        cupti_TRACE_CBID_cuptiDisableKernelReplayMode = 29,
+        cupti_TRACE_CBID_cuptiEnableAllDomains = 30,
+        cupti_TRACE_CBID_cuptiEnableCallback = 31,
+        cupti_TRACE_CBID_cuptiEnableDomain = 32,
+        cupti_TRACE_CBID_cuptiEnableKernelReplayMode = 33,
+        cupti_TRACE_CBID_cuptiEnumEventDomains = 34,
+        cupti_TRACE_CBID_cuptiEnumMetrics = 35,
+        cupti_TRACE_CBID_cuptiEventDomainEnumEvents = 36,
+        cupti_TRACE_CBID_cuptiEventDomainGetAttribute = 37,
+        cupti_TRACE_CBID_cuptiEventDomainGetNumEvents = 38,
+        cupti_TRACE_CBID_cuptiEventGetAttribute = 39,
+        cupti_TRACE_CBID_cuptiEventGetIdFromName = 40,
+        cupti_TRACE_CBID_cuptiEventGroupAddEvent = 41,
+        cupti_TRACE_CBID_cuptiEventGroupCreate = 42,
+        cupti_TRACE_CBID_cuptiEventGroupDestroy = 43,
+        cupti_TRACE_CBID_cuptiEventGroupDisable = 44,
+        cupti_TRACE_CBID_cuptiEventGroupEnable = 45,
+        cupti_TRACE_CBID_cuptiEventGroupGetAttribute = 46,
+        cupti_TRACE_CBID_cuptiEventGroupReadAllEvents = 47,
+        cupti_TRACE_CBID_cuptiEventGroupReadEvent = 48,
+        cupti_TRACE_CBID_cuptiEventGroupRemoveAllEvents = 49,
+        cupti_TRACE_CBID_cuptiEventGroupRemoveEvent = 50,
+        cupti_TRACE_CBID_cuptiEventGroupResetAllEvents = 51,
+        cupti_TRACE_CBID_cuptiEventGroupSetAttribute = 52,
+        cupti_TRACE_CBID_cuptiEventGroupSetDisable = 53,
+        cupti_TRACE_CBID_cuptiEventGroupSetEnable = 54,
+        cupti_TRACE_CBID_cuptiEventGroupSetsCreate = 55,
+        cupti_TRACE_CBID_cuptiEventGroupSetsDestroy = 56,
+        cupti_TRACE_CBID_cuptiFinalize = 57,
+        cupti_TRACE_CBID_cuptiGetAutoBoostState = 58,
+        cupti_TRACE_CBID_cuptiGetCallbackName = 59,
+        cupti_TRACE_CBID_cuptiGetCallbackState = 60,
+        cupti_TRACE_CBID_cuptiGetContextId = 61,
+        cupti_TRACE_CBID_cuptiGetDeviceId = 62,
+        cupti_TRACE_CBID_cuptiGetGraphId = 63,
+        cupti_TRACE_CBID_cuptiGetGraphNodeId = 64,
+        cupti_TRACE_CBID_cuptiGetLastError = 65,
+        cupti_TRACE_CBID_cuptiGetNumEventDomains = 66,
+        cupti_TRACE_CBID_cuptiGetNumMetrics = 67,
+        cupti_TRACE_CBID_cuptiGetResultString = 68,
+        cupti_TRACE_CBID_cuptiGetStreamId = 69,
+        cupti_TRACE_CBID_cuptiGetStreamIdEx = 70,
+        cupti_TRACE_CBID_cuptiGetThreadIdType = 71,
+        cupti_TRACE_CBID_cuptiGetTimestamp = 72,
+        cupti_TRACE_CBID_cuptiGetVersion = 73,
+        cupti_TRACE_CBID_cuptiKernelReplaySubscribeUpdate = 74,
+        cupti_TRACE_CBID_cuptiMetricCreateEventGroupSets = 75,
+        cupti_TRACE_CBID_cuptiMetricEnumEvents = 76,
+        cupti_TRACE_CBID_cuptiMetricEnumProperties = 77,
+        cupti_TRACE_CBID_cuptiMetricGetAttribute = 78,
+        cupti_TRACE_CBID_cuptiMetricGetIdFromName = 79,
+        cupti_TRACE_CBID_cuptiMetricGetNumEvents = 80,
+        cupti_TRACE_CBID_cuptiMetricGetNumProperties = 81,
+        cupti_TRACE_CBID_cuptiMetricGetRequiredEventGroupSets = 82,
+        cupti_TRACE_CBID_cuptiMetricGetValue = 83,
+        cupti_TRACE_CBID_cuptiMetricGetValue2 = 84,
+        cupti_TRACE_CBID_cuptiProfilerBeginPass = 85,
+        cupti_TRACE_CBID_cuptiProfilerBeginSession = 86,
+        cupti_TRACE_CBID_cuptiProfilerCounterDataImageCalculateScratchBufferSize = 87,
+        cupti_TRACE_CBID_cuptiProfilerCounterDataImageCalculateSize = 88,
+        cupti_TRACE_CBID_cuptiProfilerCounterDataImageInitialize = 89,
+        cupti_TRACE_CBID_cuptiProfilerCounterDataImageInitializeScratchBuffer = 90,
+        cupti_TRACE_CBID_cuptiProfilerDeInitialize = 91,
+        cupti_TRACE_CBID_cuptiProfilerDeviceSupported = 92,
+        cupti_TRACE_CBID_cuptiProfilerDisableProfiling = 93,
+        cupti_TRACE_CBID_cuptiProfilerEnableProfiling = 94,
+        cupti_TRACE_CBID_cuptiProfilerEndPass = 95,
+        cupti_TRACE_CBID_cuptiProfilerEndSession = 96,
+        cupti_TRACE_CBID_cuptiProfilerFlushCounterData = 97,
+        cupti_TRACE_CBID_cuptiProfilerGetCounterAvailability = 98,
+        cupti_TRACE_CBID_cuptiProfilerInitialize = 99,
+        cupti_TRACE_CBID_cuptiProfilerIsPassCollected = 100,
+        cupti_TRACE_CBID_cuptiProfilerPopRange = 101,
+        cupti_TRACE_CBID_cuptiProfilerPushRange = 102,
+        cupti_TRACE_CBID_cuptiProfilerSetConfig = 103,
+        cupti_TRACE_CBID_cuptiProfilerUnsetConfig = 104,
+        cupti_TRACE_CBID_cuptiSetEventCollectionMode = 105,
+        cupti_TRACE_CBID_cuptiSetThreadIdType = 106,
+        cupti_TRACE_CBID_cuptiSubscribe = 107,
+        cupti_TRACE_CBID_cuptiSupportedDomains = 108,
+        cupti_TRACE_CBID_cuptiUnsubscribe = 109,
+    };
+
+    typedef uint32_t (*cuptiRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cuptiIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cuptiProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cuptiProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cuptiProfileHandler {
+        cuptiRegisterProfileDomain registerProfileDomain;
+        cuptiIsProfileCallbackEnabled isCallbackEnabled;
+        cuptiProfileCallbackBegin profileCallbackBegin;
+        cuptiProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cuptiProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cupti";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cuptiRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cuptiIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cuptiProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cuptiProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, cupti_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, cupti_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, cupti_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
