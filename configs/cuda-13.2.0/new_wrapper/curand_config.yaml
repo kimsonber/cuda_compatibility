@@ -1,0 +1,1565 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: curand
+  dyn_lib_file_name: libcurand.so.10.4.2.51
+  dyn_lib_install_name: libcurand.so.10.4.2.51
+  sta_lib_file_name: libcurand_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - curand.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcurand.so.10
+      - --no-as-needed -lpthread
+      - "--version-script=<(echo \"libcurand.so.10 {global:  *;local:  *;};\")"
+      - --default-symver
+  api_functions:
+    - name: curandCreateGenerator
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              is_pointer: true
+              type_str: curandGenerator_t * {}
+          - name: rng_type
+            param_type:
+              name: curandRngType_t
+              type_str: curandRngType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandCreateGeneratorHost
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              is_pointer: true
+              type_str: curandGenerator_t * {}
+          - name: rng_type
+            param_type:
+              name: curandRngType_t
+              type_str: curandRngType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandCreatePoissonDistribution
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+          - name: discrete_distribution
+            param_type:
+              name: curandDiscreteDistribution_t
+              is_pointer: true
+              type_str: curandDiscreteDistribution_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandDestroyDistribution
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: discrete_distribution
+            param_type:
+              name: curandDiscreteDistribution_t
+              type_str: curandDiscreteDistribution_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandDestroyGenerator
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerate
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateBinomial
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: n
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: p
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateBinomialMethod
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: n
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: p
+            param_type:
+              name: double
+              type_str: double {}
+          - name: method
+            param_type:
+              name: curandMethod_t
+              type_str: curandMethod_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateLogNormal
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: float
+              type_str: float {}
+          - name: stddev
+            param_type:
+              name: float
+              type_str: float {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateLogNormalDouble
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: double
+              type_str: double {}
+          - name: stddev
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateLongLong
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedlonglong
+              is_pointer: true
+              type_str: unsigned long long * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateNormal
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: float
+              type_str: float {}
+          - name: stddev
+            param_type:
+              name: float
+              type_str: float {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateNormalDouble
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: double
+              type_str: double {}
+          - name: stddev
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGeneratePoisson
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGeneratePoissonMethod
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+          - name: method
+            param_type:
+              name: curandMethod_t
+              type_str: curandMethod_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateSeeds
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateUniform
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGenerateUniformDouble
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetDirectionVectors32
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: vectors
+            param_type:
+              name: curandDirectionVectors32_t[]
+              is_pointer: true
+              is_array: true
+              type_str: curandDirectionVectors32_t * {}[]
+          - name: set
+            param_type:
+              name: curandDirectionVectorSet_t
+              type_str: curandDirectionVectorSet_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetDirectionVectors64
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: vectors
+            param_type:
+              name: curandDirectionVectors64_t[]
+              is_pointer: true
+              is_array: true
+              type_str: curandDirectionVectors64_t * {}[]
+          - name: set
+            param_type:
+              name: curandDirectionVectorSet_t
+              type_str: curandDirectionVectorSet_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetProperty
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: type
+            param_type:
+              name: libraryPropertyType
+              type_str: libraryPropertyType {}
+          - name: value
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetScrambleConstants32
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: constants
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetScrambleConstants64
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: constants
+            param_type:
+              name: unsignedlonglong
+              is_pointer: true
+              type_str: unsigned long long ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandGetVersion
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandSetGeneratorOffset
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: offset
+            param_type:
+              name: unsignedlonglong
+              type_str: unsigned long long {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandSetGeneratorOrdering
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: order
+            param_type:
+              name: curandOrdering_t
+              type_str: curandOrdering_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandSetPseudoRandomGeneratorSeed
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: seed
+            param_type:
+              name: unsignedlonglong
+              type_str: unsigned long long {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandSetQuasiRandomGeneratorDimensions
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: num_dimensions
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: curandSetStream
+      signature:
+        return_type:
+          name: curandStatus_t
+          type_str: curandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: curandGenerator_t
+              type_str: curandGenerator_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libacrand.so
+  lib_dirs:
+    []
+  include_files:
+    - acrand.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=13021
+      - __HGGC_API_V3__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: acrandCreateGenerator
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              is_pointer: true
+              type_str: acrandGenerator_t * {}
+          - name: rng_type
+            param_type:
+              name: acrandRngType_t
+              type_str: acrandRngType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandCreateGeneratorHost
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              is_pointer: true
+              type_str: acrandGenerator_t * {}
+          - name: rng_type
+            param_type:
+              name: acrandRngType_t
+              type_str: acrandRngType_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandCreatePoissonDistribution
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+          - name: discrete_distribution
+            param_type:
+              name: acrandDiscreteDistribution_t
+              is_pointer: true
+              type_str: acrandDiscreteDistribution_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandDestroyDistribution
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: discrete_distribution
+            param_type:
+              name: acrandDiscreteDistribution_t
+              type_str: acrandDiscreteDistribution_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandDestroyGenerator
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerate
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateLogNormal
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: float
+              type_str: float {}
+          - name: stddev
+            param_type:
+              name: float
+              type_str: float {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateLogNormalDouble
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: double
+              type_str: double {}
+          - name: stddev
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateLongLong
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedlonglong
+              is_pointer: true
+              type_str: unsigned long long * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateNormal
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: float
+              type_str: float {}
+          - name: stddev
+            param_type:
+              name: float
+              type_str: float {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateNormalDouble
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: mean
+            param_type:
+              name: double
+              type_str: double {}
+          - name: stddev
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGeneratePoisson
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGeneratePoissonMethod
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: n
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: lambda
+            param_type:
+              name: double
+              type_str: double {}
+          - name: method
+            param_type:
+              name: acrandMethod_t
+              type_str: acrandMethod_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateSeeds
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateUniform
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: float
+              is_pointer: true
+              type_str: float * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGenerateUniformDouble
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: outputPtr
+            param_type:
+              name: double
+              is_pointer: true
+              type_str: double * {}
+          - name: num
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetDirectionVectors32
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: vectors
+            param_type:
+              name: acrandDirectionVectors32_t[]
+              is_pointer: true
+              is_array: true
+              type_str: acrandDirectionVectors32_t * {}[]
+          - name: set
+            param_type:
+              name: acrandDirectionVectorSet_t
+              type_str: acrandDirectionVectorSet_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetDirectionVectors64
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: vectors
+            param_type:
+              name: acrandDirectionVectors64_t[]
+              is_pointer: true
+              is_array: true
+              type_str: acrandDirectionVectors64_t * {}[]
+          - name: set
+            param_type:
+              name: acrandDirectionVectorSet_t
+              type_str: acrandDirectionVectorSet_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetProperty
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: type
+            param_type:
+              name: hggcLibraryPropertyType
+              type_str: hggcLibraryPropertyType {}
+          - name: value
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetScrambleConstants32
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: constants
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetScrambleConstants64
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: constants
+            param_type:
+              name: unsignedlonglong
+              is_pointer: true
+              type_str: unsigned long long ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandGetVersion
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandSetGeneratorOffset
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: offset
+            param_type:
+              name: unsignedlonglong
+              type_str: unsigned long long {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandSetGeneratorOrdering
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: order
+            param_type:
+              name: acrandOrdering_t
+              type_str: acrandOrdering_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandSetPseudoRandomGeneratorSeed
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: seed
+            param_type:
+              name: unsignedlonglong
+              type_str: unsigned long long {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandSetQuasiRandomGeneratorDimensions
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: num_dimensions
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acrandSetStream
+      signature:
+        return_type:
+          name: acrandStatus_t
+          type_str: acrandStatus_t {}
+        parameters:
+          - name: generator
+            param_type:
+              name: acrandGenerator_t
+              type_str: acrandGenerator_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: curandCreateGenerator
+    target_function: acrandCreateGenerator
+    parameter_mapping:
+      {}
+  - source_function: curandCreateGeneratorHost
+    target_function: acrandCreateGeneratorHost
+    parameter_mapping:
+      {}
+  - source_function: curandCreatePoissonDistribution
+    target_function: acrandCreatePoissonDistribution
+    parameter_mapping:
+      {}
+  - source_function: curandDestroyDistribution
+    target_function: acrandDestroyDistribution
+    parameter_mapping:
+      {}
+  - source_function: curandDestroyGenerator
+    target_function: acrandDestroyGenerator
+    parameter_mapping:
+      {}
+  - source_function: curandGenerate
+    target_function: acrandGenerate
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateBinomial
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateBinomialMethod
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateLogNormal
+    target_function: acrandGenerateLogNormal
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateLogNormalDouble
+    target_function: acrandGenerateLogNormalDouble
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateLongLong
+    target_function: acrandGenerateLongLong
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateNormal
+    target_function: acrandGenerateNormal
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateNormalDouble
+    target_function: acrandGenerateNormalDouble
+    parameter_mapping:
+      {}
+  - source_function: curandGeneratePoisson
+    target_function: acrandGeneratePoisson
+    parameter_mapping:
+      {}
+  - source_function: curandGeneratePoissonMethod
+    target_function: acrandGeneratePoissonMethod
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateSeeds
+    target_function: acrandGenerateSeeds
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateUniform
+    target_function: acrandGenerateUniform
+    parameter_mapping:
+      {}
+  - source_function: curandGenerateUniformDouble
+    target_function: acrandGenerateUniformDouble
+    parameter_mapping:
+      {}
+  - source_function: curandGetDirectionVectors32
+    target_function: acrandGetDirectionVectors32
+    parameter_mapping:
+      {}
+  - source_function: curandGetDirectionVectors64
+    target_function: acrandGetDirectionVectors64
+    parameter_mapping:
+      {}
+  - source_function: curandGetProperty
+    target_function: ""
+    parameter_mapping:
+      {}
+    custom_func_imp: "curandStatus_t curandGetProperty(libraryPropertyType type, int * value) {\n    // TraceCall(\"curandGetProperty\");\n    return CURAND_STATUS_SUCCESS;\n}\n\n"
+  - source_function: curandGetScrambleConstants32
+    target_function: acrandGetScrambleConstants32
+    parameter_mapping:
+      {}
+  - source_function: curandGetScrambleConstants64
+    target_function: acrandGetScrambleConstants64
+    parameter_mapping:
+      {}
+  - source_function: curandGetVersion
+    target_function: ""
+    parameter_mapping:
+      {}
+    custom_func_imp: "curandStatus_t curandGetVersion(int * version) {\n    // TraceCall(\"curandGetVersion\");\n    if (version == NULL) return CURAND_STATUS_NOT_INITIALIZED;\n    *version = CURAND_VERSION;\n    return CURAND_STATUS_SUCCESS;\n}\n\n"
+  - source_function: curandSetGeneratorOffset
+    target_function: acrandSetGeneratorOffset
+    parameter_mapping:
+      {}
+  - source_function: curandSetGeneratorOrdering
+    target_function: acrandSetGeneratorOrdering
+    parameter_mapping:
+      {}
+  - source_function: curandSetPseudoRandomGeneratorSeed
+    target_function: acrandSetPseudoRandomGeneratorSeed
+    parameter_mapping:
+      {}
+  - source_function: curandSetQuasiRandomGeneratorDimensions
+    target_function: acrandSetQuasiRandomGeneratorDimensions
+    parameter_mapping:
+      {}
+  - source_function: curandSetStream
+    target_function: acrandSetStream
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "curandCreateGenerator",
+        "curandCreateGeneratorHost",
+        "curandCreatePoissonDistribution",
+        "curandDestroyDistribution",
+        "curandDestroyGenerator",
+        "curandGenerate",
+        "curandGenerateBinomial",
+        "curandGenerateBinomialMethod",
+        "curandGenerateLogNormal",
+        "curandGenerateLogNormalDouble",
+        "curandGenerateLongLong",
+        "curandGenerateNormal",
+        "curandGenerateNormalDouble",
+        "curandGeneratePoisson",
+        "curandGeneratePoissonMethod",
+        "curandGenerateSeeds",
+        "curandGenerateUniform",
+        "curandGenerateUniformDouble",
+        "curandGetDirectionVectors32",
+        "curandGetDirectionVectors64",
+        "curandGetProperty",
+        "curandGetScrambleConstants32",
+        "curandGetScrambleConstants64",
+        "curandGetVersion",
+        "curandSetGeneratorOffset",
+        "curandSetGeneratorOrdering",
+        "curandSetPseudoRandomGeneratorSeed",
+        "curandSetQuasiRandomGeneratorDimensions",
+        "curandSetStream",
+    };
+
+    enum curandProfileCallbackId {
+        curand_TRACE_CBID_curandCreateGenerator = 0,
+        curand_TRACE_CBID_curandCreateGeneratorHost = 1,
+        curand_TRACE_CBID_curandCreatePoissonDistribution = 2,
+        curand_TRACE_CBID_curandDestroyDistribution = 3,
+        curand_TRACE_CBID_curandDestroyGenerator = 4,
+        curand_TRACE_CBID_curandGenerate = 5,
+        curand_TRACE_CBID_curandGenerateBinomial = 6,
+        curand_TRACE_CBID_curandGenerateBinomialMethod = 7,
+        curand_TRACE_CBID_curandGenerateLogNormal = 8,
+        curand_TRACE_CBID_curandGenerateLogNormalDouble = 9,
+        curand_TRACE_CBID_curandGenerateLongLong = 10,
+        curand_TRACE_CBID_curandGenerateNormal = 11,
+        curand_TRACE_CBID_curandGenerateNormalDouble = 12,
+        curand_TRACE_CBID_curandGeneratePoisson = 13,
+        curand_TRACE_CBID_curandGeneratePoissonMethod = 14,
+        curand_TRACE_CBID_curandGenerateSeeds = 15,
+        curand_TRACE_CBID_curandGenerateUniform = 16,
+        curand_TRACE_CBID_curandGenerateUniformDouble = 17,
+        curand_TRACE_CBID_curandGetDirectionVectors32 = 18,
+        curand_TRACE_CBID_curandGetDirectionVectors64 = 19,
+        curand_TRACE_CBID_curandGetProperty = 20,
+        curand_TRACE_CBID_curandGetScrambleConstants32 = 21,
+        curand_TRACE_CBID_curandGetScrambleConstants64 = 22,
+        curand_TRACE_CBID_curandGetVersion = 23,
+        curand_TRACE_CBID_curandSetGeneratorOffset = 24,
+        curand_TRACE_CBID_curandSetGeneratorOrdering = 25,
+        curand_TRACE_CBID_curandSetPseudoRandomGeneratorSeed = 26,
+        curand_TRACE_CBID_curandSetQuasiRandomGeneratorDimensions = 27,
+        curand_TRACE_CBID_curandSetStream = 28,
+    };
+
+    typedef uint32_t (*curandRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*curandIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*curandProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*curandProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct curandProfileHandler {
+        curandRegisterProfileDomain registerProfileDomain;
+        curandIsProfileCallbackEnabled isCallbackEnabled;
+        curandProfileCallbackBegin profileCallbackBegin;
+        curandProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static curandProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "curand";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<curandRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<curandIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<curandProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<curandProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, curand_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, curand_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, curand_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

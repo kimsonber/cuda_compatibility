@@ -1,0 +1,955 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvvm",
+        "dyn_lib_file_name": "libnvvm.so.4.0.0",
+        "dyn_lib_install_name": "libnvvm.so.4.0.0",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "nvvm.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib1/compute-sanitizer/include",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libnvvm.so.4",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "nvvmAddModuleToProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmCompileProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOptions",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmCreateProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "is_pointer": true,
+                                "type_str": "nvvmProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmDestroyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "is_pointer": true,
+                                "type_str": "nvvmProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmGetCompiledResult",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmGetCompiledResultSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "nvvmResult",
+                                "type_str": "nvvmResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmGetProgramLog",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmGetProgramLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmIRVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "majorIR",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minorIR",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "majorDbg",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minorDbg",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmLLVMVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "arch",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmLazyAddModuleToProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmVerifyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "nvvmProgram",
+                                "type_str": "nvvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOptions",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvvmVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvvmResult",
+                        "type_str": "nvvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgvm.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgvm.h"
+        ],
+        "include_dirs": [
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=13021",
+                "__HGGC_API_V3__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "hgvmAddModuleToProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmCompileProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOption",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmCreateProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "is_pointer": true,
+                                "type_str": "hgvmProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmDestroyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "is_pointer": true,
+                                "type_str": "hgvmProgram * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmGetCompiledResult",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmGetCompiledResultSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmGetErrorString",
+                "signature": {
+                    "return_type": {
+                        "name": "const char *",
+                        "is_pointer": true,
+                        "type_str": "const char * {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "result",
+                            "param_type": {
+                                "name": "hgvmResult",
+                                "type_str": "hgvmResult {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmGetProgramLog",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmGetProgramLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "bufferSizeRet",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmIRVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "majorIR",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minorIR",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "majorDbg",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minorDbg",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmLazyAddModuleToProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "buffer",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "name",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmVerifyProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "prog",
+                            "param_type": {
+                                "name": "hgvmProgram",
+                                "type_str": "hgvmProgram {}"
+                            }
+                        },
+                        {
+                            "name": "numOption",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char ** {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgvmVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "hgvmResult",
+                        "type_str": "hgvmResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "nvvmAddModuleToProgram",
+            "target_function": "hgvmAddModuleToProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmCompileProgram",
+            "target_function": "hgvmCompileProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmCreateProgram",
+            "target_function": "hgvmCreateProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmDestroyProgram",
+            "target_function": "hgvmDestroyProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmGetCompiledResult",
+            "target_function": "hgvmGetCompiledResult",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmGetCompiledResultSize",
+            "target_function": "hgvmGetCompiledResultSize",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmGetErrorString",
+            "target_function": "hgvmGetErrorString",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmGetProgramLog",
+            "target_function": "hgvmGetProgramLog",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmGetProgramLogSize",
+            "target_function": "hgvmGetProgramLogSize",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmIRVersion",
+            "target_function": "hgvmIRVersion",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmLLVMVersion",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmLazyAddModuleToProgram",
+            "target_function": "hgvmLazyAddModuleToProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmVerifyProgram",
+            "target_function": "hgvmVerifyProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvvmVersion",
+            "target_function": "hgvmVersion",
+            "parameter_mapping": {}
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"nvvmAddModuleToProgram\",\n    \"nvvmCompileProgram\",\n    \"nvvmCreateProgram\",\n    \"nvvmDestroyProgram\",\n    \"nvvmGetCompiledResult\",\n    \"nvvmGetCompiledResultSize\",\n    \"nvvmGetErrorString\",\n    \"nvvmGetProgramLog\",\n    \"nvvmGetProgramLogSize\",\n    \"nvvmIRVersion\",\n    \"nvvmLLVMVersion\",\n    \"nvvmLazyAddModuleToProgram\",\n    \"nvvmVerifyProgram\",\n    \"nvvmVersion\",\n};\n\nenum nvvmProfileCallbackId {\n    nvvm_TRACE_CBID_nvvmAddModuleToProgram = 0,\n    nvvm_TRACE_CBID_nvvmCompileProgram = 1,\n    nvvm_TRACE_CBID_nvvmCreateProgram = 2,\n    nvvm_TRACE_CBID_nvvmDestroyProgram = 3,\n    nvvm_TRACE_CBID_nvvmGetCompiledResult = 4,\n    nvvm_TRACE_CBID_nvvmGetCompiledResultSize = 5,\n    nvvm_TRACE_CBID_nvvmGetErrorString = 6,\n    nvvm_TRACE_CBID_nvvmGetProgramLog = 7,\n    nvvm_TRACE_CBID_nvvmGetProgramLogSize = 8,\n    nvvm_TRACE_CBID_nvvmIRVersion = 9,\n    nvvm_TRACE_CBID_nvvmLLVMVersion = 10,\n    nvvm_TRACE_CBID_nvvmLazyAddModuleToProgram = 11,\n    nvvm_TRACE_CBID_nvvmVerifyProgram = 12,\n    nvvm_TRACE_CBID_nvvmVersion = 13,\n};\n\ntypedef uint32_t (*nvvmRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvvmIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvvmProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvvmProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvvmProfileHandler {\n    nvvmRegisterProfileDomain registerProfileDomain;\n    nvvmIsProfileCallbackEnabled isCallbackEnabled;\n    nvvmProfileCallbackBegin profileCallbackBegin;\n    nvvmProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvvmProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvvm\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvvmRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvvmIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvvmProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvvmProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n",
+        "pre_wrapper_call": "\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n",
+        "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n"
+    }
+}

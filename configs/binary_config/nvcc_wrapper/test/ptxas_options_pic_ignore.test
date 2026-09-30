@@ -1,0 +1,4 @@
+# -pic should be consumed by dealUnknownValueMapping but not forwarded to hgcc
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-pic %s
+CHECK-NOT: -pic
+CHECK-NOT: --llvm-options
