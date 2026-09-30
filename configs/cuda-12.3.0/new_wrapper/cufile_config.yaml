@@ -1,0 +1,802 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cufile
+  dyn_lib_file_name: libcufile.so.1.8.0
+  dyn_lib_install_name: libcufile.so.1.8.0
+  sta_lib_file_name: libcufile_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cufile.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcufile.so.0
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: cuFileBatchIOCancel
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: batch_idp
+            param_type:
+              name: CUfileBatchHandle_t
+              type_str: CUfileBatchHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBatchIODestroy
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: batch_idp
+            param_type:
+              name: CUfileBatchHandle_t
+              type_str: CUfileBatchHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBatchIOGetStatus
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: batch_idp
+            param_type:
+              name: CUfileBatchHandle_t
+              type_str: CUfileBatchHandle_t {}
+          - name: min_nr
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: nr
+            param_type:
+              name: unsignedint
+              is_pointer: true
+              type_str: unsigned int * {}
+          - name: iocbp
+            param_type:
+              name: CUfileIOEvents_t
+              is_pointer: true
+              type_str: CUfileIOEvents_t * {}
+          - name: timeout
+            param_type:
+              name: timespec
+              is_pointer: true
+              type_str: timespec * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBatchIOSetUp
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: batch_idp
+            param_type:
+              name: CUfileBatchHandle_t
+              is_pointer: true
+              type_str: CUfileBatchHandle_t * {}
+          - name: nr
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBatchIOSubmit
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: batch_idp
+            param_type:
+              name: CUfileBatchHandle_t
+              type_str: CUfileBatchHandle_t {}
+          - name: nr
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: iocbp
+            param_type:
+              name: CUfileIOParams_t
+              is_pointer: true
+              type_str: CUfileIOParams_t * {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBufDeregister
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileBufRegister
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: length
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: flags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverClose
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverClose_v2
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverGetProperties
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: props
+            param_type:
+              name: CUfileDrvProps_t
+              is_pointer: true
+              type_str: CUfileDrvProps_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverOpen
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverSetMaxCacheSize
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: max_cache_size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverSetMaxDirectIOSize
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: max_direct_io_size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverSetMaxPinnedMemSize
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: max_pinned_size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileDriverSetPollMode
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: poll
+            param_type:
+              name: bool
+              type_str: bool {}
+          - name: poll_threshold_size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileGetVersion
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileHandleDeregister
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              type_str: CUfileHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileHandleRegister
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              is_pointer: true
+              type_str: CUfileHandle_t * {}
+          - name: descr
+            param_type:
+              name: CUfileDescr_t
+              is_pointer: true
+              type_str: CUfileDescr_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileRead
+      signature:
+        return_type:
+          name: ssize_t
+          type_str: ssize_t {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              type_str: CUfileHandle_t {}
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: file_offset
+            param_type:
+              name: off_t
+              type_str: off_t {}
+          - name: bufPtr_offset
+            param_type:
+              name: off_t
+              type_str: off_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileReadAsync
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              type_str: CUfileHandle_t {}
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size_p
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: file_offset_p
+            param_type:
+              name: off_t
+              is_pointer: true
+              type_str: off_t * {}
+          - name: bufPtr_offset_p
+            param_type:
+              name: off_t
+              is_pointer: true
+              type_str: off_t * {}
+          - name: bytes_read_p
+            param_type:
+              name: ssize_t
+              is_pointer: true
+              type_str: ssize_t * {}
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileStreamDeregister
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileStreamRegister
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileUseCount
+      signature:
+        return_type:
+          name: long
+          type_str: long {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileWrite
+      signature:
+        return_type:
+          name: ssize_t
+          type_str: ssize_t {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              type_str: CUfileHandle_t {}
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: file_offset
+            param_type:
+              name: off_t
+              type_str: off_t {}
+          - name: bufPtr_offset
+            param_type:
+              name: off_t
+              type_str: off_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cuFileWriteAsync
+      signature:
+        return_type:
+          name: CUfileError_t
+          type_str: CUfileError_t {}
+        parameters:
+          - name: fh
+            param_type:
+              name: CUfileHandle_t
+              type_str: CUfileHandle_t {}
+          - name: bufPtr_base
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size_p
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: file_offset_p
+            param_type:
+              name: off_t
+              is_pointer: true
+              type_str: off_t * {}
+          - name: bufPtr_offset_p
+            param_type:
+              name: off_t
+              is_pointer: true
+              type_str: off_t * {}
+          - name: bytes_written_p
+            param_type:
+              name: ssize_t
+              is_pointer: true
+              type_str: ssize_t * {}
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libNeedImpl.so
+  lib_dirs:
+    []
+  include_files:
+    []
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12031
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    []
+api_mappings:
+  - source_function: cuFileBatchIOCancel
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBatchIODestroy
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBatchIOGetStatus
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBatchIOSetUp
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBatchIOSubmit
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBufDeregister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileBufRegister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverClose
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverClose_v2
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverGetProperties
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverOpen
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverSetMaxCacheSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverSetMaxDirectIOSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverSetMaxPinnedMemSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileDriverSetPollMode
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileGetVersion
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileHandleDeregister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileHandleRegister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileRead
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileReadAsync
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileStreamDeregister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileStreamRegister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileUseCount
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileWrite
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cuFileWriteAsync
+    target_function: ""
+    parameter_mapping:
+      {}
+global_custom_code:
+  header_end: |
+    #undef cuFileDriverClose
+
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cuFileBatchIOCancel",
+        "cuFileBatchIODestroy",
+        "cuFileBatchIOGetStatus",
+        "cuFileBatchIOSetUp",
+        "cuFileBatchIOSubmit",
+        "cuFileBufDeregister",
+        "cuFileBufRegister",
+        "cuFileDriverClose",
+        "cuFileDriverClose_v2",
+        "cuFileDriverGetProperties",
+        "cuFileDriverOpen",
+        "cuFileDriverSetMaxCacheSize",
+        "cuFileDriverSetMaxDirectIOSize",
+        "cuFileDriverSetMaxPinnedMemSize",
+        "cuFileDriverSetPollMode",
+        "cuFileGetVersion",
+        "cuFileHandleDeregister",
+        "cuFileHandleRegister",
+        "cuFileRead",
+        "cuFileReadAsync",
+        "cuFileStreamDeregister",
+        "cuFileStreamRegister",
+        "cuFileUseCount",
+        "cuFileWrite",
+        "cuFileWriteAsync",
+    };
+
+    enum cufileProfileCallbackId {
+        cufile_TRACE_CBID_cuFileBatchIOCancel = 0,
+        cufile_TRACE_CBID_cuFileBatchIODestroy = 1,
+        cufile_TRACE_CBID_cuFileBatchIOGetStatus = 2,
+        cufile_TRACE_CBID_cuFileBatchIOSetUp = 3,
+        cufile_TRACE_CBID_cuFileBatchIOSubmit = 4,
+        cufile_TRACE_CBID_cuFileBufDeregister = 5,
+        cufile_TRACE_CBID_cuFileBufRegister = 6,
+        cufile_TRACE_CBID_cuFileDriverClose = 7,
+        cufile_TRACE_CBID_cuFileDriverClose_v2 = 8,
+        cufile_TRACE_CBID_cuFileDriverGetProperties = 9,
+        cufile_TRACE_CBID_cuFileDriverOpen = 10,
+        cufile_TRACE_CBID_cuFileDriverSetMaxCacheSize = 11,
+        cufile_TRACE_CBID_cuFileDriverSetMaxDirectIOSize = 12,
+        cufile_TRACE_CBID_cuFileDriverSetMaxPinnedMemSize = 13,
+        cufile_TRACE_CBID_cuFileDriverSetPollMode = 14,
+        cufile_TRACE_CBID_cuFileGetVersion = 15,
+        cufile_TRACE_CBID_cuFileHandleDeregister = 16,
+        cufile_TRACE_CBID_cuFileHandleRegister = 17,
+        cufile_TRACE_CBID_cuFileRead = 18,
+        cufile_TRACE_CBID_cuFileReadAsync = 19,
+        cufile_TRACE_CBID_cuFileStreamDeregister = 20,
+        cufile_TRACE_CBID_cuFileStreamRegister = 21,
+        cufile_TRACE_CBID_cuFileUseCount = 22,
+        cufile_TRACE_CBID_cuFileWrite = 23,
+        cufile_TRACE_CBID_cuFileWriteAsync = 24,
+    };
+
+    typedef uint32_t (*cufileRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cufileIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cufileProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cufileProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cufileProfileHandler {
+        cufileRegisterProfileDomain registerProfileDomain;
+        cufileIsProfileCallbackEnabled isCallbackEnabled;
+        cufileProfileCallbackBegin profileCallbackBegin;
+        cufileProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cufileProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cufile";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cufileRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cufileIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cufileProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cufileProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
