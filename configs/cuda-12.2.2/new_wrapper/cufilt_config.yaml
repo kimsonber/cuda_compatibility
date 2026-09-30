@@ -1,0 +1,198 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cufilt
+  dyn_lib_file_name: ""
+  sta_lib_file_name: libcufilt.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nv_decode.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: __cu_demangle
+      signature:
+        return_type:
+          name: char *
+          is_pointer: true
+          type_str: char * {}
+        parameters:
+          - name: id
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: output_buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+          - name: length
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: status
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libNeedImpl.so
+  lib_dirs:
+    []
+  include_files:
+    - hgfilt.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12021
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: __hg_demangle
+      signature:
+        return_type:
+          name: char *
+          is_pointer: true
+          type_str: char * {}
+        parameters:
+          - name: MangledName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: output_buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+          - name: output_buffer_size
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: status
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: __cu_demangle
+    target_function: __hg_demangle
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "__cu_demangle",
+    };
+
+    enum cufiltProfileCallbackId {
+        cufilt_TRACE_CBID___cu_demangle = 0,
+    };
+
+    typedef uint32_t (*cufiltRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cufiltIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cufiltProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cufiltProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cufiltProfileHandler {
+        cufiltRegisterProfileDomain registerProfileDomain;
+        cufiltIsProfileCallbackEnabled isCallbackEnabled;
+        cufiltProfileCallbackBegin profileCallbackBegin;
+        cufiltProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cufiltProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cufilt";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cufiltRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cufiltIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cufiltProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cufiltProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, cufilt_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, cufilt_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, cufilt_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

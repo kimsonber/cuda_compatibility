@@ -1,0 +1,1633 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: sanitizer-public
+  dyn_lib_file_name: libsanitizer-public.so
+  dyn_lib_install_name: libsanitizer-public.so
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - sanitizer_barrier.h
+    - sanitizer_callbacks.h
+    - sanitizer_driver_cbid.h
+    - sanitizer_memory.h
+    - sanitizer_patching.h
+    - sanitizer_result.h
+    - sanitizer_runtime_cbid.h
+    - sanitizer_stream.h
+    - sanitizer.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libsanitizer-public.so
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: sanitizerAddPatches
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: image
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAddPatchesFromFile
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: filename
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAlloc
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAllocHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableAllDomains
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableCallback
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: Sanitizer_CallbackId
+              type_str: Sanitizer_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableDomain
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerFree
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerFreeHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetCallbackPcAndSize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: deviceCallbackName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: pc
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: size
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetCallbackState
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: Sanitizer_CallbackId
+              type_str: Sanitizer_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetCudaBarrierCount
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: kernel
+            param_type:
+              name: CUfunction
+              type_str: CUfunction {}
+          - name: numBarriers
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetFunctionLoadedStatus
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: func
+            param_type:
+              name: CUfunction
+              type_str: CUfunction {}
+          - name: loadingStatus
+            param_type:
+              name: Sanitizer_FunctionLoadedStatus
+              is_pointer: true
+              type_str: Sanitizer_FunctionLoadedStatus * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetFunctionPcAndSize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: module
+            param_type:
+              name: CUmodule
+              type_str: CUmodule {}
+          - name: functionName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: pc
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: size
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetResultString
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: result
+            param_type:
+              name: SanitizerResult
+              type_str: SanitizerResult {}
+          - name: str
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetStream
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: hStream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: stream
+            param_type:
+              name: CUstream
+              is_pointer: true
+              type_str: CUstream * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetStreamHandle
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: CUcontext
+              type_str: CUcontext {}
+          - name: stream
+            param_type:
+              name: CUstream
+              type_str: CUstream {}
+          - name: hStream
+            param_type:
+              name: Sanitizer_StreamHandle
+              is_pointer: true
+              type_str: Sanitizer_StreamHandle * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemcpyDeviceToHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: dst
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: src
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemcpyHostToDeviceAsync
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: dst
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: src
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemset
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: value
+            param_type:
+              name: int
+              type_str: int {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerPatchInstructions
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: instructionId
+            param_type:
+              name: Sanitizer_InstructionId
+              is_const: true
+              type_str: const Sanitizer_InstructionId {}
+          - name: module
+            param_type:
+              name: CUmodule
+              type_str: CUmodule {}
+          - name: deviceCallbackName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerPatchModule
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: module
+            param_type:
+              name: CUmodule
+              type_str: CUmodule {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetCallbackData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: kernel
+            param_type:
+              name: CUfunction
+              type_str: CUfunction {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetDeviceGraphData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: graphExec
+            param_type:
+              name: CUgraphExec
+              type_str: CUgraphExec {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetLaunchCallbackData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: launch
+            param_type:
+              name: Sanitizer_LaunchHandle
+              type_str: Sanitizer_LaunchHandle {}
+          - name: kernel
+            param_type:
+              name: CUfunction
+              type_str: CUfunction {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerStreamSynchronize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSubscribe
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              is_pointer: true
+              type_str: Sanitizer_SubscriberHandle * {}
+          - name: callback
+            param_type:
+              name: Sanitizer_CallbackFunc
+              type_str: Sanitizer_CallbackFunc {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerUnpatchModule
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: module
+            param_type:
+              name: CUmodule
+              type_str: CUmodule {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerUnsubscribe
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgbit.so
+  lib_dirs:
+    []
+  include_files:
+    - sanitizer_barrier.h
+    - sanitizer_callbacks.h
+    - sanitizer_driver_cbid.h
+    - sanitizer_memory.h
+    - sanitizer_patching.h
+    - sanitizer_result.h
+    - sanitizer_runtime_cbid.h
+    - sanitizer_stream.h
+    - sanitizer.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12021
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: sanitizerAddPatches
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: image
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAddPatchesFromFile
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: patchPath
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAlloc
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: byteCount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerAllocHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: hostPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: byteCount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableAllDomains
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableCallback
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: Sanitizer_CallbackId
+              type_str: Sanitizer_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerEnableDomain
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerFree
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerFreeHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: hostPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetCallbackPcAndSize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: deviceCallbackName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: pc
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: size
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetCallbackState
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: enable
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+          - name: domain
+            param_type:
+              name: Sanitizer_CallbackDomain
+              type_str: Sanitizer_CallbackDomain {}
+          - name: cbid
+            param_type:
+              name: Sanitizer_CallbackId
+              type_str: Sanitizer_CallbackId {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetFunctionLoadedStatus
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: func
+            param_type:
+              name: HGfunction
+              type_str: HGfunction {}
+          - name: loadingStatus
+            param_type:
+              name: Sanitizer_FunctionLoadedStatus
+              is_pointer: true
+              type_str: Sanitizer_FunctionLoadedStatus * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetFunctionPcAndSize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: mod
+            param_type:
+              name: HGmodule
+              type_str: HGmodule {}
+          - name: functionName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: pc
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+          - name: size
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetHggcBarrierCount
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: func
+            param_type:
+              name: HGfunction
+              type_str: HGfunction {}
+          - name: barrierCount
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetResultString
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: result
+            param_type:
+              name: SanitizerResult
+              type_str: SanitizerResult {}
+          - name: out_str
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetStream
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: streamH
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: out_stream
+            param_type:
+              name: HGstream
+              is_pointer: true
+              type_str: HGstream * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerGetStreamHandle
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: ctx
+            param_type:
+              name: HGcontext
+              type_str: HGcontext {}
+          - name: hgStream
+            param_type:
+              name: HGstream
+              type_str: HGstream {}
+          - name: out_handle
+            param_type:
+              name: Sanitizer_StreamHandle
+              is_pointer: true
+              type_str: Sanitizer_StreamHandle * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemcpyDeviceToHost
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: dst
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: src
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: byteCount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemcpyHostToDeviceAsync
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: dst
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: src
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: byteCount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerMemset
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: devPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: byte
+            param_type:
+              name: int
+              type_str: int {}
+          - name: byteCount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerPatchInstructions
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: instrId
+            param_type:
+              name: Sanitizer_InstructionId
+              is_const: true
+              type_str: const Sanitizer_InstructionId {}
+          - name: mod
+            param_type:
+              name: HGmodule
+              type_str: HGmodule {}
+          - name: deviceCallbackName
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerPatchModule
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: mod
+            param_type:
+              name: HGmodule
+              type_str: HGmodule {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetCallbackData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: func
+            param_type:
+              name: HGfunction
+              type_str: HGfunction {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetDeviceGraphData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: graphExec
+            param_type:
+              name: HGgraphExec
+              type_str: HGgraphExec {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSetLaunchCallbackData
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: launch
+            param_type:
+              name: Sanitizer_LaunchHandle
+              type_str: Sanitizer_LaunchHandle {}
+          - name: func
+            param_type:
+              name: HGfunction
+              type_str: HGfunction {}
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerStreamSynchronize
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: stream
+            param_type:
+              name: Sanitizer_StreamHandle
+              type_str: Sanitizer_StreamHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerSubscribe
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              is_pointer: true
+              type_str: Sanitizer_SubscriberHandle * {}
+          - name: callback
+            param_type:
+              name: Sanitizer_CallbackFunc
+              type_str: Sanitizer_CallbackFunc {}
+          - name: userdata
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerUnpatchModule
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: mod
+            param_type:
+              name: HGmodule
+              type_str: HGmodule {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: sanitizerUnsubscribe
+      signature:
+        return_type:
+          name: SanitizerResult
+          type_str: SanitizerResult {}
+        parameters:
+          - name: subscriber
+            param_type:
+              name: Sanitizer_SubscriberHandle
+              type_str: Sanitizer_SubscriberHandle {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: sanitizerAddPatches
+    target_function: sanitizerAddPatches
+    parameter_mapping:
+      {}
+  - source_function: sanitizerAddPatchesFromFile
+    target_function: sanitizerAddPatchesFromFile
+    parameter_mapping:
+      {}
+  - source_function: sanitizerAlloc
+    target_function: sanitizerAlloc
+    parameter_mapping:
+      {}
+  - source_function: sanitizerAllocHost
+    target_function: sanitizerAllocHost
+    parameter_mapping:
+      {}
+  - source_function: sanitizerEnableAllDomains
+    target_function: sanitizerEnableAllDomains
+    parameter_mapping:
+      {}
+  - source_function: sanitizerEnableCallback
+    target_function: sanitizerEnableCallback
+    parameter_mapping:
+      {}
+  - source_function: sanitizerEnableDomain
+    target_function: sanitizerEnableDomain
+    parameter_mapping:
+      {}
+  - source_function: sanitizerFree
+    target_function: sanitizerFree
+    parameter_mapping:
+      {}
+  - source_function: sanitizerFreeHost
+    target_function: sanitizerFreeHost
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetCallbackPcAndSize
+    target_function: sanitizerGetCallbackPcAndSize
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetCallbackState
+    target_function: sanitizerGetCallbackState
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetCudaBarrierCount
+    target_function: sanitizerGetHggcBarrierCount
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetFunctionLoadedStatus
+    target_function: sanitizerGetFunctionLoadedStatus
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetFunctionPcAndSize
+    target_function: sanitizerGetFunctionPcAndSize
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetResultString
+    target_function: sanitizerGetResultString
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetStream
+    target_function: sanitizerGetStream
+    parameter_mapping:
+      {}
+  - source_function: sanitizerGetStreamHandle
+    target_function: sanitizerGetStreamHandle
+    parameter_mapping:
+      {}
+  - source_function: sanitizerMemcpyDeviceToHost
+    target_function: sanitizerMemcpyDeviceToHost
+    parameter_mapping:
+      {}
+  - source_function: sanitizerMemcpyHostToDeviceAsync
+    target_function: sanitizerMemcpyHostToDeviceAsync
+    parameter_mapping:
+      {}
+  - source_function: sanitizerMemset
+    target_function: sanitizerMemset
+    parameter_mapping:
+      {}
+  - source_function: sanitizerPatchInstructions
+    target_function: sanitizerPatchInstructions
+    parameter_mapping:
+      {}
+  - source_function: sanitizerPatchModule
+    target_function: sanitizerPatchModule
+    parameter_mapping:
+      {}
+  - source_function: sanitizerSetCallbackData
+    target_function: sanitizerSetCallbackData
+    parameter_mapping:
+      {}
+  - source_function: sanitizerSetDeviceGraphData
+    target_function: sanitizerSetDeviceGraphData
+    parameter_mapping:
+      {}
+  - source_function: sanitizerSetLaunchCallbackData
+    target_function: sanitizerSetLaunchCallbackData
+    parameter_mapping:
+      {}
+  - source_function: sanitizerStreamSynchronize
+    target_function: sanitizerStreamSynchronize
+    parameter_mapping:
+      {}
+  - source_function: sanitizerSubscribe
+    target_function: sanitizerSubscribe
+    parameter_mapping:
+      {}
+  - source_function: sanitizerUnpatchModule
+    target_function: sanitizerUnpatchModule
+    parameter_mapping:
+      {}
+  - source_function: sanitizerUnsubscribe
+    target_function: sanitizerUnsubscribe
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "sanitizerAddPatches",
+        "sanitizerAddPatchesFromFile",
+        "sanitizerAlloc",
+        "sanitizerAllocHost",
+        "sanitizerEnableAllDomains",
+        "sanitizerEnableCallback",
+        "sanitizerEnableDomain",
+        "sanitizerFree",
+        "sanitizerFreeHost",
+        "sanitizerGetCallbackPcAndSize",
+        "sanitizerGetCallbackState",
+        "sanitizerGetCudaBarrierCount",
+        "sanitizerGetFunctionLoadedStatus",
+        "sanitizerGetFunctionPcAndSize",
+        "sanitizerGetResultString",
+        "sanitizerGetStream",
+        "sanitizerGetStreamHandle",
+        "sanitizerMemcpyDeviceToHost",
+        "sanitizerMemcpyHostToDeviceAsync",
+        "sanitizerMemset",
+        "sanitizerPatchInstructions",
+        "sanitizerPatchModule",
+        "sanitizerSetCallbackData",
+        "sanitizerSetDeviceGraphData",
+        "sanitizerSetLaunchCallbackData",
+        "sanitizerStreamSynchronize",
+        "sanitizerSubscribe",
+        "sanitizerUnpatchModule",
+        "sanitizerUnsubscribe",
+    };
+
+    enum sanitizer_publicProfileCallbackId {
+        sanitizer_public_TRACE_CBID_sanitizerAddPatches = 0,
+        sanitizer_public_TRACE_CBID_sanitizerAddPatchesFromFile = 1,
+        sanitizer_public_TRACE_CBID_sanitizerAlloc = 2,
+        sanitizer_public_TRACE_CBID_sanitizerAllocHost = 3,
+        sanitizer_public_TRACE_CBID_sanitizerEnableAllDomains = 4,
+        sanitizer_public_TRACE_CBID_sanitizerEnableCallback = 5,
+        sanitizer_public_TRACE_CBID_sanitizerEnableDomain = 6,
+        sanitizer_public_TRACE_CBID_sanitizerFree = 7,
+        sanitizer_public_TRACE_CBID_sanitizerFreeHost = 8,
+        sanitizer_public_TRACE_CBID_sanitizerGetCallbackPcAndSize = 9,
+        sanitizer_public_TRACE_CBID_sanitizerGetCallbackState = 10,
+        sanitizer_public_TRACE_CBID_sanitizerGetCudaBarrierCount = 11,
+        sanitizer_public_TRACE_CBID_sanitizerGetFunctionLoadedStatus = 12,
+        sanitizer_public_TRACE_CBID_sanitizerGetFunctionPcAndSize = 13,
+        sanitizer_public_TRACE_CBID_sanitizerGetResultString = 14,
+        sanitizer_public_TRACE_CBID_sanitizerGetStream = 15,
+        sanitizer_public_TRACE_CBID_sanitizerGetStreamHandle = 16,
+        sanitizer_public_TRACE_CBID_sanitizerMemcpyDeviceToHost = 17,
+        sanitizer_public_TRACE_CBID_sanitizerMemcpyHostToDeviceAsync = 18,
+        sanitizer_public_TRACE_CBID_sanitizerMemset = 19,
+        sanitizer_public_TRACE_CBID_sanitizerPatchInstructions = 20,
+        sanitizer_public_TRACE_CBID_sanitizerPatchModule = 21,
+        sanitizer_public_TRACE_CBID_sanitizerSetCallbackData = 22,
+        sanitizer_public_TRACE_CBID_sanitizerSetDeviceGraphData = 23,
+        sanitizer_public_TRACE_CBID_sanitizerSetLaunchCallbackData = 24,
+        sanitizer_public_TRACE_CBID_sanitizerStreamSynchronize = 25,
+        sanitizer_public_TRACE_CBID_sanitizerSubscribe = 26,
+        sanitizer_public_TRACE_CBID_sanitizerUnpatchModule = 27,
+        sanitizer_public_TRACE_CBID_sanitizerUnsubscribe = 28,
+    };
+
+    typedef uint32_t (*sanitizer_publicRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*sanitizer_publicIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*sanitizer_publicProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*sanitizer_publicProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct sanitizer_publicProfileHandler {
+        sanitizer_publicRegisterProfileDomain registerProfileDomain;
+        sanitizer_publicIsProfileCallbackEnabled isCallbackEnabled;
+        sanitizer_publicProfileCallbackBegin profileCallbackBegin;
+        sanitizer_publicProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static sanitizer_publicProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "sanitizer-public";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<sanitizer_publicRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<sanitizer_publicIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<sanitizer_publicProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<sanitizer_publicProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, sanitizer_public_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, sanitizer_public_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, sanitizer_public_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

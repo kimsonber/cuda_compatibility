@@ -1,0 +1,6 @@
+# Mixed -Xptxas options: mapped (-v), passthrough (--warning-as-error), ignored (-Werror)
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-v --ptxas-options=--warning-as-error --ptxas-options=-Werror %s
+CHECK: --llvm-options
+CHECK: --resource-usage
+CHECK: --warning-as-error
+CHECK-NOT: -Werror
