@@ -1,0 +1,779 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nvvm
+  dyn_lib_file_name: libnvvm.so.4.0.0
+  dyn_lib_install_name: libnvvm.so.4.0.0
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nvvm.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libnvvm.so.4
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: nvvmAddModuleToProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmCompileProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: numOptions
+            param_type:
+              name: int
+              type_str: int {}
+          - name: options
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmCreateProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              is_pointer: true
+              type_str: nvvmProgram * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmDestroyProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              is_pointer: true
+              type_str: nvvmProgram * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmGetCompiledResult
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmGetCompiledResultSize
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: bufferSizeRet
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmGetErrorString
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: result
+            param_type:
+              name: nvvmResult
+              type_str: nvvmResult {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmGetProgramLog
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmGetProgramLogSize
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: bufferSizeRet
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmIRVersion
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: majorIR
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minorIR
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: majorDbg
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minorDbg
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmLazyAddModuleToProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmVerifyProgram
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: nvvmProgram
+              type_str: nvvmProgram {}
+          - name: numOptions
+            param_type:
+              name: int
+              type_str: int {}
+          - name: options
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvvmVersion
+      signature:
+        return_type:
+          name: nvvmResult
+          type_str: nvvmResult {}
+        parameters:
+          - name: major
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minor
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgvm.so
+  lib_dirs:
+    []
+  include_files:
+    - hgvm.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=12001
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: hgvmAddModuleToProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmCompileProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: numOption
+            param_type:
+              name: int
+              type_str: int {}
+          - name: options
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmCreateProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              is_pointer: true
+              type_str: hgvmProgram * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmDestroyProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              is_pointer: true
+              type_str: hgvmProgram * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmGetCompiledResult
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmGetCompiledResultSize
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: bufferSizeRet
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmGetErrorString
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: result
+            param_type:
+              name: hgvmResult
+              type_str: hgvmResult {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmGetProgramLog
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmGetProgramLogSize
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: bufferSizeRet
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmIRVersion
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: majorIR
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minorIR
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: majorDbg
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minorDbg
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmLazyAddModuleToProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: buffer
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmVerifyProgram
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: prog
+            param_type:
+              name: hgvmProgram
+              type_str: hgvmProgram {}
+          - name: numOption
+            param_type:
+              name: int
+              type_str: int {}
+          - name: options
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgvmVersion
+      signature:
+        return_type:
+          name: hgvmResult
+          type_str: hgvmResult {}
+        parameters:
+          - name: major
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: minor
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: nvvmAddModuleToProgram
+    target_function: hgvmAddModuleToProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmCompileProgram
+    target_function: hgvmCompileProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmCreateProgram
+    target_function: hgvmCreateProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmDestroyProgram
+    target_function: hgvmDestroyProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmGetCompiledResult
+    target_function: hgvmGetCompiledResult
+    parameter_mapping:
+      {}
+  - source_function: nvvmGetCompiledResultSize
+    target_function: hgvmGetCompiledResultSize
+    parameter_mapping:
+      {}
+  - source_function: nvvmGetErrorString
+    target_function: hgvmGetErrorString
+    parameter_mapping:
+      {}
+  - source_function: nvvmGetProgramLog
+    target_function: hgvmGetProgramLog
+    parameter_mapping:
+      {}
+  - source_function: nvvmGetProgramLogSize
+    target_function: hgvmGetProgramLogSize
+    parameter_mapping:
+      {}
+  - source_function: nvvmIRVersion
+    target_function: hgvmIRVersion
+    parameter_mapping:
+      {}
+  - source_function: nvvmLazyAddModuleToProgram
+    target_function: hgvmLazyAddModuleToProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmVerifyProgram
+    target_function: hgvmVerifyProgram
+    parameter_mapping:
+      {}
+  - source_function: nvvmVersion
+    target_function: hgvmVersion
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "nvvmAddModuleToProgram",
+        "nvvmCompileProgram",
+        "nvvmCreateProgram",
+        "nvvmDestroyProgram",
+        "nvvmGetCompiledResult",
+        "nvvmGetCompiledResultSize",
+        "nvvmGetErrorString",
+        "nvvmGetProgramLog",
+        "nvvmGetProgramLogSize",
+        "nvvmIRVersion",
+        "nvvmLazyAddModuleToProgram",
+        "nvvmVerifyProgram",
+        "nvvmVersion",
+    };
+
+    enum nvvmProfileCallbackId {
+        nvvm_TRACE_CBID_nvvmAddModuleToProgram = 0,
+        nvvm_TRACE_CBID_nvvmCompileProgram = 1,
+        nvvm_TRACE_CBID_nvvmCreateProgram = 2,
+        nvvm_TRACE_CBID_nvvmDestroyProgram = 3,
+        nvvm_TRACE_CBID_nvvmGetCompiledResult = 4,
+        nvvm_TRACE_CBID_nvvmGetCompiledResultSize = 5,
+        nvvm_TRACE_CBID_nvvmGetErrorString = 6,
+        nvvm_TRACE_CBID_nvvmGetProgramLog = 7,
+        nvvm_TRACE_CBID_nvvmGetProgramLogSize = 8,
+        nvvm_TRACE_CBID_nvvmIRVersion = 9,
+        nvvm_TRACE_CBID_nvvmLazyAddModuleToProgram = 10,
+        nvvm_TRACE_CBID_nvvmVerifyProgram = 11,
+        nvvm_TRACE_CBID_nvvmVersion = 12,
+    };
+
+    typedef uint32_t (*nvvmRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*nvvmIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvvmProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvvmProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct nvvmProfileHandler {
+        nvvmRegisterProfileDomain registerProfileDomain;
+        nvvmIsProfileCallbackEnabled isCallbackEnabled;
+        nvvmProfileCallbackBegin profileCallbackBegin;
+        nvvmProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static nvvmProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nvvm";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<nvvmRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<nvvmIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<nvvmProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<nvvmProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, nvvm_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

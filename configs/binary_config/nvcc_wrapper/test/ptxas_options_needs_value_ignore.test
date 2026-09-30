@@ -1,0 +1,4 @@
+# ptxas option with needs_value should be correctly ignored via default_value_mapping
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-Ofc=3 %s
+CHECK-NOT: --llvm-options
+CHECK-NOT: -Ofc
