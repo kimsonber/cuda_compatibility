@@ -1,0 +1,962 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "nvptxcompiler",
+        "dyn_lib_file_name": "",
+        "sta_lib_file_name": "libnvptxcompiler_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "cuda.h",
+            "../../include/texture_types.h",
+            "nvPTXCompiler.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib1/compute-sanitizer/include",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "nvPTXCompilerCompile",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "numCompileOptions",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "compileOptions",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerCreate",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "is_pointer": true,
+                                "type_str": "nvPTXCompilerHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "ptxCodeLen",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "ptxCode",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "is_pointer": true,
+                                "type_str": "nvPTXCompilerHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetCompiledProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "binaryImage",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetCompiledProgramSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "binaryImageSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetErrorLog",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "errorLog",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetErrorLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "errorLogSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetInfoLog",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "infoLog",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetInfoLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "infoLogSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetNumSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "numArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetNumSupportedVersions",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "numVersions",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "supportedArchs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetSupportedVersions",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "versions",
+                            "param_type": {
+                                "name": "int()[2]",
+                                "is_pointer": true,
+                                "is_array": true,
+                                "array_size": 2,
+                                "type_str": "int (*{})[2]"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerGetVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "major",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "is_pointer": true,
+                                "type_str": "unsigned int * {}"
+                            }
+                        },
+                        {
+                            "name": "minor",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "is_pointer": true,
+                                "type_str": "unsigned int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "nvPTXCompilerSetFlowCallback",
+                "signature": {
+                    "return_type": {
+                        "name": "nvPTXCompileResult",
+                        "type_str": "nvPTXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "compiler",
+                            "param_type": {
+                                "name": "nvPTXCompilerHandle",
+                                "type_str": "nvPTXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "callback",
+                            "param_type": {
+                                "name": "int()(void,void)",
+                                "is_pointer": true,
+                                "func_ptr": {
+                                    "return_type": {
+                                        "name": "int",
+                                        "type_str": "int {}"
+                                    },
+                                    "parameters": [
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type_str": "int (* {})(void *, void *)"
+                            }
+                        },
+                        {
+                            "name": "payload",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libhgtixcompiler.so",
+        "lib_dirs": [],
+        "include_files": [
+            "hgTIXCompiler.h"
+        ],
+        "include_dirs": [
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=13011",
+                "__HGGC_API_V3__"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "hgTIXCompilerCompile",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Num",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "Options",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char *const * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerCreate",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "is_pointer": true,
+                                "type_str": "hgTIXCompilerHandle * {}"
+                            }
+                        },
+                        {
+                            "name": "Len",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "Code",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerDestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "is_pointer": true,
+                                "type_str": "hgTIXCompilerHandle * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetCompiledProgram",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Image",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetCompiledProgramSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Size",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetErrorLog",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Log",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetErrorLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Size",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetInfoLog",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Log",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetInfoLogSize",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Size",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetNumSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Num",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetNumSupportedVersions",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Num",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetSupportedArchs",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Archs",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerGetSupportedVersions",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Versions",
+                            "param_type": {
+                                "name": "int()[2]",
+                                "is_pointer": true,
+                                "is_array": true,
+                                "array_size": 2,
+                                "type_str": "int (*{})[2]"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "hgTIXCompilerSetFlowCallback",
+                "signature": {
+                    "return_type": {
+                        "name": "hgTIXCompileResult",
+                        "type_str": "hgTIXCompileResult {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "Handle",
+                            "param_type": {
+                                "name": "hgTIXCompilerHandle",
+                                "type_str": "hgTIXCompilerHandle {}"
+                            }
+                        },
+                        {
+                            "name": "Func",
+                            "param_type": {
+                                "name": "int()(void,void)",
+                                "is_pointer": true,
+                                "func_ptr": {
+                                    "return_type": {
+                                        "name": "int",
+                                        "type_str": "int {}"
+                                    },
+                                    "parameters": [
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        },
+                                        {
+                                            "name": "",
+                                            "param_type": {
+                                                "name": "void",
+                                                "is_pointer": true,
+                                                "type_str": "void * {}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type_str": "int (* {})(void *, void *)"
+                            }
+                        },
+                        {
+                            "name": "Args",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "api_mappings": [
+        {
+            "source_function": "nvPTXCompilerCompile",
+            "target_function": "hgTIXCompilerCompile",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerCreate",
+            "target_function": "hgTIXCompilerCreate",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerDestroy",
+            "target_function": "hgTIXCompilerDestroy",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetCompiledProgram",
+            "target_function": "hgTIXCompilerGetCompiledProgram",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetCompiledProgramSize",
+            "target_function": "hgTIXCompilerGetCompiledProgramSize",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetErrorLog",
+            "target_function": "hgTIXCompilerGetErrorLog",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetErrorLogSize",
+            "target_function": "hgTIXCompilerGetErrorLogSize",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetInfoLog",
+            "target_function": "hgTIXCompilerGetInfoLog",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetInfoLogSize",
+            "target_function": "hgTIXCompilerGetInfoLogSize",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "nvPTXCompilerGetNumSupportedArchs",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvPTXCompileResult nvPTXCompilerGetNumSupportedArchs(int * numArchs) {\nconst unsigned CUDA_131_ARCH_NUM = 6; // TraceCall(\"nvPTXCompilerGetNumSupportedArchs\");\n    if (numArchs == nullptr)\n      return (nvPTXCompileResult)2;\n    switch (CUDA_VERSION) {\n      break;\n    case 13010:\n      *numArchs = CUDA_131_ARCH_NUM;\n      break;\n    default:\n      return (nvPTXCompileResult)4;\n    }\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvPTXCompilerGetNumSupportedVersions",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvPTXCompileResult nvPTXCompilerGetNumSupportedVersions(int * numVersions) {\n                                                                            const unsigned CUDA_130_VERSION_NUM = 44;\n                                    const unsigned CUDA_131_VERSION_NUM = 45;\n                                     // TraceCall(\"nvPTXCompilerGetNumSupportedVersions\");\n    if (numVersions == nullptr)\n      return (nvPTXCompileResult)2;\n    switch (CUDA_VERSION) {\n    case 13000:\n      *numVersions = CUDA_130_VERSION_NUM;\n      break;\n    case 13010:\n      *numVersions = CUDA_131_VERSION_NUM;\n      break;\n    default:\n      return (nvPTXCompileResult)4;\n    }\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvPTXCompilerGetSupportedArchs",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvPTXCompileResult nvPTXCompilerGetSupportedArchs(int * supportedArchs) {\nconst unsigned CUDA_131_ARCH_NUM = 6;int cuda131Archs[CUDA_131_ARCH_NUM] = {75, 80, 86, 87, 88, 89}; // TraceCall(\"nvPTXCompilerGetSupportedArchs\");\n    if (supportedArchs == nullptr)\n      return (nvPTXCompileResult)2;\n    unsigned archNum;\n    int *arch;\n    switch (CUDA_VERSION) {\n    case 13010:\n      archNum = CUDA_131_ARCH_NUM;\n      arch = cuda131Archs;\n      break;\n    default:\n      return (nvPTXCompileResult)4;\n    }\n    for (unsigned I = 0; I < archNum; ++I)\n      supportedArchs[I] = arch[I];\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvPTXCompilerGetSupportedVersions",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvPTXCompileResult nvPTXCompilerGetSupportedVersions(int (*versions)[2]) {\n                                                                            const unsigned CUDA_130_VERSION_NUM = 44;\n                                    const unsigned CUDA_131_VERSION_NUM = 45;\n                                                                                                                int cuda130Versions[CUDA_130_VERSION_NUM] = {\n                                    10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 30, 31, 32, 40, 41,\n                  42, 43, 50, 51, 60, 61, 62, 63, 64, 65, 70, 71, 72, 73, 74,\n                  75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 90};\n                 int cuda131Versions[CUDA_131_VERSION_NUM] = {\n                                    10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 30, 31, 32, 40, 41,\n                  42, 43, 50, 51, 60, 61, 62, 63, 64, 65, 70, 71, 72, 73, 74,\n                  75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 90, 91};\n              // TraceCall(\"nvPTXCompilerGetSupportedVersions\");\n    if (versions == nullptr)\n      return (nvPTXCompileResult)2;\n    unsigned versionNum;\n    int *version;\n    switch (CUDA_VERSION) {\n    case 13000:\n      versionNum = CUDA_130_VERSION_NUM;\n      version = cuda130Versions;\n      break;\n    case 13010:\n      versionNum = CUDA_131_VERSION_NUM;\n      version = cuda131Versions;\n      break;\n    default:\n      return (nvPTXCompileResult)4;\n    }\n    for (unsigned I = 0; I < versionNum; ++I) {\n      versions[I][0] = version[I] / 10;\n      versions[I][1] = version[I] % 10;\n    }\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvPTXCompilerGetVersion",
+            "target_function": "",
+            "parameter_mapping": {},
+            "custom_func_imp": "nvPTXCompileResult nvPTXCompilerGetVersion(unsigned int * major, unsigned int * minor) {\n // TraceCall(\"nvPTXCompilerGetVersion\");\n    if (major == nullptr || minor == nullptr) {\n      // NVPTXCOMPILE_ERROR_INTERNAL\n      return (nvPTXCompileResult)0x4;\n    }\n    *major = CUDA_VERSION / 1000;\n    *minor = (CUDA_VERSION - (*major * 1000)) / 10;\n    return NVPTXCOMPILE_SUCCESS;\n}\n\n"
+        },
+        {
+            "source_function": "nvPTXCompilerSetFlowCallback",
+            "target_function": "hgTIXCompilerSetFlowCallback",
+            "parameter_mapping": {}
+        }
+    ],
+    "global_custom_code": {
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"nvPTXCompilerCompile\",\n    \"nvPTXCompilerCreate\",\n    \"nvPTXCompilerDestroy\",\n    \"nvPTXCompilerGetCompiledProgram\",\n    \"nvPTXCompilerGetCompiledProgramSize\",\n    \"nvPTXCompilerGetErrorLog\",\n    \"nvPTXCompilerGetErrorLogSize\",\n    \"nvPTXCompilerGetInfoLog\",\n    \"nvPTXCompilerGetInfoLogSize\",\n    \"nvPTXCompilerGetNumSupportedArchs\",\n    \"nvPTXCompilerGetNumSupportedVersions\",\n    \"nvPTXCompilerGetSupportedArchs\",\n    \"nvPTXCompilerGetSupportedVersions\",\n    \"nvPTXCompilerGetVersion\",\n    \"nvPTXCompilerSetFlowCallback\",\n};\n\nenum nvptxcompilerProfileCallbackId {\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerCompile = 0,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerCreate = 1,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerDestroy = 2,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgram = 3,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetCompiledProgramSize = 4,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLog = 5,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetErrorLogSize = 6,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLog = 7,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetInfoLogSize = 8,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetNumSupportedArchs = 9,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetNumSupportedVersions = 10,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetSupportedArchs = 11,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetSupportedVersions = 12,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerGetVersion = 13,\n    nvptxcompiler_TRACE_CBID_nvPTXCompilerSetFlowCallback = 14,\n};\n\ntypedef uint32_t (*nvptxcompilerRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*nvptxcompilerIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvptxcompilerProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*nvptxcompilerProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct nvptxcompilerProfileHandler {\n    nvptxcompilerRegisterProfileDomain registerProfileDomain;\n    nvptxcompilerIsProfileCallbackEnabled isCallbackEnabled;\n    nvptxcompilerProfileCallbackBegin profileCallbackBegin;\n    nvptxcompilerProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic nvptxcompilerProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"nvptxcompiler\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<nvptxcompilerRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<nvptxcompilerIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<nvptxcompilerProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<nvptxcompilerProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n",
+        "pre_wrapper_call": "\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, nvptxcompiler_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, nvptxcompiler_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n",
+        "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, nvptxcompiler_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n"
+    }
+}

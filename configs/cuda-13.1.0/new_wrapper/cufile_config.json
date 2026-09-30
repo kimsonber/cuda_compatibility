@@ -1,0 +1,1478 @@
+{
+    "wrapper_cmp_ctrl": {
+        "custom_compiler": "gcc",
+        "gen_static_lib": true,
+        "gen_dynamic_lib": true
+    },
+    "source_library": {
+        "lib_name": "cufile",
+        "dyn_lib_file_name": "libcufile.so.1.16.0",
+        "dyn_lib_install_name": "libcufile.so.1.16.0",
+        "sta_lib_file_name": "libcufile_static.a",
+        "lib_dirs": [],
+        "include_files": [
+            "../../include/texture_types.h",
+            "cufile.h"
+        ],
+        "include_dirs": [
+            "$lib1/extras/CUPTI/include",
+            "$lib1/extras/Debugger/include",
+            "$lib1/targets/x86_64-linux/include",
+            "$lib1/nvvm/include",
+            "$lib1/compute-sanitizer/include",
+            "$config/PrivateHeader/GL",
+            "$config/PrivateHeader",
+            "$config/PrivateHeader/KHR",
+            "$config/PrivateHeader/EGL",
+            "$cu_ad"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "NVML_NO_UNVERSIONED_FUNC_DEFS",
+                "USE_CUDA_RUNTIME=1",
+                "__BF16_DEFINED__",
+                "__FP16_DEFINED__",
+                "__FP8_DEFINED__"
+            ],
+            "linker_flags": [
+                "-soname,libcufile.so.0",
+                "--no-as-needed -lpthread"
+            ]
+        },
+        "api_functions": [
+            {
+                "name": "cuFileBatchIOCancel",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "batch_idp",
+                            "param_type": {
+                                "name": "CUfileBatchHandle_t",
+                                "type_str": "CUfileBatchHandle_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBatchIODestroy",
+                "signature": {
+                    "return_type": {
+                        "name": "void",
+                        "type_str": "void {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "batch_idp",
+                            "param_type": {
+                                "name": "CUfileBatchHandle_t",
+                                "type_str": "CUfileBatchHandle_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBatchIOGetStatus",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "batch_idp",
+                            "param_type": {
+                                "name": "CUfileBatchHandle_t",
+                                "type_str": "CUfileBatchHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "min_nr",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "type_str": "unsigned int {}"
+                            }
+                        },
+                        {
+                            "name": "nr",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "is_pointer": true,
+                                "type_str": "unsigned int * {}"
+                            }
+                        },
+                        {
+                            "name": "iocbp",
+                            "param_type": {
+                                "name": "CUfileIOEvents_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileIOEvents_t * {}"
+                            }
+                        },
+                        {
+                            "name": "timeout",
+                            "param_type": {
+                                "name": "timespec",
+                                "is_pointer": true,
+                                "type_str": "timespec * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBatchIOSetUp",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "batch_idp",
+                            "param_type": {
+                                "name": "CUfileBatchHandle_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileBatchHandle_t * {}"
+                            }
+                        },
+                        {
+                            "name": "nr",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "type_str": "unsigned int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBatchIOSubmit",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "batch_idp",
+                            "param_type": {
+                                "name": "CUfileBatchHandle_t",
+                                "type_str": "CUfileBatchHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "nr",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "type_str": "unsigned int {}"
+                            }
+                        },
+                        {
+                            "name": "iocbp",
+                            "param_type": {
+                                "name": "CUfileIOParams_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileIOParams_t * {}"
+                            }
+                        },
+                        {
+                            "name": "flags",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "type_str": "unsigned int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBufDeregister",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileBufRegister",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "length",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "flags",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverClose",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverClose_v2",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverGetP2PFlags",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "status_flag",
+                            "param_type": {
+                                "name": "CUfileDriverStatusFlags_t",
+                                "type_str": "CUfileDriverStatusFlags_t {}"
+                            }
+                        },
+                        {
+                            "name": "p2p_flags",
+                            "param_type": {
+                                "name": "CUfileP2PFlags_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileP2PFlags_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverGetProperties",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "props",
+                            "param_type": {
+                                "name": "CUfileDrvProps_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileDrvProps_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverOpen",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverSetMaxCacheSize",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "max_cache_size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverSetMaxDirectIOSize",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "max_direct_io_size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverSetMaxPinnedMemSize",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "max_pinned_size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverSetP2PFlags",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "status_flag",
+                            "param_type": {
+                                "name": "CUfileDriverStatusFlags_t",
+                                "type_str": "CUfileDriverStatusFlags_t {}"
+                            }
+                        },
+                        {
+                            "name": "p2p_flags",
+                            "param_type": {
+                                "name": "CUfileP2PFlags_t",
+                                "type_str": "CUfileP2PFlags_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileDriverSetPollMode",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "poll",
+                            "param_type": {
+                                "name": "bool",
+                                "type_str": "bool {}"
+                            }
+                        },
+                        {
+                            "name": "poll_threshold_size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetBARSizeInKB",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "gpuIndex",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        },
+                        {
+                            "name": "barSize",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetParameterBool",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileBoolConfigParameter_t",
+                                "type_str": "CUFileBoolConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "param_type": {
+                                "name": "bool",
+                                "is_pointer": true,
+                                "type_str": "bool * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetParameterMinMaxValue",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileSizeTConfigParameter_t",
+                                "type_str": "CUFileSizeTConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "min_value",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "max_value",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetParameterPosixPoolSlabArray",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "size_values",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "count_values",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "len",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetParameterSizeT",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileSizeTConfigParameter_t",
+                                "type_str": "CUFileSizeTConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetParameterString",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileStringConfigParameter_t",
+                                "type_str": "CUFileStringConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "desc_str",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "char * {}"
+                            }
+                        },
+                        {
+                            "name": "len",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetStatsL1",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stats",
+                            "param_type": {
+                                "name": "CUfileStatsLevel1_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileStatsLevel1_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetStatsL2",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stats",
+                            "param_type": {
+                                "name": "CUfileStatsLevel2_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileStatsLevel2_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetStatsL3",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stats",
+                            "param_type": {
+                                "name": "CUfileStatsLevel3_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileStatsLevel3_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetStatsLevel",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "level",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileGetVersion",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "version",
+                            "param_type": {
+                                "name": "int",
+                                "is_pointer": true,
+                                "type_str": "int * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileHandleDeregister",
+                "signature": {
+                    "return_type": {
+                        "name": "void",
+                        "type_str": "void {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "type_str": "CUfileHandle_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileHandleRegister",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileHandle_t * {}"
+                            }
+                        },
+                        {
+                            "name": "descr",
+                            "param_type": {
+                                "name": "CUfileDescr_t",
+                                "is_pointer": true,
+                                "type_str": "CUfileDescr_t * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileRead",
+                "signature": {
+                    "return_type": {
+                        "name": "ssize_t",
+                        "type_str": "ssize_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "type_str": "CUfileHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "file_offset",
+                            "param_type": {
+                                "name": "off_t",
+                                "type_str": "off_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_offset",
+                            "param_type": {
+                                "name": "off_t",
+                                "type_str": "off_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileReadAsync",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "type_str": "CUfileHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "size_p",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "file_offset_p",
+                            "param_type": {
+                                "name": "off_t",
+                                "is_pointer": true,
+                                "type_str": "off_t * {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_offset_p",
+                            "param_type": {
+                                "name": "off_t",
+                                "is_pointer": true,
+                                "type_str": "off_t * {}"
+                            }
+                        },
+                        {
+                            "name": "bytes_read_p",
+                            "param_type": {
+                                "name": "ssize_t",
+                                "is_pointer": true,
+                                "type_str": "ssize_t * {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "type_str": "CUstream {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileSetParameterBool",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileBoolConfigParameter_t",
+                                "type_str": "CUFileBoolConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "param_type": {
+                                "name": "bool",
+                                "type_str": "bool {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileSetParameterPosixPoolSlabArray",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "size_values",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "const size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "count_values",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "const size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "len",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileSetParameterSizeT",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileSizeTConfigParameter_t",
+                                "type_str": "CUFileSizeTConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileSetParameterString",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "param",
+                            "param_type": {
+                                "name": "CUFileStringConfigParameter_t",
+                                "type_str": "CUFileStringConfigParameter_t {}"
+                            }
+                        },
+                        {
+                            "name": "desc_str",
+                            "param_type": {
+                                "name": "char",
+                                "is_pointer": true,
+                                "type_str": "const char * {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileSetStatsLevel",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "level",
+                            "param_type": {
+                                "name": "int",
+                                "type_str": "int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileStatsReset",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileStatsStart",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileStatsStop",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileStreamDeregister",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "type_str": "CUstream {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileStreamRegister",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "type_str": "CUstream {}"
+                            }
+                        },
+                        {
+                            "name": "flags",
+                            "param_type": {
+                                "name": "unsignedint",
+                                "type_str": "unsigned int {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileUseCount",
+                "signature": {
+                    "return_type": {
+                        "name": "long",
+                        "type_str": "long {}"
+                    },
+                    "parameters": []
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileWrite",
+                "signature": {
+                    "return_type": {
+                        "name": "ssize_t",
+                        "type_str": "ssize_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "type_str": "CUfileHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "const void * {}"
+                            }
+                        },
+                        {
+                            "name": "size",
+                            "param_type": {
+                                "name": "size_t",
+                                "type_str": "size_t {}"
+                            }
+                        },
+                        {
+                            "name": "file_offset",
+                            "param_type": {
+                                "name": "off_t",
+                                "type_str": "off_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_offset",
+                            "param_type": {
+                                "name": "off_t",
+                                "type_str": "off_t {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            },
+            {
+                "name": "cuFileWriteAsync",
+                "signature": {
+                    "return_type": {
+                        "name": "CUfileError_t",
+                        "type_str": "CUfileError_t {}"
+                    },
+                    "parameters": [
+                        {
+                            "name": "fh",
+                            "param_type": {
+                                "name": "CUfileHandle_t",
+                                "type_str": "CUfileHandle_t {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_base",
+                            "param_type": {
+                                "name": "void",
+                                "is_pointer": true,
+                                "type_str": "void * {}"
+                            }
+                        },
+                        {
+                            "name": "size_p",
+                            "param_type": {
+                                "name": "size_t",
+                                "is_pointer": true,
+                                "type_str": "size_t * {}"
+                            }
+                        },
+                        {
+                            "name": "file_offset_p",
+                            "param_type": {
+                                "name": "off_t",
+                                "is_pointer": true,
+                                "type_str": "off_t * {}"
+                            }
+                        },
+                        {
+                            "name": "bufPtr_offset_p",
+                            "param_type": {
+                                "name": "off_t",
+                                "is_pointer": true,
+                                "type_str": "off_t * {}"
+                            }
+                        },
+                        {
+                            "name": "bytes_written_p",
+                            "param_type": {
+                                "name": "ssize_t",
+                                "is_pointer": true,
+                                "type_str": "ssize_t * {}"
+                            }
+                        },
+                        {
+                            "name": "stream",
+                            "param_type": {
+                                "name": "CUstream",
+                                "type_str": "CUstream {}"
+                            }
+                        }
+                    ]
+                },
+                "has_body": false
+            }
+        ]
+    },
+    "target_library": {
+        "lib_name": "",
+        "dyn_lib_file_name": "libNeedImpl.so",
+        "lib_dirs": [],
+        "include_files": [],
+        "include_dirs": [
+            "$ppu/include"
+        ],
+        "extra_src_files": [],
+        "compilation_options": {
+            "macros": [
+                "CUDA_VERSION_INSTALL=13011",
+                "__HGGC_API_V3__"
+            ]
+        },
+        "api_functions": []
+    },
+    "api_mappings": [
+        {
+            "source_function": "cuFileBatchIOCancel",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBatchIODestroy",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBatchIOGetStatus",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBatchIOSetUp",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBatchIOSubmit",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBufDeregister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileBufRegister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverClose",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverClose_v2",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverGetP2PFlags",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverGetProperties",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverOpen",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverSetMaxCacheSize",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverSetMaxDirectIOSize",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverSetMaxPinnedMemSize",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverSetP2PFlags",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileDriverSetPollMode",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetBARSizeInKB",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetParameterBool",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetParameterMinMaxValue",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetParameterPosixPoolSlabArray",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetParameterSizeT",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetParameterString",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetStatsL1",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetStatsL2",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetStatsL3",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetStatsLevel",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileGetVersion",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileHandleDeregister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileHandleRegister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileRead",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileReadAsync",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileSetParameterBool",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileSetParameterPosixPoolSlabArray",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileSetParameterSizeT",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileSetParameterString",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileSetStatsLevel",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileStatsReset",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileStatsStart",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileStatsStop",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileStreamDeregister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileStreamRegister",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileUseCount",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileWrite",
+            "target_function": "",
+            "parameter_mapping": {}
+        },
+        {
+            "source_function": "cuFileWriteAsync",
+            "target_function": "",
+            "parameter_mapping": {}
+        }
+    ],
+    "global_custom_code": {
+        "header_end": "\n#undef cuFileDriverClose\n",
+        "loader_start": "\nstatic uint32_t g_profileDomain;\n\nstatic const char* g_profileFunctionList[] = {\n    \"cuFileBatchIOCancel\",\n    \"cuFileBatchIODestroy\",\n    \"cuFileBatchIOGetStatus\",\n    \"cuFileBatchIOSetUp\",\n    \"cuFileBatchIOSubmit\",\n    \"cuFileBufDeregister\",\n    \"cuFileBufRegister\",\n    \"cuFileDriverClose\",\n    \"cuFileDriverClose_v2\",\n    \"cuFileDriverGetP2PFlags\",\n    \"cuFileDriverGetProperties\",\n    \"cuFileDriverOpen\",\n    \"cuFileDriverSetMaxCacheSize\",\n    \"cuFileDriverSetMaxDirectIOSize\",\n    \"cuFileDriverSetMaxPinnedMemSize\",\n    \"cuFileDriverSetP2PFlags\",\n    \"cuFileDriverSetPollMode\",\n    \"cuFileGetBARSizeInKB\",\n    \"cuFileGetParameterBool\",\n    \"cuFileGetParameterMinMaxValue\",\n    \"cuFileGetParameterPosixPoolSlabArray\",\n    \"cuFileGetParameterSizeT\",\n    \"cuFileGetParameterString\",\n    \"cuFileGetStatsL1\",\n    \"cuFileGetStatsL2\",\n    \"cuFileGetStatsL3\",\n    \"cuFileGetStatsLevel\",\n    \"cuFileGetVersion\",\n    \"cuFileHandleDeregister\",\n    \"cuFileHandleRegister\",\n    \"cuFileRead\",\n    \"cuFileReadAsync\",\n    \"cuFileSetParameterBool\",\n    \"cuFileSetParameterPosixPoolSlabArray\",\n    \"cuFileSetParameterSizeT\",\n    \"cuFileSetParameterString\",\n    \"cuFileSetStatsLevel\",\n    \"cuFileStatsReset\",\n    \"cuFileStatsStart\",\n    \"cuFileStatsStop\",\n    \"cuFileStreamDeregister\",\n    \"cuFileStreamRegister\",\n    \"cuFileUseCount\",\n    \"cuFileWrite\",\n    \"cuFileWriteAsync\",\n};\n\nenum cufileProfileCallbackId {\n    cufile_TRACE_CBID_cuFileBatchIOCancel = 0,\n    cufile_TRACE_CBID_cuFileBatchIODestroy = 1,\n    cufile_TRACE_CBID_cuFileBatchIOGetStatus = 2,\n    cufile_TRACE_CBID_cuFileBatchIOSetUp = 3,\n    cufile_TRACE_CBID_cuFileBatchIOSubmit = 4,\n    cufile_TRACE_CBID_cuFileBufDeregister = 5,\n    cufile_TRACE_CBID_cuFileBufRegister = 6,\n    cufile_TRACE_CBID_cuFileDriverClose = 7,\n    cufile_TRACE_CBID_cuFileDriverClose_v2 = 8,\n    cufile_TRACE_CBID_cuFileDriverGetP2PFlags = 9,\n    cufile_TRACE_CBID_cuFileDriverGetProperties = 10,\n    cufile_TRACE_CBID_cuFileDriverOpen = 11,\n    cufile_TRACE_CBID_cuFileDriverSetMaxCacheSize = 12,\n    cufile_TRACE_CBID_cuFileDriverSetMaxDirectIOSize = 13,\n    cufile_TRACE_CBID_cuFileDriverSetMaxPinnedMemSize = 14,\n    cufile_TRACE_CBID_cuFileDriverSetP2PFlags = 15,\n    cufile_TRACE_CBID_cuFileDriverSetPollMode = 16,\n    cufile_TRACE_CBID_cuFileGetBARSizeInKB = 17,\n    cufile_TRACE_CBID_cuFileGetParameterBool = 18,\n    cufile_TRACE_CBID_cuFileGetParameterMinMaxValue = 19,\n    cufile_TRACE_CBID_cuFileGetParameterPosixPoolSlabArray = 20,\n    cufile_TRACE_CBID_cuFileGetParameterSizeT = 21,\n    cufile_TRACE_CBID_cuFileGetParameterString = 22,\n    cufile_TRACE_CBID_cuFileGetStatsL1 = 23,\n    cufile_TRACE_CBID_cuFileGetStatsL2 = 24,\n    cufile_TRACE_CBID_cuFileGetStatsL3 = 25,\n    cufile_TRACE_CBID_cuFileGetStatsLevel = 26,\n    cufile_TRACE_CBID_cuFileGetVersion = 27,\n    cufile_TRACE_CBID_cuFileHandleDeregister = 28,\n    cufile_TRACE_CBID_cuFileHandleRegister = 29,\n    cufile_TRACE_CBID_cuFileRead = 30,\n    cufile_TRACE_CBID_cuFileReadAsync = 31,\n    cufile_TRACE_CBID_cuFileSetParameterBool = 32,\n    cufile_TRACE_CBID_cuFileSetParameterPosixPoolSlabArray = 33,\n    cufile_TRACE_CBID_cuFileSetParameterSizeT = 34,\n    cufile_TRACE_CBID_cuFileSetParameterString = 35,\n    cufile_TRACE_CBID_cuFileSetStatsLevel = 36,\n    cufile_TRACE_CBID_cuFileStatsReset = 37,\n    cufile_TRACE_CBID_cuFileStatsStart = 38,\n    cufile_TRACE_CBID_cuFileStatsStop = 39,\n    cufile_TRACE_CBID_cuFileStreamDeregister = 40,\n    cufile_TRACE_CBID_cuFileStreamRegister = 41,\n    cufile_TRACE_CBID_cuFileUseCount = 42,\n    cufile_TRACE_CBID_cuFileWrite = 43,\n    cufile_TRACE_CBID_cuFileWriteAsync = 44,\n};\n\ntypedef uint32_t (*cufileRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);\ntypedef uint8_t (*cufileIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);\ntypedef void (*cufileProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);\ntypedef void (*cufileProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);\n\nstruct cufileProfileHandler {\n    cufileRegisterProfileDomain registerProfileDomain;\n    cufileIsProfileCallbackEnabled isCallbackEnabled;\n    cufileProfileCallbackBegin profileCallbackBegin;\n    cufileProfileCallbackEnd profileCallbackEnd;\n};\n\nstatic cufileProfileHandler g_profileHandler;\nstatic bool gDirectReturn = false;\nstatic const char* gLibName = \"cufile\";\n\nstatic void InitializeProfileHandler() {\n    // get library patch\n    const char* profile_tool_library = getenv(\"WRAPPER_INJECTION_PATH\");\n    if (profile_tool_library == NULL) {\n        return;\n    }\n\n    // open profile library\n    void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);\n    if (!tool_handler) {\n        printf(\"cannot open the file:%s  with error %s\\n\", profile_tool_library, dlerror());\n        return;\n    }\n\n    // init profile handler\n    g_profileHandler.registerProfileDomain = reinterpret_cast<cufileRegisterProfileDomain>(dlsym(tool_handler, \"wrapperRegisterProfileDomain\"));\n    g_profileHandler.isCallbackEnabled = reinterpret_cast<cufileIsProfileCallbackEnabled>(dlsym(tool_handler, \"wrapperIsProfileCallbackEnabled\"));\n    g_profileHandler.profileCallbackBegin = reinterpret_cast<cufileProfileCallbackBegin>(dlsym(tool_handler, \"wrapperProfileCallbackBegin\"));\n    g_profileHandler.profileCallbackEnd = reinterpret_cast<cufileProfileCallbackEnd>(dlsym(tool_handler, \"wrapperProfileCallbackEnd\"));\n\n    // register profile domain\n    if (g_profileHandler.registerProfileDomain != NULL) {\n        g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));\n        if (g_profileDomain == 0) {\n            g_profileHandler.isCallbackEnabled = NULL;\n        }\n    }\n}\n",
+        "post_dlopen_tgt_lib": "\n    InitializeProfileHandler();\n",
+        "pre_wrapper_call": "\n    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&\n        g_profileHandler.isCallbackEnabled(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;\n    if (needProfile) {\n        g_profileHandler.profileCallbackBegin(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n",
+        "post_wrapper_call": "\n    if (needProfile) {\n        g_profileHandler.profileCallbackEnd(g_profileDomain, cufile_TRACE_CBID_$WRAPPER_FUNC_NAME);\n    }\n"
+    }
+}

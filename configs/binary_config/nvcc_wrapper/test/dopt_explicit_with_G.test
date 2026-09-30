@@ -1,0 +1,7 @@
+# Explicit --dopt=off with -G: should use explicit value, no duplication
+RUN: nvcc --print-hgcc-only -G --dopt=off -arch compute_80 %s
+CHECK: -dopt 0
+CHECK: -D__CUDACC_DEBUG__
+CHECK: -arch=vm_10
+CHECK-NOT: -dopt 3
+CHECK-NOT: Missing value
