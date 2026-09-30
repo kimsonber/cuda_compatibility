@@ -1,0 +1,586 @@
+{
+  "files": [
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn.so",
+      "libcudnn.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn.so.8",
+      "libcudnn.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_infer.so",
+      "libcudnn_adv_infer.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_infer.so.8",
+      "libcudnn_adv_infer.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_train.so",
+      "libcudnn_adv_train.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_train.so.8",
+      "libcudnn_adv_train.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_infer.so",
+      "libcudnn_cnn_infer.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_infer.so.8",
+      "libcudnn_cnn_infer.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_train.so",
+      "libcudnn_cnn_train.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_train.so.8",
+      "libcudnn_cnn_train.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_infer.so",
+      "libcudnn_ops_infer.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_infer.so.8",
+      "libcudnn_ops_infer.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_train.so",
+      "libcudnn_ops_train.so.8",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_train.so.8",
+      "libcudnn_ops_train.so.8.0.5",
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_cnn_train.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_backend.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_adv_infer.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_ops_train.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_ops_infer.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_version.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_adv_train.h",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/include",
+      "cudnn_cnn_infer.h",
+      null,
+      "cudnn-8.0.5"
+    ]
+  ],
+  "headerpaths": [
+    [
+      "include",
+      "cudnn-8.0.5/include"
+    ]
+  ],
+  "libdirs": {
+    "lib64": [
+      "cudnn-8.0.5/lib64"
+    ]
+  },
+  "libpaths": [
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_infer.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_adv_train.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_infer.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_cnn_train.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_train.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ],
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_ops_infer.so.8.0.5",
+      null,
+      "cudnn-8.0.5"
+    ]
+  ],
+  "libpaths_static": [
+    [
+      "cudnn-8.0.5/lib64",
+      "libcudnn_static.a",
+      null,
+      "cudnn-8.0.5"
+    ]
+  ],
+  "libpaths_static_irregular": [],
+  "libraries": [
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_adv_infer.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_adv_infer.so.8",
+      "needed_libs": [
+        "libcudnn_ops_infer.so.8",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn.so.8",
+      "needed_libs": [
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_adv_train.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_adv_train.so.8",
+      "needed_libs": [
+        "libcudnn_ops_infer.so.8",
+        "libcudnn_ops_train.so.8",
+        "libcudnn_adv_infer.so.8",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_cnn_infer.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_cnn_infer.so.8",
+      "needed_libs": [
+        "libcudnn_ops_infer.so.8",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_cnn_train.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_cnn_train.so.8",
+      "needed_libs": [
+        "libcudnn_ops_infer.so.8",
+        "libcudnn_ops_train.so.8",
+        "libcudnn_cnn_infer.so.8",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_ops_train.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_ops_train.so.8",
+      "needed_libs": [
+        "libcudnn_ops_infer.so.8",
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "path": "cudnn-8.0.5/lib64",
+      "name": "libcudnn_ops_infer.so.8.0.5",
+      "base": "cudnn-8.0.5",
+      "soname": "libcudnn_ops_infer.so.8",
+      "needed_libs": [
+        "librt.so.1",
+        "libpthread.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    }
+  ],
+  "library_deps": {
+    "libcudnn_ops_infer.so.8": [
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_adv_infer.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_adv_infer.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      },
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_adv_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_adv_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_adv_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      },
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_cnn_infer.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_cnn_infer.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      },
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_cnn_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_cnn_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_cnn_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      },
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_ops_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_ops_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      }
+    ],
+    "libcudnn_ops_train.so.8": [
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_adv_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_adv_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_adv_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      },
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_cnn_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_cnn_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_cnn_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      }
+    ],
+    "libcudnn_adv_infer.so.8": [
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_adv_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_adv_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_adv_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      }
+    ],
+    "libcudnn_cnn_infer.so.8": [
+      {
+        "path": "cudnn-8.0.5/lib64",
+        "name": "libcudnn_cnn_train.so.8.0.5",
+        "base": "cudnn-8.0.5",
+        "soname": "libcudnn_cnn_train.so.8",
+        "needed_libs": [
+          "libcudnn_ops_infer.so.8",
+          "libcudnn_ops_train.so.8",
+          "libcudnn_cnn_infer.so.8",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ]
+      }
+    ]
+  },
+  "libraries_static": {
+    "libcudnn_static.a": false
+  },
+  "libraries_static_irregular": {},
+  "symlinks": [
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn.so",
+      "libcudnn.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn.so.8",
+      "libcudnn.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_adv_infer.so",
+      "libcudnn_adv_infer.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_adv_infer.so.8",
+      "libcudnn_adv_infer.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_adv_train.so",
+      "libcudnn_adv_train.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_adv_train.so.8",
+      "libcudnn_adv_train.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_cnn_infer.so",
+      "libcudnn_cnn_infer.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_cnn_infer.so.8",
+      "libcudnn_cnn_infer.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_cnn_train.so",
+      "libcudnn_cnn_train.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_cnn_train.so.8",
+      "libcudnn_cnn_train.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_ops_infer.so",
+      "libcudnn_ops_infer.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_ops_infer.so.8",
+      "libcudnn_ops_infer.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_ops_train.so",
+      "libcudnn_ops_train.so.8",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ],
+    [
+      "cudnn-11.1-linux-x64-v8.0.5.39/lib64",
+      "libcudnn_ops_train.so.8",
+      "libcudnn_ops_train.so.8.0.5",
+      "cudnn-11.1-linux-x64-v8.0.5.39"
+    ]
+  ],
+  "lib_same_name": {},
+  "arch": "x86_64"
+}

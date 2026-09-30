@@ -1,0 +1,6 @@
+# --dopt not specified and no -G: default is on (maps to 3)
+RUN: nvcc --print-hgcc-only -arch compute_80 %s
+CHECK: -dopt 3
+CHECK: -arch=vm_10
+CHECK-NOT: Missing value
+CHECK-NOT: -G
