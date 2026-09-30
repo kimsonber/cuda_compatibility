@@ -1,0 +1,5699 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nccl
+  dyn_lib_file_name: libnccl.so.2.30.4
+  dyn_lib_install_name: libnccl.so.2.30.4
+  sta_lib_file_name: libnccl_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nccl.h
+    - nccl_device/core.h
+    - nccl_device/ll_a2a.h
+    - nccl_device/gin_barrier.h
+    - nccl_device/lsa_barrier.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $lib1/targets/x86_64-linux/include
+    - $nccl_v13/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libnccl.so.2
+      - --no-as-needed -lpthread
+  api_functions:
+    - name: ncclAllGather
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: sendcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclAllReduce
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclAlltoAll
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclBcast
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclBroadcast
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommAbort
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommCount
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommCuDevice
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: device
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommDeregister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommDestroy
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommFinalize
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommGetAsyncError
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: asyncError
+            param_type:
+              name: ncclResult_t
+              is_pointer: true
+              type_str: ncclResult_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommGetUniqueId
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommGrow
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: nRanks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: const ncclUniqueId * {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommInitAll
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: ndev
+            param_type:
+              name: int
+              type_str: int {}
+          - name: devlist
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: const int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommInitRank
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: ncclUniqueId
+              type_str: ncclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommInitRankConfig
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: ncclUniqueId
+              type_str: ncclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommInitRankScalable
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: myrank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nId
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commIds
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommMemStats
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stat
+            param_type:
+              name: ncclCommMemStat_t
+              type_str: ncclCommMemStat_t {}
+          - name: value
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommQueryProperties
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: props
+            param_type:
+              name: ncclCommProperties_t
+              is_pointer: true
+              type_str: ncclCommProperties_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommRegister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommResume
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommRevoke
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: revokeFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommShrink
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: excludeRanksList
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: excludeRanksCount
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+          - name: shrinkFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommSplit
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: color
+            param_type:
+              name: int
+              type_str: int {}
+          - name: key
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommSuspend
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: flags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommUserRank
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: rank
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommWindowDeregister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclCommWindowRegister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              is_pointer: true
+              type_str: ncclWindow_t * {}
+          - name: winFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclDevCommCreate
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: reqs
+            param_type:
+              name: ncclDevCommRequirements_t
+              is_pointer: true
+              type_str: const ncclDevCommRequirements_t * {}
+          - name: outDevComm
+            param_type:
+              name: ncclDevComm_t
+              is_pointer: true
+              type_str: ncclDevComm_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclDevCommDestroy
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: devComm
+            param_type:
+              name: ncclDevComm_t
+              is_pointer: true
+              type_str: const ncclDevComm_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGather
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetErrorString
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: result
+            param_type:
+              name: ncclResult_t
+              type_str: ncclResult_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetLastError
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetLsaDevicePointer
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: window
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: offset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: lsaRank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: outPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetLsaMultimemDevicePointer
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: window
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: offset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: outPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetMultimemDevicePointer
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: window
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: offset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: multimem
+            param_type:
+              name: ncclMultimemHandle_t
+              type_str: ncclMultimemHandle_t {}
+          - name: outPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetPeerDevicePointer
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: window
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: offset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: outPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetUniqueId
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGetVersion
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGinBarrierCreateRequirement
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: ""
+            param_type:
+              name: ncclTeam_t
+              type_str: ncclTeam_t {}
+          - name: nBarriers
+            param_type:
+              name: int
+              type_str: int {}
+          - name: outHandle
+            param_type:
+              name: ncclGinBarrierHandle_t
+              is_pointer: true
+              type_str: ncclGinBarrierHandle_t * {}
+          - name: outReq
+            param_type:
+              name: ncclDevResourceRequirements_t
+              is_pointer: true
+              type_str: ncclDevResourceRequirements_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGroupEnd
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGroupSimulateEnd
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: simInfo
+            param_type:
+              name: ncclSimInfo_t
+              is_pointer: true
+              type_str: ncclSimInfo_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclGroupStart
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclLLA2ACalcSlots
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: maxElts
+            param_type:
+              name: int
+              type_str: int {}
+          - name: maxEltSize
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclLLA2ACreateRequirement
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: nBlocks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nSlots
+            param_type:
+              name: int
+              type_str: int {}
+          - name: outHandle
+            param_type:
+              name: ncclLLA2AHandle_t
+              is_pointer: true
+              type_str: ncclLLA2AHandle_t * {}
+          - name: outReq
+            param_type:
+              name: ncclDevResourceRequirements_t
+              is_pointer: true
+              type_str: ncclDevResourceRequirements_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclLsaBarrierCreateRequirement
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclTeam_t
+              type_str: ncclTeam_t {}
+          - name: nBarriers
+            param_type:
+              name: int
+              type_str: int {}
+          - name: outHandle
+            param_type:
+              name: ncclLsaBarrierHandle_t
+              is_pointer: true
+              type_str: ncclLsaBarrierHandle_t * {}
+          - name: outReq
+            param_type:
+              name: ncclDevResourceRequirements_t
+              is_pointer: true
+              type_str: ncclDevResourceRequirements_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclMemAlloc
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclMemFree
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamBind
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: out
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t ** {}
+          - name: key
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamDumpAll
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGet
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: maxLen
+            param_type:
+              name: int
+              type_str: int {}
+          - name: len
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetAllParameterKeys
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: table
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char *** {}
+          - name: tableLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetI16
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int16_t
+              is_pointer: true
+              type_str: int16_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetI32
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetI64
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetI8
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int8_t
+              is_pointer: true
+              type_str: int8_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetParameter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: key
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: value
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+          - name: valueLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetStr
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetU16
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint16_t
+              is_pointer: true
+              type_str: uint16_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetU32
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetU64
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclParamGetU8
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint8_t
+              is_pointer: true
+              type_str: uint8_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclPutSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: localbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: peerWin
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: peerWinOffset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: sigIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: ctx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclRecv
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclRedOpCreatePreMulSum
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              is_pointer: true
+              type_str: ncclRedOp_t * {}
+          - name: scalar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: residence
+            param_type:
+              name: ncclScalarResidence_t
+              type_str: ncclScalarResidence_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclRedOpDestroy
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclReduce
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclReduceScatter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: recvcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclScatter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclSend
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: sigIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: ctx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclTeamLsa
+      signature:
+        return_type:
+          name: ncclTeam_t
+          type_str: ncclTeam_t {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclTeamRail
+      signature:
+        return_type:
+          name: ncclTeam_t
+          type_str: ncclTeam_t {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclTeamRankToLsa
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: ""
+            param_type:
+              name: ncclTeam_t
+              type_str: ncclTeam_t {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclTeamRankToWorld
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: ""
+            param_type:
+              name: ncclTeam_t
+              type_str: ncclTeam_t {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclTeamWorld
+      signature:
+        return_type:
+          name: ncclTeam_t
+          type_str: ncclTeam_t {}
+        parameters:
+          - name: ""
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclWaitSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: nDesc
+            param_type:
+              name: int
+              type_str: int {}
+          - name: signalDescs
+            param_type:
+              name: ncclWaitSignalDesc_t
+              is_pointer: true
+              type_str: ncclWaitSignalDesc_t * {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: ncclWinGetUserPtr
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: outUserPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclAllGather
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: sendcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclAllReduce
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclAlltoAll
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclBcast
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclBroadcast
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommAbort
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommCount
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommCuDevice
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: device
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommDeregister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommDestroy
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommFinalize
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommGetAsyncError
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: asyncError
+            param_type:
+              name: ncclResult_t
+              is_pointer: true
+              type_str: ncclResult_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommGetUniqueId
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommGrow
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: nRanks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: const ncclUniqueId * {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommInitAll
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: ndev
+            param_type:
+              name: int
+              type_str: int {}
+          - name: devlist
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: const int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommInitRank
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: ncclUniqueId
+              type_str: ncclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommInitRankConfig
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: ncclUniqueId
+              type_str: ncclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommInitRankScalable
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: myrank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nId
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commIds
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommMemStats
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stat
+            param_type:
+              name: ncclCommMemStat_t
+              type_str: ncclCommMemStat_t {}
+          - name: value
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommRegister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommResume
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommRevoke
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: revokeFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommShrink
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: excludeRanksList
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: excludeRanksCount
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+          - name: shrinkFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommSplit
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: color
+            param_type:
+              name: int
+              type_str: int {}
+          - name: key
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: ncclComm_t
+              is_pointer: true
+              type_str: ncclComm_t * {}
+          - name: config
+            param_type:
+              name: ncclConfig_t
+              is_pointer: true
+              type_str: ncclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommSuspend
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: flags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommUserRank
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              is_const: true
+              type_str: const ncclComm_t {}
+          - name: rank
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommWindowDeregister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclCommWindowRegister
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              is_pointer: true
+              type_str: ncclWindow_t * {}
+          - name: winFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGather
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGetErrorString
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: result
+            param_type:
+              name: ncclResult_t
+              type_str: ncclResult_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGetLastError
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGetUniqueId
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: uniqueId
+            param_type:
+              name: ncclUniqueId
+              is_pointer: true
+              type_str: ncclUniqueId * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGetVersion
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGroupEnd
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGroupSimulateEnd
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: simInfo
+            param_type:
+              name: ncclSimInfo_t
+              is_pointer: true
+              type_str: ncclSimInfo_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclGroupStart
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclMemAlloc
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclMemFree
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamBind
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: out
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t ** {}
+          - name: key
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamDumpAll
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGet
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: maxLen
+            param_type:
+              name: int
+              type_str: int {}
+          - name: len
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetAllParameterKeys
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: table
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char *** {}
+          - name: tableLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetI16
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int16_t
+              is_pointer: true
+              type_str: int16_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetI32
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int32_t
+              is_pointer: true
+              type_str: int32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetI64
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int64_t
+              is_pointer: true
+              type_str: int64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetI8
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: int8_t
+              is_pointer: true
+              type_str: int8_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetParameter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: key
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+          - name: value
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+          - name: valueLen
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetStr
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetU16
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint16_t
+              is_pointer: true
+              type_str: uint16_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetU32
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint32_t
+              is_pointer: true
+              type_str: uint32_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetU64
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint64_t
+              is_pointer: true
+              type_str: uint64_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclParamGetU8
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: h
+            param_type:
+              name: ncclParamHandle_t
+              is_pointer: true
+              type_str: ncclParamHandle_t * {}
+          - name: out
+            param_type:
+              name: uint8_t
+              is_pointer: true
+              type_str: uint8_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclPutSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: localbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: peerWin
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: peerWinOffset
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: sigIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: ctx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclRecv
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclRedOpCreatePreMulSum
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              is_pointer: true
+              type_str: ncclRedOp_t * {}
+          - name: scalar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: residence
+            param_type:
+              name: ncclScalarResidence_t
+              type_str: ncclScalarResidence_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclRedOpDestroy
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclReduce
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclReduceScatter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: recvcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: op
+            param_type:
+              name: ncclRedOp_t
+              type_str: ncclRedOp_t {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclScatter
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclSend
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: ncclDataType_t
+              type_str: ncclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: sigIdx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: ctx
+            param_type:
+              name: int
+              type_str: int {}
+          - name: flags
+            param_type:
+              name: unsignedint
+              type_str: unsigned int {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclWaitSignal
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: nDesc
+            param_type:
+              name: int
+              type_str: int {}
+          - name: signalDescs
+            param_type:
+              name: ncclWaitSignalDesc_t
+              is_pointer: true
+              type_str: ncclWaitSignalDesc_t * {}
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: stream
+            param_type:
+              name: cudaStream_t
+              type_str: cudaStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pncclWinGetUserPtr
+      signature:
+        return_type:
+          name: ncclResult_t
+          type_str: ncclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: ncclComm_t
+              type_str: ncclComm_t {}
+          - name: win
+            param_type:
+              name: ncclWindow_t
+              type_str: ncclWindow_t {}
+          - name: outUserPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libpccl.so
+  lib_dirs:
+    []
+  include_files:
+    - pccl.h
+  include_dirs:
+    - $ppu/include
+    - $pccl/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=13011
+      - __HGGC_API_V3__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: pcclAllGather
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: sendcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclAllReduce
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: op
+            param_type:
+              name: pcclRedOp_t
+              type_str: pcclRedOp_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclAlltoAll
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclBcast
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclBroadcast
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommAbort
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommCount
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_const: true
+              type_str: const pcclComm_t {}
+          - name: count
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommCuDevice
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_const: true
+              type_str: const pcclComm_t {}
+          - name: device
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommDeregister
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_const: true
+              type_str: const pcclComm_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommDestroy
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommFinalize
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommGetAsyncError
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: asyncError
+            param_type:
+              name: pcclResult_t
+              is_pointer: true
+              type_str: pcclResult_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommInitAll
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: ndev
+            param_type:
+              name: int
+              type_str: int {}
+          - name: devlist
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: const int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommInitRank
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: pcclUniqueId
+              type_str: pcclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommInitRankConfig
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commId
+            param_type:
+              name: pcclUniqueId
+              type_str: pcclUniqueId {}
+          - name: rank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: config
+            param_type:
+              name: pcclConfig_t
+              is_pointer: true
+              type_str: pcclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommInitRankScalable
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: newcomm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: nranks
+            param_type:
+              name: int
+              type_str: int {}
+          - name: myrank
+            param_type:
+              name: int
+              type_str: int {}
+          - name: nId
+            param_type:
+              name: int
+              type_str: int {}
+          - name: commIds
+            param_type:
+              name: pcclUniqueId
+              is_pointer: true
+              type_str: pcclUniqueId * {}
+          - name: config
+            param_type:
+              name: pcclConfig_t
+              is_pointer: true
+              type_str: pcclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommRegister
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_const: true
+              type_str: const pcclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: handle
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommShrink
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: excludeRanksList
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+          - name: excludeRanksCount
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: config
+            param_type:
+              name: pcclConfig_t
+              is_pointer: true
+              type_str: pcclConfig_t * {}
+          - name: shrinkFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommSplit
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: color
+            param_type:
+              name: int
+              type_str: int {}
+          - name: key
+            param_type:
+              name: int
+              type_str: int {}
+          - name: newcomm
+            param_type:
+              name: pcclComm_t
+              is_pointer: true
+              type_str: pcclComm_t * {}
+          - name: config
+            param_type:
+              name: pcclConfig_t
+              is_pointer: true
+              type_str: pcclConfig_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommUserRank
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              is_const: true
+              type_str: const pcclComm_t {}
+          - name: rank
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommWindowDeregister
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: win
+            param_type:
+              name: pcclWindow_t
+              type_str: pcclWindow_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclCommWindowRegister
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: buff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: win
+            param_type:
+              name: pcclWindow_t
+              is_pointer: true
+              type_str: pcclWindow_t * {}
+          - name: winFlags
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGather
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGetErrorString
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: result
+            param_type:
+              name: pcclResult_t
+              type_str: pcclResult_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGetLastError
+      signature:
+        return_type:
+          name: const char *
+          is_pointer: true
+          type_str: const char * {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGetUniqueId
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: uniqueId
+            param_type:
+              name: pcclUniqueId
+              is_pointer: true
+              type_str: pcclUniqueId * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGetVersion
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: version
+            param_type:
+              name: int
+              is_pointer: true
+              type_str: int * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGroupEnd
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGroupSimulateEnd
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: simInfo
+            param_type:
+              name: pcclSimInfo_t
+              is_pointer: true
+              type_str: pcclSimInfo_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclGroupStart
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclMemAlloc
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+          - name: size
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclMemFree
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: ptr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclRecv
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclRedOpCreatePreMulSum
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: pcclRedOp_t
+              is_pointer: true
+              type_str: pcclRedOp_t * {}
+          - name: scalar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: residence
+            param_type:
+              name: pcclScalarResidence_t
+              type_str: pcclScalarResidence_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclRedOpDestroy
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: op
+            param_type:
+              name: pcclRedOp_t
+              type_str: pcclRedOp_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclReduce
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: op
+            param_type:
+              name: pcclRedOp_t
+              type_str: pcclRedOp_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclReduceScatter
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: recvcount
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: op
+            param_type:
+              name: pcclRedOp_t
+              type_str: pcclRedOp_t {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclScatter
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: recvbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: root
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclSend
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: sendbuff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: count
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: datatype
+            param_type:
+              name: pcclDataType_t
+              type_str: pcclDataType_t {}
+          - name: peer
+            param_type:
+              name: int
+              type_str: int {}
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: stream
+            param_type:
+              name: hggcStream_t
+              type_str: hggcStream_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: pcclWinGetUserPtr
+      signature:
+        return_type:
+          name: pcclResult_t
+          type_str: pcclResult_t {}
+        parameters:
+          - name: comm
+            param_type:
+              name: pcclComm_t
+              type_str: pcclComm_t {}
+          - name: win
+            param_type:
+              name: pcclWindow_t
+              type_str: pcclWindow_t {}
+          - name: outUserPtr
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void ** {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: ncclAllGather
+    target_function: pcclAllGather
+    parameter_mapping:
+      {}
+  - source_function: ncclAllReduce
+    target_function: pcclAllReduce
+    parameter_mapping:
+      {}
+  - source_function: ncclAlltoAll
+    target_function: pcclAlltoAll
+    parameter_mapping:
+      {}
+  - source_function: ncclBcast
+    target_function: pcclBcast
+    parameter_mapping:
+      {}
+  - source_function: ncclBroadcast
+    target_function: pcclBroadcast
+    parameter_mapping:
+      {}
+  - source_function: ncclCommAbort
+    target_function: pcclCommAbort
+    parameter_mapping:
+      {}
+  - source_function: ncclCommCount
+    target_function: pcclCommCount
+    parameter_mapping:
+      {}
+  - source_function: ncclCommCuDevice
+    target_function: pcclCommCuDevice
+    parameter_mapping:
+      {}
+  - source_function: ncclCommDeregister
+    target_function: pcclCommDeregister
+    parameter_mapping:
+      {}
+  - source_function: ncclCommDestroy
+    target_function: pcclCommDestroy
+    parameter_mapping:
+      {}
+  - source_function: ncclCommFinalize
+    target_function: pcclCommFinalize
+    parameter_mapping:
+      {}
+  - source_function: ncclCommGetAsyncError
+    target_function: pcclCommGetAsyncError
+    parameter_mapping:
+      {}
+  - source_function: ncclCommGetUniqueId
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommGrow
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommInitAll
+    target_function: pcclCommInitAll
+    parameter_mapping:
+      {}
+  - source_function: ncclCommInitRank
+    target_function: pcclCommInitRank
+    parameter_mapping:
+      {}
+  - source_function: ncclCommInitRankConfig
+    target_function: pcclCommInitRankConfig
+    parameter_mapping:
+      {}
+  - source_function: ncclCommInitRankScalable
+    target_function: pcclCommInitRankScalable
+    parameter_mapping:
+      {}
+  - source_function: ncclCommMemStats
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommQueryProperties
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommRegister
+    target_function: pcclCommRegister
+    parameter_mapping:
+      {}
+  - source_function: ncclCommResume
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommRevoke
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommShrink
+    target_function: pcclCommShrink
+    parameter_mapping:
+      {}
+  - source_function: ncclCommSplit
+    target_function: pcclCommSplit
+    parameter_mapping:
+      {}
+  - source_function: ncclCommSuspend
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclCommUserRank
+    target_function: pcclCommUserRank
+    parameter_mapping:
+      {}
+  - source_function: ncclCommWindowDeregister
+    target_function: pcclCommWindowDeregister
+    parameter_mapping:
+      {}
+  - source_function: ncclCommWindowRegister
+    target_function: pcclCommWindowRegister
+    parameter_mapping:
+      {}
+  - source_function: ncclDevCommCreate
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclDevCommDestroy
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGather
+    target_function: pcclGather
+    parameter_mapping:
+      {}
+  - source_function: ncclGetErrorString
+    target_function: pcclGetErrorString
+    parameter_mapping:
+      {}
+  - source_function: ncclGetLastError
+    target_function: pcclGetLastError
+    parameter_mapping:
+      {}
+  - source_function: ncclGetLsaDevicePointer
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGetLsaMultimemDevicePointer
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGetMultimemDevicePointer
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGetPeerDevicePointer
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGetUniqueId
+    target_function: pcclGetUniqueId
+    parameter_mapping:
+      {}
+  - source_function: ncclGetVersion
+    target_function: ""
+    parameter_mapping:
+      {}
+    custom_func_imp: "ncclResult_t ncclGetVersion(int * version) {\n    // TraceCall(\"ncclGetVersion\");\n    if (version == NULL) return ncclInvalidArgument;\n    *version = NCCL_VERSION_CODE;\n    return ncclSuccess;\n}\n\n"
+  - source_function: ncclGinBarrierCreateRequirement
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclGroupEnd
+    target_function: pcclGroupEnd
+    parameter_mapping:
+      {}
+  - source_function: ncclGroupSimulateEnd
+    target_function: pcclGroupSimulateEnd
+    parameter_mapping:
+      {}
+  - source_function: ncclGroupStart
+    target_function: pcclGroupStart
+    parameter_mapping:
+      {}
+  - source_function: ncclLLA2ACalcSlots
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclLLA2ACreateRequirement
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclLsaBarrierCreateRequirement
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclMemAlloc
+    target_function: pcclMemAlloc
+    parameter_mapping:
+      {}
+  - source_function: ncclMemFree
+    target_function: pcclMemFree
+    parameter_mapping:
+      {}
+  - source_function: ncclParamBind
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamDumpAll
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGet
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetAllParameterKeys
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetI16
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetI32
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetI64
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetI8
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetParameter
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetStr
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetU16
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetU32
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetU64
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclParamGetU8
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclPutSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclRecv
+    target_function: pcclRecv
+    parameter_mapping:
+      {}
+  - source_function: ncclRedOpCreatePreMulSum
+    target_function: pcclRedOpCreatePreMulSum
+    parameter_mapping:
+      {}
+  - source_function: ncclRedOpDestroy
+    target_function: pcclRedOpDestroy
+    parameter_mapping:
+      {}
+  - source_function: ncclReduce
+    target_function: pcclReduce
+    parameter_mapping:
+      {}
+  - source_function: ncclReduceScatter
+    target_function: pcclReduceScatter
+    parameter_mapping:
+      {}
+  - source_function: ncclScatter
+    target_function: pcclScatter
+    parameter_mapping:
+      {}
+  - source_function: ncclSend
+    target_function: pcclSend
+    parameter_mapping:
+      {}
+  - source_function: ncclSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclTeamLsa
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclTeamRail
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclTeamRankToLsa
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclTeamRankToWorld
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclTeamWorld
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclWaitSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: ncclWinGetUserPtr
+    target_function: pcclWinGetUserPtr
+    parameter_mapping:
+      {}
+  - source_function: pncclAllGather
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclAllReduce
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclAlltoAll
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclBcast
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclBroadcast
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommAbort
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommCount
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommCuDevice
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommDeregister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommDestroy
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommFinalize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommGetAsyncError
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommGetUniqueId
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommGrow
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommInitAll
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommInitRank
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommInitRankConfig
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommInitRankScalable
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommMemStats
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommRegister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommResume
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommRevoke
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommShrink
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommSplit
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommSuspend
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommUserRank
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommWindowDeregister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclCommWindowRegister
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGather
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGetErrorString
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGetLastError
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGetUniqueId
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGetVersion
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGroupEnd
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGroupSimulateEnd
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclGroupStart
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclMemAlloc
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclMemFree
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamBind
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamDumpAll
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGet
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetAllParameterKeys
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetI16
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetI32
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetI64
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetI8
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetParameter
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetStr
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetU16
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetU32
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetU64
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclParamGetU8
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclPutSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclRecv
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclRedOpCreatePreMulSum
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclRedOpDestroy
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclReduce
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclReduceScatter
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclScatter
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclSend
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclWaitSignal
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: pncclWinGetUserPtr
+    target_function: ""
+    parameter_mapping:
+      {}
+type_mappings:
+  - source_type: ncclUniqueId
+    target_type: pcclUniqueId
+    conversion_expression: "*reinterpret_cast<pcclUniqueId*>(&{ValToConv})"
+  - source_type: pcclUniqueId
+    target_type: ncclUniqueId
+    conversion_expression: "*reinterpret_cast<ncclUniqueId*>(&{ValToConv})"
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "ncclAllGather",
+        "ncclAllReduce",
+        "ncclAlltoAll",
+        "ncclBcast",
+        "ncclBroadcast",
+        "ncclCommAbort",
+        "ncclCommCount",
+        "ncclCommCuDevice",
+        "ncclCommDeregister",
+        "ncclCommDestroy",
+        "ncclCommFinalize",
+        "ncclCommGetAsyncError",
+        "ncclCommGetUniqueId",
+        "ncclCommGrow",
+        "ncclCommInitAll",
+        "ncclCommInitRank",
+        "ncclCommInitRankConfig",
+        "ncclCommInitRankScalable",
+        "ncclCommMemStats",
+        "ncclCommQueryProperties",
+        "ncclCommRegister",
+        "ncclCommResume",
+        "ncclCommRevoke",
+        "ncclCommShrink",
+        "ncclCommSplit",
+        "ncclCommSuspend",
+        "ncclCommUserRank",
+        "ncclCommWindowDeregister",
+        "ncclCommWindowRegister",
+        "ncclDevCommCreate",
+        "ncclDevCommDestroy",
+        "ncclGather",
+        "ncclGetErrorString",
+        "ncclGetLastError",
+        "ncclGetLsaDevicePointer",
+        "ncclGetLsaMultimemDevicePointer",
+        "ncclGetMultimemDevicePointer",
+        "ncclGetPeerDevicePointer",
+        "ncclGetUniqueId",
+        "ncclGetVersion",
+        "ncclGinBarrierCreateRequirement",
+        "ncclGroupEnd",
+        "ncclGroupSimulateEnd",
+        "ncclGroupStart",
+        "ncclLLA2ACalcSlots",
+        "ncclLLA2ACreateRequirement",
+        "ncclLsaBarrierCreateRequirement",
+        "ncclMemAlloc",
+        "ncclMemFree",
+        "ncclParamBind",
+        "ncclParamDumpAll",
+        "ncclParamGet",
+        "ncclParamGetAllParameterKeys",
+        "ncclParamGetI16",
+        "ncclParamGetI32",
+        "ncclParamGetI64",
+        "ncclParamGetI8",
+        "ncclParamGetParameter",
+        "ncclParamGetStr",
+        "ncclParamGetU16",
+        "ncclParamGetU32",
+        "ncclParamGetU64",
+        "ncclParamGetU8",
+        "ncclPutSignal",
+        "ncclRecv",
+        "ncclRedOpCreatePreMulSum",
+        "ncclRedOpDestroy",
+        "ncclReduce",
+        "ncclReduceScatter",
+        "ncclScatter",
+        "ncclSend",
+        "ncclSignal",
+        "ncclTeamLsa",
+        "ncclTeamRail",
+        "ncclTeamRankToLsa",
+        "ncclTeamRankToWorld",
+        "ncclTeamWorld",
+        "ncclWaitSignal",
+        "ncclWinGetUserPtr",
+        "pncclAllGather",
+        "pncclAllReduce",
+        "pncclAlltoAll",
+        "pncclBcast",
+        "pncclBroadcast",
+        "pncclCommAbort",
+        "pncclCommCount",
+        "pncclCommCuDevice",
+        "pncclCommDeregister",
+        "pncclCommDestroy",
+        "pncclCommFinalize",
+        "pncclCommGetAsyncError",
+        "pncclCommGetUniqueId",
+        "pncclCommGrow",
+        "pncclCommInitAll",
+        "pncclCommInitRank",
+        "pncclCommInitRankConfig",
+        "pncclCommInitRankScalable",
+        "pncclCommMemStats",
+        "pncclCommRegister",
+        "pncclCommResume",
+        "pncclCommRevoke",
+        "pncclCommShrink",
+        "pncclCommSplit",
+        "pncclCommSuspend",
+        "pncclCommUserRank",
+        "pncclCommWindowDeregister",
+        "pncclCommWindowRegister",
+        "pncclGather",
+        "pncclGetErrorString",
+        "pncclGetLastError",
+        "pncclGetUniqueId",
+        "pncclGetVersion",
+        "pncclGroupEnd",
+        "pncclGroupSimulateEnd",
+        "pncclGroupStart",
+        "pncclMemAlloc",
+        "pncclMemFree",
+        "pncclParamBind",
+        "pncclParamDumpAll",
+        "pncclParamGet",
+        "pncclParamGetAllParameterKeys",
+        "pncclParamGetI16",
+        "pncclParamGetI32",
+        "pncclParamGetI64",
+        "pncclParamGetI8",
+        "pncclParamGetParameter",
+        "pncclParamGetStr",
+        "pncclParamGetU16",
+        "pncclParamGetU32",
+        "pncclParamGetU64",
+        "pncclParamGetU8",
+        "pncclPutSignal",
+        "pncclRecv",
+        "pncclRedOpCreatePreMulSum",
+        "pncclRedOpDestroy",
+        "pncclReduce",
+        "pncclReduceScatter",
+        "pncclScatter",
+        "pncclSend",
+        "pncclSignal",
+        "pncclWaitSignal",
+        "pncclWinGetUserPtr",
+    };
+
+    enum ncclProfileCallbackId {
+        nccl_TRACE_CBID_ncclAllGather = 0,
+        nccl_TRACE_CBID_ncclAllReduce = 1,
+        nccl_TRACE_CBID_ncclAlltoAll = 2,
+        nccl_TRACE_CBID_ncclBcast = 3,
+        nccl_TRACE_CBID_ncclBroadcast = 4,
+        nccl_TRACE_CBID_ncclCommAbort = 5,
+        nccl_TRACE_CBID_ncclCommCount = 6,
+        nccl_TRACE_CBID_ncclCommCuDevice = 7,
+        nccl_TRACE_CBID_ncclCommDeregister = 8,
+        nccl_TRACE_CBID_ncclCommDestroy = 9,
+        nccl_TRACE_CBID_ncclCommFinalize = 10,
+        nccl_TRACE_CBID_ncclCommGetAsyncError = 11,
+        nccl_TRACE_CBID_ncclCommGetUniqueId = 12,
+        nccl_TRACE_CBID_ncclCommGrow = 13,
+        nccl_TRACE_CBID_ncclCommInitAll = 14,
+        nccl_TRACE_CBID_ncclCommInitRank = 15,
+        nccl_TRACE_CBID_ncclCommInitRankConfig = 16,
+        nccl_TRACE_CBID_ncclCommInitRankScalable = 17,
+        nccl_TRACE_CBID_ncclCommMemStats = 18,
+        nccl_TRACE_CBID_ncclCommQueryProperties = 19,
+        nccl_TRACE_CBID_ncclCommRegister = 20,
+        nccl_TRACE_CBID_ncclCommResume = 21,
+        nccl_TRACE_CBID_ncclCommRevoke = 22,
+        nccl_TRACE_CBID_ncclCommShrink = 23,
+        nccl_TRACE_CBID_ncclCommSplit = 24,
+        nccl_TRACE_CBID_ncclCommSuspend = 25,
+        nccl_TRACE_CBID_ncclCommUserRank = 26,
+        nccl_TRACE_CBID_ncclCommWindowDeregister = 27,
+        nccl_TRACE_CBID_ncclCommWindowRegister = 28,
+        nccl_TRACE_CBID_ncclDevCommCreate = 29,
+        nccl_TRACE_CBID_ncclDevCommDestroy = 30,
+        nccl_TRACE_CBID_ncclGather = 31,
+        nccl_TRACE_CBID_ncclGetErrorString = 32,
+        nccl_TRACE_CBID_ncclGetLastError = 33,
+        nccl_TRACE_CBID_ncclGetLsaDevicePointer = 34,
+        nccl_TRACE_CBID_ncclGetLsaMultimemDevicePointer = 35,
+        nccl_TRACE_CBID_ncclGetMultimemDevicePointer = 36,
+        nccl_TRACE_CBID_ncclGetPeerDevicePointer = 37,
+        nccl_TRACE_CBID_ncclGetUniqueId = 38,
+        nccl_TRACE_CBID_ncclGetVersion = 39,
+        nccl_TRACE_CBID_ncclGinBarrierCreateRequirement = 40,
+        nccl_TRACE_CBID_ncclGroupEnd = 41,
+        nccl_TRACE_CBID_ncclGroupSimulateEnd = 42,
+        nccl_TRACE_CBID_ncclGroupStart = 43,
+        nccl_TRACE_CBID_ncclLLA2ACalcSlots = 44,
+        nccl_TRACE_CBID_ncclLLA2ACreateRequirement = 45,
+        nccl_TRACE_CBID_ncclLsaBarrierCreateRequirement = 46,
+        nccl_TRACE_CBID_ncclMemAlloc = 47,
+        nccl_TRACE_CBID_ncclMemFree = 48,
+        nccl_TRACE_CBID_ncclParamBind = 49,
+        nccl_TRACE_CBID_ncclParamDumpAll = 50,
+        nccl_TRACE_CBID_ncclParamGet = 51,
+        nccl_TRACE_CBID_ncclParamGetAllParameterKeys = 52,
+        nccl_TRACE_CBID_ncclParamGetI16 = 53,
+        nccl_TRACE_CBID_ncclParamGetI32 = 54,
+        nccl_TRACE_CBID_ncclParamGetI64 = 55,
+        nccl_TRACE_CBID_ncclParamGetI8 = 56,
+        nccl_TRACE_CBID_ncclParamGetParameter = 57,
+        nccl_TRACE_CBID_ncclParamGetStr = 58,
+        nccl_TRACE_CBID_ncclParamGetU16 = 59,
+        nccl_TRACE_CBID_ncclParamGetU32 = 60,
+        nccl_TRACE_CBID_ncclParamGetU64 = 61,
+        nccl_TRACE_CBID_ncclParamGetU8 = 62,
+        nccl_TRACE_CBID_ncclPutSignal = 63,
+        nccl_TRACE_CBID_ncclRecv = 64,
+        nccl_TRACE_CBID_ncclRedOpCreatePreMulSum = 65,
+        nccl_TRACE_CBID_ncclRedOpDestroy = 66,
+        nccl_TRACE_CBID_ncclReduce = 67,
+        nccl_TRACE_CBID_ncclReduceScatter = 68,
+        nccl_TRACE_CBID_ncclScatter = 69,
+        nccl_TRACE_CBID_ncclSend = 70,
+        nccl_TRACE_CBID_ncclSignal = 71,
+        nccl_TRACE_CBID_ncclTeamLsa = 72,
+        nccl_TRACE_CBID_ncclTeamRail = 73,
+        nccl_TRACE_CBID_ncclTeamRankToLsa = 74,
+        nccl_TRACE_CBID_ncclTeamRankToWorld = 75,
+        nccl_TRACE_CBID_ncclTeamWorld = 76,
+        nccl_TRACE_CBID_ncclWaitSignal = 77,
+        nccl_TRACE_CBID_ncclWinGetUserPtr = 78,
+        nccl_TRACE_CBID_pncclAllGather = 79,
+        nccl_TRACE_CBID_pncclAllReduce = 80,
+        nccl_TRACE_CBID_pncclAlltoAll = 81,
+        nccl_TRACE_CBID_pncclBcast = 82,
+        nccl_TRACE_CBID_pncclBroadcast = 83,
+        nccl_TRACE_CBID_pncclCommAbort = 84,
+        nccl_TRACE_CBID_pncclCommCount = 85,
+        nccl_TRACE_CBID_pncclCommCuDevice = 86,
+        nccl_TRACE_CBID_pncclCommDeregister = 87,
+        nccl_TRACE_CBID_pncclCommDestroy = 88,
+        nccl_TRACE_CBID_pncclCommFinalize = 89,
+        nccl_TRACE_CBID_pncclCommGetAsyncError = 90,
+        nccl_TRACE_CBID_pncclCommGetUniqueId = 91,
+        nccl_TRACE_CBID_pncclCommGrow = 92,
+        nccl_TRACE_CBID_pncclCommInitAll = 93,
+        nccl_TRACE_CBID_pncclCommInitRank = 94,
+        nccl_TRACE_CBID_pncclCommInitRankConfig = 95,
+        nccl_TRACE_CBID_pncclCommInitRankScalable = 96,
+        nccl_TRACE_CBID_pncclCommMemStats = 97,
+        nccl_TRACE_CBID_pncclCommRegister = 98,
+        nccl_TRACE_CBID_pncclCommResume = 99,
+        nccl_TRACE_CBID_pncclCommRevoke = 100,
+        nccl_TRACE_CBID_pncclCommShrink = 101,
+        nccl_TRACE_CBID_pncclCommSplit = 102,
+        nccl_TRACE_CBID_pncclCommSuspend = 103,
+        nccl_TRACE_CBID_pncclCommUserRank = 104,
+        nccl_TRACE_CBID_pncclCommWindowDeregister = 105,
+        nccl_TRACE_CBID_pncclCommWindowRegister = 106,
+        nccl_TRACE_CBID_pncclGather = 107,
+        nccl_TRACE_CBID_pncclGetErrorString = 108,
+        nccl_TRACE_CBID_pncclGetLastError = 109,
+        nccl_TRACE_CBID_pncclGetUniqueId = 110,
+        nccl_TRACE_CBID_pncclGetVersion = 111,
+        nccl_TRACE_CBID_pncclGroupEnd = 112,
+        nccl_TRACE_CBID_pncclGroupSimulateEnd = 113,
+        nccl_TRACE_CBID_pncclGroupStart = 114,
+        nccl_TRACE_CBID_pncclMemAlloc = 115,
+        nccl_TRACE_CBID_pncclMemFree = 116,
+        nccl_TRACE_CBID_pncclParamBind = 117,
+        nccl_TRACE_CBID_pncclParamDumpAll = 118,
+        nccl_TRACE_CBID_pncclParamGet = 119,
+        nccl_TRACE_CBID_pncclParamGetAllParameterKeys = 120,
+        nccl_TRACE_CBID_pncclParamGetI16 = 121,
+        nccl_TRACE_CBID_pncclParamGetI32 = 122,
+        nccl_TRACE_CBID_pncclParamGetI64 = 123,
+        nccl_TRACE_CBID_pncclParamGetI8 = 124,
+        nccl_TRACE_CBID_pncclParamGetParameter = 125,
+        nccl_TRACE_CBID_pncclParamGetStr = 126,
+        nccl_TRACE_CBID_pncclParamGetU16 = 127,
+        nccl_TRACE_CBID_pncclParamGetU32 = 128,
+        nccl_TRACE_CBID_pncclParamGetU64 = 129,
+        nccl_TRACE_CBID_pncclParamGetU8 = 130,
+        nccl_TRACE_CBID_pncclPutSignal = 131,
+        nccl_TRACE_CBID_pncclRecv = 132,
+        nccl_TRACE_CBID_pncclRedOpCreatePreMulSum = 133,
+        nccl_TRACE_CBID_pncclRedOpDestroy = 134,
+        nccl_TRACE_CBID_pncclReduce = 135,
+        nccl_TRACE_CBID_pncclReduceScatter = 136,
+        nccl_TRACE_CBID_pncclScatter = 137,
+        nccl_TRACE_CBID_pncclSend = 138,
+        nccl_TRACE_CBID_pncclSignal = 139,
+        nccl_TRACE_CBID_pncclWaitSignal = 140,
+        nccl_TRACE_CBID_pncclWinGetUserPtr = 141,
+    };
+
+    typedef uint32_t (*ncclRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*ncclIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*ncclProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*ncclProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct ncclProfileHandler {
+        ncclRegisterProfileDomain registerProfileDomain;
+        ncclIsProfileCallbackEnabled isCallbackEnabled;
+        ncclProfileCallbackBegin profileCallbackBegin;
+        ncclProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static ncclProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nccl";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<ncclRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<ncclIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<ncclProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<ncclProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, nccl_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
