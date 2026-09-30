@@ -160,7 +160,26 @@ std::set<Wrapper::GenCodeValue> Wrapper::GenCodeDecoder::GetGenCodeValues(const 
   // such as -gencode arch=sm_80,code=compute_80
   // or -gencode arch=compute_89,code=[sm_89,compute_89]
   // or -gencode arch=[compute_89],code=[sm_89,compute_89]
-  std::size_t CommaPos = gencodeValue.find(',');
+  // or -gencode code="sm_80,compute_80",arch=compute_80 (swapped order, quoted codes)
+  // Find the first comma at bracket depth 0 and not inside double quotes
+  // (the one separating arch= and code=)
+  std::size_t CommaPos = std::string::npos;
+  int bracketDepth = 0;
+  bool inQuotes = false;
+  for (std::size_t i = 0; i < gencodeValue.length(); ++i) {
+    if (gencodeValue[i] == '"') {
+      inQuotes = !inQuotes;
+    } else if (!inQuotes) {
+      if (gencodeValue[i] == '[') {
+        bracketDepth++;
+      } else if (gencodeValue[i] == ']') {
+        bracketDepth--;
+      } else if (gencodeValue[i] == ',' && bracketDepth == 0) {
+        CommaPos = i;
+        break;
+      }
+    }
+  }
   if (CommaPos == std::string::npos) {
     return GenCodes;
   }
@@ -168,23 +187,56 @@ std::set<Wrapper::GenCodeValue> Wrapper::GenCodeDecoder::GetGenCodeValues(const 
   // lambda to parse array format: "item" or "[item1,item2,..]"
   auto parseList = [](const std::string &Str) {
     std::set<std::string> Result;
-    if (Str.length() > 2 && Str.front() == '[' && Str.back() == ']') {
-      std::string Array = Str.substr(1, Str.length() - 2);
+    std::string Trimmed = Str;
+    // Strip surrounding double quotes if present
+    if (Trimmed.length() >= 2 && Trimmed.front() == '"' && Trimmed.back() == '"') {
+      Trimmed = Trimmed.substr(1, Trimmed.length() - 2);
+    }
+    if (Trimmed.length() > 2 && Trimmed.front() == '[' && Trimmed.back() == ']') {
+      std::string Array = Trimmed.substr(1, Trimmed.length() - 2);
       splitString(Array, ",", Result);
+    } else if (Trimmed.find(',') != std::string::npos) {
+      // handle comma-separated values without brackets
+      splitString(Trimmed, ",", Result);
     } else {
-      Result.insert(Str);
+      Result.insert(Trimmed);
     }
     return Result;
   };
 
-  std::string ArchPart = gencodeValue.substr(0, CommaPos);
-  std::string CodePart = gencodeValue.substr(CommaPos + 1);
+  std::string Part1 = gencodeValue.substr(0, CommaPos);
+  std::string Part2 = gencodeValue.substr(CommaPos + 1);
+  std::string Arch, Code;
+
+  // Strip surrounding double quotes (if present) from each part.
+  // Handles quoted single values, e.g.
+  //   -gencode arch=compute_80,"code=sm_80,compute_80"
+  auto stripQuotes = [](const std::string &Str) {
+    if (Str.length() >= 2 && Str.front() == '"' && Str.back() == '"') {
+      return Str.substr(1, Str.length() - 2);
+    }
+    return Str;
+  };
+  Part1 = stripQuotes(Part1);
+  Part2 = stripQuotes(Part2);
+
   size_t ArchLen = std::strlen("arch=");
   size_t CodeLen = std::strlen("code=");
 
-  if (ArchPart.length() > ArchLen && CodePart.length() > CodeLen) {
-    std::string Arch = ArchPart.substr(ArchLen);
-    std::string Code = CodePart.substr(CodeLen);
+  // Determine which part is arch and which is code
+  if (Part1.compare(0, ArchLen, "arch=") == 0) {
+    // arch=...,code=... order
+    Arch = Part1.substr(ArchLen);
+    Code = Part2.substr(CodeLen);
+  } else if (Part1.compare(0, CodeLen, "code=") == 0) {
+    // code=...,arch=... order (swapped)
+    Code = Part1.substr(CodeLen);
+    Arch = Part2.substr(ArchLen);
+  } else {
+    return GenCodes;
+  }
+
+  if (!Arch.empty() && !Code.empty()) {
     std::set<std::string> ArchList = parseList(Arch);
     std::set<std::string> CodeList = parseList(Code);
     // generate all combinations of arch and code
