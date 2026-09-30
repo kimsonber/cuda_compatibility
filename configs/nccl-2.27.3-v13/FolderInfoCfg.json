@@ -1,0 +1,89 @@
+{
+  "files": [
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl.so",
+      "libnccl.so.2",
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ],
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl.so.2",
+      "libnccl.so.2.27.3",
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ],
+    [
+      "nccl-2.27.3-v13/include",
+      "nccl.h",
+      null,
+      "nccl-2.27.3-v13"
+    ]
+  ],
+  "headerpaths": [
+    [
+      "include",
+      "nccl-2.27.3-v13/include"
+    ]
+  ],
+  "libdirs": {
+    "lib": [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib"
+    ]
+  },
+  "libpaths": [
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl.so.2.27.3",
+      null,
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ]
+  ],
+  "libpaths_static": [
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl_static.a",
+      null,
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ]
+  ],
+  "libpaths_static_irregular": [],
+  "libraries": [
+    {
+      "path": "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "name": "libnccl.so.2.27.3",
+      "base": "nccl_2.27.3-1+cuda12.9_x86_64",
+      "soname": "libnccl.so.2",
+      "needed_libs": [
+        "libpthread.so.0",
+        "librt.so.1",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    }
+  ],
+  "library_deps": {},
+  "libraries_static": {
+    "libnccl_static.a": false
+  },
+  "libraries_static_irregular": {},
+  "symlinks": [
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl.so",
+      "libnccl.so.2",
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ],
+    [
+      "nccl_2.27.3-1+cuda12.9_x86_64/lib",
+      "libnccl.so.2",
+      "libnccl.so.2.27.3",
+      "nccl_2.27.3-1+cuda12.9_x86_64"
+    ]
+  ],
+  "lib_same_name": {},
+  "arch": "x86_64"
+}

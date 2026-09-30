@@ -1,0 +1,4 @@
+# -minnctapersm should be mapped to -ppu-minblockscu via dealUnknownValueMapping
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-minnctapersm=4 %s
+CHECK: --llvm-options
+CHECK: -ppu-minblockscu=4
