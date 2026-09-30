@@ -1,0 +1,5 @@
+# -gencode with code= before arch= (swapped order) and quoted codes
+RUN: nvcc --print-hgcc-only -gencode 'code="sm_80,compute_80",arch=compute_80' %s
+CHECK: #$ hgcc command:
+CHECK: -arch=ppu_10
+CHECK: -arch=vm_10

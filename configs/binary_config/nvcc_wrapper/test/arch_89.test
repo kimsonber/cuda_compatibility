@@ -1,0 +1,4 @@
+# -gencode with compute_89/sm_89
+RUN: nvcc --print-hgcc-only -gencode 'arch=compute_89,code=sm_89' %s
+CHECK: #$ hgcc command:
+CHECK: -arch=ppu_15

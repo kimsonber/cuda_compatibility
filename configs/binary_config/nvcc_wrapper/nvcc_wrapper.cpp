@@ -64,6 +64,9 @@ class NVCCArgHandler : public ArgHandlerBase {
   bool PrintHelp = false;
   bool PrintVer = false;
   bool HostRelocatableLink = false;
+  bool DeviceDebug = false;
+  bool DoptExplicit = false;
+  std::string DoptValue;
 
   // return ture if Res can be dealt as arch options
   bool dealArchArgs(ParseResult &Res, std::vector<std::string> &args);
@@ -106,11 +109,31 @@ void NVCCArgHandler::handleReturnCode(int code) {
   if (char *env = std::getenv("NVCC_FAIL_LOG")) {
     std::string LogName = std::string(env) + "_" + std::to_string(getpid());
     std::ofstream OFS(LogName, std::ios::app | std::ios::ate);
+    if (const char *AppendEnv = getenv("NVCC_PREPEND_FLAGS")) {
+      std::vector<std::string> AppendArgs;
+      parseArgsFromStr(AppendEnv, AppendArgs);
+      OFS << "PREPEND ENV: ";
+      for (const auto &A : AppendArgs) {
+        OFS << "\'" << A << "\' ";
+      }
+      OFS << "\n";
+    }
     for (int I = 0; I < OriArgc; ++I) {
+      OFS << "'";
       OFS << OriArgv[I];
       OFS << " ";
+      OFS << "'";
     }
     OFS << "\n";
+    if (const char *AppendEnv = getenv("NVCC_APPEND_FLAGS")) {
+      std::vector<std::string> AppendArgs;
+      parseArgsFromStr(AppendEnv, AppendArgs);
+      OFS << "APPEND ENV: ";
+      for (const auto &A : AppendArgs) {
+        OFS << "\'" << A << "\'";
+      }
+      OFS << "\n";
+    }
     OFS.close();
   } else {
     ArgHandlerBase::handleReturnCode(code);
@@ -224,11 +247,40 @@ int NVCCArgHandler::dealUnknownArg(std::vector<std::string> &Args,
     return 1;
   }
 
+  if (Res.Key == "--device-debug" || Res.Key == "-G") {
+    DeviceDebug = true;
+    Args.push_back("-G");
+    Args.push_back("-D__CUDACC_DEBUG__");
+    return 1;
+  }
+
+  if (Res.Key == "--dopt" || Res.Key == "-dopt") {
+    if (Res.Value.empty()) {
+      std::cerr << "Missing value for option: " << Res.Key << std::endl;
+      return 0;
+    }
+    DoptExplicit = true;
+    DoptValue = Res.Value;
+    std::string mappedValue = DoptValue;
+    if (DoptValue == "off") {
+      mappedValue = "0";
+    } else if (DoptValue == "on") {
+      mappedValue = "3";
+    }
+    Args.push_back("-dopt");
+    Args.push_back(mappedValue);
+    return Res.TokenConsumed;
+  }
+
   if (Res.Key == "--cudart" || Res.Key == "-cudart") {
     if (Res.Value == "shared") {
       Args.push_back("-lcudart");
     } else if (Res.Value == "static") {
       Args.push_back("-lcudart_static");
+    } else if (Res.Value == "none") {
+    } else {
+      std::cerr << "nvcc fatal   : Value '" << Res.Value << "' is not defined for option 'cudart'" << std::endl;
+      exit(1);
     }
     return Res.TokenConsumed;
   }
@@ -309,6 +361,23 @@ int NVCCArgHandler::dealUnknownValueMapping(std::vector<std::string> &Args,
     return ArgHandlerBase::dealUnknownValueMapping(Args, OptSrc, OptDst, Argv);
   }
 
+  if (OptSrc == "--nvlink-options" || OptSrc == "-Xnvlink") {
+    // For suppress-stack-size-warning, we need to emit -mllvm prefix
+    // instead of --hglink-options to pass it through to LLVM
+    const char *ArgvTmp[] = {
+        Argv,
+        NULL
+    };
+    ParseResult Res = parseKV(ArgvTmp);
+    if (Res.Key == "-suppress-stack-size-warning" || Res.Key == "--suppress-stack-size-warning") {
+      Args.push_back("-mllvm");
+      Args.push_back("-ppu-suppress-stack-size-warning");
+      return Res.TokenConsumed;
+    }
+
+    return ArgHandlerBase::dealUnknownValueMapping(Args, OptSrc, OptDst, Argv);
+  }
+
   if (OptSrc == "-Xptxas" || OptSrc == "--ptxas-options") {
     const char *ArgvTmp[] = {
         Argv,
@@ -335,21 +404,27 @@ int NVCCArgHandler::dealUnknownValueMapping(std::vector<std::string> &Args,
     } else if (Res.Key == "--register-usage-level" ||
                Res.Key == "-register-usage-level") {
       return Res.TokenConsumed;
+    } else if (Res.Key == "--warning-as-error" || Res.Key == "-Werror") {
+      Args.push_back(OptDst);
+      Args.push_back("--warning-as-error");
+      return Res.TokenConsumed;
     }
+    // Not a known -Xptxas option; let caller decide via default_value_mapping
+    return 0;
   }
 
   return ArgHandlerBase::dealUnknownValueMapping(Args, OptSrc, OptDst, Argv);
 }
 
 std::string NVCCArgHandler::mapArchToPPUArch(const std::string &Arch) const {
-  if (ArchMap.count(Arch) > 0) {
-    return ArchMap.at(Arch);
+  std::string NormalizedArch = Arch;
+  if (endsWith(Arch, "a")) {
+    NormalizedArch = Arch.substr(0, Arch.size() - 1);
   }
-  if (GenCodeDecoder::isVirtualArch(Arch)) {
-    return "vm_10";
-  } else {
-    return "ppu_10";
+  if (ArchMap.count(NormalizedArch) > 0) {
+    return ArchMap.at(NormalizedArch);
   }
+  return "";
 }
 
 std::string NVCCArgHandler::getDefaultOutputName(const std::string &inputFile, const std::string &compilePhase) const {
@@ -391,27 +466,37 @@ void NVCCArgHandler::appendDefaultOutputFile(std::vector<std::string> &Args) {
     return;
   }
 
-  // Find input .cu file from Args
-  std::string inputFile;
-  for (const auto &arg : Args) {
-    if (endsWith(arg, ".cu")) {
-      inputFile = arg;
-      break;
-    }
-  }
-
-  if (inputFile.empty()) {
+  std::string phase = getCompilePhaseFromOriginalArgs(OriArgc, OriArgv);
+  if (phase.empty()) {
     return;
   }
 
-  std::string phase = getCompilePhaseFromOriginalArgs(OriArgc, OriArgv);
-  if (!phase.empty()) {
-    Args.push_back("-o");
-    Args.push_back(getDefaultOutputName(inputFile, phase));
+  std::vector<std::string> cuFiles;
+  for (const auto &arg : Args) {
+    if (endsWith(arg, ".cu")) {
+      cuFiles.push_back(arg);
+    }
   }
+
+  if (cuFiles.empty()) {
+    return;
+  }
+
+  if (cuFiles.size() > 1 && !phase.empty()) {
+    return;
+  }
+
+  Args.push_back("-o");
+  Args.push_back(getDefaultOutputName(cuFiles[0], phase));
 }
 
 void NVCCArgHandler::appendArchArgs(std::vector<std::string> &Args) {
+  // Direct pass-through for -arch=native
+  if (Arch == "native") {
+    Args.push_back("-arch=native");
+    return;
+  }
+
   if (!Codes.empty() && Arch.empty()) {
     std::cerr << "nvcc fatal   : -arch option not specified" << std::endl;
     exit(1);
@@ -458,7 +543,10 @@ void NVCCArgHandler::appendArchArgs(std::vector<std::string> &Args) {
       Dolto = true;
     }
     // TODO: check that arch matches the code
-    Args.push_back("-arch=" + mapArchToPPUArch(GenCode.Code));
+    auto PPUArch = mapArchToPPUArch(GenCode.Code);
+    if (!PPUArch.empty()) {
+      Args.push_back("-arch=" + mapArchToPPUArch(GenCode.Code));
+    }
     if (GenCode.Code == "sm_80" && !NoMultiArch) {
       Args.push_back("-arch=ppu_15");
     }
@@ -572,15 +660,33 @@ void NVCCArgHandler::beforeExec(std::vector<std::string> &Args) {
   appendMacroDefs(Args);
   appendDefaultOutputFile(Args);
 
+  // Apply default dopt value
+  if (!DoptExplicit) {
+    if (DeviceDebug) {
+      Args.push_back("-dopt");
+      Args.push_back("0");
+    } else {
+      Args.push_back("-dopt");
+      Args.push_back("3");
+   }
+  }
+  // For arguments with escaped double quotes \", we need to convert them to regular double quotes "
+  // for hgcc (which receives args directly via execvp).
+  std::vector<std::string> OriginalArgs = Args;
+  for (auto &Arg : Args) {
+    size_t pos = 0;
+    while ((pos = Arg.find("\\\"", pos)) != std::string::npos) {
+      Arg.replace(pos, 2, "\"");
+      pos += 1;
+    }
+  }
 
+  // But for --print-hgcc-only output, we want to preserve \\" so users can
+  // copy-paste the command. So we store original args for output.
   if (PrintHGCCOnly) {
     std::cout << "#$ hgcc command: ";
-    for (const auto &Arg : Args) {
-      if (Arg.find(' ') != std::string::npos) {
-        std::cout << "\"" << Arg << "\" ";
-      } else {
-        std::cout << Arg << " ";
-      }
+    for (const auto &Arg : OriginalArgs) {
+      std::cout << Arg << " ";
     }
     std::cout << std::endl;
     exit(0);
