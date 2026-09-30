@@ -1,0 +1,5 @@
+# short -Xptxas unmapped options are ignored via default_value_mapping
+RUN: nvcc --print-hgcc-only -arch compute_80 -Xptxas=-lineinfo -Xptxas=-sp-bounds-check %s
+CHECK-NOT: --llvm-options
+CHECK-NOT: -lineinfo
+CHECK-NOT: -sp-bounds-check
