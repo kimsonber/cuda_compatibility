@@ -1,0 +1,4 @@
+# --register-usage-level should be consumed but not forwarded to hgcc
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=--register-usage-level=10 %s
+CHECK-NOT: --register-usage-level
+CHECK-NOT: --llvm-options
