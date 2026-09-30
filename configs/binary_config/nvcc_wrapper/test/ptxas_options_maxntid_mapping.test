@@ -1,0 +1,4 @@
+# -maxntid should be mapped to -ppu-maxntid via dealUnknownValueMapping
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-maxntid=128 %s
+CHECK: --llvm-options
+CHECK: -ppu-maxntid=128
