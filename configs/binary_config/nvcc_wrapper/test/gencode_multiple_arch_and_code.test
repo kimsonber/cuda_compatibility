@@ -1,0 +1,7 @@
+# -gencode with brackets for both arch and code
+# compute_80+sm_80=ppu_10, compute_80+sm_89=ppu_15,
+# compute_89+sm_80=ppu_10, compute_89+sm_89=ppu_15
+RUN: nvcc --print-hgcc-only -gencode 'arch=[compute_80,compute_89],code=[sm_80,sm_89]' %s
+CHECK: #$ hgcc command:
+CHECK: -arch=ppu_10
+CHECK: -arch=ppu_15

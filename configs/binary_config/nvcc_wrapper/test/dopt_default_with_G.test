@@ -1,0 +1,7 @@
+# -G specified but no --dopt: default should be off (maps to 0)
+RUN: nvcc --print-hgcc-only -G -arch compute_80 %s
+CHECK: -dopt 0
+CHECK: -D__CUDACC_DEBUG__
+CHECK: -arch=vm_10
+CHECK-NOT: -dopt 3
+CHECK-NOT: Missing value
