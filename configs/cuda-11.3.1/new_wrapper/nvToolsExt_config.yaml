@@ -1,0 +1,1373 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: nvToolsExt
+  dyn_lib_file_name: libnvToolsExt.so.1.0.0
+  dyn_lib_install_name: libnvToolsExt.so.1.0.0
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - nvToolsExt.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libnvToolsExt.so.1
+      - --no-as-needed -lpthread
+      - "--version-script=<(echo \"libnvToolsExt.so.1 {global:  *;local:  *;};\")"
+      - --default-symver
+  api_functions:
+    - name: nvtxDomainCreateA
+      signature:
+        return_type:
+          name: nvtxDomainHandle_t
+          type_str: nvtxDomainHandle_t {}
+        parameters:
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainCreateW
+      signature:
+        return_type:
+          name: nvtxDomainHandle_t
+          type_str: nvtxDomainHandle_t {}
+        parameters:
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainDestroy
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainMarkEx
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainNameCategoryA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainNameCategoryW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRangeEnd
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: id
+            param_type:
+              name: nvtxRangeId_t
+              type_str: nvtxRangeId_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRangePop
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRangePushEx
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRangeStartEx
+      signature:
+        return_type:
+          name: nvtxRangeId_t
+          type_str: nvtxRangeId_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRegisterStringA
+      signature:
+        return_type:
+          name: nvtxStringHandle_t
+          type_str: nvtxStringHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: string
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainRegisterStringW
+      signature:
+        return_type:
+          name: nvtxStringHandle_t
+          type_str: nvtxStringHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: string
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainResourceCreate
+      signature:
+        return_type:
+          name: nvtxResourceHandle_t
+          type_str: nvtxResourceHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: nvtxDomainHandle_t
+              type_str: nvtxDomainHandle_t {}
+          - name: attribs
+            param_type:
+              name: nvtxResourceAttributes_t
+              is_pointer: true
+              type_str: nvtxResourceAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxDomainResourceDestroy
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: resource
+            param_type:
+              name: nvtxResourceHandle_t
+              type_str: nvtxResourceHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxInitialize
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: initAttrib
+            param_type:
+              name: nvtxInitializationAttributes_t
+              is_pointer: true
+              type_str: const nvtxInitializationAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxMarkA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxMarkEx
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxMarkW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxNameCategoryA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxNameCategoryW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxNameOsThreadA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: threadId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxNameOsThreadW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: threadId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangeEnd
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: id
+            param_type:
+              name: nvtxRangeId_t
+              type_str: nvtxRangeId_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangePop
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangePushA
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangePushEx
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangePushW
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangeStartA
+      signature:
+        return_type:
+          name: nvtxRangeId_t
+          type_str: nvtxRangeId_t {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangeStartEx
+      signature:
+        return_type:
+          name: nvtxRangeId_t
+          type_str: nvtxRangeId_t {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: nvtxEventAttributes_t
+              is_pointer: true
+              type_str: const nvtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: nvtxRangeStartW
+      signature:
+        return_type:
+          name: nvtxRangeId_t
+          type_str: nvtxRangeId_t {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libhgToolsExt.so
+  lib_dirs:
+    []
+  include_files:
+    - hgToolsExt.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=11031
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: hgtxDomainCreateA
+      signature:
+        return_type:
+          name: hgtxDomainHandle_t
+          type_str: hgtxDomainHandle_t {}
+        parameters:
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainCreateW
+      signature:
+        return_type:
+          name: hgtxDomainHandle_t
+          type_str: hgtxDomainHandle_t {}
+        parameters:
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainDestroy
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainMarkEx
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainNameCategoryA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainNameCategoryW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRangeEnd
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: id
+            param_type:
+              name: hgtxRangeId_t
+              type_str: hgtxRangeId_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRangePop
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRangePushEx
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRangeStartEx
+      signature:
+        return_type:
+          name: hgtxRangeId_t
+          type_str: hgtxRangeId_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRegisterStringA
+      signature:
+        return_type:
+          name: hgtxStringHandle_t
+          type_str: hgtxStringHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: string
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainRegisterStringW
+      signature:
+        return_type:
+          name: hgtxStringHandle_t
+          type_str: hgtxStringHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: string
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainResourceCreate
+      signature:
+        return_type:
+          name: hgtxResourceHandle_t
+          type_str: hgtxResourceHandle_t {}
+        parameters:
+          - name: domain
+            param_type:
+              name: hgtxDomainHandle_t
+              type_str: hgtxDomainHandle_t {}
+          - name: attribs
+            param_type:
+              name: hgtxResourceAttributes_t
+              is_pointer: true
+              type_str: hgtxResourceAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxDomainResourceDestroy
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: resource
+            param_type:
+              name: hgtxResourceHandle_t
+              type_str: hgtxResourceHandle_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxInitialize
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: initAttrib
+            param_type:
+              name: hgtxInitializationAttributes_t
+              is_pointer: true
+              type_str: const hgtxInitializationAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxMarkA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxMarkEx
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxMarkW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxNameCategoryA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxNameCategoryW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: category
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxNameOsThreadA
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: threadId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxNameOsThreadW
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: threadId
+            param_type:
+              name: uint32_t
+              type_str: uint32_t {}
+          - name: name
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangeEnd
+      signature:
+        return_type:
+          name: void
+          type_str: void {}
+        parameters:
+          - name: id
+            param_type:
+              name: hgtxRangeId_t
+              type_str: hgtxRangeId_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangePop
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangePushA
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangePushEx
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangePushW
+      signature:
+        return_type:
+          name: int
+          type_str: int {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangeStartA
+      signature:
+        return_type:
+          name: hgtxRangeId_t
+          type_str: hgtxRangeId_t {}
+        parameters:
+          - name: message
+            param_type:
+              name: char
+              is_pointer: true
+              type_str: const char * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangeStartEx
+      signature:
+        return_type:
+          name: hgtxRangeId_t
+          type_str: hgtxRangeId_t {}
+        parameters:
+          - name: eventAttrib
+            param_type:
+              name: hgtxEventAttributes_t
+              is_pointer: true
+              type_str: const hgtxEventAttributes_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: hgtxRangeStartW
+      signature:
+        return_type:
+          name: hgtxRangeId_t
+          type_str: hgtxRangeId_t {}
+        parameters:
+          - name: message
+            param_type:
+              name: wchar_t
+              is_pointer: true
+              type_str: const wchar_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: nvtxDomainCreateA
+    target_function: hgtxDomainCreateA
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainCreateW
+    target_function: hgtxDomainCreateW
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainDestroy
+    target_function: hgtxDomainDestroy
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainMarkEx
+    target_function: hgtxDomainMarkEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainNameCategoryA
+    target_function: hgtxDomainNameCategoryA
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainNameCategoryW
+    target_function: hgtxDomainNameCategoryW
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRangeEnd
+    target_function: hgtxDomainRangeEnd
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRangePop
+    target_function: hgtxDomainRangePop
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRangePushEx
+    target_function: hgtxDomainRangePushEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRangeStartEx
+    target_function: hgtxDomainRangeStartEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRegisterStringA
+    target_function: hgtxDomainRegisterStringA
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainRegisterStringW
+    target_function: hgtxDomainRegisterStringW
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainResourceCreate
+    target_function: hgtxDomainResourceCreate
+    parameter_mapping:
+      {}
+  - source_function: nvtxDomainResourceDestroy
+    target_function: hgtxDomainResourceDestroy
+    parameter_mapping:
+      {}
+  - source_function: nvtxInitialize
+    target_function: hgtxInitialize
+    parameter_mapping:
+      {}
+  - source_function: nvtxMarkA
+    target_function: hgtxMarkA
+    parameter_mapping:
+      {}
+  - source_function: nvtxMarkEx
+    target_function: hgtxMarkEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxMarkW
+    target_function: hgtxMarkW
+    parameter_mapping:
+      {}
+  - source_function: nvtxNameCategoryA
+    target_function: hgtxNameCategoryA
+    parameter_mapping:
+      {}
+  - source_function: nvtxNameCategoryW
+    target_function: hgtxNameCategoryW
+    parameter_mapping:
+      {}
+  - source_function: nvtxNameOsThreadA
+    target_function: hgtxNameOsThreadA
+    parameter_mapping:
+      {}
+  - source_function: nvtxNameOsThreadW
+    target_function: hgtxNameOsThreadW
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangeEnd
+    target_function: hgtxRangeEnd
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangePop
+    target_function: hgtxRangePop
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangePushA
+    target_function: hgtxRangePushA
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangePushEx
+    target_function: hgtxRangePushEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangePushW
+    target_function: hgtxRangePushW
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangeStartA
+    target_function: hgtxRangeStartA
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangeStartEx
+    target_function: hgtxRangeStartEx
+    parameter_mapping:
+      {}
+  - source_function: nvtxRangeStartW
+    target_function: hgtxRangeStartW
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "nvtxDomainCreateA",
+        "nvtxDomainCreateW",
+        "nvtxDomainDestroy",
+        "nvtxDomainMarkEx",
+        "nvtxDomainNameCategoryA",
+        "nvtxDomainNameCategoryW",
+        "nvtxDomainRangeEnd",
+        "nvtxDomainRangePop",
+        "nvtxDomainRangePushEx",
+        "nvtxDomainRangeStartEx",
+        "nvtxDomainRegisterStringA",
+        "nvtxDomainRegisterStringW",
+        "nvtxDomainResourceCreate",
+        "nvtxDomainResourceDestroy",
+        "nvtxInitialize",
+        "nvtxMarkA",
+        "nvtxMarkEx",
+        "nvtxMarkW",
+        "nvtxNameCategoryA",
+        "nvtxNameCategoryW",
+        "nvtxNameOsThreadA",
+        "nvtxNameOsThreadW",
+        "nvtxRangeEnd",
+        "nvtxRangePop",
+        "nvtxRangePushA",
+        "nvtxRangePushEx",
+        "nvtxRangePushW",
+        "nvtxRangeStartA",
+        "nvtxRangeStartEx",
+        "nvtxRangeStartW",
+    };
+
+    enum nvToolsExtProfileCallbackId {
+        nvToolsExt_TRACE_CBID_nvtxDomainCreateA = 0,
+        nvToolsExt_TRACE_CBID_nvtxDomainCreateW = 1,
+        nvToolsExt_TRACE_CBID_nvtxDomainDestroy = 2,
+        nvToolsExt_TRACE_CBID_nvtxDomainMarkEx = 3,
+        nvToolsExt_TRACE_CBID_nvtxDomainNameCategoryA = 4,
+        nvToolsExt_TRACE_CBID_nvtxDomainNameCategoryW = 5,
+        nvToolsExt_TRACE_CBID_nvtxDomainRangeEnd = 6,
+        nvToolsExt_TRACE_CBID_nvtxDomainRangePop = 7,
+        nvToolsExt_TRACE_CBID_nvtxDomainRangePushEx = 8,
+        nvToolsExt_TRACE_CBID_nvtxDomainRangeStartEx = 9,
+        nvToolsExt_TRACE_CBID_nvtxDomainRegisterStringA = 10,
+        nvToolsExt_TRACE_CBID_nvtxDomainRegisterStringW = 11,
+        nvToolsExt_TRACE_CBID_nvtxDomainResourceCreate = 12,
+        nvToolsExt_TRACE_CBID_nvtxDomainResourceDestroy = 13,
+        nvToolsExt_TRACE_CBID_nvtxInitialize = 14,
+        nvToolsExt_TRACE_CBID_nvtxMarkA = 15,
+        nvToolsExt_TRACE_CBID_nvtxMarkEx = 16,
+        nvToolsExt_TRACE_CBID_nvtxMarkW = 17,
+        nvToolsExt_TRACE_CBID_nvtxNameCategoryA = 18,
+        nvToolsExt_TRACE_CBID_nvtxNameCategoryW = 19,
+        nvToolsExt_TRACE_CBID_nvtxNameOsThreadA = 20,
+        nvToolsExt_TRACE_CBID_nvtxNameOsThreadW = 21,
+        nvToolsExt_TRACE_CBID_nvtxRangeEnd = 22,
+        nvToolsExt_TRACE_CBID_nvtxRangePop = 23,
+        nvToolsExt_TRACE_CBID_nvtxRangePushA = 24,
+        nvToolsExt_TRACE_CBID_nvtxRangePushEx = 25,
+        nvToolsExt_TRACE_CBID_nvtxRangePushW = 26,
+        nvToolsExt_TRACE_CBID_nvtxRangeStartA = 27,
+        nvToolsExt_TRACE_CBID_nvtxRangeStartEx = 28,
+        nvToolsExt_TRACE_CBID_nvtxRangeStartW = 29,
+    };
+
+    typedef uint32_t (*nvToolsExtRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*nvToolsExtIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvToolsExtProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*nvToolsExtProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct nvToolsExtProfileHandler {
+        nvToolsExtRegisterProfileDomain registerProfileDomain;
+        nvToolsExtIsProfileCallbackEnabled isCallbackEnabled;
+        nvToolsExtProfileCallbackBegin profileCallbackBegin;
+        nvToolsExtProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static nvToolsExtProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "nvToolsExt";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<nvToolsExtRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<nvToolsExtIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<nvToolsExtProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<nvToolsExtProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, nvToolsExt_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, nvToolsExt_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, nvToolsExt_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

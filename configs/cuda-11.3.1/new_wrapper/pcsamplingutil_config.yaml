@@ -1,0 +1,247 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: pcsamplingutil
+  dyn_lib_file_name: libpcsamplingutil.so
+  dyn_lib_install_name: libpcsamplingutil.so
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cupti_pcsampling_util.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libpcsamplingutil.so
+      - --no-as-needed -lpthread
+      - "--version-script=<(echo \"libpcsamplingutil.so {global:  *;local:  *;};\")"
+      - --default-symver
+  api_functions:
+    - name: CuptiUtilGetBufferInfo
+      signature:
+        return_type:
+          name: CUPTI::PcSamplingUtil::CUptiUtilResult
+          type_str: CUPTI::PcSamplingUtil::CUptiUtilResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUPTI::PcSamplingUtil::CUptiUtil_GetBufferInfoParams
+              is_pointer: true
+              type_str: CUPTI::PcSamplingUtil::CUptiUtil_GetBufferInfoParams * {}
+      has_body: false
+      is_in_namespace: true
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: CuptiUtilGetHeaderData
+      signature:
+        return_type:
+          name: CUPTI::PcSamplingUtil::CUptiUtilResult
+          type_str: CUPTI::PcSamplingUtil::CUptiUtilResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUPTI::PcSamplingUtil::CUptiUtil_GetHeaderDataParams
+              is_pointer: true
+              type_str: CUPTI::PcSamplingUtil::CUptiUtil_GetHeaderDataParams * {}
+      has_body: false
+      is_in_namespace: true
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: CuptiUtilGetPcSampData
+      signature:
+        return_type:
+          name: CUPTI::PcSamplingUtil::CUptiUtilResult
+          type_str: CUPTI::PcSamplingUtil::CUptiUtilResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUPTI::PcSamplingUtil::CUptiUtil_GetPcSampDataParams
+              is_pointer: true
+              type_str: CUPTI::PcSamplingUtil::CUptiUtil_GetPcSampDataParams * {}
+      has_body: false
+      is_in_namespace: true
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: CuptiUtilMergePcSampData
+      signature:
+        return_type:
+          name: CUPTI::PcSamplingUtil::CUptiUtilResult
+          type_str: CUPTI::PcSamplingUtil::CUptiUtilResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUPTI::PcSamplingUtil::CUptiUtil_MergePcSampDataParams
+              is_pointer: true
+              type_str: CUPTI::PcSamplingUtil::CUptiUtil_MergePcSampDataParams * {}
+      has_body: false
+      is_in_namespace: true
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: CuptiUtilPutPcSampData
+      signature:
+        return_type:
+          name: CUPTI::PcSamplingUtil::CUptiUtilResult
+          type_str: CUPTI::PcSamplingUtil::CUptiUtilResult {}
+        parameters:
+          - name: pParams
+            param_type:
+              name: CUPTI::PcSamplingUtil::CUptiUtil_PutPcSampDataParams
+              is_pointer: true
+              type_str: CUPTI::PcSamplingUtil::CUptiUtil_PutPcSampDataParams * {}
+      has_body: false
+      is_in_namespace: true
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libNeedImpl.so
+  lib_dirs:
+    []
+  include_files:
+    []
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=11031
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    []
+api_mappings:
+  - source_function: CuptiUtilGetBufferInfo
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: CuptiUtilGetHeaderData
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: CuptiUtilGetPcSampData
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: CuptiUtilMergePcSampData
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: CuptiUtilPutPcSampData
+    target_function: ""
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "CuptiUtilGetBufferInfo",
+        "CuptiUtilGetHeaderData",
+        "CuptiUtilGetPcSampData",
+        "CuptiUtilMergePcSampData",
+        "CuptiUtilPutPcSampData",
+    };
+
+    enum pcsamplingutilProfileCallbackId {
+        pcsamplingutil_TRACE_CBID_CuptiUtilGetBufferInfo = 0,
+        pcsamplingutil_TRACE_CBID_CuptiUtilGetHeaderData = 1,
+        pcsamplingutil_TRACE_CBID_CuptiUtilGetPcSampData = 2,
+        pcsamplingutil_TRACE_CBID_CuptiUtilMergePcSampData = 3,
+        pcsamplingutil_TRACE_CBID_CuptiUtilPutPcSampData = 4,
+    };
+
+    typedef uint32_t (*pcsamplingutilRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*pcsamplingutilIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*pcsamplingutilProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*pcsamplingutilProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct pcsamplingutilProfileHandler {
+        pcsamplingutilRegisterProfileDomain registerProfileDomain;
+        pcsamplingutilIsProfileCallbackEnabled isCallbackEnabled;
+        pcsamplingutilProfileCallbackBegin profileCallbackBegin;
+        pcsamplingutilProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static pcsamplingutilProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "pcsamplingutil";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<pcsamplingutilRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<pcsamplingutilIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<pcsamplingutilProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<pcsamplingutilProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, pcsamplingutil_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, pcsamplingutil_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, pcsamplingutil_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

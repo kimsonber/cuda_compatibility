@@ -1,0 +1,6 @@
+# Explicit --dopt on with -G: should use explicit on (maps to 3), not default off
+RUN: nvcc --print-hgcc-only -G --dopt=on %s
+CHECK: -dopt 3
+CHECK: -D__CUDACC_DEBUG__
+CHECK-NOT: -dopt 0
+CHECK-NOT: Missing value
