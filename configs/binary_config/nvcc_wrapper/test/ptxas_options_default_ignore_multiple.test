@@ -1,0 +1,6 @@
+# multiple unmapped ptxas options are ignored, mapped option still works
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-disable-optimizer-consts --ptxas-options=-Werror --ptxas-options="-v" %s
+CHECK: --llvm-options
+CHECK: --resource-usage
+CHECK-NOT: -disable-optimizer-consts
+CHECK-NOT: -Werror
