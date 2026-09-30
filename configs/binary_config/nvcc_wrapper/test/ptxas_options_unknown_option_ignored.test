@@ -1,0 +1,4 @@
+# Truly unknown -Xptxas options should be ignored by default_value_mapping
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=-unknown-flag %s
+CHECK-NOT: --llvm-options
+CHECK-NOT: -unknown-flag
