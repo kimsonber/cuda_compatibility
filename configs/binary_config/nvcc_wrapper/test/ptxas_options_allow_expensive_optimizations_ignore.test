@@ -1,0 +1,4 @@
+# --allow-expensive-optimizations should be consumed but not forwarded to hgcc
+RUN: nvcc --print-hgcc-only -arch compute_80 --ptxas-options=--allow-expensive-optimizations %s
+CHECK-NOT: --allow-expensive-optimizations
+CHECK-NOT: --llvm-options

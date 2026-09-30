@@ -1,0 +1,86 @@
+{
+  "files": [
+    {
+      "path": ["cuda_fp8.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["cuda_fp8.hpp"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "1179",
+          "header": "",
+          "footer": "",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["cuda_runtime_api_ext.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["cuda_device_runtime_api_internal.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "replace": []
+        }
+      ]
+    },
+    {
+      "path": ["hggc_occupancy.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "new_name": "cuda_occupancy.h",
+          "replace": [
+            {"pattern": "HGGC", "new": "CUDA"},
+            {"pattern": "hggc", "new": "cuda"}
+          ]
+        }
+      ]
+    },
+    {
+      "path": ["hggc_ad.h"],
+      "configs": [
+        {
+          "min_version": "1000",
+          "max_version": "2000",
+          "header": "",
+          "footer": "",
+          "new_name": "cuda_ad.h",
+          "replace": [
+            {"pattern": "HGGC", "new": "CUDA"},
+            {"pattern": "hggc", "new": "cuda"},
+            {"pattern": "HG", "new": "CU"},
+            {"pattern": "hg", "new": "cu"}
+          ]
+        }
+      ]
+    }
+  ]
+}
