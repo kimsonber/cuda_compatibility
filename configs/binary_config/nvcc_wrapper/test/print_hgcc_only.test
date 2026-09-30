@@ -1,0 +1,3 @@
+# --print-hgcc-only produces output
+RUN: nvcc --print-hgcc-only -gencode 'arch=compute_80,code=sm_80' %s
+CHECK: #$ hgcc command:
