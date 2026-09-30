@@ -1,0 +1,19 @@
+[global]
+verbose=0
+
+[nccl]
+cuda_api=nccl.json
+hggc_api=pccl.json
+cuda_header=nccl.h
+            nccl_device/core.h
+            nccl_device/ll_a2a.h
+            nccl_device/gin_barrier.h
+            nccl_device/lsa_barrier.h
+hggc_header=pccl.h
+            nccl_device/core.h
+            nccl_device/ll_a2a.h
+            nccl_device/gin_barrier.h
+            nccl_device/lsa_barrier.h
+target_lib=libpccl.so
+match_rules=nccl:pccl
+            cuda:hggc
