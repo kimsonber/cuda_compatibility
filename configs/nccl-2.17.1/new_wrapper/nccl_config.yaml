@@ -15,9 +15,9 @@ source_library:
   include_dirs:
     - $lib1/extras/CUPTI/include
     - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
     - $lib1/nvvm/include
     - $lib1/compute-sanitizer/include
-    - $lib1/targets/x86_64-linux/include
     - $nccl/include
     - $config/PrivateHeader/GL
     - $config/PrivateHeader
@@ -1382,20 +1382,20 @@ target_library:
     - pccl.h
   include_dirs:
     - $ppu/include
+    - $pccl/ext-kernel/src
+    - $pccl/ext-kernel/pccl
+    - $pccl/src/graph
+    - $pccl/src/include
+    - $pccl/src/ras
+    - $pccl/src/collectives/device
+    - $pccl/src/transport/net_ib
+    - $pccl/src/device/symmetric
     - $pccl/ext-profiler/inspector
     - $pccl/ext-profiler/example
     - $pccl/docs/examples/common/include
-    - $pccl/src/graph
-    - $pccl/src/transport/net_ib
-    - $pccl/src/device/symmetric
-    - $pccl/src/ras
-    - $pccl/src/collectives/device
-    - $pccl/src/include
-    - $pccl/include
     - $pccl/ext-tuner/pccl
+    - $pccl/include
     - $pccl/tests/src/include
-    - $pccl/ext-kernel/src
-    - $pccl/ext-kernel/pccl
   extra_src_files:
     []
   compilation_options:
