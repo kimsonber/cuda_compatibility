@@ -1,0 +1,2933 @@
+wrapper_cmp_ctrl:
+  custom_compiler: gcc
+  gen_static_lib: true
+  gen_dynamic_lib: true
+source_library:
+  lib_name: cudnn_ops_train
+  dyn_lib_file_name: libcudnn_ops_train.so.8.9.5
+  dyn_lib_install_name: libcudnn_ops_train.so.8.9.5
+  sta_lib_file_name: libcudnn_ops_train_static.a
+  lib_dirs:
+    []
+  include_files:
+    - ../../include/texture_types.h
+    - cudnn_ops_train.h
+    - cudnn_ops_train_v8.h
+  include_dirs:
+    - $lib1/extras/CUPTI/include
+    - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
+    - $lib1/nvvm/include
+    - $lib1/compute-sanitizer/include
+    - $lib2/include
+    - $config/PrivateHeader/GL
+    - $config/PrivateHeader
+    - $config/PrivateHeader/KHR
+    - $config/PrivateHeader/EGL
+    - $cu_ad
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - NVML_NO_UNVERSIONED_FUNC_DEFS
+      - USE_CUDA_RUNTIME=1
+      - __BF16_DEFINED__
+      - __FP16_DEFINED__
+      - __FP8_DEFINED__
+    cxx_flags:
+      []
+    linker_flags:
+      - -soname,libcudnn_ops_train.so.8
+      - --no-as-needed -lpthread
+      - "--version-script=<(echo \"libcudnn_ops_train.so.8 {global:  *;local:  *;};\")"
+      - --default-symver
+  api_functions:
+    - name: cudnnActivationBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              type_str: cudnnActivationDescriptor_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnBatchNormalizationBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: alphaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: alphaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dBnScaleResult
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnBiasResult
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: savedInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnBatchNormalizationBackwardEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: cudnnBatchNormOps_t
+              type_str: cudnnBatchNormOps_t {}
+          - name: alphaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: alphaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dyData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dzDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dzData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dxData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bnScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dBnScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: savedInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              type_str: cudnnActivationDescriptor_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnBatchNormalizationForwardTraining
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: bnScaleBiasMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: exponentialAverageFactor
+            param_type:
+              name: double
+              type_str: double {}
+          - name: resultRunningMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultRunningVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: resultSaveMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultSaveInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnBatchNormalizationForwardTrainingEx
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: cudnnBatchNormOps_t
+              type_str: cudnnBatchNormOps_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: zDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: zData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: bnScaleBiasMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: exponentialAverageFactor
+            param_type:
+              name: double
+              type_str: double {}
+          - name: resultRunningMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultRunningVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: resultSaveMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultSaveInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              type_str: cudnnActivationDescriptor_t {}
+          - name: workspace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDivisiveNormalizationBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: normDesc
+            param_type:
+              name: cudnnLRNDescriptor_t
+              type_str: cudnnLRNDescriptor_t {}
+          - name: mode
+            param_type:
+              name: cudnnDivNormMode_t
+              type_str: cudnnDivNormMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: means
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: temp
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: temp2
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dXdMeansDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dMeans
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnDropoutBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: dropoutDesc
+            param_type:
+              name: cudnnDropoutDescriptor_t
+              is_const: true
+              type_str: const cudnnDropoutDescriptor_t {}
+          - name: dydesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxdesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetBatchNormalizationBackwardExWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: cudnnBatchNormOps_t
+              type_str: cudnnBatchNormOps_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dzDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dBnScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: cudnnBatchNormOps_t
+              type_str: cudnnBatchNormOps_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: zDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: bnScaleBiasMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetBatchNormalizationTrainingExReserveSpaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnBatchNormMode_t
+              type_str: cudnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: cudnnBatchNormOps_t
+              type_str: cudnnBatchNormOps_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetNormalizationBackwardWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnNormMode_t
+              type_str: cudnnNormMode_t {}
+          - name: normOps
+            param_type:
+              name: cudnnNormOps_t
+              type_str: cudnnNormOps_t {}
+          - name: algo
+            param_type:
+              name: cudnnNormAlgo_t
+              type_str: cudnnNormAlgo_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dzDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dNormScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: normMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: groupCnt
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetNormalizationForwardTrainingWorkspaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnNormMode_t
+              type_str: cudnnNormMode_t {}
+          - name: normOps
+            param_type:
+              name: cudnnNormOps_t
+              type_str: cudnnNormOps_t {}
+          - name: algo
+            param_type:
+              name: cudnnNormAlgo_t
+              type_str: cudnnNormAlgo_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: zDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: normScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: normMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: groupCnt
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnGetNormalizationTrainingReserveSpaceSize
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnNormMode_t
+              type_str: cudnnNormMode_t {}
+          - name: normOps
+            param_type:
+              name: cudnnNormOps_t
+              type_str: cudnnNormOps_t {}
+          - name: algo
+            param_type:
+              name: cudnnNormAlgo_t
+              type_str: cudnnNormAlgo_t {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              is_const: true
+              type_str: const cudnnActivationDescriptor_t {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+          - name: groupCnt
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnLRNCrossChannelBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: normDesc
+            param_type:
+              name: cudnnLRNDescriptor_t
+              type_str: cudnnLRNDescriptor_t {}
+          - name: lrnMode
+            param_type:
+              name: cudnnLRNMode_t
+              type_str: cudnnLRNMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnNormalizationBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnNormMode_t
+              type_str: cudnnNormMode_t {}
+          - name: normOps
+            param_type:
+              name: cudnnNormOps_t
+              type_str: cudnnNormOps_t {}
+          - name: algo
+            param_type:
+              name: cudnnNormAlgo_t
+              type_str: cudnnNormAlgo_t {}
+          - name: alphaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaDataDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: alphaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaParamDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dyData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dzDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dzData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dxData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dNormScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: normScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: normBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dNormScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dNormBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: normMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: savedInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              type_str: cudnnActivationDescriptor_t {}
+          - name: workSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: groupCnt
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnNormalizationForwardTraining
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: mode
+            param_type:
+              name: cudnnNormMode_t
+              type_str: cudnnNormMode_t {}
+          - name: normOps
+            param_type:
+              name: cudnnNormOps_t
+              type_str: cudnnNormOps_t {}
+          - name: algo
+            param_type:
+              name: cudnnNormAlgo_t
+              type_str: cudnnNormAlgo_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: normScaleBiasDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: normScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: normBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: exponentialAverageFactor
+            param_type:
+              name: double
+              type_str: double {}
+          - name: normMeanVarDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: resultRunningMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultRunningVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: resultSaveMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: resultSaveInvVariance
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: activationDesc
+            param_type:
+              name: cudnnActivationDescriptor_t
+              type_str: cudnnActivationDescriptor_t {}
+          - name: zDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: zData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workspace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: workSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserveSpace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserveSpaceSizeInBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: groupCnt
+            param_type:
+              name: int
+              type_str: int {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnOpsTrainVersionCheck
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnPoolingBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: poolingDesc
+            param_type:
+              name: cudnnPoolingDescriptor_t
+              is_const: true
+              type_str: const cudnnPoolingDescriptor_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSoftmaxBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: algo
+            param_type:
+              name: cudnnSoftmaxAlgorithm_t
+              type_str: cudnnSoftmaxAlgorithm_t {}
+          - name: mode
+            param_type:
+              name: cudnnSoftmaxMode_t
+              type_str: cudnnSoftmaxMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSpatialTfGridGeneratorBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: stDesc
+            param_type:
+              name: cudnnSpatialTransformerDescriptor_t
+              is_const: true
+              type_str: const cudnnSpatialTransformerDescriptor_t {}
+          - name: dgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dtheta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: cudnnSpatialTfSamplerBackward
+      signature:
+        return_type:
+          name: cudnnStatus_t
+          type_str: cudnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: cudnnHandle_t
+              type_str: cudnnHandle_t {}
+          - name: stDesc
+            param_type:
+              name: cudnnSpatialTransformerDescriptor_t
+              type_str: cudnnSpatialTransformerDescriptor_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: alphaDgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: cudnnTensorDescriptor_t
+              is_const: true
+              type_str: const cudnnTensorDescriptor_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: grid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaDgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+target_library:
+  lib_name: ""
+  dyn_lib_file_name: libacdnn_ops_train.so
+  lib_dirs:
+    []
+  include_files:
+    - acdnn_ops_train.h
+  include_dirs:
+    - $ppu/include
+  extra_src_files:
+    []
+  compilation_options:
+    macros:
+      - CUDA_VERSION_INSTALL=13001
+      - __HGGC_API_V3__
+    cxx_flags:
+      []
+    linker_flags:
+      []
+  api_functions:
+    - name: acdnnActivationBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnBatchNormalizationBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: aDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: aParam
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bParam
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dyData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dxData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bnScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dBnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: savedInvVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnBatchNormalizationBackwardEx
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: acdnnBatchNormOps_t
+              type_str: acdnnBatchNormOps_t {}
+          - name: aDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bDiff
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: aParam
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bParam
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dyData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dzDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dzData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dxData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bnScaleData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBiasData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dBnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: dBnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: savedInvVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: workspace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserve
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: rsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnBatchNormalizationForwardTraining
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: bnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: momentum
+            param_type:
+              name: double
+              type_str: double {}
+          - name: runningMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: runningVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: savedInvVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnBatchNormalizationForwardTrainingEx
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: acdnnBatchNormOps_t
+              type_str: acdnnBatchNormOps_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: xData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: zDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: zData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: yData
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: bnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bnScale
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: bnBias
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: momentum
+            param_type:
+              name: double
+              type_str: double {}
+          - name: runningMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: runningVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: epsilon
+            param_type:
+              name: double
+              type_str: double {}
+          - name: savedMean
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: savedInvVar
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: workspace
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: wsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+          - name: reserve
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: rsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnDropoutBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: dropDesc
+            param_type:
+              name: acdnnDropDesc_t
+              type_str: acdnnDropDesc_t {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: reserve
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: rsBytes
+            param_type:
+              name: size_t
+              type_str: size_t {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetBatchNormalizationBackwardExWorkspaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: acdnnBatchNormOps_t
+              type_str: acdnnBatchNormOps_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dzDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dBnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetBatchNormalizationForwardTrainingExWorkspaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: acdnnBatchNormOps_t
+              type_str: acdnnBatchNormOps_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: zDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: bnDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnGetBatchNormalizationTrainingExReserveSpaceSize
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: mode
+            param_type:
+              name: acdnnBatchNormMode_t
+              type_str: acdnnBatchNormMode_t {}
+          - name: bnOps
+            param_type:
+              name: acdnnBatchNormOps_t
+              type_str: acdnnBatchNormOps_t {}
+          - name: actDesc
+            param_type:
+              name: acdnnActDesc_t
+              type_str: acdnnActDesc_t {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: sizeInBytes
+            param_type:
+              name: size_t
+              is_pointer: true
+              type_str: size_t * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnLRNCrossChannelBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: lrnDesc
+            param_type:
+              name: acdnnLRNDesc_t
+              type_str: acdnnLRNDesc_t {}
+          - name: lrnMode
+            param_type:
+              name: acdnnLRNMode_t
+              type_str: acdnnLRNMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnOpsTrainVersionCheck
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          []
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnPoolingBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: poolDesc
+            param_type:
+              name: acdnnPoolDesc_t
+              type_str: acdnnPoolDesc_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSoftmaxBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: algo
+            param_type:
+              name: acdnnSoftmaxAlgorithm_t
+              type_str: acdnnSoftmaxAlgorithm_t {}
+          - name: mode
+            param_type:
+              name: acdnnSoftmaxMode_t
+              type_str: acdnnSoftmaxMode_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: yDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: y
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSpatialTfGridGeneratorBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: stDesc
+            param_type:
+              name: acdnnSTDesc_t
+              type_str: acdnnSTDesc_t {}
+          - name: dgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dtheta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+    - name: acdnnSpatialTfSamplerBackward
+      signature:
+        return_type:
+          name: acdnnStatus_t
+          type_str: acdnnStatus_t {}
+        parameters:
+          - name: handle
+            param_type:
+              name: acdnnHandle_t
+              type_str: acdnnHandle_t {}
+          - name: stDesc
+            param_type:
+              name: acdnnSTDesc_t
+              type_str: acdnnSTDesc_t {}
+          - name: alpha
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: xDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: x
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: beta
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dxDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dx
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+          - name: alphaDgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dyDesc
+            param_type:
+              name: acdnnTDesc_t
+              type_str: acdnnTDesc_t {}
+          - name: dy
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: grid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: betaDgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: const void * {}
+          - name: dgrid
+            param_type:
+              name: void
+              is_pointer: true
+              type_str: void * {}
+      has_body: false
+      body_dependencies:
+        []
+      attributes:
+        []
+api_mappings:
+  - source_function: cudnnActivationBackward
+    target_function: acdnnActivationBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnBatchNormalizationBackward
+    target_function: acdnnBatchNormalizationBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnBatchNormalizationBackwardEx
+    target_function: acdnnBatchNormalizationBackwardEx
+    parameter_mapping:
+      {}
+  - source_function: cudnnBatchNormalizationForwardTraining
+    target_function: acdnnBatchNormalizationForwardTraining
+    parameter_mapping:
+      {}
+  - source_function: cudnnBatchNormalizationForwardTrainingEx
+    target_function: acdnnBatchNormalizationForwardTrainingEx
+    parameter_mapping:
+      {}
+  - source_function: cudnnDivisiveNormalizationBackward
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnDropoutBackward
+    target_function: acdnnDropoutBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetBatchNormalizationBackwardExWorkspaceSize
+    target_function: acdnnGetBatchNormalizationBackwardExWorkspaceSize
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize
+    target_function: acdnnGetBatchNormalizationForwardTrainingExWorkspaceSize
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetBatchNormalizationTrainingExReserveSpaceSize
+    target_function: acdnnGetBatchNormalizationTrainingExReserveSpaceSize
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetNormalizationBackwardWorkspaceSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetNormalizationForwardTrainingWorkspaceSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnGetNormalizationTrainingReserveSpaceSize
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnLRNCrossChannelBackward
+    target_function: acdnnLRNCrossChannelBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnNormalizationBackward
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnNormalizationForwardTraining
+    target_function: ""
+    parameter_mapping:
+      {}
+  - source_function: cudnnOpsTrainVersionCheck
+    target_function: acdnnOpsTrainVersionCheck
+    parameter_mapping:
+      {}
+  - source_function: cudnnPoolingBackward
+    target_function: acdnnPoolingBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnSoftmaxBackward
+    target_function: acdnnSoftmaxBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnSpatialTfGridGeneratorBackward
+    target_function: acdnnSpatialTfGridGeneratorBackward
+    parameter_mapping:
+      {}
+  - source_function: cudnnSpatialTfSamplerBackward
+    target_function: acdnnSpatialTfSamplerBackward
+    parameter_mapping:
+      {}
+global_custom_code:
+  loader_start: |
+    static uint32_t g_profileDomain;
+
+    static const char* g_profileFunctionList[] = {
+        "cudnnActivationBackward",
+        "cudnnBatchNormalizationBackward",
+        "cudnnBatchNormalizationBackwardEx",
+        "cudnnBatchNormalizationForwardTraining",
+        "cudnnBatchNormalizationForwardTrainingEx",
+        "cudnnDivisiveNormalizationBackward",
+        "cudnnDropoutBackward",
+        "cudnnGetBatchNormalizationBackwardExWorkspaceSize",
+        "cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize",
+        "cudnnGetBatchNormalizationTrainingExReserveSpaceSize",
+        "cudnnGetNormalizationBackwardWorkspaceSize",
+        "cudnnGetNormalizationForwardTrainingWorkspaceSize",
+        "cudnnGetNormalizationTrainingReserveSpaceSize",
+        "cudnnLRNCrossChannelBackward",
+        "cudnnNormalizationBackward",
+        "cudnnNormalizationForwardTraining",
+        "cudnnOpsTrainVersionCheck",
+        "cudnnPoolingBackward",
+        "cudnnSoftmaxBackward",
+        "cudnnSpatialTfGridGeneratorBackward",
+        "cudnnSpatialTfSamplerBackward",
+    };
+
+    enum cudnn_ops_trainProfileCallbackId {
+        cudnn_ops_train_TRACE_CBID_cudnnActivationBackward = 0,
+        cudnn_ops_train_TRACE_CBID_cudnnBatchNormalizationBackward = 1,
+        cudnn_ops_train_TRACE_CBID_cudnnBatchNormalizationBackwardEx = 2,
+        cudnn_ops_train_TRACE_CBID_cudnnBatchNormalizationForwardTraining = 3,
+        cudnn_ops_train_TRACE_CBID_cudnnBatchNormalizationForwardTrainingEx = 4,
+        cudnn_ops_train_TRACE_CBID_cudnnDivisiveNormalizationBackward = 5,
+        cudnn_ops_train_TRACE_CBID_cudnnDropoutBackward = 6,
+        cudnn_ops_train_TRACE_CBID_cudnnGetBatchNormalizationBackwardExWorkspaceSize = 7,
+        cudnn_ops_train_TRACE_CBID_cudnnGetBatchNormalizationForwardTrainingExWorkspaceSize = 8,
+        cudnn_ops_train_TRACE_CBID_cudnnGetBatchNormalizationTrainingExReserveSpaceSize = 9,
+        cudnn_ops_train_TRACE_CBID_cudnnGetNormalizationBackwardWorkspaceSize = 10,
+        cudnn_ops_train_TRACE_CBID_cudnnGetNormalizationForwardTrainingWorkspaceSize = 11,
+        cudnn_ops_train_TRACE_CBID_cudnnGetNormalizationTrainingReserveSpaceSize = 12,
+        cudnn_ops_train_TRACE_CBID_cudnnLRNCrossChannelBackward = 13,
+        cudnn_ops_train_TRACE_CBID_cudnnNormalizationBackward = 14,
+        cudnn_ops_train_TRACE_CBID_cudnnNormalizationForwardTraining = 15,
+        cudnn_ops_train_TRACE_CBID_cudnnOpsTrainVersionCheck = 16,
+        cudnn_ops_train_TRACE_CBID_cudnnPoolingBackward = 17,
+        cudnn_ops_train_TRACE_CBID_cudnnSoftmaxBackward = 18,
+        cudnn_ops_train_TRACE_CBID_cudnnSpatialTfGridGeneratorBackward = 19,
+        cudnn_ops_train_TRACE_CBID_cudnnSpatialTfSamplerBackward = 20,
+    };
+
+    typedef uint32_t (*cudnn_ops_trainRegisterProfileDomain)(const char* domain_name, const char** function_list, uint32_t function_number);
+    typedef uint8_t (*cudnn_ops_trainIsProfileCallbackEnabled)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_ops_trainProfileCallbackBegin)(uint32_t domain, uint32_t callback_id);
+    typedef void (*cudnn_ops_trainProfileCallbackEnd)(uint32_t domain, uint32_t callback_id);
+
+    struct cudnn_ops_trainProfileHandler {
+        cudnn_ops_trainRegisterProfileDomain registerProfileDomain;
+        cudnn_ops_trainIsProfileCallbackEnabled isCallbackEnabled;
+        cudnn_ops_trainProfileCallbackBegin profileCallbackBegin;
+        cudnn_ops_trainProfileCallbackEnd profileCallbackEnd;
+    };
+
+    static cudnn_ops_trainProfileHandler g_profileHandler;
+    static bool gDirectReturn = false;
+    static const char* gLibName = "cudnn_ops_train";
+
+    static void InitializeProfileHandler() {
+        // get library patch
+        const char* profile_tool_library = getenv("WRAPPER_INJECTION_PATH");
+        if (profile_tool_library == NULL) {
+            return;
+        }
+
+        // open profile library
+        void* tool_handler = dlopen(profile_tool_library, RTLD_LAZY);
+        if (!tool_handler) {
+            printf("cannot open the file:%s  with error %s\n", profile_tool_library, dlerror());
+            return;
+        }
+
+        // init profile handler
+        g_profileHandler.registerProfileDomain = reinterpret_cast<cudnn_ops_trainRegisterProfileDomain>(dlsym(tool_handler, "wrapperRegisterProfileDomain"));
+        g_profileHandler.isCallbackEnabled = reinterpret_cast<cudnn_ops_trainIsProfileCallbackEnabled>(dlsym(tool_handler, "wrapperIsProfileCallbackEnabled"));
+        g_profileHandler.profileCallbackBegin = reinterpret_cast<cudnn_ops_trainProfileCallbackBegin>(dlsym(tool_handler, "wrapperProfileCallbackBegin"));
+        g_profileHandler.profileCallbackEnd = reinterpret_cast<cudnn_ops_trainProfileCallbackEnd>(dlsym(tool_handler, "wrapperProfileCallbackEnd"));
+
+        // register profile domain
+        if (g_profileHandler.registerProfileDomain != NULL) {
+            g_profileDomain = g_profileHandler.registerProfileDomain(gLibName, g_profileFunctionList, sizeof(g_profileFunctionList) / sizeof(g_profileFunctionList[0]));
+            if (g_profileDomain == 0) {
+                g_profileHandler.isCallbackEnabled = NULL;
+            }
+        }
+    }
+
+  post_dlopen_tgt_lib: |
+    InitializeProfileHandler();
+
+  pre_wrapper_call: |
+    bool needProfile = g_profileHandler.isCallbackEnabled != NULL &&
+            g_profileHandler.isCallbackEnabled(g_profileDomain, cudnn_ops_train_TRACE_CBID_$WRAPPER_FUNC_NAME) != 0;
+        if (needProfile) {
+            g_profileHandler.profileCallbackBegin(g_profileDomain, cudnn_ops_train_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+
+  post_wrapper_call: |
+    if (needProfile) {
+            g_profileHandler.profileCallbackEnd(g_profileDomain, cudnn_ops_train_TRACE_CBID_$WRAPPER_FUNC_NAME);
+        }
+

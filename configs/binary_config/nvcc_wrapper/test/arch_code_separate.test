@@ -1,0 +1,4 @@
+# -arch and -code as separate options
+RUN: nvcc --print-hgcc-only -arch compute_80 -code sm_80 %s
+CHECK: #$ hgcc command:
+CHECK: -arch=ppu_10
