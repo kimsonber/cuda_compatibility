@@ -19,9 +19,9 @@ source_library:
   include_dirs:
     - $lib1/extras/CUPTI/include
     - $lib1/extras/Debugger/include
+    - $lib1/targets/x86_64-linux/include
     - $lib1/nvvm/include
     - $lib1/compute-sanitizer/include
-    - $lib1/targets/x86_64-linux/include
     - $nccl_v13/include
     - $config/PrivateHeader/GL
     - $config/PrivateHeader
